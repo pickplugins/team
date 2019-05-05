@@ -25,26 +25,14 @@ add_action('testimonial_meta_tabs_content_custom_scripts', 'testimonial_meta_tab
 
 if(!function_exists('testimonial_meta_tabs_content_custom_scripts')) {
     function testimonial_meta_tabs_content_custom_scripts($tab, $post_id){
-
-
         $settings_tabs_field = new settings_tabs_field();
-
         $team_options = get_post_meta( $post_id, 'team_options', true );
-
-        ?>
-        <pre><?php //echo var_export($team_options, true); ?></pre>
-        <?php
-
-
-
         $custom_css = isset($team_options['custom_css']) ? $team_options['custom_css'] : '';
-
 
         ?>
         <div class="section">
             <div class="section-title">Custom scripts</div>
             <p class="description section-description">Add your own scritps and style css.</p>
-
             <?php
 
             $args = array(
@@ -58,9 +46,192 @@ if(!function_exists('testimonial_meta_tabs_content_custom_scripts')) {
             );
 
             $settings_tabs_field->generate_field($args);
+            ?>
+        </div>
+        <?php
+	}
+
+}
 
 
 
+add_action('testimonial_meta_tabs_content_masonry', 'testimonial_meta_tabs_content_masonry',10, 2);
+
+if(!function_exists('testimonial_meta_tabs_content_masonry')) {
+    function testimonial_meta_tabs_content_masonry($tab, $post_id){
+        $settings_tabs_field = new settings_tabs_field();
+        $team_options = get_post_meta( $post_id, 'team_options', true );
+        $masonry_enable = isset($team_options['masonry_enable']) ? $team_options['masonry_enable'] : 'no';
+
+        ?>
+        <div class="section">
+            <div class="section-title">Masonry Settings</div>
+            <p class="description section-description">Customize masonry settings.</p>
+            <?php
+
+            $args = array(
+                'id'		=> 'masonry_enable',
+                'parent' => 'team_options',
+                'title'		=> __('Enable masonry','testimonial'),
+                'details'	=> __('Enable or disable masonry.','testimonial'),
+                'type'		=> 'select',
+                'value'		=> $masonry_enable,
+                'default'		=> 'false',
+                'args'		=> array(
+                    'no'=>__('No','testimonial'),
+                    'yes'=>__('Yes','testimonial'),
+
+
+
+
+                ),
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+        </div>
+        <?php
+    }
+
+}
+
+
+
+add_action('testimonial_meta_tabs_content_filterable', 'testimonial_meta_tabs_content_filterable',10, 2);
+
+if(!function_exists('testimonial_meta_tabs_content_filterable')) {
+    function testimonial_meta_tabs_content_filterable($tab, $post_id){
+        $settings_tabs_field = new settings_tabs_field();
+        $team_options = get_post_meta( $post_id, 'team_options', true );
+        $filterable_post_per_page = isset($team_options['filterable_post_per_page']) ? $team_options['filterable_post_per_page'] : '5';
+        $filterable_default_filter = isset($team_options['filterable_default_filter']) ? $team_options['filterable_default_filter'] : 'all';
+
+        $filterable_filter_scroll_top = isset($team_options['filterable_filter_scroll_top']) ? $team_options['filterable_filter_scroll_top'] : 'no';
+        $filterable_filter_bg_color = isset($team_options['filterable_filter_bg_color']) ? $team_options['filterable_filter_bg_color'] : '#ddd';
+        $filterable_filter_active_bg_color = isset($team_options['filterable_filter_active_bg_color']) ? $team_options['filterable_filter_active_bg_color'] : '#ddd';
+        $filterable_filter_text_color = isset($team_options['filterable_filter_text_color']) ? $team_options['filterable_filter_text_color'] : '#999';
+
+        $filter_nav_args = isset($team_options['filter_nav_args']) ? $team_options['filter_nav_args'] : array();
+
+
+        ?>
+        <div class="section">
+            <div class="section-title">Filterable Settings</div>
+            <p class="description section-description">Customize filterable settings.</p>
+            <?php
+
+
+
+
+
+
+
+
+            $args = array(
+                'id'		=> 'filter_nav_args',
+                //'parent'		=> 'team_options',
+                'title'		=> __('Filterable navs','testimonial'),
+                'details'	=> __('Add some navs.','testimonial'),
+                'type'		=> 'text_multi',
+                'sortable'		=> true,
+                'value'		=> $filter_nav_args,
+                'default'		=> array(),
+                'args'		=> array(),
+                'placeholder'		=> '{Filter 1| filterID1},{Filter 2| filterID2}',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+
+
+
+            $args = array(
+                'id'		=> 'filterable_post_per_page',
+                'parent' => 'team_options',
+                'title'		=> __('Post per page','testimonial'),
+                'details'	=> __('Custom value for post per page.','testimonial'),
+                'type'		=> 'text',
+                'value'		=> $filterable_post_per_page,
+                'default'		=> '5',
+                'placeholder'		=> '10',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            $args = array(
+                'id'		=> 'filterable_default_filter',
+                'parent' => 'team_options',
+                'title'		=> __('Default filter','testimonial'),
+                'details'	=> __('Choose default filter.','testimonial'),
+                'type'		=> 'select',
+                'value'		=> $filterable_default_filter,
+                'default'		=> 'false',
+                'args'		=> array(
+                    'no'=>__('No','testimonial'),
+                    'yes'=>__('Yes','testimonial'),
+                ),
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            $args = array(
+                'id'		=> 'filterable_filter_scroll_top',
+                'parent' => 'team_options',
+                'title'		=> __('Scroll top when pagination clicked.','testimonial'),
+                'details'	=> __('Enable or disable Scroll top when pagination clicked.','testimonial'),
+                'type'		=> 'select',
+                'value'		=> $filterable_filter_scroll_top,
+                'default'		=> 'false',
+                'args'		=> array(
+                    'no'=>__('No','testimonial'),
+                    'yes'=>__('Yes','testimonial'),
+                ),
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            $args = array(
+                'id'		=> 'filterable_filter_bg_color',
+                'parent' => 'team_options',
+                'title'		=> __('Filter background color','testimonial'),
+                'details'	=> __('Choose custom filter background color','testimonial'),
+                'type'		=> 'colorpicker',
+                'value'		=> $filterable_filter_bg_color,
+                'default'		=> '#ddd',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            $args = array(
+                'id'		=> 'filterable_filter_active_bg_color',
+                'parent' => 'team_options',
+                'title'		=> __('Filter active background color','testimonial'),
+                'details'	=> __('Choose custom filter active background color','testimonial'),
+                'type'		=> 'colorpicker',
+                'value'		=> $filterable_filter_active_bg_color,
+                'default'		=> '#ddd',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            $args = array(
+                'id'		=> 'filterable_filter_text_color',
+                'parent' => 'team_options',
+                'title'		=> __('Filter text color','testimonial'),
+                'details'	=> __('Choose custom filter text color','testimonial'),
+                'type'		=> 'colorpicker',
+                'value'		=> $filterable_filter_text_color,
+                'default'		=> '#999',
+            );
+
+            $settings_tabs_field->generate_field($args);
 
 
 
@@ -68,19 +239,23 @@ if(!function_exists('testimonial_meta_tabs_content_custom_scripts')) {
 
 
             ?>
-
-
         </div>
         <?php
-
-
-
-
-
-
-	}
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -510,7 +685,15 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
                     'placeholder'		=> '',
                 ),
 
-
+                array(
+                    'id'		=> 'class',
+                    'title'		=> __('Additional class','testimonial'),
+                    'details'	=> __('Add some class to use filterable, add comma separated.','testimonial'),
+                    'type'		=> 'text',
+                    'value'		=> '',
+                    'default'		=> '',
+                    'placeholder'		=> 'designer founder',
+                ),
 
 
 
@@ -523,8 +706,8 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
             $args = array(
                 'id'		=> 'testimonials',
                 'parent'		=> 'team_options',
-                'title'		=> __('Testimonials','text-domain'),
-                'details'	=> __('Put your testimonial here','text-domain'),
+                'title'		=> __('Team members','text-domain'),
+                'details'	=> __('Put your team members here','text-domain'),
                 'collapsible'=>true,
                 'type'		=> 'repeatable',
                 'limit'		=> 10,
@@ -920,7 +1103,7 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
                 'type'		=> 'radio_image',
                 'value'		=> $slider_nav_theme,
                 'default'		=> 'navThemes1',
-                'width'		=> '50px',
+                'width'		=> '100px',
                 'args'		=> array(
 
                     'navThemes1'=>array('name'=>'navThemes1','thumb'=>team_plugin_url.'assets/admin/images/navThemes1.png'),

@@ -490,7 +490,7 @@ class settings_tabs_field{
         ?>
         <div  id="input-wrapper-<?php echo $id; ?>" class="input-wrapper input-text-multi-wrapper
             input-text-multi-wrapper-<?php echo $css_id; ?>">
-            <span data-sort="<?php echo $sortable; ?>" data-clone="<?php echo $allow_clone; ?>" data-name="<?php echo $field_name; ?>[]" class="button add-item"><?php echo __('Add','pickplugins-options-framework'); ?></span>
+            <span data-placeholder="<?php echo esc_attr($placeholder); ?>" data-sort="<?php echo $sortable; ?>" data-clone="<?php echo $allow_clone; ?>" data-name="<?php echo $field_name; ?>[]" class="button add-item"><?php echo __('Add','pickplugins-options-framework'); ?></span>
             <div class="field-list <?php if($sortable){ echo 'sortable'; }?>" id="<?php echo $css_id; ?>">
                 <?php
                 if(!empty($values)):

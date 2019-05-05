@@ -94,9 +94,10 @@ jQuery(document).ready(function($){
         dataName = $(this).attr('data-name');
         dataSort = $(this).attr('data-sort');
         dataClone = $(this).attr('data-clone');
+        dataPlaceholder = $(this).attr('data-placeholder');
 
         html = '<div class="item">';
-        html += '<input type="text" name="'+dataName+'" placeholder="" />';
+        html += '<input  type="text" name="'+dataName+'" placeholder="'+dataPlaceholder+'" />';
 
         if(dataClone){
             html += ' <span class="button clone"><i class="far fa-clone"></i></span>';
