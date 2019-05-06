@@ -41,10 +41,10 @@ jQuery(document).ready(function($)
 
 
 		$(document).on('click', '#team_metabox .expandable .expand', function()
-			{	
-			
+			{
+
 				//alert('Hello');
-			
+
 				if($(this).parent().parent().hasClass('active'))
 					{
 					$(this).parent().parent().removeClass('active');
@@ -53,7 +53,7 @@ jQuery(document).ready(function($)
 					{
 						$(this).parent().parent().addClass('active');
 					}
-				
+
 
 			})
 

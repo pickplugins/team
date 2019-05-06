@@ -96,8 +96,8 @@ class class_team_functions  {
         );
 
 
-        $layout_items['rating'] = array('title'=>'Rating');
-        $layout_items['rating']['style'] = array(
+        $layout_items['position'] = array('title'=>'Position');
+        $layout_items['position']['style'] = array(
             array(
                 'id'		=> 'font-size',
                 'title'		=> __('Font Size','testimonial'),
@@ -166,10 +166,7 @@ class class_team_functions  {
         );
 
 
-
         $layout_items['content'] = array('title'=>'Content');
-
-
         $layout_items['content']['style'] = array(
             array(
                 'id'		=> 'font-size',
@@ -354,8 +351,9 @@ class class_team_functions  {
         );
 
 
-        $layout_items['company_name'] = array('title'=>'Company name');
-        $layout_items['company_name']['style'] = array(
+
+        $layout_items['skill'] = array('title'=>'Skill');
+        $layout_items['skill']['style'] = array(
             array(
                 'id'		=> 'font-size',
                 'title'		=> __('Font Size','testimonial'),
@@ -423,8 +421,13 @@ class class_team_functions  {
 
         );
 
-        $layout_items['position'] = array('title'=>'Position');
-        $layout_items['position']['style'] = array(
+
+
+
+
+
+        $layout_items['contacts'] = array('title'=>'Contacts');
+        $layout_items['contacts']['style'] = array(
             array(
                 'id'		=> 'font-size',
                 'title'		=> __('Font Size','testimonial'),
@@ -491,6 +494,8 @@ class class_team_functions  {
             ),
 
         );
+
+
 
 
         $layout_items = apply_filters('testimonial_layout_items', $layout_items);

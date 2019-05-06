@@ -30,17 +30,17 @@ if(!function_exists('testimonial_template_meta_tabs_content_templates')) {
 
 
 
-        $team_options = get_post_meta( $post_id, 'team_options', true );
-        $template_layout_items = isset($team_options['layout_items']) ? $team_options['layout_items'] : array();
-        $layout_items_sort = isset($team_options['layout_items_sort']) ? $team_options['layout_items_sort'] : array();
-        $template = isset($team_options['template']) ? $team_options['template'] : 'templateA';
+        $team_template_options = get_post_meta( $post_id, 'team_template_options', true );
+        $template_layout_items = isset($team_template_options['layout_items']) ? $team_template_options['layout_items'] : array();
+        $layout_items_sort = isset($team_template_options['layout_items_sort']) ? $team_template_options['layout_items_sort'] : array();
+        $template = isset($team_template_options['template']) ? $team_template_options['template'] : 'templateA';
 
         //$template_layout_items = isset($layout_templates[$template]) ? $layout_templates[$template] : $template_layout_items;
 
         //$layout_items_sort = !empty($layout_items_sort) ? $layout_templates[$template] : $layout_items_sort;
 
-        $template_html = isset($team_options['template_html']) ? $team_options['template_html'] : '';
-        $template_css = isset($team_options['template_css']) ? $team_options['template_css'] : '';
+        $template_html = isset($team_template_options['template_html']) ? $team_template_options['template_html'] : '';
+        $template_css = isset($team_template_options['template_css']) ? $team_template_options['template_css'] : '';
 
 
         ?>
@@ -74,8 +74,8 @@ if(!function_exists('testimonial_template_meta_tabs_content_templates')) {
                             <div class="header">
 <!--                                <span class="move"><i class="fa fa-bars"></i></span>-->
                                 <span class="expand"><i class="fa fa-expand"></i><i class="fa fa-compress"></i></span>
-                                <span class="name"><?php echo $title; ?>(<?php echo $layout_item_key; ?>) </span>
-                                <input type="hidden" name="team_options[layout_items_sort][<?php echo $layout_item_key; ?>]" value="">
+                                <span class="name"><?php echo $title; ?>(<?php echo $layout_item_key; ?> dfsdf) </span>
+                                <input type="hidden" name="team_template_options[layout_items_sort][<?php echo $layout_item_key; ?>]" value="">
 
                             </div>
                             <div class="options">
@@ -86,7 +86,7 @@ if(!function_exists('testimonial_template_meta_tabs_content_templates')) {
                                     foreach ($element_settings as $option){
 
                                         $option['css_id'] = $layout_item_key.'-'.$option['id'];
-                                        $option['parent'] = 'team_options[layout_items]['.$layout_item_key.'][settings]';
+                                        $option['parent'] = 'team_template_options[layout_items]['.$layout_item_key.'][settings]';
                                         $option['value'] = isset($template_layout_items[$layout_item_key]['settings'][$option['id']]) ? $template_layout_items[$layout_item_key]['settings'][$option['id']] : '';
 
                                         $settings_tabs_field->generate_field($option);
@@ -99,7 +99,7 @@ if(!function_exists('testimonial_template_meta_tabs_content_templates')) {
                                     foreach ($options_style as $option){
 
                                         $option['css_id'] = $layout_item_key.'-'.$option['id'];
-                                        $option['parent'] = 'team_options[layout_items]['.$layout_item_key.'][style]';
+                                        $option['parent'] = 'team_template_options[layout_items]['.$layout_item_key.'][style]';
                                         $option['value'] = isset($template_layout_items[$layout_item_key]['style'][$option['id']]) ? $template_layout_items[$layout_item_key]['style'][$option['id']] : '';
 
                                         $settings_tabs_field->generate_field($option);
@@ -129,9 +129,9 @@ if(!function_exists('testimonial_template_meta_tabs_content_templates')) {
                                 <div class="header">
                                     <span class="move"><i class="fa fa-bars"></i></span>
                                     <span class="expand"><i class="fa fa-expand"></i><i class="fa fa-compress"></i></span>
-                                    <span class="name"><?php echo $title; ?></span>
+                                    <span class="name"><?php echo $title; ?> (<?php echo $layout_item_key; ?>)</span>
 
-                                    <input type="hidden" name="team_options[layout_items_sort][<?php echo $layout_item_key; ?>]" value="">
+                                    <input type="hidden" name="team_template_options[layout_items_sort][<?php echo $layout_item_key; ?>]" value="">
 
                                 </div>
                                 <div class="options">
@@ -142,7 +142,7 @@ if(!function_exists('testimonial_template_meta_tabs_content_templates')) {
                                         foreach ($options_style as $option){
 
                                             $option['css_id'] = $layout_item_key.'-'.$option['id'];
-                                            $option['parent'] = 'team_options[layout_items]['.$layout_item_key.'][style]';
+                                            $option['parent'] = 'team_template_options[layout_items]['.$layout_item_key.'][style]';
 
                                             $settings_tabs_field->generate_field($option);
                                         }
@@ -189,8 +189,8 @@ if(!function_exists('testimonial_template_meta_tabs_content_templates')) {
 
                 $args = array(
                     'id' => 'elements',
-                    'parent' => 'team_options',
-                    'title' => __('Slider elements', 'testimonial'),
+                    'parent' => 'team_template_options',
+                    'title' => __('Elements options', 'testimonial'),
                     'details' => '',
                     'type' => 'custom_html',
                     'html' => $html,
@@ -210,7 +210,7 @@ if(!function_exists('testimonial_template_meta_tabs_content_templates')) {
 
             $args = array(
                 'id' => 'template_html',
-                'parent' => 'team_options',
+                'parent' => 'team_template_options',
                 'title' => __('Template HTML', 'testimonial'),
                 'details' => 'you can use custom html for item output, <code>'.esc_html($details).'</code>',
                 'type' => 'textarea',
@@ -222,7 +222,7 @@ if(!function_exists('testimonial_template_meta_tabs_content_templates')) {
 
             $args = array(
                 'id'		=> 'template_css',
-                'parent' => 'team_options',
+                'parent' => 'team_template_options',
                 'title'		=> __('Custom CSS','testimonial'),
                 'details'	=> __('Add your own CSS..','testimonial'),
                 'type'		=> 'scripts_css',
@@ -343,7 +343,7 @@ if(!function_exists('testimonial_template_meta_tabs_content_templates')) {
 
             $args = array(
                 'id' => 'preview',
-                //'parent' => 'team_options',
+                //'parent' => 'team_template_options',
                 'title' => __('Preview', 'testimonial'),
                 'details' => '',
                 'type' => 'custom_html',

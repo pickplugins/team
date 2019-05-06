@@ -55,6 +55,243 @@ if(!function_exists('testimonial_meta_tabs_content_custom_scripts')) {
 
 
 
+
+
+add_action('testimonial_meta_tabs_content_grid', 'testimonial_meta_tabs_content_grid',10, 2);
+
+if(!function_exists('testimonial_meta_tabs_content_grid')) {
+    function testimonial_meta_tabs_content_grid($tab, $post_id){
+        $settings_tabs_field = new settings_tabs_field();
+        $team_options = get_post_meta( $post_id, 'team_options', true );
+        $item_width_desktop = isset($team_options['item_width_desktop']) ? $team_options['item_width_desktop'] : '';
+        $item_width_tablet = isset($team_options['item_width_tablet']) ? $team_options['item_width_tablet'] : '';
+        $item_width_mobile = isset($team_options['item_width_mobile']) ? $team_options['item_width_mobile'] : '';
+        $item_margin = isset($team_options['item_margin']) ? $team_options['item_margin'] : '';
+        $item_text_align = isset($team_options['item_text_align']) ? $team_options['item_text_align'] : '';
+
+
+
+        ?>
+        <div class="section">
+            <div class="section-title">Custom scripts</div>
+            <p class="description section-description">Add your own scritps and style css.</p>
+            <?php
+
+            ob_start();
+            ?>
+            <div>
+                For Destop: (min-width:1024px) <br>
+                <input type="text" name="team_options[item_width_desktop]" placeholder="ex:150px, px or %" id="team_items_max_width" value="<?php echo $item_width_desktop; ?>">
+            </div>
+
+            <div>
+                For Tablet: ( min-width:768px ) <br>
+                <input type="text" name="team_options[item_width_tablet]" placeholder="ex:150px, px or %" id="team_items_width_tablet" value="<?php echo $item_width_tablet; ?>">
+            </div>
+
+            <div>
+                For Mobile: ( min-width : 320px, ) <br>
+                <input type="text" name="team_options[item_width_mobile]" placeholder="ex:150px, px or %" id="team_items_width_mobile" value="<?php echo $item_width_mobile; ?>">
+            </div>
+            <?php
+
+            $html = ob_get_clean();
+
+
+            $args = array(
+                'id' => 'item_width',
+                'parent' => 'team_options',
+                'title' => __('Slider elements', 'testimonial'),
+                'details' => '',
+                'type' => 'custom_html',
+                'html' => $html,
+            );
+            $settings_tabs_field->generate_field($args);
+
+
+
+            $args = array(
+                'id'		=> 'item_margin',
+                'parent' => 'team_options',
+                'title'		=> __('Items margin.','testimonial'),
+                'details'	=> __('Custom margin for item.','testimonial'),
+                'type'		=> 'text',
+                'value'		=> $item_margin,
+                'default'		=> '10px',
+                'placeholder'		=> '10px',
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+            $args = array(
+                'id'		=> 'item_text_align',
+                'parent' => 'team_options',
+                'title'		=> __('Items text align','testimonial'),
+                'details'	=> __('Choose Items text align.','testimonial'),
+                'type'		=> 'select',
+                'value'		=> $item_text_align,
+                'default'		=> 'false',
+                'args'		=> array(
+                    'left'=>__('Left','testimonial'),
+                    'right'=>__('Right','testimonial'),
+                    'center'=>__('Center','testimonial'),
+                ),
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+
+            ?>
+        </div>
+        <?php
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+add_action('testimonial_meta_tabs_content_pagination', 'testimonial_meta_tabs_content_pagination',10, 2);
+
+if(!function_exists('testimonial_meta_tabs_content_pagination')) {
+    function testimonial_meta_tabs_content_pagination($tab, $post_id){
+        $settings_tabs_field = new settings_tabs_field();
+        $team_options = get_post_meta( $post_id, 'team_options', true );
+        $pagination_prev_text = isset($team_options['pagination_prev_text']) ? $team_options['pagination_prev_text'] : '';
+        $pagination_next_text = isset($team_options['pagination_next_text']) ? $team_options['pagination_next_text'] : '';
+        $pagination_bg_color = isset($team_options['pagination_bg_color']) ? $team_options['pagination_bg_color'] : '';
+
+        $pagination_active_bg_color = isset($team_options['pagination_active_bg_color']) ? $team_options['pagination_active_bg_color'] : '';
+
+
+
+
+        ?>
+        <div class="section">
+            <div class="section-title">Custom scripts</div>
+            <p class="description section-description">Add your own scritps and style css.</p>
+            <?php
+
+
+            $args = array(
+                'id'		=> 'pagination_prev_text',
+                'parent' => 'team_options',
+                'title'		=> __('Pagination previous text.','testimonial'),
+                'details'	=> __('Custom text for pagination previous text.','testimonial'),
+                'type'		=> 'text',
+                'value'		=> $pagination_next_text,
+                'default'		=> '« Previous',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            $args = array(
+                'id'		=> 'pagination_next_text',
+                'parent' => 'team_options',
+                'title'		=> __('Pagination next text.','testimonial'),
+                'details'	=> __('Custom text for pagination next text.','testimonial'),
+                'type'		=> 'text',
+                'value'		=> $pagination_next_text,
+                'default'		=> 'Next »',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            $args = array(
+                'id'		=> 'pagination_bg_color',
+                'parent' => 'team_options',
+                'title'		=> __('Pagination default background color.','testimonial'),
+                'details'	=> __('Choose pagination default background color.','testimonial'),
+                'type'		=> 'colorpicker',
+                'value'		=> $pagination_bg_color,
+                'default'		=> '#ddd',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            $args = array(
+                'id'		=> 'pagination_active_bg_color',
+                'parent' => 'team_options',
+                'title'		=> __('Pagination active background color.','testimonial'),
+                'details'	=> __('Choose pagination active background color.','testimonial'),
+                'type'		=> 'colorpicker',
+                'value'		=> $pagination_active_bg_color,
+                'default'		=> '#ddd',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+
+
+            ?>
+        </div>
+        <?php
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 add_action('testimonial_meta_tabs_content_masonry', 'testimonial_meta_tabs_content_masonry',10, 2);
 
 if(!function_exists('testimonial_meta_tabs_content_masonry')) {

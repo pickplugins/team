@@ -218,11 +218,11 @@ function meta_boxes_testimonial_template_save( $post_id ) {
     /* OK, its safe for us to save the data now. */
 
     // Sanitize user input.
-    $team_options = ( $_POST['team_options'] );
+    $team_template_options = ( $_POST['team_template_options'] );
 
 
     // Update the meta field in the database.
-    update_post_meta( $post_id, 'team_options', $team_options );
+    update_post_meta( $post_id, 'team_template_options', $team_template_options );
 
 
 
