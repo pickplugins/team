@@ -15,7 +15,7 @@ class team_class_post_types{
 	
 	public function __construct(){
 		add_action( 'init', array( $this, 'team_posttype_team_member' ), 0 );
-		add_action( 'init', array( $this, 'team_posttype_team' ), 0);
+		//add_action( 'init', array( $this, 'team_posttype_team' ), 0);
 		
 		}
 	

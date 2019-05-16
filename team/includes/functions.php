@@ -24,10 +24,7 @@ if(!function_exists('settings_tabs_field_team_social_input')) {
         $post_id = get_the_id();
 
         $team_options = get_post_meta( $post_id, 'team_options', true );
-        $testimonials = isset($team_options['testimonials']) ? $team_options['testimonials'] : '';
 
-
-        //var_dump($testimonials);
 
         $unique_id = time();
 
@@ -134,7 +131,34 @@ if(!function_exists('settings_tabs_field_team_social_input')) {
 
 
 
+function team_1st_template_id(){
 
+    $args = array(
+        'post_type'=>'team_template',
+        'post_status'=>'publish',
+        'posts_per_page'=> 1,
+
+    );
+
+
+
+    $wp_query = new WP_Query($args);
+
+    $post_id = '';
+
+
+    if ( $wp_query->have_posts() ) :
+        while ( $wp_query->have_posts() ) : $wp_query->the_post();
+
+            $post_id = get_the_id();
+
+
+        endwhile;
+    endif;
+
+    return $post_id;
+
+}
 
 
 

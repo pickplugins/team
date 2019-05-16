@@ -29,8 +29,8 @@ class class_team_functions  {
         $layout_items['name']['style'] = array(
             array(
                 'id'		=> 'font-size',
-                'title'		=> __('Font Size','testimonial'),
-                'details'	=> __('Choose font size.','testimonial'),
+                'title'		=> __('Font Size','team'),
+                'details'	=> __('Choose font size.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -38,31 +38,31 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'color',
-                'title'		=> __('Text color','testimonial'),
-                'details'	=> __('Choose name font color','testimonial'),
+                'title'		=> __('Text color','team'),
+                'details'	=> __('Choose name font color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> '',
-                'default'		=> '#ddd',
+                'default'		=> '#595959',
             ),
             array(
                 'id'		=> 'text-align',
-                'title'		=> __('Text align','testimonial'),
-                'details'	=> __('Choose text align.','testimonial'),
+                'title'		=> __('Text align','team'),
+                'details'	=> __('Choose text align.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
                 'default'		=> 'left',
                 'args'		=> array(
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'center'=>__('Center','testimonial'),
-                    'initial'=>__('Initial','testimonial'),
-                    'justify'=>__('Justify','testimonial'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'center'=>__('Center','team'),
+                    'initial'=>__('Initial','team'),
+                    'justify'=>__('Justify','team'),
                 ),
             ),
             array(
                 'id'		=> 'margin',
-                'title'		=> __('Margin','testimonial'),
-                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -70,8 +70,8 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'padding',
-                'title'		=> __('Padding','testimonial'),
-                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Padding','team'),
+                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -79,29 +79,51 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'float',
-                'title'		=> __('Float','testimonial'),
-                'details'	=> __('Choose float.','testimonial'),
+                'title'		=> __('Float','team'),
+                'details'	=> __('Choose float.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
-                'default'		=> 'left',
+                'default'		=> 'none',
                 'args'		=> array(
-                    'none'=>__('None','testimonial'),
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'inherit'=>__('Inherit','testimonial'),
+                    'none'=>__('None','team'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'inherit'=>__('Inherit','team'),
                 )
             ),
 
 
         );
 
+        $layout_items['name']['settings'] = array(
+
+            array(
+                'id'		=> 'link_to',
+                'title'		=> __('Link to','team'),
+                'details'	=> __('Choose link to this member.','team'),
+                'type'		=> 'select',
+                'value'		=> '',
+                'default'		=> 'left',
+                'args'		=> array(
+                    'none'=>__('None','team'),
+                    'single_page'=>__('Single team page','team'),
+                    'custom_url'=>__('Custom URL','team'),
+                    'popup_box'=>__('Popup box','team'),
+                    'popup_slider'=>__('Popup slider','team'),
+                ),
+            ),
+
+
+        );
+
+
 
         $layout_items['position'] = array('title'=>'Position');
         $layout_items['position']['style'] = array(
             array(
                 'id'		=> 'font-size',
-                'title'		=> __('Font Size','testimonial'),
-                'details'	=> __('Choose font size.','testimonial'),
+                'title'		=> __('Font Size','team'),
+                'details'	=> __('Choose font size.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -109,31 +131,31 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'color',
-                'title'		=> __('Text color','testimonial'),
-                'details'	=> __('Choose name font color','testimonial'),
+                'title'		=> __('Text color','team'),
+                'details'	=> __('Choose name font color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> '',
-                'default'		=> '#ddd',
+                'default'		=> '#595959',
             ),
             array(
                 'id'		=> 'text-align',
-                'title'		=> __('Text align','testimonial'),
-                'details'	=> __('Choose text align.','testimonial'),
+                'title'		=> __('Text align','team'),
+                'details'	=> __('Choose text align.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
                 'default'		=> 'left',
                 'args'		=> array(
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'center'=>__('Center','testimonial'),
-                    'initial'=>__('Initial','testimonial'),
-                    'justify'=>__('Justify','testimonial'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'center'=>__('Center','team'),
+                    'initial'=>__('Initial','team'),
+                    'justify'=>__('Justify','team'),
                 ),
             ),
             array(
                 'id'		=> 'margin',
-                'title'		=> __('Margin','testimonial'),
-                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -141,8 +163,8 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'padding',
-                'title'		=> __('Padding','testimonial'),
-                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Padding','team'),
+                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -150,16 +172,16 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'float',
-                'title'		=> __('Float','testimonial'),
-                'details'	=> __('Choose float.','testimonial'),
+                'title'		=> __('Float','team'),
+                'details'	=> __('Choose float.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
-                'default'		=> 'left',
+                'default'		=> 'none',
                 'args'		=> array(
-                    'none'=>__('None','testimonial'),
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'inherit'=>__('Inherit','testimonial'),
+                    'none'=>__('None','team'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'inherit'=>__('Inherit','team'),
                 )
             ),
 
@@ -170,8 +192,8 @@ class class_team_functions  {
         $layout_items['content']['style'] = array(
             array(
                 'id'		=> 'font-size',
-                'title'		=> __('Font Size','testimonial'),
-                'details'	=> __('Choose font size.','testimonial'),
+                'title'		=> __('Font Size','team'),
+                'details'	=> __('Choose font size.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -179,47 +201,47 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'color',
-                'title'		=> __('Text color','testimonial'),
-                'details'	=> __('Choose name font color','testimonial'),
+                'title'		=> __('Text color','team'),
+                'details'	=> __('Choose name font color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> '',
-                'default'		=> '#ddd',
+                'default'		=> '#595959',
             ),
             array(
                 'id'		=> 'background-color',
-                'title'		=> __('Background color','testimonial'),
-                'details'	=> __('Choose name background color','testimonial'),
+                'title'		=> __('Background color','team'),
+                'details'	=> __('Choose name background color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> '',
-                'default'		=> '#ddd',
+                'default'		=> '#fff',
             ),
             array(
                 'id'		=> 'text-align',
-                'title'		=> __('Text align','testimonial'),
-                'details'	=> __('Choose text align.','testimonial'),
+                'title'		=> __('Text align','team'),
+                'details'	=> __('Choose text align.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
                 'default'		=> 'left',
                 'args'		=> array(
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'center'=>__('Center','testimonial'),
-                    'initial'=>__('Initial','testimonial'),
-                    'justify'=>__('Justify','testimonial'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'center'=>__('Center','team'),
+                    'initial'=>__('Initial','team'),
+                    'justify'=>__('Justify','team'),
                 ),
             ),
             array(
                 'id'		=> 'border-radius',
-                'title'		=> __('Border radius','testimonial'),
-                'details'	=> __('Set border radius.','testimonial'),
+                'title'		=> __('Border radius','team'),
+                'details'	=> __('Set border radius.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'placeholder'		=> '10px',
             ),
             array(
                 'id'		=> 'margin',
-                'title'		=> __('Margin','testimonial'),
-                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -227,8 +249,8 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'padding',
-                'title'		=> __('Padding','testimonial'),
-                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Padding','team'),
+                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -236,46 +258,92 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'float',
-                'title'		=> __('Float','testimonial'),
-                'details'	=> __('Choose float.','testimonial'),
+                'title'		=> __('Float','team'),
+                'details'	=> __('Choose float.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
-                'default'		=> 'left',
+                'default'		=> 'none',
                 'args'		=> array(
-                    'none'=>__('None','testimonial'),
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'inherit'=>__('Inherit','testimonial'),
+                    'none'=>__('None','team'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'inherit'=>__('Inherit','team'),
                 )
             ),
 
         );
 
+        $layout_items['content']['settings'] = array(
+            array(
+                'id'		=> 'word_count',
+                'title'		=> __('Word count','team'),
+                'details'	=> __('Choose word count for team member content.','team'),
+                'type'		=> 'text',
+                'value'		=> '',
+                'default'		=> '20',
+            ),
+
+            array(
+                'id'		=> 'read_more_text',
+                'title'		=> __('Custom read more text','team'),
+                'details'	=> __('Write custom read more text.','team'),
+                'type'		=> 'text',
+                'value'		=> '',
+                'default'		=> 'Read more',
+            ),
+
+            array(
+                'id'		=> 'link_to',
+                'title'		=> __('Link to','team'),
+                'details'	=> __('Choose link to this member.','team'),
+                'type'		=> 'select',
+                'value'		=> '',
+                'default'		=> 'left',
+                'args'		=> array(
+                    'none'=>__('None','team'),
+                    'single_page'=>__('Single team page','team'),
+                    'custom_url'=>__('Custom URL','team'),
+                    'popup_box'=>__('Popup box','team'),
+                    'popup_slider'=>__('Popup slider','team'),
+                ),
+            ),
+
+        );
+
+
+
+
+
 
         $layout_items['thumbnail'] = array('title'=>'Thumbnail');
 
-//        $layout_items['thumbnail']['settings'] = array(
-//            array(
-//                'id'		=> 'thumbSize',
-//                'title'		=> __('Thumbnail size','testimonial'),
-//                'details'	=> __('Choose thumbnail size.','testimonial'),
-//                'type'		=> 'select',
-//                'value'		=> '',
-//                'default'		=> 'left',
-//                'args'		=> array(
-//                    'left'=>__('Left','testimonial'),
-//                    'right'=>__('Right','testimonial'),
-//                    'center'=>__('Center','testimonial'),
-//                ),
-//            ),
-//        );
+        $layout_items['thumbnail']['settings'] = array(
+
+            array(
+                'id'		=> 'link_to',
+                'title'		=> __('Link to','team'),
+                'details'	=> __('Choose link to this member.','team'),
+                'type'		=> 'select',
+                'value'		=> '',
+                'default'		=> 'left',
+                'args'		=> array(
+                    'none'=>__('None','team'),
+                    'single_page'=>__('Single team page','team'),
+                    'custom_url'=>__('Custom URL','team'),
+                    'popup_box'=>__('Popup box','team'),
+                    'popup_slider'=>__('Popup slider','team'),
+                ),
+            ),
+
+
+        );
 
         $layout_items['thumbnail']['style'] = array(
 
             array(
                 'id'		=> 'width',
-                'title'		=> __('Width','testimonial'),
-                'details'	=> __('Thumbnail width','testimonial'),
+                'title'		=> __('Width','team'),
+                'details'	=> __('Thumbnail width','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -283,8 +351,8 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'height',
-                'title'		=> __('Height','testimonial'),
-                'details'	=> __('Thumbnail height','testimonial'),
+                'title'		=> __('Height','team'),
+                'details'	=> __('Thumbnail height','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -292,8 +360,8 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'border-radius',
-                'title'		=> __('Border radius','testimonial'),
-                'details'	=> __('Set border radius.','testimonial'),
+                'title'		=> __('Border radius','team'),
+                'details'	=> __('Set border radius.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'placeholder'		=> '30%',
@@ -301,23 +369,23 @@ class class_team_functions  {
 
             array(
                 'id'		=> 'float',
-                'title'		=> __('Float','testimonial'),
-                'details'	=> __('Choose float.','testimonial'),
+                'title'		=> __('Float','team'),
+                'details'	=> __('Choose float.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
-                'default'		=> 'left',
+                'default'		=> 'none',
                 'args'		=> array(
-                    'none'=>__('None','testimonial'),
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'inherit'=>__('Inherit','testimonial'),
+                    'none'=>__('None','team'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'inherit'=>__('Inherit','team'),
                 )
             ),
 
             array(
                 'id'		=> 'margin',
-                'title'		=> __('Margin','testimonial'),
-                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -325,8 +393,8 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'padding',
-                'title'		=> __('Padding','testimonial'),
-                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Padding','team'),
+                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -334,17 +402,17 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'text-align',
-                'title'		=> __('Text align','testimonial'),
-                'details'	=> __('Choose text align.','testimonial'),
+                'title'		=> __('Text align','team'),
+                'details'	=> __('Choose text align.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
                 'default'		=> 'left',
                 'args'		=> array(
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'center'=>__('Center','testimonial'),
-                    'initial'=>__('Initial','testimonial'),
-                    'justify'=>__('Justify','testimonial'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'center'=>__('Center','team'),
+                    'initial'=>__('Initial','team'),
+                    'justify'=>__('Justify','team'),
                 ),
             ),
 
@@ -356,8 +424,8 @@ class class_team_functions  {
         $layout_items['skill']['style'] = array(
             array(
                 'id'		=> 'font-size',
-                'title'		=> __('Font Size','testimonial'),
-                'details'	=> __('Choose font size.','testimonial'),
+                'title'		=> __('Font Size','team'),
+                'details'	=> __('Choose font size.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -365,31 +433,31 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'color',
-                'title'		=> __('Text color','testimonial'),
-                'details'	=> __('Choose name font color','testimonial'),
+                'title'		=> __('Text color','team'),
+                'details'	=> __('Choose name font color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> '',
-                'default'		=> '#ddd',
+                'default'		=> '#595959',
             ),
             array(
                 'id'		=> 'text-align',
-                'title'		=> __('Text align','testimonial'),
-                'details'	=> __('Choose text align.','testimonial'),
+                'title'		=> __('Text align','team'),
+                'details'	=> __('Choose text align.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
                 'default'		=> 'left',
                 'args'		=> array(
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'center'=>__('Center','testimonial'),
-                    'initial'=>__('Initial','testimonial'),
-                    'justify'=>__('Justify','testimonial'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'center'=>__('Center','team'),
+                    'initial'=>__('Initial','team'),
+                    'justify'=>__('Justify','team'),
                 ),
             ),
             array(
                 'id'		=> 'margin',
-                'title'		=> __('Margin','testimonial'),
-                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -397,8 +465,8 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'padding',
-                'title'		=> __('Padding','testimonial'),
-                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Padding','team'),
+                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -406,16 +474,16 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'float',
-                'title'		=> __('Float','testimonial'),
-                'details'	=> __('Choose float.','testimonial'),
+                'title'		=> __('Float','team'),
+                'details'	=> __('Choose float.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
-                'default'		=> 'left',
+                'default'		=> 'none',
                 'args'		=> array(
-                    'none'=>__('None','testimonial'),
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'inherit'=>__('Inherit','testimonial'),
+                    'none'=>__('None','team'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'inherit'=>__('Inherit','team'),
                 )
             ),
 
@@ -430,8 +498,8 @@ class class_team_functions  {
         $layout_items['contacts']['style'] = array(
             array(
                 'id'		=> 'font-size',
-                'title'		=> __('Font Size','testimonial'),
-                'details'	=> __('Choose font size.','testimonial'),
+                'title'		=> __('Font Size','team'),
+                'details'	=> __('Choose font size.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -439,31 +507,31 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'color',
-                'title'		=> __('Text color','testimonial'),
-                'details'	=> __('Choose name font color','testimonial'),
+                'title'		=> __('Text color','team'),
+                'details'	=> __('Choose name font color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> '',
-                'default'		=> '#ddd',
+                'default'		=> '#595959',
             ),
             array(
                 'id'		=> 'text-align',
-                'title'		=> __('Text align','testimonial'),
-                'details'	=> __('Choose text align.','testimonial'),
+                'title'		=> __('Text align','team'),
+                'details'	=> __('Choose text align.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
                 'default'		=> 'left',
                 'args'		=> array(
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'center'=>__('Center','testimonial'),
-                    'initial'=>__('Initial','testimonial'),
-                    'justify'=>__('Justify','testimonial'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'center'=>__('Center','team'),
+                    'initial'=>__('Initial','team'),
+                    'justify'=>__('Justify','team'),
                 ),
             ),
             array(
                 'id'		=> 'margin',
-                'title'		=> __('Margin','testimonial'),
-                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -471,8 +539,8 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'padding',
-                'title'		=> __('Padding','testimonial'),
-                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','testimonial'),
+                'title'		=> __('Padding','team'),
+                'details'	=> __('Set padding, ex: <code>10px</code> or <code>5px 10px</code>.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
                 'default'		=> '',
@@ -480,16 +548,16 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'float',
-                'title'		=> __('Float','testimonial'),
-                'details'	=> __('Choose float.','testimonial'),
+                'title'		=> __('Float','team'),
+                'details'	=> __('Choose float.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
-                'default'		=> 'left',
+                'default'		=> 'none',
                 'args'		=> array(
-                    'none'=>__('None','testimonial'),
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'inherit'=>__('Inherit','testimonial'),
+                    'none'=>__('None','team'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'inherit'=>__('Inherit','team'),
                 )
             ),
 
@@ -498,7 +566,7 @@ class class_team_functions  {
 
 
 
-        $layout_items = apply_filters('testimonial_layout_items', $layout_items);
+        $layout_items = apply_filters('team_layout_items', $layout_items);
 
         return $layout_items;
     }

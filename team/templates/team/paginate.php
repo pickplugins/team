@@ -74,7 +74,8 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
                                 load: {
                                     filter: ".<?php echo $team_items_default_filter_mixitup; ?>"
                                 },
-                        <?php
+
+                            <?php
 
 
 		}

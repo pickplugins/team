@@ -43,14 +43,17 @@ if ( ! defined('ABSPATH')) exit; // if direct access
 		if(!empty($team_taxonomy_terms)){
 			
 		$query_args['tax_query']  		= array(
-											array(
-												   'taxonomy' => $team_taxonomy,
-												   'field' => 'id',
-												   'terms' => $team_taxonomy_terms,
-												)
-											);
+
+
+            array(
+                   'taxonomy' => $team_taxonomy,
+                   'field' => 'id',
+                   'terms' => $team_taxonomy_terms,
+                )
+            );
 			
-			}
+
+		}
 
 			
 		

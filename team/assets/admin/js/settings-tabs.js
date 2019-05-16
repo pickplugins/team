@@ -133,6 +133,30 @@ jQuery(document).ready(function($){
     })
 
 
+
+    jQuery(document).on("click", ".field-repeatable-wrapper .clone", function() {
+
+
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     $(document).on('click', '.expandable .expand', function()
     {
         if($(this).parent().parent().hasClass('active'))

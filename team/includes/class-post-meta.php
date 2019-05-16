@@ -20,8 +20,8 @@ class team_class_post_meta{
 		add_action('save_post', array($this, 'meta_boxes_team_member_social_save'));
 
 		//meta box action for "team"
-		add_action('add_meta_boxes', array($this, 'meta_boxes_team'));
-		add_action('save_post', array($this, 'meta_boxes_team_save'));
+		//add_action('add_meta_boxes', array($this, 'meta_boxes_team'));
+		//add_action('save_post', array($this, 'meta_boxes_team_save'));
 		
 
 		}

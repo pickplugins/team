@@ -16,15 +16,15 @@ jQuery(document).ready(function($)
 			 
 
 		
-		$(document).on('click', '.team-popup-slider ', function(event)
+		$(document).on('click', '.team-popup-slider', function(event)
 			{	
 				//event.preventDefault();
 	
-				var team_id = $(this).attr('team_id');
+				var team_id = $(this).attr('teamid');
 				
 			//	console.log(team_id);
 				
-				$('#popup-slider-'+team_id).css("display",'block');				
+				$('.popup-slider').css("display",'block');
 				//$('.team-popup-box-'+teamid).fadeIn();
 				//$('.team-slide-'+teamid).css("display",'inline-block');
 
@@ -35,14 +35,15 @@ jQuery(document).ready(function($)
 		$(".team-container .popup-slider .close").click(function(){
 		  $(this).parent().parent().fadeOut("fast");
 		  
-			})
-		
-		
-		$(".team-container .popup-slider").click(function(){
-		  $(this).fadeOut("fast");
-			}).children().click(function(e) {
-			  return false;
-		});
+
+		})
+
+		$(".team-container .popup-slider .item").click(function(){
+			$('.popup-slider').fadeOut("fast");
+
+
+		})
+
 		
 		
 		
@@ -59,7 +60,10 @@ jQuery(document).ready(function($)
 				event.preventDefault();
 	
 				var teamid = $(this).attr('teamid');
-				
+
+
+
+
 				$('.team-popup-box').css("display",'none');				
 				$('.team-popup-box-'+teamid).fadeIn();
 				$('.team-slide-'+teamid).css("display",'inline-block');

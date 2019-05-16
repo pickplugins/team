@@ -108,8 +108,8 @@ class Team{
 		wp_enqueue_script('team_front_js', plugins_url( '/assets/front/js/scripts.js' , __FILE__ ) , array( 'jquery' ));	
 		wp_localize_script('team_front_js', 'team_ajax', array( 'team_ajaxurl' => admin_url( 'admin-ajax.php')));
 				
-		wp_enqueue_style('owl.carousel', plugins_url( 'assets/front/css/owl.carousel.css', __FILE__ ));		
-		wp_enqueue_style('owl.theme', plugins_url( 'assets/front/css/owl.theme.css', __FILE__ ));		
+		//wp_enqueue_style('owl.carousel', plugins_url( 'assets/front/css/owl.carousel.css', __FILE__ ));
+		//wp_enqueue_style('owl.theme', plugins_url( 'assets/front/css/owl.theme.css', __FILE__ ));
 
 
 		wp_enqueue_style('team-style', plugins_url( 'assets/front/css/style.css', __FILE__ ));	
@@ -118,17 +118,23 @@ class Team{
 		wp_enqueue_style('team-style.skins', plugins_url( 'assets/global/css/style.skins.css', __FILE__ ));			
 		wp_enqueue_style('team-style.layout', plugins_url( 'assets/global/css/style.layout.css', __FILE__ ));				
 		
-		wp_enqueue_script('owl.carousel', plugins_url( '/assets/front/js/owl.carousel.js' , __FILE__ ) , array( 'jquery' ));		
+		//wp_enqueue_script('owl.carousel', plugins_url( '/assets/front/js/owl.carousel.js' , __FILE__ ) , array( 'jquery' ));
 				
-		wp_enqueue_script('jquery.mixitup.min', plugins_url( '/assets/front/js/jquery.mixitup.min.js' , __FILE__ ) , array( 'jquery' ));		
-		wp_enqueue_script('jquery.mixitup-pagination', plugins_url( '/assets/front/js/jquery.mixitup-pagination.js' , __FILE__ ) , array( 'jquery' ));
+		//wp_enqueue_script('jquery.mixitup.min', plugins_url( '/assets/front/js/jquery.mixitup.min.js' , __FILE__ ) , array( 'jquery' ));
+		//wp_enqueue_script('jquery.mixitup-pagination', plugins_url( '/assets/front/js/jquery.mixitup-pagination.js' , __FILE__ ) , array( 'jquery' ));
 		wp_enqueue_script('masonry.pkgd.min', plugins_url( '/assets/front/js/masonry.pkgd.min.js' , __FILE__ ) , array( 'jquery' ));
-		
-	
-		
+        //wp_enqueue_script('mixitup-multifilter', plugins_url( '/assets/front/js/mixitup-multifilter.js' , __FILE__ ) , array( 'jquery' ));
 
 
-		do_action('team_action_front_scripts');
+
+        wp_enqueue_style('font-awesome', team_plugin_url.'assets/global/css/font-awesome.css');
+        wp_enqueue_style('fontawesome-5.min', team_plugin_url.'assets/global/css/fontawesome-5.min.css');
+
+
+
+
+
+        do_action('team_action_front_scripts');
 		}		
 		
 	public function team_admin_scripts(){
@@ -167,8 +173,8 @@ class Team{
 
 
         //ParaAdmin
-		//wp_enqueue_style('ParaAdmin', plugins_url( 'assets/admin/ParaAdmin/css/ParaAdmin.css', __FILE__ ));
-		//wp_enqueue_script('ParaAdmin', plugins_url( 'assets/admin/ParaAdmin/js/ParaAdmin.js' , __FILE__ ) , array( 'jquery' ));
+		wp_enqueue_style('ParaAdmin', plugins_url( 'assets/admin/ParaAdmin/css/ParaAdmin.css', __FILE__ ));
+		wp_enqueue_script('ParaAdmin', plugins_url( 'assets/admin/ParaAdmin/js/ParaAdmin.js' , __FILE__ ) , array( 'jquery' ));
 
 		do_action('team_action_admin_scripts');
 		}		

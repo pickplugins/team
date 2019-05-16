@@ -242,7 +242,7 @@ class settings_tabs_field{
                     html+= fieldHtml.replace(/TIMEINDEX/g, now);
                     html+='</div>';
 
-                    jQuery('.<?php echo 'field-repeatable-wrapper-'.$css_id; ?> .field-list').append(html);
+                    jQuery('.<?php echo 'field-repeatable-wrapper-'.$css_id; ?> .repeatable-field-list').append(html);
 
                 })
             });
@@ -250,7 +250,7 @@ class settings_tabs_field{
         <div id="input-wrapper-<?php echo $css_id; ?>" class=" input-wrapper field-repeatable-wrapper
             field-repeatable-wrapper-<?php echo $css_id; ?>">
             <div class="add-repeat-field button"><?php _e('Add','pickplugins-options-framework'); ?></div>
-            <div class="field-list sortable" id="<?php echo $css_id; ?>">
+            <div class="repeatable-field-list sortable" id="<?php echo $css_id; ?>">
                 <?php
                 if(!empty($values)):
                     $count = 1;
@@ -266,6 +266,8 @@ class settings_tabs_field{
                                 <?php if($sortable):?>
                                     <span class="button sort"><i class="fas fa-arrows-alt"></i></span>
                                 <?php endif; ?>
+                                <span class="button clone"><i class="far fa-copy"></i></span>
+
                                 <span class="title-text"><?php echo $title_field_val; ?></span>
                                 <?php if($collapsible):?>
                             </div>
@@ -513,6 +515,27 @@ class settings_tabs_field{
                         </div>
                     <?php
                     endforeach;
+
+                else:
+
+                    ?>
+                    <div class="item">
+                        <input type="text" name="<?php echo esc_attr($field_name); ?>[]"  placeholder="<?php
+                        echo esc_attr($placeholder); ?>" value="" />
+
+                        <?php if($allow_clone):?>
+                            <span class="button clone"><i class="far fa-clone"></i></span>
+                        <?php endif; ?>
+
+
+                        <?php if($sortable):?>
+                            <span class="button sort"><i class="fas fa-arrows-alt"></i></span>
+                        <?php endif; ?>
+
+                        <span class="button remove" onclick="jQuery(this).parent().remove()"><?php echo ($remove_text); ?></span>
+                    </div>
+                <?php
+
                 endif;
                 ?>
             </div>
@@ -915,6 +938,8 @@ class settings_tabs_field{
                 $thumb = $value['thumb'];
                 $disabled = isset($value['disabled']) ? $value['disabled'] : '';
                 $pro_msg = isset($value['pro_msg']) ? $value['pro_msg'] : '';
+                $link = isset($value['link']) ? $value['link'] : '';
+                $link_text = isset($value['link_text']) ? $value['link_text'] : 'Go';
 
                 $checked = ($key == $option_value) ? "checked" : "";
 
@@ -928,6 +953,10 @@ class settings_tabs_field{
                     <?php if($disabled == true):?>
                     <span class="pro-msg"><?php echo $pro_msg; ?></span>
                     <?php endif; ?>
+                    <?php if(!empty($link)):?>
+                        <a target="_blank" class="link" href="<?php echo $link; ?>"><?php echo $link_text; ?></a>
+                    <?php endif; ?>
+
                 </label>
             <?php
 
@@ -979,6 +1008,19 @@ class settings_tabs_field{
                 left: 50%;
                 transform: translate(-50%,-50%);
                 padding: 0 10px;
+
+            }
+
+            .radio-img label .link{
+                background: hsl(200, 7%, 42%);
+                position: absolute;
+                top: 10%;
+                left: 90%;
+                transform: translate(-50%,-50%);
+                padding: 3px 14px;
+                text-decoration: none;
+                font-size: 14px;
+                color: #fff;
 
             }
 

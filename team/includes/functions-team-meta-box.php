@@ -21,10 +21,10 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
-add_action('testimonial_meta_tabs_content_custom_scripts', 'testimonial_meta_tabs_content_custom_scripts',10, 2);
+add_action('team_meta_tabs_content_custom_scripts', 'team_meta_tabs_content_custom_scripts',10, 2);
 
-if(!function_exists('testimonial_meta_tabs_content_custom_scripts')) {
-    function testimonial_meta_tabs_content_custom_scripts($tab, $post_id){
+if(!function_exists('team_meta_tabs_content_custom_scripts')) {
+    function team_meta_tabs_content_custom_scripts($tab, $post_id){
         $settings_tabs_field = new settings_tabs_field();
         $team_options = get_post_meta( $post_id, 'team_options', true );
         $custom_css = isset($team_options['custom_css']) ? $team_options['custom_css'] : '';
@@ -38,11 +38,11 @@ if(!function_exists('testimonial_meta_tabs_content_custom_scripts')) {
             $args = array(
                 'id'		=> 'custom_css',
                 'parent' => 'team_options',
-                'title'		=> __('Custom CSS','testimonial'),
-                'details'	=> __('Add your own CSS..','testimonial'),
+                'title'		=> __('Custom CSS','team'),
+                'details'	=> __('Add your own CSS..','team'),
                 'type'		=> 'scripts_css',
                 'value'		=> $custom_css,
-                'default'		=> '.testimonial-container #testimonial-133{}&#10; ',
+                'default'		=> '.team-container #team-133{}&#10; ',
             );
 
             $settings_tabs_field->generate_field($args);
@@ -57,10 +57,10 @@ if(!function_exists('testimonial_meta_tabs_content_custom_scripts')) {
 
 
 
-add_action('testimonial_meta_tabs_content_grid', 'testimonial_meta_tabs_content_grid',10, 2);
+add_action('team_meta_tabs_content_grid', 'team_meta_tabs_content_grid',10, 2);
 
-if(!function_exists('testimonial_meta_tabs_content_grid')) {
-    function testimonial_meta_tabs_content_grid($tab, $post_id){
+if(!function_exists('team_meta_tabs_content_grid')) {
+    function team_meta_tabs_content_grid($tab, $post_id){
         $settings_tabs_field = new settings_tabs_field();
         $team_options = get_post_meta( $post_id, 'team_options', true );
         $item_width_desktop = isset($team_options['item_width_desktop']) ? $team_options['item_width_desktop'] : '';
@@ -101,7 +101,7 @@ if(!function_exists('testimonial_meta_tabs_content_grid')) {
             $args = array(
                 'id' => 'item_width',
                 'parent' => 'team_options',
-                'title' => __('Slider elements', 'testimonial'),
+                'title' => __('Slider elements', 'team'),
                 'details' => '',
                 'type' => 'custom_html',
                 'html' => $html,
@@ -113,8 +113,8 @@ if(!function_exists('testimonial_meta_tabs_content_grid')) {
             $args = array(
                 'id'		=> 'item_margin',
                 'parent' => 'team_options',
-                'title'		=> __('Items margin.','testimonial'),
-                'details'	=> __('Custom margin for item.','testimonial'),
+                'title'		=> __('Items margin.','team'),
+                'details'	=> __('Custom margin for item.','team'),
                 'type'		=> 'text',
                 'value'		=> $item_margin,
                 'default'		=> '10px',
@@ -129,15 +129,15 @@ if(!function_exists('testimonial_meta_tabs_content_grid')) {
             $args = array(
                 'id'		=> 'item_text_align',
                 'parent' => 'team_options',
-                'title'		=> __('Items text align','testimonial'),
-                'details'	=> __('Choose Items text align.','testimonial'),
+                'title'		=> __('Items text align','team'),
+                'details'	=> __('Choose Items text align.','team'),
                 'type'		=> 'select',
                 'value'		=> $item_text_align,
                 'default'		=> 'false',
                 'args'		=> array(
-                    'left'=>__('Left','testimonial'),
-                    'right'=>__('Right','testimonial'),
-                    'center'=>__('Center','testimonial'),
+                    'left'=>__('Left','team'),
+                    'right'=>__('Right','team'),
+                    'center'=>__('Center','team'),
                 ),
             );
 
@@ -180,18 +180,19 @@ if(!function_exists('testimonial_meta_tabs_content_grid')) {
 
 
 
-add_action('testimonial_meta_tabs_content_pagination', 'testimonial_meta_tabs_content_pagination',10, 2);
+add_action('team_meta_tabs_content_pagination', 'team_meta_tabs_content_pagination',10, 2);
 
-if(!function_exists('testimonial_meta_tabs_content_pagination')) {
-    function testimonial_meta_tabs_content_pagination($tab, $post_id){
+if(!function_exists('team_meta_tabs_content_pagination')) {
+    function team_meta_tabs_content_pagination($tab, $post_id){
         $settings_tabs_field = new settings_tabs_field();
         $team_options = get_post_meta( $post_id, 'team_options', true );
         $pagination_prev_text = isset($team_options['pagination_prev_text']) ? $team_options['pagination_prev_text'] : '';
         $pagination_next_text = isset($team_options['pagination_next_text']) ? $team_options['pagination_next_text'] : '';
-        $pagination_bg_color = isset($team_options['pagination_bg_color']) ? $team_options['pagination_bg_color'] : '';
+        $pagination_bg_color = isset($team_options['pagination_bg_color']) ? $team_options['pagination_bg_color'] : '#2593e8';
+        $pagination_active_bg_color = isset($team_options['pagination_active_bg_color']) ? $team_options['pagination_active_bg_color'] : '#1e69bf';
+        $pagination_item_padding = isset($team_options['pagination_item_padding']) ? $team_options['pagination_item_padding'] : '5px 15px';
 
-        $pagination_active_bg_color = isset($team_options['pagination_active_bg_color']) ? $team_options['pagination_active_bg_color'] : '';
-
+        $pagination_text_color = isset($team_options['pagination_text_color']) ? $team_options['pagination_text_color'] : '#fff';
 
 
 
@@ -205,10 +206,10 @@ if(!function_exists('testimonial_meta_tabs_content_pagination')) {
             $args = array(
                 'id'		=> 'pagination_prev_text',
                 'parent' => 'team_options',
-                'title'		=> __('Pagination previous text.','testimonial'),
-                'details'	=> __('Custom text for pagination previous text.','testimonial'),
+                'title'		=> __('Pagination previous text.','team'),
+                'details'	=> __('Custom text for pagination previous text.','team'),
                 'type'		=> 'text',
-                'value'		=> $pagination_next_text,
+                'value'		=> $pagination_prev_text,
                 'default'		=> '« Previous',
             );
 
@@ -217,8 +218,8 @@ if(!function_exists('testimonial_meta_tabs_content_pagination')) {
             $args = array(
                 'id'		=> 'pagination_next_text',
                 'parent' => 'team_options',
-                'title'		=> __('Pagination next text.','testimonial'),
-                'details'	=> __('Custom text for pagination next text.','testimonial'),
+                'title'		=> __('Pagination next text.','team'),
+                'details'	=> __('Custom text for pagination next text.','team'),
                 'type'		=> 'text',
                 'value'		=> $pagination_next_text,
                 'default'		=> 'Next »',
@@ -230,11 +231,11 @@ if(!function_exists('testimonial_meta_tabs_content_pagination')) {
             $args = array(
                 'id'		=> 'pagination_bg_color',
                 'parent' => 'team_options',
-                'title'		=> __('Pagination default background color.','testimonial'),
-                'details'	=> __('Choose pagination default background color.','testimonial'),
+                'title'		=> __('Pagination default background color.','team'),
+                'details'	=> __('Choose pagination default background color.','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> $pagination_bg_color,
-                'default'		=> '#ddd',
+                'default'		=> '#2593e8',
             );
 
             $settings_tabs_field->generate_field($args);
@@ -243,17 +244,40 @@ if(!function_exists('testimonial_meta_tabs_content_pagination')) {
             $args = array(
                 'id'		=> 'pagination_active_bg_color',
                 'parent' => 'team_options',
-                'title'		=> __('Pagination active background color.','testimonial'),
-                'details'	=> __('Choose pagination active background color.','testimonial'),
+                'title'		=> __('Pagination active background color.','team'),
+                'details'	=> __('Choose pagination active background color.','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> $pagination_active_bg_color,
-                'default'		=> '#ddd',
+                'default'		=> '#1e69bf',
             );
 
             $settings_tabs_field->generate_field($args);
 
 
+            $args = array(
+                'id'		=> 'pagination_text_color',
+                'parent' => 'team_options',
+                'title'		=> __('Pagination item text color.','team'),
+                'details'	=> __('Choose pagination item text color.','team'),
+                'type'		=> 'colorpicker',
+                'value'		=> $pagination_text_color,
+                'default'		=> '#fff',
+            );
 
+            $settings_tabs_field->generate_field($args);
+
+
+            $args = array(
+                'id'		=> 'pagination_item_padding',
+                'parent' => 'team_options',
+                'title'		=> __('Pagination item padding.','team'),
+                'details'	=> __('Custom padding for pagination item.','team'),
+                'type'		=> 'text',
+                'value'		=> $pagination_item_padding,
+                'default'		=> '5px 15px',
+            );
+
+            $settings_tabs_field->generate_field($args);
 
 
             ?>
@@ -292,10 +316,10 @@ if(!function_exists('testimonial_meta_tabs_content_pagination')) {
 
 
 
-add_action('testimonial_meta_tabs_content_masonry', 'testimonial_meta_tabs_content_masonry',10, 2);
+add_action('team_meta_tabs_content_masonry', 'team_meta_tabs_content_masonry',10, 2);
 
-if(!function_exists('testimonial_meta_tabs_content_masonry')) {
-    function testimonial_meta_tabs_content_masonry($tab, $post_id){
+if(!function_exists('team_meta_tabs_content_masonry')) {
+    function team_meta_tabs_content_masonry($tab, $post_id){
         $settings_tabs_field = new settings_tabs_field();
         $team_options = get_post_meta( $post_id, 'team_options', true );
         $masonry_enable = isset($team_options['masonry_enable']) ? $team_options['masonry_enable'] : 'no';
@@ -309,14 +333,14 @@ if(!function_exists('testimonial_meta_tabs_content_masonry')) {
             $args = array(
                 'id'		=> 'masonry_enable',
                 'parent' => 'team_options',
-                'title'		=> __('Enable masonry','testimonial'),
-                'details'	=> __('Enable or disable masonry.','testimonial'),
+                'title'		=> __('Enable masonry','team'),
+                'details'	=> __('Enable or disable masonry.','team'),
                 'type'		=> 'select',
                 'value'		=> $masonry_enable,
                 'default'		=> 'false',
                 'args'		=> array(
-                    'no'=>__('No','testimonial'),
-                    'yes'=>__('Yes','testimonial'),
+                    'no'=>__('No','team'),
+                    'yes'=>__('Yes','team'),
 
 
 
@@ -335,10 +359,10 @@ if(!function_exists('testimonial_meta_tabs_content_masonry')) {
 
 
 
-add_action('testimonial_meta_tabs_content_filterable', 'testimonial_meta_tabs_content_filterable',10, 2);
+add_action('team_meta_tabs_content_filterable', 'team_meta_tabs_content_filterable',10, 2);
 
-if(!function_exists('testimonial_meta_tabs_content_filterable')) {
-    function testimonial_meta_tabs_content_filterable($tab, $post_id){
+if(!function_exists('team_meta_tabs_content_filterable')) {
+    function team_meta_tabs_content_filterable($tab, $post_id){
         $settings_tabs_field = new settings_tabs_field();
         $team_options = get_post_meta( $post_id, 'team_options', true );
         $filterable_post_per_page = isset($team_options['filterable_post_per_page']) ? $team_options['filterable_post_per_page'] : '5';
@@ -348,9 +372,12 @@ if(!function_exists('testimonial_meta_tabs_content_filterable')) {
         $filterable_filter_bg_color = isset($team_options['filterable_filter_bg_color']) ? $team_options['filterable_filter_bg_color'] : '#ddd';
         $filterable_filter_active_bg_color = isset($team_options['filterable_filter_active_bg_color']) ? $team_options['filterable_filter_active_bg_color'] : '#ddd';
         $filterable_filter_text_color = isset($team_options['filterable_filter_text_color']) ? $team_options['filterable_filter_text_color'] : '#999';
+        $filterable_filter_padding = isset($team_options['filterable_filter_padding']) ? $team_options['filterable_filter_padding'] : '2px 15px';
+        $filterable_filter_margin = isset($team_options['filterable_filter_margin']) ? $team_options['filterable_filter_margin'] : '2px';
 
         $filter_nav_args = isset($team_options['filter_nav_args']) ? $team_options['filter_nav_args'] : array();
 
+        //var_dump($filter_nav_args);
 
         ?>
         <div class="section">
@@ -367,15 +394,15 @@ if(!function_exists('testimonial_meta_tabs_content_filterable')) {
 
             $args = array(
                 'id'		=> 'filter_nav_args',
-                //'parent'		=> 'team_options',
-                'title'		=> __('Filterable navs','testimonial'),
-                'details'	=> __('Add some navs.','testimonial'),
+                'parent'		=> 'team_options',
+                'title'		=> __('Filterable navs','team'),
+                'details'	=> __('Add some navs, please follow <code>Nave 1|nav1 , Nav 2|nav2, Nav 3|nav3</code>','team'),
                 'type'		=> 'text_multi',
                 'sortable'		=> true,
                 'value'		=> $filter_nav_args,
                 'default'		=> array(),
                 'args'		=> array(),
-                'placeholder'		=> '{Filter 1| filterID1},{Filter 2| filterID2}',
+                'placeholder'		=> 'Designer|designer , Developer|developer, Founder|founder',
             );
 
             $settings_tabs_field->generate_field($args);
@@ -388,8 +415,8 @@ if(!function_exists('testimonial_meta_tabs_content_filterable')) {
             $args = array(
                 'id'		=> 'filterable_post_per_page',
                 'parent' => 'team_options',
-                'title'		=> __('Post per page','testimonial'),
-                'details'	=> __('Custom value for post per page.','testimonial'),
+                'title'		=> __('Post per page','team'),
+                'details'	=> __('Custom value for post per page.','team'),
                 'type'		=> 'text',
                 'value'		=> $filterable_post_per_page,
                 'default'		=> '5',
@@ -402,15 +429,12 @@ if(!function_exists('testimonial_meta_tabs_content_filterable')) {
             $args = array(
                 'id'		=> 'filterable_default_filter',
                 'parent' => 'team_options',
-                'title'		=> __('Default filter','testimonial'),
-                'details'	=> __('Choose default filter.','testimonial'),
-                'type'		=> 'select',
+                'title'		=> __('Default filter','team'),
+                'details'	=> __('Choose default filter.','team'),
+                'type'		=> 'text',
                 'value'		=> $filterable_default_filter,
-                'default'		=> 'false',
-                'args'		=> array(
-                    'no'=>__('No','testimonial'),
-                    'yes'=>__('Yes','testimonial'),
-                ),
+                'default'		=> 'all',
+                'placeholder'		=> 'all',
             );
 
             $settings_tabs_field->generate_field($args);
@@ -419,14 +443,14 @@ if(!function_exists('testimonial_meta_tabs_content_filterable')) {
             $args = array(
                 'id'		=> 'filterable_filter_scroll_top',
                 'parent' => 'team_options',
-                'title'		=> __('Scroll top when pagination clicked.','testimonial'),
-                'details'	=> __('Enable or disable Scroll top when pagination clicked.','testimonial'),
+                'title'		=> __('Scroll top when pagination clicked.','team'),
+                'details'	=> __('Enable or disable Scroll top when pagination clicked.','team'),
                 'type'		=> 'select',
                 'value'		=> $filterable_filter_scroll_top,
                 'default'		=> 'false',
                 'args'		=> array(
-                    'no'=>__('No','testimonial'),
-                    'yes'=>__('Yes','testimonial'),
+                    'no'=>__('No','team'),
+                    'yes'=>__('Yes','team'),
                 ),
             );
 
@@ -436,8 +460,8 @@ if(!function_exists('testimonial_meta_tabs_content_filterable')) {
             $args = array(
                 'id'		=> 'filterable_filter_bg_color',
                 'parent' => 'team_options',
-                'title'		=> __('Filter background color','testimonial'),
-                'details'	=> __('Choose custom filter background color','testimonial'),
+                'title'		=> __('Filter background color','team'),
+                'details'	=> __('Choose custom filter background color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> $filterable_filter_bg_color,
                 'default'		=> '#ddd',
@@ -449,8 +473,8 @@ if(!function_exists('testimonial_meta_tabs_content_filterable')) {
             $args = array(
                 'id'		=> 'filterable_filter_active_bg_color',
                 'parent' => 'team_options',
-                'title'		=> __('Filter active background color','testimonial'),
-                'details'	=> __('Choose custom filter active background color','testimonial'),
+                'title'		=> __('Filter active background color','team'),
+                'details'	=> __('Choose custom filter active background color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> $filterable_filter_active_bg_color,
                 'default'		=> '#ddd',
@@ -461,8 +485,8 @@ if(!function_exists('testimonial_meta_tabs_content_filterable')) {
             $args = array(
                 'id'		=> 'filterable_filter_text_color',
                 'parent' => 'team_options',
-                'title'		=> __('Filter text color','testimonial'),
-                'details'	=> __('Choose custom filter text color','testimonial'),
+                'title'		=> __('Filter text color','team'),
+                'details'	=> __('Choose custom filter text color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> $filterable_filter_text_color,
                 'default'		=> '#999',
@@ -470,8 +494,31 @@ if(!function_exists('testimonial_meta_tabs_content_filterable')) {
 
             $settings_tabs_field->generate_field($args);
 
+            $args = array(
+                'id'		=> 'filterable_filter_padding',
+                'parent' => 'team_options',
+                'title'		=> __('Filter padding','team'),
+                'details'	=> __('Choose custom filter padding','team'),
+                'type'		=> 'text',
+                'value'		=> $filterable_filter_padding,
+                'default'		=> '2px 15px',
+                'placeholder'		=> '10px',
+            );
 
+            $settings_tabs_field->generate_field($args);
 
+            $args = array(
+                'id'		=> 'filterable_filter_margin',
+                'parent' => 'team_options',
+                'title'		=> __('Filter margin','team'),
+                'details'	=> __('Choose custom filter margin','team'),
+                'type'		=> 'text',
+                'value'		=> $filterable_filter_margin,
+                'default'		=> '2px 15px',
+                'placeholder'		=> '10px',
+            );
+
+            $settings_tabs_field->generate_field($args);
 
 
 
@@ -502,13 +549,13 @@ if(!function_exists('testimonial_meta_tabs_content_filterable')) {
 
 
 
-add_action('testimonial_meta_tabs_content_templates', 'testimonial_meta_tabs_content_templates',10, 2);
+add_action('team_meta_tabs_content_templates', 'team_meta_tabs_content_templates',10, 2);
 
-if(!function_exists('testimonial_meta_tabs_content_templates')) {
-    function testimonial_meta_tabs_content_templates($tab, $post_id){
+if(!function_exists('team_meta_tabs_content_templates')) {
+    function team_meta_tabs_content_templates($tab, $post_id){
         $settings_tabs_field = new settings_tabs_field();
 
-        //$testimonial_items_thumb_size = get_post_meta( $post_id, 'testimonial_items_thumb_size', true );
+        //$team_items_thumb_size = get_post_meta( $post_id, 'team_items_thumb_size', true );
         $team_options = get_post_meta( $post_id, 'team_options', true );
         $template = isset($team_options['template']) ? $team_options['template'] : 'templateA';
         $template_id = isset($team_options['template_id']) ? $team_options['template_id'] : '';
@@ -526,7 +573,7 @@ if(!function_exists('testimonial_meta_tabs_content_templates')) {
                 'posts_per_page'   => -1,
                 'orderby'          => 'date',
                 'order'            => 'DESC',
-                'post_type'        => 'testimonial_template',
+                'post_type'        => 'team_template',
                 'post_status'      => 'publish',
 
             );
@@ -540,8 +587,19 @@ if(!function_exists('testimonial_meta_tabs_content_templates')) {
                 $postData[$post->ID]['name'] = $post->post_title;
                 $postData[$post->ID]['thumb'] = $thumbnail_url;
 
+                $postData[$post->ID]['link'] = get_edit_post_link($post->ID);
+                $postData[$post->ID]['link_text'] = 'Edit';
+
 
             endforeach;
+
+            $postData['']['name'] = 'Create New';
+            $postData['']['thumb'] = $thumbnail_url;
+
+            $postData['']['link'] = admin_url().'post-new.php?post_type=team_template';
+            $postData['']['link_text'] = 'Create New';
+            $postData['']['disabled'] = true;
+
 
 
             $template_id = !empty($template_id) ? $template_id : key($postData);
@@ -553,8 +611,8 @@ if(!function_exists('testimonial_meta_tabs_content_templates')) {
             $args = array(
                 'id'		=> 'template_id',
                 'parent' => 'team_options',
-                'title'		=> __('Template','testimonial'),
-                'details'	=> __('Choose template.','testimonial'),
+                'title'		=> __('Template','team'),
+                'details'	=> __('Choose template.','team'),
                 'type'		=> 'radio_image',
                 'width'		=> '250px',
                 'value'		=> $template_id,
@@ -581,15 +639,15 @@ if(!function_exists('testimonial_meta_tabs_content_templates')) {
 
 
 
-//add_action('testimonial_meta_tabs_content_templates', 'testimonial_meta_tabs_content_elements',10, 2);
+//add_action('team_meta_tabs_content_templates', 'team_meta_tabs_content_elements',10, 2);
 
-if(!function_exists('testimonial_meta_tabs_content_elements')) {
-    function testimonial_meta_tabs_content_elements($tab, $post_id){
+if(!function_exists('team_meta_tabs_content_elements')) {
+    function team_meta_tabs_content_elements($tab, $post_id){
 
-        $class_testimonial_functions = new class_testimonial_functions();
+        $class_team_functions = new class_team_functions();
         $settings_tabs_field = new settings_tabs_field();
-        $layout_templates = $class_testimonial_functions->layout_templates();
-        $layout_items = $class_testimonial_functions->layout_items();
+        $layout_templates = $class_team_functions->layout_templates();
+        $layout_items = $class_team_functions->layout_items();
 
 
 
@@ -760,7 +818,7 @@ if(!function_exists('testimonial_meta_tabs_content_elements')) {
                 $args = array(
                     'id' => 'elements',
                     'parent' => 'team_options',
-                    'title' => __('Slider elements', 'testimonial'),
+                    'title' => __('Slider elements', 'team'),
                     'details' => '',
                     'type' => 'custom_html',
                     'html' => $html,
@@ -810,21 +868,23 @@ if(!function_exists('testimonial_meta_tabs_content_elements')) {
 
 
 
-add_action('testimonial_meta_tabs_content_team_members', 'testimonial_meta_tabs_content_team_members',10, 2);
+add_action('team_meta_tabs_content_team_members', 'team_meta_tabs_content_team_members',10, 2);
 
-if(!function_exists('testimonial_meta_tabs_content_team_members')) {
-    function testimonial_meta_tabs_content_team_members($tab, $post_id){
+if(!function_exists('team_meta_tabs_content_team_members')) {
+    function team_meta_tabs_content_team_members($tab, $post_id){
         $settings_tabs_field = new settings_tabs_field();
 
         $team_options = get_post_meta( $post_id, 'team_options', true );
-        $testimonials = isset($team_options['testimonials']) ? $team_options['testimonials'] : array();
+        $team_members = isset($team_options['team_members']) ? $team_options['team_members'] : array();
         $skill = isset($team_options['skill']) ? $team_options['skill'] : array();
         $contacts = isset($team_options['contacts']) ? $team_options['contacts'] : array();
 
-        //var_dump($team_options);
+        $team_options_new = get_post_meta( $post_id, 'team_options_new', true );
+
+
 
         ?>
-        <pre><?php //echo var_export($skill, true);?></pre>
+        <pre><?php //echo var_export($team_options, true);?></pre>
 
         <div class="section">
             <div class="section-title">Create team members</div>
@@ -838,7 +898,7 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
 //            $args = array(
 //                'id' => 'social',
 //                //'parent' => 'team_options',
-//                'title' => __('team_social_input', 'testimonial'),
+//                'title' => __('team_social_input', 'team'),
 //                'details' => '',
 //                'type' => 'team_social_input',
 //
@@ -847,12 +907,12 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
 
 
 
-            $testimonials_fields = array(
+            $teams_fields = array(
 
                 array(
                     'id'		=> 'name',
-                    'title'		=> __('Name','testimonial'),
-                    'details'	=> __('Write name here.','testimonial'),
+                    'title'		=> __('Name','team'),
+                    'details'	=> __('Write name here.','team'),
                     'type'		=> 'text',
                     'value'		=> '',
                     'default'		=> '',
@@ -860,8 +920,8 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
                 ),
                 array(
                     'id'		=> 'content',
-                    'title'		=> __('Content','testimonial'),
-                    'details'	=> __('Write details text here.','testimonial'),
+                    'title'		=> __('Content','team'),
+                    'details'	=> __('Write details text here.','team'),
                     'type'		=> 'textarea',
                     'value'		=> '',
                     'default'		=> '',
@@ -880,8 +940,8 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
 
                 array(
                     'id'		=> 'position',
-                    'title'		=> __('Position','testimonial'),
-                    'details'	=> __('Write position here.','testimonial'),
+                    'title'		=> __('Position','team'),
+                    'details'	=> __('Write position here.','team'),
                     'type'		=> 'text',
                     'value'		=> '',
                     'default'		=> '',
@@ -890,8 +950,8 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
 
                 array(
                     'id'		=> 'custom_link',
-                    'title'		=> __('Custom link','testimonial'),
-                    'details'	=> __('Custom link to member.','testimonial'),
+                    'title'		=> __('Custom link','team'),
+                    'details'	=> __('Custom link to member.','team'),
                     'type'		=> 'text',
                     'value'		=> '',
                     'default'		=> '',
@@ -901,11 +961,12 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
                 array(
                     'id'		=> 'skill',
                     //'parent'		=> 'team_options',
-                    'title'		=> __('Skill','testimonial'),
-                    'details'	=> __('Add some skills.','testimonial'),
+                    'title'		=> __('Skill','team'),
+                    'details'	=> __('Add some skills, please write as follows <code>Skill 1 | 90%</code>','team'),
                     'type'		=> 'text_multi',
                     'sortable'		=> true,
                     'value'		=> $skill,
+                    'placeholder'		=> 'Skill 1 | 90%',
                     'default'		=> array(),
                     'args'		=> array(),
                 ),
@@ -914,8 +975,8 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
                 array(
                     'id'		=> 'contacts',
                     'parent'		=> 'team_options',
-                    'title'		=> __('Member contact','testimonial'),
-                    'details'	=> __('Add team member contact.','testimonial'),
+                    'title'		=> __('Member contact','team'),
+                    'details'	=> __('Add team member contact.','team'),
                     'type'		=> 'team_social_input',
                     'value'		=> $contacts,
                     'default'		=> '',
@@ -924,8 +985,8 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
 
                 array(
                     'id'		=> 'class',
-                    'title'		=> __('Additional class','testimonial'),
-                    'details'	=> __('Add some class to use filterable, add comma separated.','testimonial'),
+                    'title'		=> __('Additional class','team'),
+                    'details'	=> __('Add some class to use filterable, add comma separated.','team'),
                     'type'		=> 'text',
                     'value'		=> '',
                     'default'		=> '',
@@ -937,11 +998,11 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
             );
 
 
-            $testimonials_fields = apply_filters('testimonials_fields', $testimonials_fields);
+            $teams_fields = apply_filters('teams_fields', $teams_fields);
 
 
             $args = array(
-                'id'		=> 'testimonials',
+                'id'		=> 'team_members',
                 'parent'		=> 'team_options',
                 'title'		=> __('Team members','text-domain'),
                 'details'	=> __('Put your team members here','text-domain'),
@@ -949,8 +1010,8 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
                 'type'		=> 'repeatable',
                 'limit'		=> 10,
                 'title_field'		=> 'name',
-                'value'		=> $testimonials,
-                'fields'    => $testimonials_fields,
+                'value'		=> $team_members,
+                'fields'    => $teams_fields,
             );
 
             $settings_tabs_field->generate_field($args);
@@ -991,10 +1052,10 @@ if(!function_exists('testimonial_meta_tabs_content_team_members')) {
 
 
 
-add_action('testimonial_meta_tabs_content_slider_settings', 'testimonial_meta_tabs_content_slider_settings',10, 2);
+add_action('team_meta_tabs_content_slider_settings', 'team_meta_tabs_content_slider_settings',10, 2);
 
-if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
-    function testimonial_meta_tabs_content_slider_settings($tab, $post_id){
+if(!function_exists('team_meta_tabs_content_slider_settings')) {
+    function team_meta_tabs_content_slider_settings($tab, $post_id){
 
         $settings_tabs_field = new settings_tabs_field();
         $team_options = get_post_meta( $post_id, 'team_options', true );
@@ -1061,13 +1122,13 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             ob_start();
 
             ?>
-            <div><?php _e('In Destop: (min:1000px and max)', 'testimonial');?></div>
+            <div><?php _e('In Destop: (min:1000px and max)', 'team');?></div>
             <input type="text" placeholder="4"   name="team_options[slider_column_desktop]" value="<?php echo $slider_column_desktop;  ?>" />
 
-            <div><?php _e('In Tablet & Small Desktop: (900px max width)', 'testimonial');?></div>
+            <div><?php _e('In Tablet & Small Desktop: (900px max width)', 'team');?></div>
             <input type="text" placeholder="2"  name="team_options[slider_column_tablet]" value="<?php echo $slider_column_tablet;  ?>" />
 
-            <div><?php _e('In Mobile: (479px max width)', 'testimonial');?></div>
+            <div><?php _e('In Mobile: (479px max width)', 'team');?></div>
             <input type="text" placeholder="1"  name="team_options[slider_column_mobile]" value="<?php echo $slider_column_mobile;  ?>" />
             <?php
 
@@ -1076,7 +1137,7 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id' => 'slider_columns',
                 'parent' => 'team_options',
-                'title' => __('Slider column number', 'testimonial'),
+                'title' => __('Slider column number', 'team'),
                 'details' => '',
                 'type' => 'custom_html',
                 'html' => $html,
@@ -1089,14 +1150,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_rows_enable',
                 'parent' => 'team_options',
-                'title'		=> __('Enable slider row','testimonial'),
-                'details'	=> __('Enable or disable slider rows.','testimonial'),
+                'title'		=> __('Enable slider row','team'),
+                'details'	=> __('Enable or disable slider rows.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_rows_enable,
                 'default'		=> 'false',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
 
 
 
@@ -1112,13 +1173,13 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             ob_start();
 
             ?>
-            <div><?php _e('In Desktop: (min:1000px and max)', 'testimonial');?></div>
+            <div><?php _e('In Desktop: (min:1000px and max)', 'team');?></div>
             <input type="text" placeholder="2"   name="team_options[slider_rows_desktop]" value="<?php echo $slider_rows_desktop;  ?>" />
 
-            <div><?php _e('In Tablet & Small Desktop: (900px max width)', 'testimonial');?></div>
+            <div><?php _e('In Tablet & Small Desktop: (900px max width)', 'team');?></div>
             <input type="text" placeholder="1"  name="team_options[slider_rows_tablet]" value="<?php echo $slider_rows_tablet;  ?>" />
 
-            <div><?php _e('In Mobile: (479px max width)', 'testimonial');?></div>
+            <div><?php _e('In Mobile: (479px max width)', 'team');?></div>
             <input type="text" placeholder="1"  name="team_options[slider_rows_mobile]" value="<?php echo $slider_rows_mobile;  ?>" />
             <?php
 
@@ -1127,7 +1188,7 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id' => 'slider_rows',
                 'parent' => 'team_options',
-                'title' => __('Slider row number', 'testimonial'),
+                'title' => __('Slider row number', 'team'),
                 'details' => '',
                 'type' => 'custom_html',
                 'html' => $html,
@@ -1139,14 +1200,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_auto_play',
                 'parent' => 'team_options',
-                'title'		=> __('Slider auto play','testimonial'),
-                'details'	=> __('Enable or disable slider autoplay.','testimonial'),
+                'title'		=> __('Slider auto play','team'),
+                'details'	=> __('Enable or disable slider autoplay.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_auto_play,
                 'default'		=> 'true',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
 
 
 
@@ -1159,8 +1220,8 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_auto_play_speed',
                 'parent' => 'team_options',
-                'title'		=> __('Slider auto play speed','testimonial'),
-                'details'	=> __('Custom value for auto play speed, 1000 = 1 second','testimonial'),
+                'title'		=> __('Slider auto play speed','team'),
+                'details'	=> __('Custom value for auto play speed, 1000 = 1 second','team'),
                 'type'		=> 'text',
                 'value'		=> $slider_auto_play_speed,
                 'default'		=> '1000',
@@ -1173,8 +1234,8 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_auto_play_timeout',
                 'parent' => 'team_options',
-                'title'		=> __('Slider auto play timeout','testimonial'),
-                'details'	=> __('Custom value for auto play timeout, 1000 = 1 second','testimonial'),
+                'title'		=> __('Slider auto play timeout','team'),
+                'details'	=> __('Custom value for auto play timeout, 1000 = 1 second','team'),
                 'type'		=> 'text',
                 'value'		=> $slider_auto_play_timeout,
                 'default'		=> '1200',
@@ -1187,8 +1248,8 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_slide_speed',
                 'parent' => 'team_options',
-                'title'		=> __('Slide speed','testimonial'),
-                'details'	=> __('Custom value for slide speed, 1000 = 1 second','testimonial'),
+                'title'		=> __('Slide speed','team'),
+                'details'	=> __('Custom value for slide speed, 1000 = 1 second','team'),
                 'type'		=> 'text',
                 'value'		=> $slider_slide_speed,
                 'default'		=> '600',
@@ -1201,8 +1262,8 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_pagination_slide_speed',
                 'parent' => 'team_options',
-                'title'		=> __('Pagination Slide Speed','testimonial'),
-                'details'	=> __('Custom value for pagination slide speed, 1000 = 1 second','testimonial'),
+                'title'		=> __('Pagination Slide Speed','team'),
+                'details'	=> __('Custom value for pagination slide speed, 1000 = 1 second','team'),
                 'type'		=> 'text',
                 'value'		=> $slider_pagination_slide_speed,
                 'default'		=> '600',
@@ -1214,8 +1275,8 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_slideBy',
                 'parent' => 'team_options',
-                'title'		=> __('Slider slideby count','testimonial'),
-                'details'	=> __('Custom value for slideby','testimonial'),
+                'title'		=> __('Slider slideby count','team'),
+                'details'	=> __('Custom value for slideby','team'),
                 'type'		=> 'text',
                 'value'		=> $slider_slideBy,
                 'default'		=> '1',
@@ -1228,14 +1289,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_rewind',
                 'parent' => 'team_options',
-                'title'		=> __('Slider rewind','testimonial'),
-                'details'	=> __('Enable or disable slider rewind.','testimonial'),
+                'title'		=> __('Slider rewind','team'),
+                'details'	=> __('Enable or disable slider rewind.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_rewind,
                 'default'		=> 'true',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
                 ),
             );
 
@@ -1244,14 +1305,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_loop',
                 'parent' => 'team_options',
-                'title'		=> __('Slider loop','testimonial'),
-                'details'	=> __('Enable or disable slider loop.','testimonial'),
+                'title'		=> __('Slider loop','team'),
+                'details'	=> __('Enable or disable slider loop.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_loop,
                 'default'		=> 'true',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
                 ),
             );
 
@@ -1261,14 +1322,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_center',
                 'parent' => 'team_options',
-                'title'		=> __('Slider center','testimonial'),
-                'details'	=> __('Enable or disable slider center. please set odd number of slider column to work slider center.','testimonial'),
+                'title'		=> __('Slider center','team'),
+                'details'	=> __('Enable or disable slider center. please set odd number of slider column to work slider center.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_center,
                 'default'		=> 'false',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
                 ),
             );
 
@@ -1278,14 +1339,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_stop_on_hover',
                 'parent' => 'team_options',
-                'title'		=> __('Slider stop on hover','testimonial'),
-                'details'	=> __('Enable or disable slider stop on hover.','testimonial'),
+                'title'		=> __('Slider stop on hover','team'),
+                'details'	=> __('Enable or disable slider stop on hover.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_stop_on_hover,
                 'default'		=> 'true',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
                 ),
             );
 
@@ -1296,14 +1357,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_navigation',
                 'parent' => 'team_options',
-                'title'		=> __('Slider navigation at top','testimonial'),
-                'details'	=> __('Enable or disable slider navigation at Top.','testimonial'),
+                'title'		=> __('Slider navigation at top','team'),
+                'details'	=> __('Enable or disable slider navigation at Top.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_navigation,
                 'default'		=> 'true',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
                 ),
             );
 
@@ -1313,17 +1374,17 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_navigation_position',
                 'parent' => 'team_options',
-                'title'		=> __('Slider navigation position','testimonial'),
-                'details'	=> __('Choose slider navigation position.','testimonial'),
+                'title'		=> __('Slider navigation position','team'),
+                'details'	=> __('Choose slider navigation position.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_navigation_position,
                 'default'		=> 'true',
                 'args'		=> array(
-                    'top-right'=>__('Top Right','testimonial'),
-                    'top-left'=>__('Top Left','testimonial'),
-                    'middle'=>__('Middle','testimonial'),
-                    'bottom-right'=>__('Bottom Right','testimonial'),
-                    'bottom-left'=>__('Bottom Left','testimonial'),
+                    'top-right'=>__('Top Right','team'),
+                    'top-left'=>__('Top Left','team'),
+                    'middle'=>__('Middle','team'),
+                    'bottom-right'=>__('Bottom Right','team'),
+                    'bottom-left'=>__('Bottom Left','team'),
 
 
                 ),
@@ -1335,8 +1396,8 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_nav_theme',
                 'parent' => 'team_options',
-                'title'		=> __('Dots style','testimonial'),
-                'details'	=> __('Choose dots template.','testimonial'),
+                'title'		=> __('Dots style','team'),
+                'details'	=> __('Choose dots template.','team'),
                 'type'		=> 'radio_image',
                 'value'		=> $slider_nav_theme,
                 'default'		=> 'navThemes1',
@@ -1366,14 +1427,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_pagination',
                 'parent' => 'team_options',
-                'title'		=> __('Slider Pagination at bottom','testimonial'),
-                'details'	=> __('Enable or disable slider Pagination at bottom.','testimonial'),
+                'title'		=> __('Slider Pagination at bottom','team'),
+                'details'	=> __('Enable or disable slider Pagination at bottom.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_pagination,
                 'default'		=> 'true',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
                 ),
             );
 
@@ -1386,8 +1447,8 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_pagination_bg',
                 'parent' => 'team_options',
-                'title'		=> __('Pagination background color','testimonial'),
-                'details'	=> __('Choose custom pagination background color','testimonial'),
+                'title'		=> __('Pagination background color','team'),
+                'details'	=> __('Choose custom pagination background color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> $slider_pagination_bg,
                 'default'		=> '#ddd',
@@ -1399,8 +1460,8 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_pagination_bg_active',
                 'parent' => 'team_options',
-                'title'		=> __('Pagination active background color','testimonial'),
-                'details'	=> __('Choose custom pagination background color','testimonial'),
+                'title'		=> __('Pagination active background color','team'),
+                'details'	=> __('Choose custom pagination background color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> $slider_pagination_bg_active,
                 'default'		=> '#ddd',
@@ -1412,8 +1473,8 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_pagination_text_color',
                 'parent' => 'team_options',
-                'title'		=> __('Pagination text color','testimonial'),
-                'details'	=> __('Choose custom pagination text color','testimonial'),
+                'title'		=> __('Pagination text color','team'),
+                'details'	=> __('Choose custom pagination text color','team'),
                 'type'		=> 'colorpicker',
                 'value'		=> $slider_pagination_text_color,
                 'default'		=> '#999',
@@ -1425,8 +1486,8 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_pagination_theme',
                 'parent' => 'team_options',
-                'title'		=> __('Dots style','testimonial'),
-                'details'	=> __('Choose dots template.','testimonial'),
+                'title'		=> __('Dots style','team'),
+                'details'	=> __('Choose dots template.','team'),
                 'type'		=> 'radio_image',
                 'value'		=> $slider_pagination_theme,
                 'default'		=> 'dotsThemes1',
@@ -1459,14 +1520,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_pagination_count',
                 'parent' => 'team_options',
-                'title'		=> __('Slider pagination number counting','testimonial'),
-                'details'	=> __('Enable or disable slider pagination number counting.','testimonial'),
+                'title'		=> __('Slider pagination number counting','team'),
+                'details'	=> __('Enable or disable slider pagination number counting.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_pagination_count,
                 'default'		=> 'true',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
                 ),
             );
 
@@ -1478,14 +1539,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_touch_drag',
                 'parent' => 'team_options',
-                'title'		=> __('Slider touch drag enable','testimonial'),
-                'details'	=> __('Enable or disable slider touch drag.','testimonial'),
+                'title'		=> __('Slider touch drag enable','team'),
+                'details'	=> __('Enable or disable slider touch drag.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_touch_drag,
                 'default'		=> 'true',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
                 ),
             );
 
@@ -1496,14 +1557,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_mouse_drag',
                 'parent' => 'team_options',
-                'title'		=> __('Slider mouse drag enable','testimonial'),
-                'details'	=> __('Enable or disable slider mouse drag.','testimonial'),
+                'title'		=> __('Slider mouse drag enable','team'),
+                'details'	=> __('Enable or disable slider mouse drag.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_mouse_drag,
                 'default'		=> 'true',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
                 ),
             );
 
@@ -1513,14 +1574,14 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_rtl',
                 'parent' => 'team_options',
-                'title'		=> __('RTL enable','testimonial'),
-                'details'	=> __('Enable or disable slider RTL.','testimonial'),
+                'title'		=> __('RTL enable','team'),
+                'details'	=> __('Enable or disable slider RTL.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_rtl,
                 'default'		=> 'false',
                 'args'		=> array(
-                    'true'=>__('True','testimonial'),
-                    'false'=>__('False','testimonial'),
+                    'true'=>__('True','team'),
+                    'false'=>__('False','team'),
                 ),
             );
 
@@ -1531,29 +1592,29 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_animateout',
                 'parent' => 'team_options',
-                'title'		=> __('Animate Out','testimonial'),
-                'details'	=> __('Choose animation on out.','testimonial'),
+                'title'		=> __('Animate Out','team'),
+                'details'	=> __('Choose animation on out.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_animateout,
                 'default'		=> 'false',
                 'args'		=> array(
-                    'fadeOut'=>__('fadeOut','testimonial'),
-                    'bounce'=>__('bounce','testimonial'),
-                    'flash'=>__('flash','testimonial'),
-                    'pulse'=>__('pulse','testimonial'),
-                    'shake'=>__('shake','testimonial'),
-                    'swing'=>__('swing','testimonial'),
-                    'tada'=>__('tada','testimonial'),
-                    'wobble'=>__('wobble','testimonial'),
-                    'flip'=>__('flip','testimonial'),
-                    'flipInX'=>__('flipInX','testimonial'),
-                    'flipInY'=>__('flipInY','testimonial'),
-                    'fadeIn'=>__('fadeIn','testimonial'),
-                    'fadeInDown'=>__('fadeInDown','testimonial'),
-                    'fadeInUp'=>__('fadeInUp','testimonial'),
-                    'bounceIn'=>__('bounceIn','testimonial'),
-                    'bounceInDown'=>__('bounceInDown','testimonial'),
-                    'bounceInUp'=>__('bounceInUp','testimonial'),
+                    'fadeOut'=>__('fadeOut','team'),
+                    'bounce'=>__('bounce','team'),
+                    'flash'=>__('flash','team'),
+                    'pulse'=>__('pulse','team'),
+                    'shake'=>__('shake','team'),
+                    'swing'=>__('swing','team'),
+                    'tada'=>__('tada','team'),
+                    'wobble'=>__('wobble','team'),
+                    'flip'=>__('flip','team'),
+                    'flipInX'=>__('flipInX','team'),
+                    'flipInY'=>__('flipInY','team'),
+                    'fadeIn'=>__('fadeIn','team'),
+                    'fadeInDown'=>__('fadeInDown','team'),
+                    'fadeInUp'=>__('fadeInUp','team'),
+                    'bounceIn'=>__('bounceIn','team'),
+                    'bounceInDown'=>__('bounceInDown','team'),
+                    'bounceInUp'=>__('bounceInUp','team'),
 
 
                 ),
@@ -1565,29 +1626,29 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
             $args = array(
                 'id'		=> 'slider_animateIn',
                 'parent' => 'team_options',
-                'title'		=> __('Animate Out','testimonial'),
-                'details'	=> __('Choose animation on out.','testimonial'),
+                'title'		=> __('Animate Out','team'),
+                'details'	=> __('Choose animation on out.','team'),
                 'type'		=> 'select',
                 'value'		=> $slider_animateIn,
                 'default'		=> 'false',
                 'args'		=> array(
-                    'fadeOut'=>__('fadeOut','testimonial'),
-                    'bounce'=>__('bounce','testimonial'),
-                    'flash'=>__('flash','testimonial'),
-                    'pulse'=>__('pulse','testimonial'),
-                    'shake'=>__('shake','testimonial'),
-                    'swing'=>__('swing','testimonial'),
-                    'tada'=>__('tada','testimonial'),
-                    'wobble'=>__('wobble','testimonial'),
-                    'flip'=>__('flip','testimonial'),
-                    'flipInX'=>__('flipInX','testimonial'),
-                    'flipInY'=>__('flipInY','testimonial'),
-                    'fadeIn'=>__('fadeIn','testimonial'),
-                    'fadeInDown'=>__('fadeInDown','testimonial'),
-                    'fadeInUp'=>__('fadeInUp','testimonial'),
-                    'bounceIn'=>__('bounceIn','testimonial'),
-                    'bounceInDown'=>__('bounceInDown','testimonial'),
-                    'bounceInUp'=>__('bounceInUp','testimonial'),
+                    'fadeOut'=>__('fadeOut','team'),
+                    'bounce'=>__('bounce','team'),
+                    'flash'=>__('flash','team'),
+                    'pulse'=>__('pulse','team'),
+                    'shake'=>__('shake','team'),
+                    'swing'=>__('swing','team'),
+                    'tada'=>__('tada','team'),
+                    'wobble'=>__('wobble','team'),
+                    'flip'=>__('flip','team'),
+                    'flipInX'=>__('flipInX','team'),
+                    'flipInY'=>__('flipInY','team'),
+                    'fadeIn'=>__('fadeIn','team'),
+                    'fadeInDown'=>__('fadeInDown','team'),
+                    'fadeInUp'=>__('fadeInUp','team'),
+                    'bounceIn'=>__('bounceIn','team'),
+                    'bounceInDown'=>__('bounceInDown','team'),
+                    'bounceInUp'=>__('bounceInUp','team'),
 
 
                 ),
@@ -1612,10 +1673,10 @@ if(!function_exists('testimonial_meta_tabs_content_slider_settings')) {
 }
 
 
-add_action('testimonial_meta_tabs_content_shortcode', 'testimonial_meta_tabs_content_shortcode',10, 2);
+add_action('team_meta_tabs_content_shortcode', 'team_meta_tabs_content_shortcode',10, 2);
 
-if(!function_exists('testimonial_meta_tabs_content_shortcode')) {
-    function testimonial_meta_tabs_content_shortcode($tab, $post_id){
+if(!function_exists('team_meta_tabs_content_shortcode')) {
+    function team_meta_tabs_content_shortcode($tab, $post_id){
 
         $settings_tabs_field = new settings_tabs_field();
 
@@ -1631,35 +1692,35 @@ if(!function_exists('testimonial_meta_tabs_content_shortcode')) {
             ?>
 
             <div class="copy-to-clipboard">
-                <input type="text" value="[testimonial id='<?php echo $post_id; ?>']"> <span class="copied">Copied</span>
+                <input type="text" value="[team id='<?php echo $post_id; ?>']"> <span class="copied">Copied</span>
                 <p class="description">You can use this shortcode under post content</p>
             </div>
 
             <div class="copy-to-clipboard">
                 To avoid conflict:<br>
-                <input type="text" value="[testimonial_pickplugins id='<?php echo $post_id; ?>']"> <span
+                <input type="text" value="[team_pickplugins id='<?php echo $post_id; ?>']"> <span
                     class="copied">Copied</span>
-                <p class="description">To avoid conflict with 3rd party shortcode also used same <code>[testimonial]</code>You can use this shortcode under post content</p>
+                <p class="description">To avoid conflict with 3rd party shortcode also used same <code>[team]</code>You can use this shortcode under post content</p>
             </div>
 
             <div class="copy-to-clipboard">
-                <textarea cols="50" rows="2" style="background:#bfefff" onClick="this.select();"><?php echo '<?php echo do_shortcode("[testimonial id='; echo "'" . $post_id . "']"; echo '"); ?>'; ?></textarea> <span class="copied">Copied</span>
+                <textarea cols="50" rows="2" style="background:#bfefff" onClick="this.select();"><?php echo '<?php echo do_shortcode("[team id='; echo "'" . $post_id . "']"; echo '"); ?>'; ?></textarea> <span class="copied">Copied</span>
                 <p class="description">PHP Code, you can use under theme .php files.</p>
             </div>
 
             <div class="copy-to-clipboard">
                 <textarea cols="50" rows="2" style="background:#bfefff"
-                          onClick="this.select();"><?php echo '<?php echo do_shortcode("[testimonial_pickplugins id=';
+                          onClick="this.select();"><?php echo '<?php echo do_shortcode("[team_pickplugins id=';
                     echo "'" . $post_id . "']";
                     echo '"); ?>'; ?></textarea> <span class="copied">Copied</span>
                 <p class="description">To avoid conflict, PHP code you can use under theme .php files.</p>
             </div>
 
             <style type="text/css">
-                .testimonial-meta-box .copy-to-clipboard {
+                .team-meta-box .copy-to-clipboard {
                 }
 
-                .testimonial-meta-box .copy-to-clipboard .copied {
+                .team-meta-box .copy-to-clipboard .copied {
                     display: none;
                     background: #e5e5e5;
                     padding: 4px 10px;
@@ -1669,7 +1730,7 @@ if(!function_exists('testimonial_meta_tabs_content_shortcode')) {
 
             <script>
                 jQuery(document).ready(function ($) {
-                    $(document).on('click', '.testimonial-meta-box .copy-to-clipboard input, .testimonial-meta-box .copy-to-clipboard textarea', function () {
+                    $(document).on('click', '.team-meta-box .copy-to-clipboard input, .team-meta-box .copy-to-clipboard textarea', function () {
                         $(this).focus();
                         $(this).select();
                         document.execCommand('copy');
@@ -1680,8 +1741,8 @@ if(!function_exists('testimonial_meta_tabs_content_shortcode')) {
             <?php
             $html = ob_get_clean();
             $args = array(
-                'id' => 'testimonial_shortcodes',
-                'title' => __('Get shortcode', 'testimonial'),
+                'id' => 'team_shortcodes',
+                'title' => __('Get shortcode', 'team'),
                 'details' => '',
                 'type' => 'custom_html',
                 'html' => $html,
@@ -1694,22 +1755,22 @@ if(!function_exists('testimonial_meta_tabs_content_shortcode')) {
             ?>
 
             <div class="copy-to-clipboard">
-                <input type="text" value="[testimonial_form id='<?php echo $post_id; ?>']"> <span class="copied">Copied</span>
+                <input type="text" value="[team_form id='<?php echo $post_id; ?>']"> <span class="copied">Copied</span>
                 <p class="description">You can use this shortcode under post content</p>
             </div>
 
 
 
             <div class="copy-to-clipboard">
-                <textarea cols="50" rows="2" style="background:#bfefff" onClick="this.select();"><?php echo '<?php echo do_shortcode("[testimonial_form id='; echo "'" . $post_id . "']"; echo '"); ?>'; ?></textarea> <span class="copied">Copied</span>
+                <textarea cols="50" rows="2" style="background:#bfefff" onClick="this.select();"><?php echo '<?php echo do_shortcode("[team_form id='; echo "'" . $post_id . "']"; echo '"); ?>'; ?></textarea> <span class="copied">Copied</span>
                 <p class="description">PHP Code, you can use under theme .php files.</p>
             </div>
 
             <?php
             $html = ob_get_clean();
             $args = array(
-                'id' => 'testimonial_form',
-                'title' => __('Submit form', 'testimonial'),
+                'id' => 'team_form',
+                'title' => __('Submit form', 'team'),
                 'details' => '',
                 'type' => 'custom_html',
                 'html' => $html,
