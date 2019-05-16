@@ -1,10 +1,12 @@
 <?php
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
-
-
 $teamid = isset($_GET['teamid']) ? $_GET['teamid'] : '';
-$teamMember = isset($_GET['teamMember']) ? $_GET['teamMember'] : '';
+$teamMember = isset($_GET['teamMember']) ? (int) $_GET['teamMember'] : '';
+
+include team_plugin_dir.'/templates/team-new/variables.php';
+
+
 
 
 if(!empty($teamid)):

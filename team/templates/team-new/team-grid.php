@@ -2,7 +2,7 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
-include team_plugin_dir.'/templates/team-new/variables.php';
+
 
 $class_team_functions = new class_team_functions();
 
@@ -514,6 +514,9 @@ $popup_template_css = isset($template_data['popup_template_css']) ? ($template_d
         ?>
 
     </div>
+
+
+
 
 
     <div class="team-popup-slider-wrap">

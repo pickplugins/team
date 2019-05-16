@@ -29,7 +29,7 @@ class class_team_functions  {
         $layout_items['name']['style'] = array(
             array(
                 'id'		=> 'font-size',
-                'title'		=> __('Font Size','team'),
+                'title'		=> __('Font size','team'),
                 'details'	=> __('Choose font size.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
@@ -38,6 +38,7 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'color',
+                'css_id'		=> 'name_color',
                 'title'		=> __('Text color','team'),
                 'details'	=> __('Choose name font color','team'),
                 'type'		=> 'colorpicker',
@@ -122,7 +123,7 @@ class class_team_functions  {
         $layout_items['position']['style'] = array(
             array(
                 'id'		=> 'font-size',
-                'title'		=> __('Font Size','team'),
+                'title'		=> __('Font size','team'),
                 'details'	=> __('Choose font size.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
@@ -131,6 +132,7 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'color',
+                'css_id'		=> 'position_color',
                 'title'		=> __('Text color','team'),
                 'details'	=> __('Choose name font color','team'),
                 'type'		=> 'colorpicker',
@@ -192,7 +194,7 @@ class class_team_functions  {
         $layout_items['content']['style'] = array(
             array(
                 'id'		=> 'font-size',
-                'title'		=> __('Font Size','team'),
+                'title'		=> __('Font size','team'),
                 'details'	=> __('Choose font size.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
@@ -201,6 +203,7 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'color',
+                'css_id'		=> 'content_color',
                 'title'		=> __('Text color','team'),
                 'details'	=> __('Choose name font color','team'),
                 'type'		=> 'colorpicker',
@@ -424,7 +427,7 @@ class class_team_functions  {
         $layout_items['skill']['style'] = array(
             array(
                 'id'		=> 'font-size',
-                'title'		=> __('Font Size','team'),
+                'title'		=> __('Font size','team'),
                 'details'	=> __('Choose font size.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
@@ -433,6 +436,7 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'color',
+                'css_id'		=> 'skill_color',
                 'title'		=> __('Text color','team'),
                 'details'	=> __('Choose name font color','team'),
                 'type'		=> 'colorpicker',
@@ -498,7 +502,7 @@ class class_team_functions  {
         $layout_items['contacts']['style'] = array(
             array(
                 'id'		=> 'font-size',
-                'title'		=> __('Font Size','team'),
+                'title'		=> __('Font size','team'),
                 'details'	=> __('Choose font size.','team'),
                 'type'		=> 'text',
                 'value'		=> '',
@@ -507,6 +511,7 @@ class class_team_functions  {
             ),
             array(
                 'id'		=> 'color',
+                'css_id'		=> 'contacts_color',
                 'title'		=> __('Text color','team'),
                 'details'	=> __('Choose name font color','team'),
                 'type'		=> 'colorpicker',

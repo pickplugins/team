@@ -5,6 +5,7 @@
 .team-container {
 
     width: 100%;
+    overflow: hidden;
     }
 
 
@@ -452,3 +453,20 @@ left: 30px;
 right: 30px;
 }
 
+
+
+.team-single-box .col-left {
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;
+}
+.team-single-box .col-right {
+    width: 56%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 15px;
+}
+
+.team-single-box{
+
+}
