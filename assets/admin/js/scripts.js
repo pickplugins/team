@@ -3,35 +3,6 @@ jQuery(document).ready(function($)
 	{
 
 
-		$(document).on('click', '.settings-tabs .add-contact', function(){
-
-			time = $.now();
-			dataName = $(this).attr('data-name');
-
-			html = '<div class="item">';
-			html += '<div>Type: </div>';
-			html += '<select name="'+dataName+'[contacts]['+time+'][type]">';
-			html += '<option value="email">Email</option>';
-			html += '<option value="phone">Phone</option>';
-			html += '<option value="link">Link</option>';
-			html += '<option value="text">Text</option>';
-			html += '<option value="skype">Skype</option>';
-			html += '</select>';
-			html += '<div>Link or Value:</div>';
-			html += '<input type="text" name="'+dataName+'[contacts]['+time+'][value]" placeholder="Write username, link, phone number or skype" value="">';
-			html += '<div>Label:</div>';
-			html += '<input type="text" name="'+dataName+'[contacts]['+time+'][label]" placeholder="Twitter" value="">';
-			html += '<div>Icon:</div>';
-			html += '<input type="text" name="'+dataName+'[contacts]['+time+'][icon]" placeholder="" value="">';
-			html += '<span class="button sort"><i class="fas fa-arrows-alt"></i></span>';
-			html += '<span class="button remove" onclick="jQuery(this).parent().remove()"><i class="fas fa-times"></i></span>';
-			html += '<hr/>';
-			html += '</div>';
-
-			$(this).parent().children('.contact-list').append(html);
-
-		})
-
 		$(document).on('click', '#team_metabox .expandable .expand', function()
 			{	
 			

@@ -322,8 +322,6 @@ class settings_tabs_field{
             <div class="media-preview-wrap" style="width: 150px;margin-bottom: 10px;background: #eee;padding: 5px;    text-align: center;">
                 <?php
 
-                //echo $media_type;
-
                 if( "audio/mpeg" == $media_type ){
                     ?>
                     <div class="media-preview" class="dashicons dashicons-format-audio" style="font-size: 70px;display: inline;"></div>
@@ -332,7 +330,6 @@ class settings_tabs_field{
                 }
                 elseif( "images/png" == $media_type || "images/jpg" == $media_type || "images/jpeg" == $media_type ||
                     "images/gif" == $media_type  ||
-                    "image/jpeg" == $media_type  ||
                     "images/ico" == $media_type){
                     ?>
                     <img class="media-preview" src="<?php echo $media_url; ?>" style="width:100%"/>
@@ -349,8 +346,8 @@ class settings_tabs_field{
                 ?>
             </div>
             <input type="hidden" name="<?php echo $field_name; ?>" id="media_input_<?php echo $css_id; ?>" value="<?php echo $value; ?>" />
-            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload','pickplugins-options-framework');?></div>
-            <div class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','pickplugins-options-framework');?></div>
+            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload','breadcrumb');?></div>
+            <div class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','breadcrumb');?></div>
             <div class="error-mgs"></div>
         </div>
 
@@ -430,8 +427,8 @@ class settings_tabs_field{
                 ?>
             </div>
             <input type="text" placeholder="<?php echo $placeholder; ?>" name="<?php echo $field_name; ?>" id="media_input_<?php echo $css_id; ?>" value="<?php echo $value; ?>" />
-            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload','related-post');?></div>
-            <div class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','related-post');?></div>
+            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload','breadcrumb');?></div>
+            <div class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','breadcrumb');?></div>
             <div class="error-mgs"></div>
         </div>
 
@@ -541,7 +538,7 @@ class settings_tabs_field{
         </script>
         <div id="input-wrapper-<?php echo $css_id; ?>" class=" input-wrapper field-repeatable-wrapper
             field-repeatable-wrapper-<?php echo $css_id; ?>">
-            <div class="add-repeat-field button"><?php _e('Add','pickplugins-options-framework'); ?></div>
+            <div class="add-repeat-field button"><?php _e('Add','breadcrumb'); ?></div>
             <div class="repeatable-field-list sortable" id="<?php echo $css_id; ?>">
                 <?php
                 if(!empty($values)):
@@ -797,7 +794,7 @@ class settings_tabs_field{
         ?>
         <div  id="input-wrapper-<?php echo $id; ?>" class="input-wrapper input-text-multi-wrapper
             input-text-multi-wrapper-<?php echo $css_id; ?>">
-            <span data-placeholder="<?php echo esc_attr($placeholder); ?>" data-sort="<?php echo $sortable; ?>" data-clone="<?php echo $allow_clone; ?>" data-name="<?php echo $field_name; ?>[]" class="button add-item"><?php echo __('Add','pickplugins-options-framework'); ?></span>
+            <span data-placeholder="<?php echo esc_attr($placeholder); ?>" data-sort="<?php echo $sortable; ?>" data-clone="<?php echo $allow_clone; ?>" data-name="<?php echo $field_name; ?>[]" class="button add-item"><?php echo __('Add','breadcrumb'); ?></span>
             <div class="field-list <?php if($sortable){ echo 'sortable'; }?>" id="<?php echo $css_id; ?>">
                 <?php
                 if(!empty($values)):
@@ -1126,10 +1123,12 @@ class settings_tabs_field{
         <textarea name="<?php echo $field_name; ?>" id="<?php echo $css_id; ?>" cols="40" rows="5" placeholder="<?php echo $placeholder; ?>"><?php echo $value; ?></textarea>
 
         <script>
-            var editor = CodeMirror.fromTextArea(document.getElementById("<?php echo $css_id; ?>"), {
-                lineNumbers: true,
-            });
+            jQuery(document).ready(function($){
 
+                wp.codeEditor.initialize($('#<?php echo $css_id; ?>'), cm_settings);
+
+
+            })
         </script>
         <?php
 
@@ -1173,25 +1172,18 @@ class settings_tabs_field{
         <textarea name="<?php echo $field_name; ?>" id="<?php echo $css_id; ?>" cols="40" rows="5" placeholder="<?php echo $placeholder; ?>"><?php echo $value; ?></textarea>
         <script>
 
-            var editor = CodeMirror.fromTextArea(document.getElementById("<?php echo $css_id; ?>"), {
-                lineNumbers: true,
-                value: "",
-                viewportMargin: Infinity,
 
-                //scrollbarStyle: "simple"
-            });
+            jQuery(document).ready(function($){
+
+                wp.codeEditor.initialize($('#<?php echo $css_id; ?>'), cm_settings);
+
+
+            })
+
 
 
 
         </script>
-
-        <style type="text/css">
-            .CodeMirror {
-                min-height:80px;
-            }
-
-        </style>
-
         <?php
 
         $input_html = ob_get_clean();

@@ -15,11 +15,9 @@ class team_class_post_types{
 	
 	public function __construct(){
 		add_action( 'init', array( $this, 'team_posttype_team_member' ), 0 );
-		add_action( 'init', array( $this, 'team_posttype_team' ), 0);
-        add_action( 'init', array( $this, 'team_posttype_team_template' ), 0);
-
-
-    }
+		add_action( 'init', array( $this, 'team_posttype_team' ), 0);		
+		
+		}
 	
 	
 	public function team_posttype_team_member(){
@@ -148,64 +146,17 @@ class team_class_post_types{
 				'query_var' 			=> true,
 				'supports' 				=> array( 'title'),
 				'show_in_nav_menus' 	=> false,
-
 				'menu_icon' => 'dashicons-groups',
 			) )
 		); 
 	 
 	 
 		}
-
-
-
-    public function team_posttype_team_template(){
-        if ( post_type_exists( "team_template" ) )
-            return;
-
-        $singular  = __( 'Team template', 'team' );
-        $plural    = __( 'Team templates', 'team' );
-
-
-        register_post_type( "team_template",
-            apply_filters( "register_post_type_team_template", array(
-                'labels' => array(
-                    'name' 					=> $plural,
-                    'singular_name' 		=> $singular,
-                    'menu_name'             => __( $singular, 'team' ),
-                    'all_items'             => sprintf( __( 'All %s', 'team' ), $plural ),
-                    'add_new' 				=> __( 'Add New', 'team' ),
-                    'add_new_item' 			=> sprintf( __( 'Add %s', 'team' ), $singular ),
-                    'edit' 					=> __( 'Edit', 'team' ),
-                    'edit_item' 			=> sprintf( __( 'Edit %s', 'team' ), $singular ),
-                    'new_item' 				=> sprintf( __( 'New %s', 'team' ), $singular ),
-                    'view' 					=> sprintf( __( 'View %s', 'team' ), $singular ),
-                    'view_item' 			=> sprintf( __( 'View %s', 'team' ), $singular ),
-                    'search_items' 			=> sprintf( __( 'Search %s', 'team' ), $plural ),
-                    'not_found' 			=> sprintf( __( 'No %s found', 'team' ), $plural ),
-                    'not_found_in_trash' 	=> sprintf( __( 'No %s found in trash', 'team' ), $plural ),
-                    'parent' 				=> sprintf( __( 'Parent %s', 'team' ), $singular )
-                ),
-                'description' => sprintf( __( 'This is where you can create and manage %s.', 'team' ), $plural ),
-                'public' 				=> true,
-                'show_ui' 				=> true,
-                'capability_type' 		=> 'post',
-                'map_meta_cap'          => true,
-                'publicly_queryable' 	=> true,
-                'exclude_from_search' 	=> false,
-                'hierarchical' 			=> false,
-                'rewrite' 				=> true,
-                'query_var' 			=> true,
-                'supports' 				=> array( 'title'),
-                'show_in_nav_menus' 	=> false,
-                'show_in_menu' 	=> 'edit.php?post_type=team',
-                'menu_icon' => 'dashicons-groups',
-            ) )
-        );
-
-
-    }
-
-
-}
+	
+	
+	
+	
+	
+	}
 	
 	new team_class_post_types();

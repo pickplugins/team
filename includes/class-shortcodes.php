@@ -16,43 +16,7 @@ class class_team_shortcodes  {
 		add_shortcode( 'team', array( $this, 'team_display' ) );
 		add_shortcode( 'team_pickplugins', array( $this, 'team_display' ) ); // To avoid Conflict
 
-        add_shortcode( 'team_showcase', array( $this, 'team_new_display' ) );
-
-
     }
-
-
-    public function team_new_display($atts, $content = null ) {
-        $atts = shortcode_atts(
-            array(
-                'id' => "",
-
-            ), $atts);
-
-        $post_id = isset($atts['id']) ? sanitize_text_field($atts['id']) : '';
-
-        include team_plugin_dir.'/templates/team-showcase/team-showcase-hook.php';
-
-        ob_start();
-
-        ?>
-        <div class="team-container" id="team-<?php echo $post_id; ?>">
-            <?php
-
-            do_action('team_showcase_main', $atts);
-
-            ?>
-        </div>
-        <?php
-
-
-        return ob_get_clean();
-
-
-
-    }
-
-
 	
 	public function team_display($atts, $content = null ) {
 			$atts = shortcode_atts(
