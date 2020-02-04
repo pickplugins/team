@@ -68,6 +68,20 @@ class class_team_post_meta_team{
             'active' => false,
         );
 
+        $team_settings_tab[] = array(
+            'id' => 'masonry',
+            'title' => sprintf(__('%s Masonry','team'),'<i class="fas fa-qrcode"></i>'),
+            'priority' => 4,
+            'active' => false,
+        );
+
+        $team_settings_tab[] = array(
+            'id' => 'pagination',
+            'title' => sprintf(__('%s Pagination','team'),'<i class="fas fa-qrcode"></i>'),
+            'priority' => 4,
+            'active' => false,
+        );
+
 
         $team_settings_tab[] = array(
             'id' => 'custom_scripts',

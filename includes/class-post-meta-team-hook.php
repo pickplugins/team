@@ -412,8 +412,8 @@ function team_metabox_content_custom_scripts($post_id){
 
 
     $settings_tabs_field = new settings_tabs_field();
-
     $team_items_custom_css = get_post_meta($post_id,'team_items_custom_css', true);
+
 
     ?>
     <div class="section">
@@ -422,7 +422,6 @@ function team_metabox_content_custom_scripts($post_id){
 
 
         <?php
-
         $args = array(
             'id'		=> 'team_items_custom_css',
             //'parent'		=> '',
@@ -438,6 +437,9 @@ function team_metabox_content_custom_scripts($post_id){
 
 
 
+
+
+
         ?>
     </div>
     <?php
@@ -450,6 +452,129 @@ function team_metabox_content_custom_scripts($post_id){
 
 
 
+add_action('team_metabox_content_masonry','team_metabox_content_masonry');
+
+
+function team_metabox_content_masonry($post_id){
+
+
+    $settings_tabs_field = new settings_tabs_field();
+
+    $team_masonry_enable = get_post_meta($post_id,'team_masonry_enable', true);
+
+    ?>
+    <div class="section">
+        <div class="section-title"><?php echo __('Masonry', 'team'); ?></div>
+        <p class="description section-description"><?php echo __('Customize masonry settings.', 'team'); ?></p>
+
+
+        <?php
+
+        $args = array(
+            'id'		=> 'team_masonry_enable',
+            //'parent'		=> '',
+            'title'		=> __('Active masonry','job-board-manager'),
+            'details'	=> __('Choose masonry style grid.','job-board-manager'),
+            'type'		=> 'select',
+            'value'		=> $team_masonry_enable,
+            'default'		=> '',
+            'args'		=> array('no'=>'No', 'yes'=>'Yes'),
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+
+        ?>
+    </div>
+    <?php
+
+
+}
+
+
+
+add_action('team_metabox_content_pagination','team_metabox_content_pagination');
+
+
+function team_metabox_content_pagination($post_id){
+
+
+    $settings_tabs_field = new settings_tabs_field();
+
+    $team_pagination_prev_text = get_post_meta($post_id,'team_pagination_prev_text', true);
+    $team_pagination_next_text = get_post_meta($post_id,'team_pagination_next_text', true);
+    $team_pagination_bg_color = get_post_meta($post_id,'team_pagination_bg_color', true);
+    $team_pagination_active_bg_color = get_post_meta($post_id,'team_pagination_active_bg_color', true);
+
+    ?>
+    <div class="section">
+        <div class="section-title"><?php echo __('Masonry', 'team'); ?></div>
+        <p class="description section-description"><?php echo __('Customize masonry settings.', 'team'); ?></p>
+
+
+        <?php
+
+        $args = array(
+            'id'		=> 'team_pagination_prev_text',
+            //'parent'		=> '',
+            'title'		=> __('Previous text','job-board-manager'),
+            'details'	=> __('Write previous text.','job-board-manager'),
+            'type'		=> 'text',
+            'value'		=> $team_pagination_prev_text,
+            'default'		=> '',
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+
+        $args = array(
+            'id'		=> 'team_pagination_next_text',
+            //'parent'		=> '',
+            'title'		=> __('Next text','job-board-manager'),
+            'details'	=> __('Write next text.','job-board-manager'),
+            'type'		=> 'text',
+            'value'		=> $team_pagination_next_text,
+            'default'		=> '',
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+        $args = array(
+            'id'		=> 'team_pagination_bg_color',
+            //'parent'		=> '',
+            'title'		=> __('Background color','job-board-manager'),
+            'details'	=> __('Choose background color.','job-board-manager'),
+            'type'		=> 'colorpicker',
+            'value'		=> $team_pagination_bg_color,
+            'default'		=> '',
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+        $args = array(
+            'id'		=> 'team_pagination_active_bg_color',
+            //'parent'		=> '',
+            'title'		=> __('active background color','job-board-manager'),
+            'details'	=> __('Choose active background color.','job-board-manager'),
+            'type'		=> 'colorpicker',
+            'value'		=> $team_pagination_active_bg_color,
+            'default'		=> '',
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+
+
+        ?>
+    </div>
+    <?php
+
+
+}
 
 
 
