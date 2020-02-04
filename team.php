@@ -44,6 +44,7 @@ class Team{
         include( 'includes/class-shortcodes.php' );
 
         include( 'includes/class-settings-tabs.php' );
+        include( 'includes/functions-settings-hook.php' );
 
 
 

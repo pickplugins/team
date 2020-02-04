@@ -58,14 +58,14 @@ class class_team_post_meta_team{
             'id' => 'query_member',
             'title' => sprintf(__('%s Query Member','team'),'<i class="fas fa-users"></i>'),
             'priority' => 3,
-            'active' => true,
+            'active' => false,
         );
 
         $team_settings_tab[] = array(
             'id' => 'layout_builder',
             'title' => sprintf(__('%s Layout Builder','team'),'<i class="fas fa-qrcode"></i>'),
             'priority' => 4,
-            'active' => false,
+            'active' => true,
         );
 
         $team_settings_tab[] = array(
@@ -198,11 +198,11 @@ class class_team_post_meta_team{
         /* OK, its safe for us to save the data now. */
 
         // Sanitize the user input.
-        //$team_am_user_email = stripslashes_deep($_POST['team_am_user_email']);
+        $grid_item_layout = stripslashes_deep($_POST['grid_item_layout']);
 
 
         // Update the meta field.
-        //update_post_meta($post_id, 'team_data', $team_data);
+        update_post_meta($post_id, 'grid_item_layout', $grid_item_layout);
 
         do_action('team_meta_box_save_team', $post_id);
 
