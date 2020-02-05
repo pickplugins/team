@@ -1584,13 +1584,13 @@ Team Post
                     <p class="option-title"><?php _e('Filterable','team'); ?> <span class="team-pro" title="Only available in premium">Pro</span></p>
                     <p class="option-info"><?php _e('Filterable post per page.','team'); ?></p>
                     <input type="text" placeholder="3" name="team_items_post_per_page_mixitup" id="team_items_post_per_page_mixitup" value="<?php if(!empty($team_items_post_per_page_mixitup)) echo $team_items_post_per_page_mixitup; else echo "3"; ?>" />
-                    
+
                     <p class="option-info"><?php _e('Display group of member at first.','team'); ?></p>
-                    
-                    
+
+
 
                     <?php
-                    
+
 					//var_dump($team_taxonomy_terms);
 					$team_taxonomy = 'team_group';
 					if($team_items_default_filter_mixitup=='all'){
@@ -1599,24 +1599,24 @@ Team Post
 					else{
 						echo '<label><input type="radio" name="team_items_default_filter_mixitup" value="all" />All</label><br />';
 						}
-					
+
 					if(!empty($team_taxonomy_terms))
 						{
-							
-							
-							
+
+
+
 							foreach($team_taxonomy_terms as $term_id)
 								{
 									$term = get_term( $term_id, $team_taxonomy );
 									$term_slug = $term->slug;
 									$term_name = $term->name;
 									echo '<label><input type="radio" name="team_items_default_filter_mixitup" value="'.$term_slug.'" ';
-									
+
 									if($team_items_default_filter_mixitup == $term_slug)
 										{
 											echo 'checked';
 										}
-									
+
 									echo '/>'.$term_name.'</label><br />';
 
 								}
@@ -1625,34 +1625,34 @@ Team Post
 						{
 							echo __('Please select team group first from <b>Content(tab) > Filter Member > Display from Member Group','team').'</b>.';
 						}
-					
-					?> 
-                    
-                    
+
+					?>
+
+
                     <p class="option-info"><?php _e('Filterable navs default background color.','team'); ?></p>
                     <input type="text" class="team_color" name="team_filter_bg_color" id="team_filter_bg_color" value="<?php if(!empty($team_filter_bg_color)) echo $team_filter_bg_color; else echo "#2eb3f8"; ?>" />
-                    
-                    
+
+
                     <p class="option-info"><?php _e('Filterable navs active background color.','team'); ?></p>
                     <input type="text" class="team_color" name="team_filter_active_bg_color" id="team_filter_active_bg_color" value="<?php if(!empty($team_filter_active_bg_color)) echo $team_filter_active_bg_color; else echo "#249bd9"; ?>" />
-                    
-                    
+
+
                     <p class="option-info"><?php _e('Filterable navs text color.','team'); ?></p>
-                    <input type="text" class="team_color" name="team_filter_text_color" id="team_filter_text_color" value="<?php if(!empty($team_filter_text_color)) echo $team_filter_text_color; else echo "#666666"; ?>" />                    
-                    
-                    
+                    <input type="text" class="team_color" name="team_filter_text_color" id="team_filter_text_color" value="<?php if(!empty($team_filter_text_color)) echo $team_filter_text_color; else echo "#666666"; ?>" />
+
+
                     <p class="option-info"><?php _e('Scroll top when pagination clicked.','team'); ?></p>
                     <select name="team_filter_scroll_top"  >
                     <option  value="no" <?php if($team_filter_scroll_top=="no")echo "selected"; ?>><?php _e('No','team'); ?></option>
                     <option  value="yes" <?php if($team_filter_scroll_top=="yes")echo "selected"; ?>><?php _e('Yes','team'); ?></option>
-             
-                    </select>    
-                    
-   
-                    
-                    
+
+                    </select>
+
+
+
+
 				</div>
-                
+
 				
                 
                 

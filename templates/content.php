@@ -26,9 +26,8 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 					}
 				else{
 						$content_html.= wp_trim_words( $content , $team_items_excerpt_count, ' <a style="color:'.$team_items_content_color.';" class="read-more" href="'. get_permalink() .'">'.$team_items_excerpt_text.'</a>' );
-					}					
-
-				}		
+					}
+			}
 				
 				
 				

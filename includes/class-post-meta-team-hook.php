@@ -543,7 +543,7 @@ function team_metabox_content_layout_builder($post_id){
 
 
 
-    echo '<pre>'.var_export($grid_item_layout, true).'</pre>';
+    //echo '<pre>'.var_export($grid_item_layout, true).'</pre>';
 
 
 
@@ -631,6 +631,11 @@ function team_metabox_content_layout_builder($post_id){
                 cursor: pointer;
             }
 
+            .layout-tags span:hover{
+                background: #b9b9b9;
+
+            }
+
         </style>
 
         <?php
@@ -641,8 +646,8 @@ function team_metabox_content_layout_builder($post_id){
         $args = array(
             'id'		=> 'layout_builder',
             //'parent'		=> '',
-            'title'		=> __('Customize layout','job-board-manager'),
-            'details'	=> __('Choose elements and customize layout.','job-board-manager'),
+            'title'		=> __('Item layout','job-board-manager'),
+            'details'	=> __('Customize item layout.','job-board-manager'),
             'type'		=> 'custom_html',
             'html'		=> $html,
             'default'		=> '',

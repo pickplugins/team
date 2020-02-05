@@ -77,7 +77,7 @@ class class_team_post_meta_team{
 
         $team_settings_tab[] = array(
             'id' => 'pagination',
-            'title' => sprintf(__('%s Pagination','team'),'<i class="fas fa-qrcode"></i>'),
+            'title' => sprintf(__('%s Pagination','team'),'<i class="fas fa-ellipsis-h"></i>'),
             'priority' => 4,
             'active' => false,
         );

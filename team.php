@@ -127,7 +127,7 @@ class Team{
 		
 		
 		wp_enqueue_style('team_admin_style', plugins_url( 'assets/admin/css/style.css', __FILE__ ));
-		wp_enqueue_style('font-awesome.min', plugins_url( 'assets/global/css/font-awesome.min.css', __FILE__ ));		
+		//wp_enqueue_style('font-awesome.min', plugins_url( 'assets/global/css/font-awesome.min.css', __FILE__ ));
 
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'color-picker', plugins_url('/assets/admin/js/color-picker.js', __FILE__ ), array( 'wp-color-picker' ), true, true );
@@ -146,7 +146,7 @@ class Team{
         wp_localize_script('jquery', 'cm_settings', $cm_settings);
 
         wp_enqueue_script('wp-theme-plugin-editor');
-        wp_enqueue_style('wp-codemirror');
+        //wp_enqueue_style('wp-codemirror');
 
 		do_action('team_action_admin_scripts');
 		}		
