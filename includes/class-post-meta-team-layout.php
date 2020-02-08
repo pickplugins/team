@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
-class class_team_post_meta_team{
+class class_team_post_meta_team_layout{
 	
 	public function __construct(){
 
@@ -16,7 +16,7 @@ class class_team_post_meta_team{
 
 	public function team_post_meta_team($post_type){
 
-            add_meta_box('metabox-team-data',__('team data', 'team'), array($this, 'meta_box_team_data'), 'team', 'normal', 'high');
+            add_meta_box('metabox-team_layout-data',__('Layout data', 'team'), array($this, 'meta_box_team_layout_data'), 'team_layout', 'normal', 'high');
 
 		}
 
@@ -25,7 +25,7 @@ class class_team_post_meta_team{
 
 
 
-	public function meta_box_team_data($post) {
+	public function meta_box_team_layout_data($post) {
  
         // Add an nonce field so we can check for it later.
         wp_nonce_field('team_nonce_check', 'team_nonce_check_value');
@@ -41,45 +41,10 @@ class class_team_post_meta_team{
         $team_settings_tab = array();
 
         $team_settings_tab[] = array(
-            'id' => 'shortcodes',
-            'title' => sprintf(__('%s Shortcodes','team'),'<i class="fas fa-code"></i>'),
-            'priority' => 1,
-            'active' => false,
-        );
-
-        $team_settings_tab[] = array(
-            'id' => 'style',
-            'title' => sprintf(__('%s Style','team'),'<i class="far fa-building"></i>'),
-            'priority' => 2,
-            'active' => false,
-        );
-
-        $team_settings_tab[] = array(
-            'id' => 'query_member',
-            'title' => sprintf(__('%s Query Member','team'),'<i class="fas fa-users"></i>'),
-            'priority' => 3,
-            'active' => false,
-        );
-
-        $team_settings_tab[] = array(
-            'id' => 'layouts',
-            'title' => sprintf(__('%s Layouts','team'),'<i class="fas fa-qrcode"></i>'),
+            'id' => 'layout_builder',
+            'title' => sprintf(__('%s Layout builder','team'),'<i class="fas fa-qrcode"></i>'),
             'priority' => 4,
             'active' => true,
-        );
-
-        $team_settings_tab[] = array(
-            'id' => 'masonry',
-            'title' => sprintf(__('%s Masonry','team'),'<i class="fas fa-qrcode"></i>'),
-            'priority' => 4,
-            'active' => false,
-        );
-
-        $team_settings_tab[] = array(
-            'id' => 'pagination',
-            'title' => sprintf(__('%s Pagination','team'),'<i class="fas fa-ellipsis-h"></i>'),
-            'priority' => 4,
-            'active' => false,
         );
 
 
@@ -92,7 +57,7 @@ class class_team_post_meta_team{
 
 
 
-        $team_settings_tab = apply_filters('team_metabox_navs', $team_settings_tab);
+        $team_settings_tab = apply_filters('team_layout_metabox_navs', $team_settings_tab);
 
         $tabs_sorted = array();
         foreach ($team_settings_tab as $page_key => $tab) $tabs_sorted[$page_key] = isset( $tab['priority'] ) ? $tab['priority'] : 0;
@@ -136,7 +101,7 @@ class class_team_post_meta_team{
 
                 <div class="tab-content <?php if($active) echo 'active';?>" id="<?php echo $id; ?>">
                     <?php
-                    do_action('team_metabox_content_'.$id, $post_id);
+                    do_action('team_layout_metabox_content_'.$id, $post_id);
                     ?>
                 </div>
                 <?php
@@ -197,7 +162,14 @@ class class_team_post_meta_team{
 
         /* OK, its safe for us to save the data now. */
 
-        do_action('team_meta_box_save_team', $post_id);
+        // Sanitize the user input.
+        $grid_item_layout = stripslashes_deep($_POST['grid_item_layout']);
+
+
+        // Update the meta field.
+        update_post_meta($post_id, 'grid_item_layout', $grid_item_layout);
+
+        do_action('team_layout_meta_box_save_team', $post_id);
 
 
 					
@@ -206,4 +178,4 @@ class class_team_post_meta_team{
 	}
 
 
-new class_team_post_meta_team();
+new class_team_post_meta_team_layout();

@@ -25,7 +25,6 @@ class team_class_settings  {
 	
 	public function admin_menu() {
 		add_submenu_page( 'edit.php?post_type=team', __( 'Settings', 'team' ), __( 'Settings', 'team' ), 'manage_options', 'settings', array( $this, 'settings' ) );
-		add_submenu_page( 'edit.php?post_type=team', __( 'Help', 'team' ), __( 'Help', 'team' ), 'manage_options', 'help', array( $this, 'help' ) );
 
 	}
 	
@@ -35,20 +34,7 @@ class team_class_settings  {
 		
 		}
 	
-	public function license(){
-		
-		include( 'menu/license.php' );	
-		
-		}	
 
-	public function help(){
-		
-		include( 'menu/help.php' );	
-		
-		}	
-	
-	
-	
 	
 	
 

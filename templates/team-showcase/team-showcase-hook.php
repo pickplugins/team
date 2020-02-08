@@ -51,7 +51,7 @@ function team_showcase_main_items($args){
             while ( $wp_query->have_posts() ) : $wp_query->the_post();
 
                 $team_member_id = get_the_id();
-
+                //var_dump($team_member_id);
                 do_action('team_showcase_item', $args, $team_member_id);
 
             endwhile;
@@ -77,8 +77,14 @@ function team_showcase_item($args, $team_member_id){
 
     $team_id = isset($args['team_id']) ? $args['team_id'] : '';
     $team_themes = get_post_meta( $team_id, 'team_themes', true );
+    $team_options = get_post_meta( $team_id, 'team_options', true );
+    $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : '';
+    $layout_elements_data = get_post_meta( $item_layout_id, 'layout_elements_data', true );
+
+
     $grid_item_layout = get_post_meta( $team_id, 'grid_item_layout', true );
 
+    //echo '<pre>'.var_export($layout_elements_data, true).'</pre>';
 
 
     ?>
@@ -86,7 +92,7 @@ function team_showcase_item($args, $team_member_id){
 
         <?php
 
-        foreach ($grid_item_layout as $elementGroupIndex => $elementGroupData){
+        foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
             foreach ($elementGroupData as $elementIndex => $elementData){
 
                 $args['team_member_id'] = $team_member_id;
@@ -107,9 +113,62 @@ function team_showcase_item($args, $team_member_id){
 
 
 
+
+add_action('team_showcase_main', 'team_showcase_main_custom_css');
+
+function team_showcase_main_custom_css($args){
+
+    $team_id = isset($args['team_id']) ? $args['team_id'] : '';
+
+    $team_container_bg_color = get_post_meta( $team_id, 'team_container_bg_color', true );
+    $team_bg_img = get_post_meta( $team_id, 'team_bg_img', true );
+    $team_grid_item_align = get_post_meta( $team_id, 'team_grid_item_align', true );
+    $team_item_text_align = get_post_meta( $team_id, 'team_item_text_align', true );
+    $team_items_margin = get_post_meta( $team_id, 'team_items_margin', true );
+    $team_items_max_width = get_post_meta( $team_id, 'team_items_max_width', true );
+
+    $team_items_width_tablet = get_post_meta( $team_id, 'team_items_width_tablet', true );
+    $team_items_width_mobile = get_post_meta( $team_id, 'team_items_width_mobile', true );
+
+
+    ?>
+    <style type="text/css">
+        #team-<?php echo $team_id; ?>{
+            background: <?php echo $team_container_bg_color; ?> url(<?php echo $team_bg_img; ?>) repeat scroll 0 0;
+            text-align: <?php echo $team_grid_item_align; ?>;
+        }
+
+        #team-<?php echo $team_id; ?> .item{
+            text-align: <?php echo $team_item_text_align; ?>;
+            margin: <?php echo $team_items_margin; ?>;
+        }
+
+        @media only screen and ( min-width: 0px ) and ( max-width: 767px ) {
+            #team-<?php echo $team_id; ?> .item{width: <?php echo $team_items_width_mobile; ?>}
+        }
+
+        @media only screen and ( min-width: 768px ) and ( max-width: 1023px ) {
+            #team-<?php echo $team_id; ?> .item{width: <?php echo $team_items_width_tablet; ?>}
+        }
+
+        @media only screen and (min-width: 1024px ) {
+            #team-<?php echo $team_id; ?> .item{width: <?php echo $team_items_max_width; ?>}
+        }
+
+    </style>
+    <?php
+}
+
+
+
+
+
+
+
+
+
+
 add_action('team_showcase_item_elements_title', 'team_showcase_item_elements_title');
-
-
 function team_showcase_item_elements_title($args){
 
     //echo '<pre>'.var_export($args, true).'</pre>';
@@ -133,14 +192,15 @@ function team_showcase_item_elements_thumbnail($args){
     $team_id = isset($args['team_id']) ? $args['team_id'] : '';
     $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
-    $team_items_thumb_size = get_post_meta( $team_id, 'team_items_thumb_size', true );
 
-    $team_thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), $team_items_thumb_size );
+    $thumb_size = isset($args['thumb_size']) ? $args['thumb_size'] : 'full';
+
+    $team_thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), $thumb_size );
     $team_thumb_url = $team_thumb['0'];
 
 
     ?>
-    <div class="team-title "><a href="<?php echo get_permalink($team_member_id); ?>"><img src="<?php echo $team_thumb_url; ?>" /></a></div>
+    <div class="team-thumb "><a href="<?php echo get_permalink($team_member_id); ?>"><img src="<?php echo $team_thumb_url; ?>" /></a></div>
 
     <?php
 
@@ -163,7 +223,7 @@ function team_showcase_item_elements_position($args){
     $team_member_position = get_post_meta($team_member_id,'team_member_position', true);
 
     ?>
-    <div class="team-title "><?php echo $team_member_position; ?></div>
+    <div class="team-position "><?php echo $team_member_position; ?></div>
     <?php
 
 }
@@ -204,12 +264,40 @@ function team_showcase_item_elements_content($args){
 
 
     ?>
-    <div class="team-title "><?php echo $content_html; ?></div>
+    <div class="team-content"><?php echo $content_html; ?></div>
     <?php
 
 }
 
 
 
+add_action('team_showcase_item_elements_wrapper_start', 'team_showcase_item_elements_wrapper_start');
+function team_showcase_item_elements_wrapper_start($args){
+
+    //echo '<pre>'.var_export($args, true).'</pre>';
+    $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
+    $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+    $wrapper_class = isset($elementData['wrapper_class']) ? $elementData['wrapper_class'] : '';
+    $wrapper_id = isset($elementData['wrapper_id']) ? $elementData['wrapper_id'] : '';
 
 
+
+    ?>
+    <div class="<?php echo $wrapper_class; ?>" id="<?php echo $wrapper_id; ?>">
+    <?php
+
+}
+
+
+add_action('team_showcase_item_elements_wrapper_end', 'team_showcase_item_elements_wrapper_end');
+function team_showcase_item_elements_wrapper_end($args){
+
+    //echo '<pre>'.var_export($args, true).'</pre>';
+    $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
+    $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+
+    ?>
+    </div>
+    <?php
+
+}

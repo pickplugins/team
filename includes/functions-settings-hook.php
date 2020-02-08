@@ -789,7 +789,6 @@ function layout_elements_option_popup($parameters){
 
             <?php
 
-            $prefix_text = '';
             $args = array(
                 'id'		=> 'meta_key',
                 'parent' => $input_name.'[popup]',
@@ -815,6 +814,130 @@ function layout_elements_option_popup($parameters){
 
 
 
+add_action('layout_elements_option_wrapper_start','layout_elements_option_wrapper_start');
+
+
+function layout_elements_option_wrapper_start($parameters){
+
+    $settings_tabs_field = new settings_tabs_field();
+
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}';
+    $element_data = isset($parameters['element_data']) ? $parameters['element_data'] : array();
+
+    $wrapper_id = isset($element_data['wrapper_id']) ? $element_data['wrapper_id'] : '';
+    $wrapper_class = isset($element_data['wrapper_class']) ? $element_data['wrapper_class'] : '';
+    $css_idle = isset($element_data['css_idle']) ? $element_data['css_idle'] : '';
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Wrapper start','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $args = array(
+                'id'		=> 'wrapper_id',
+                'parent' => $input_name.'[wrapper_start]',
+                'title'		=> __('Wrapper id','breadcrumb'),
+                'details'	=> __('Write wrapper id, ex: my-unique-id.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $wrapper_id,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            $args = array(
+                'id'		=> 'wrapper_class',
+                'parent' => $input_name.'[wrapper_start]',
+                'title'		=> __('Wrapper class','breadcrumb'),
+                'details'	=> __('Write wrapper class, ex: layer-thumbnail','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $wrapper_class,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            $args = array(
+                'id'		=> 'css_idle',
+                'parent' => $input_name.'[wrapper_start]',
+                'title'		=> __('Custom CSS','breadcrumb'),
+                'details'	=> __('Write custom CSS. do not use <code>&lt;style>&lt;/style></code>','breadcrumb'),
+                'type'		=> 'scripts_css',
+                'value'		=> $css_idle,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
+
+
+
+
+add_action('layout_elements_option_wrapper_end','layout_elements_option_wrapper_end');
+
+
+function layout_elements_option_wrapper_end($parameters){
+
+    $settings_tabs_field = new settings_tabs_field();
+
+    $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}';
+    $element_data = isset($parameters['element_data']) ? $parameters['element_data'] : array();
+
+    $meta_key = isset($element_data['meta_key']) ? $element_data['meta_key'] : '';
+    $font_size = isset($element_data['font_size']) ? $element_data['font_size'] : '';
+    $font_family = isset($element_data['font_family']) ? $element_data['font_family'] : '';
+
+    ?>
+    <div class="item">
+        <div class="element-title header ">
+            <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
+            <span class="sort"><i class="fas fa-sort"></i></span>
+
+            <span class="expand"><?php echo __('Wrapper end','breadcrumb'); ?></span>
+        </div>
+        <div class="element-options options">
+
+            <?php
+
+            $args = array(
+                'id'		=> 'wrapper_id',
+                'parent' => $input_name.'[wrapper_end]',
+                'title'		=> __('Wrapper id','breadcrumb'),
+                'details'	=> __('Write wrapper id, ex: div, p, span.','breadcrumb'),
+                'type'		=> 'text',
+                'value'		=> $meta_key,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+
+
+            ?>
+
+        </div>
+    </div>
+    <?php
+
+}
 
 
 

@@ -46,6 +46,8 @@ class Team{
         include( 'includes/class-settings-tabs.php' );
         include( 'includes/functions-settings-hook.php' );
 
+        include( 'includes/class-post-meta-team-layout.php' );
+        include( 'includes/class-post-meta-team-layout-hook.php' );
 
 
 	include( 'templates/single-team/single-team_member-hook.php' );
