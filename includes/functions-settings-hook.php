@@ -870,6 +870,7 @@ function layout_elements_option_wrapper_start($parameters){
 
             $args = array(
                 'id'		=> 'css_idle',
+                'css_id'		=> 'css_idle_'.preg_replace('/\D/', '', $input_name) ,
                 'parent' => $input_name.'[wrapper_start]',
                 'title'		=> __('Custom CSS','breadcrumb'),
                 'details'	=> __('Write custom CSS. do not use <code>&lt;style>&lt;/style></code>','breadcrumb'),
