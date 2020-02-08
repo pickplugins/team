@@ -835,6 +835,9 @@ function layout_elements_option_wrapper_start($parameters){
             <span class="sort"><i class="fas fa-sort"></i></span>
 
             <span class="expand"><?php echo __('Wrapper start','breadcrumb'); ?></span>
+
+            <span class="handle-start"><i class="fas fa-level-up-alt"></i></span>
+
         </div>
         <div class="element-options options">
 
@@ -910,6 +913,7 @@ function layout_elements_option_wrapper_end($parameters){
             <span class="sort"><i class="fas fa-sort"></i></span>
 
             <span class="expand"><?php echo __('Wrapper end','breadcrumb'); ?></span>
+            <span class="handle-end"><i class="fas fa-level-down-alt"></i></span>
         </div>
         <div class="element-options options">
 

@@ -355,8 +355,26 @@
 
 .settings-tabs .expandable .header {
     padding: 10px 15px;
+    position: relative;
 
 }
+
+.settings-tabs .expandable .header .handle-start {
+    position: absolute;
+    top: 50%;
+    left: -8px;
+    transform: translate(0, -50%) rotate(180deg);
+
+}
+
+.settings-tabs .expandable .header .handle-end {
+    position: absolute;
+    top: 50%;
+    left: -8px;
+    transform: translate(0, -50%) rotate(180deg);
+
+}
+
 
 .settings-tabs .expandable .active .options {
 
