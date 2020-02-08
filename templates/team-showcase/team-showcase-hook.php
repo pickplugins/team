@@ -88,22 +88,25 @@ function team_showcase_item($args, $team_member_id){
 
 
     ?>
-    <div class="item skin <?php echo team_term_slug_list($team_member_id); ?> <?php echo $team_themes; ?>">
+    <div class="item skin <?php echo team_term_slug_list($team_member_id); ?>">
 
         <?php
+        ?>
+        <div class="elements-wrapper layout-<?php echo $item_layout_id; ?>">
+            <?php
+            foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
+                foreach ($elementGroupData as $elementIndex => $elementData){
 
-        foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
-            foreach ($elementGroupData as $elementIndex => $elementData){
+                    $args['team_member_id'] = $team_member_id;
+                    $args['elementData'] = $elementData;
 
-                $args['team_member_id'] = $team_member_id;
-                $args['elementData'] = $elementData;
-
-
-                //echo $elementIndex;
-                do_action('team_showcase_item_elements_'.$elementIndex, $args);
+                    //echo $elementIndex;
+                    do_action('team_showcase_item_elements_'.$elementIndex, $args);
+                }
             }
-        }
-
+            ?>
+        </div>
+        <?php
         ?>
 
     </div>
@@ -130,6 +133,13 @@ function team_showcase_main_custom_css($args){
     $team_items_width_tablet = get_post_meta( $team_id, 'team_items_width_tablet', true );
     $team_items_width_mobile = get_post_meta( $team_id, 'team_items_width_mobile', true );
 
+    $team_options = get_post_meta( $team_id, 'team_options', true );
+    $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : '';
+
+    $custom_scripts = get_post_meta($item_layout_id,'custom_scripts', true);
+    $custom_css = isset($custom_scripts['custom_css']) ? $custom_scripts['custom_css'] : '';
+    $custom_js = isset($custom_scripts['custom_js']) ? $custom_scripts['custom_js'] : '';
+
 
     ?>
     <style type="text/css">
@@ -154,6 +164,12 @@ function team_showcase_main_custom_css($args){
         @media only screen and (min-width: 1024px ) {
             #team-<?php echo $team_id; ?> .item{width: <?php echo $team_items_max_width; ?>}
         }
+
+        <?php
+
+        echo str_replace('__ID__', 'layout-'.$item_layout_id, $custom_css);
+
+        ?>
 
     </style>
     <?php

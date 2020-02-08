@@ -33,7 +33,7 @@ if(!function_exists('team_layout_metabox_content_custom_scripts')){
                 'id'		=> 'custom_css',
                 'parent'		=> 'custom_scripts',
                 'title'		=> __('Custom CSS','job-board-manager'),
-                'details'	=> __('Write custom CSS to override default style, do not use <code>&lt;style>&lt;/style></code> tag.','job-board-manager'),
+                'details'	=> __('Write custom CSS to override default style, do not use <code>&lt;style>&lt;/style></code> tag. use <code>__ID__</code> to replace by layout id <code>layout-'.$post_id.'</code>.','job-board-manager'),
                 'type'		=> 'scripts_css',
                 'value'		=> $custom_css,
                 'default'		=> '',

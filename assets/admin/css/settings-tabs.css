@@ -213,19 +213,44 @@
 .settings-tabs .setting-field .description{
     word-break: break-word;
 }
+
 .settings-tabs .setting-field .setting-field{
     padding: 0 15px 15px 0px;
 }
 .settings-tabs .setting-field .setting-field .field-lable{
 
     float: none;
-    font-size: 14px;
-    word-break: break-word;
 }
 
 .settings-tabs .setting-field .setting-field .field-input{
     margin-left: 0px;
 }
+
+
+.settings-tabs .expandable .setting-field{
+    padding: 0 15px 15px 0px;
+}
+.settings-tabs .expandable .setting-field .field-lable{
+    float: left;
+}
+
+.settings-tabs .expandable .setting-field .field-input{
+    margin-left: 270px;
+}
+
+
+.settings-tabs .expandable .setting-field{
+    padding: 0 15px 15px 0px;
+}
+.settings-tabs .expandable .setting-field .setting-field .field-lable{
+    float: none;
+}
+
+.settings-tabs .expandable .setting-field .setting-field .field-input{
+    margin-left: 0px;
+}
+
+
 /*field-repeatable-wrapper*/
 
 
@@ -462,6 +487,9 @@
 
 @media only screen and ( min-width: 0px ) and ( max-width: 767px ){
 
+
+
+
     .settings-tabs .tab-navs{
         float: none;
         position: relative;
@@ -506,6 +534,14 @@
     input[type=checkbox], input[type=radio] {
         margin: 6px 7px 0 0;
     }
+
+
+
+
+
+
+
+
 
 }
 
