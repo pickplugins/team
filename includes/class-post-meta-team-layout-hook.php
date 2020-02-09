@@ -261,10 +261,11 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
 
 
 
+            $item_layout_id = get_the_id();
             ?>
             <div class="layout-preview">
 
-                <div class="elements-wrapper">
+                <div class="elements-wrapper layout-<?php echo $item_layout_id; ?>">
                     <?php
                     foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
                         foreach ($elementGroupData as $elementIndex => $elementData){
@@ -307,6 +308,9 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
                 }
             }
 
+            $custom_scripts = get_post_meta($item_layout_id,'custom_scripts', true);
+            $custom_css = isset($custom_scripts['custom_css']) ? $custom_scripts['custom_css'] : '';
+
             ?>
 
             <style type="text/css">
@@ -324,6 +328,12 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
                 .layout-preview img{
                     width: 100%;
                 }
+
+                <?php
+
+                echo str_replace('__ID__', 'layout-'.$item_layout_id, $custom_css);
+
+                ?>
 
             </style>
             <?php
@@ -368,7 +378,7 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
 add_action('team_layout_meta_box_save_team','team_layout_meta_box_save_team');
 
 function team_layout_meta_box_save_team($job_id){
-    
+
     $layout_options = isset($_POST['layout_options']) ? stripslashes_deep($_POST['layout_options']) : '';
     update_post_meta($job_id, 'layout_options', $layout_options);
 
