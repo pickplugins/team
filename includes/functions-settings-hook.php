@@ -76,6 +76,26 @@ function layout_elements_option_title($parameters){
             );
 
             $settings_tabs_field->generate_field($args);
+
+
+            ob_start();
+            ?>
+            <textarea readonly type="text"  onclick="this.select();">.element-<?php echo $element_index?>{}</textarea>
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'use_css',
+                'title'		=> __('Use of CSS','breadcrumb'),
+                'details'	=> __('Use following class selector to add custom CSS for this element.','breadcrumb'),
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
 //
 //            $args = array(
 //                'id'		=> 'custom_css',
@@ -186,31 +206,31 @@ function layout_elements_option_thumbnail($parameters){
                         'id'		=> 'large',
                         'parent'		=> $input_name.'[thumbnail][thumb_height]',
                         'title'		=> __('In desktop','related-post'),
-                        'details'	=> __('min-width: 1200px, ex: 45% or 280px','related-post'),
+                        'details'	=> __('min-width: 1200px, ex: 280px','related-post'),
                         'type'		=> 'text',
                         'value'		=> $thumb_height_large,
                         'default'		=> '',
-                        'placeholder'   => '45%',
+                        'placeholder'   => '280px',
                     ),
                     array(
                         'id'		=> 'medium',
                         'parent'		=> $input_name.'[thumbnail][thumb_height]',
                         'title'		=> __('In tablet & small desktop','related-post'),
-                        'details'	=> __('min-width: 992px, ex: 90% or 280px','related-post'),
+                        'details'	=> __('min-width: 992px, ex: 280px','related-post'),
                         'type'		=> 'text',
                         'value'		=> $thumb_height_medium,
                         'default'		=> '',
-                        'placeholder'   => '90%',
+                        'placeholder'   => '280px',
                     ),
                     array(
                         'id'		=> 'small',
                         'parent'		=> $input_name.'[thumbnail][thumb_height]',
                         'title'		=> __('In mobile','related-post'),
-                        'details'	=> __('max-width: 768px, ex: 90% or 280px','related-post'),
+                        'details'	=> __('max-width: 768px, ex: 280px','related-post'),
                         'type'		=> 'text',
                         'value'		=> $thumb_height_small,
                         'default'		=> '',
-                        'placeholder'   => '90%',
+                        'placeholder'   => '280px',
                     ),
                 ),
 
@@ -220,7 +240,26 @@ function layout_elements_option_thumbnail($parameters){
 
 
 
+            ob_start();
+            ?>
+            <code onclick="this.select()">
+                .element-<?php echo $element_index?>{}
 
+            </code>
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'use_css',
+                'title'		=> __('Use of CSS','breadcrumb'),
+                'details'	=> __('Use following class selector to add custom CSS for this element.','breadcrumb'),
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
 
 
 
@@ -249,6 +288,7 @@ function layout_elements_option_content($parameters){
     $content_source = isset($element_data['content_source']) ? $element_data['content_source'] : '';
     $word_count = isset($element_data['word_count']) ? $element_data['word_count'] : '';
     $read_more_text = isset($element_data['read_more_text']) ? $element_data['read_more_text'] : '';
+    $read_more_color = isset($element_data['read_more_color']) ? $element_data['read_more_color'] : '';
 
     $color = isset($element_data['color']) ? $element_data['color'] : '';
     $font_size = isset($element_data['font_size']) ? $element_data['font_size'] : '';
@@ -314,6 +354,22 @@ function layout_elements_option_content($parameters){
 
 
             $args = array(
+                'id'		=> 'read_more_color',
+                'css_id'		=> $element_index.'_read_more_color',
+                'parent' => $input_name.'[content]',
+                'title'		=> __('Read more color','breadcrumb'),
+                'details'	=> __('Set custom read more color.','breadcrumb'),
+                'type'		=> 'colorpicker',
+                'value'		=> $read_more_color,
+                'default'		=> '',
+                'placeholder'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+            $args = array(
                 'id'		=> 'color',
                 'css_id'		=> $element_index.'_content_color',
                 'parent' => $input_name.'[content]',
@@ -351,6 +407,28 @@ function layout_elements_option_content($parameters){
                 'value'		=> $font_family,
                 'default'		=> '',
                 'placeholder'		=> 'Open Sans',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            ob_start();
+            ?>
+            <code onclick="this.select()">
+                .element-<?php echo $element_index?>{}
+
+            </code>
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'use_css',
+                'title'		=> __('Use of CSS','breadcrumb'),
+                'details'	=> __('Use following class selector to add custom CSS for this element.','breadcrumb'),
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
             );
 
             $settings_tabs_field->generate_field($args);
@@ -488,6 +566,27 @@ function layout_elements_option_social($parameters){
             $settings_tabs_field->generate_field($args);
 
 
+            ob_start();
+            ?>
+            <code onclick="this.select()">
+                .element-<?php echo $element_index?>{}
+
+            </code>
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'use_css',
+                'title'		=> __('Use of CSS','breadcrumb'),
+                'details'	=> __('Use following class selector to add custom CSS for this element.','breadcrumb'),
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
             ?>
 
         </div>
@@ -586,6 +685,28 @@ function layout_elements_option_meta($parameters){
             $settings_tabs_field->generate_field($args);
 
 
+            ob_start();
+            ?>
+            <code onclick="this.select()">
+                .element-<?php echo $element_index?>{}
+
+            </code>
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'use_css',
+                'title'		=> __('Use of CSS','breadcrumb'),
+                'details'	=> __('Use following class selector to add custom CSS for this element.','breadcrumb'),
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
             ?>
 
         </div>
@@ -662,6 +783,28 @@ function layout_elements_option_skill($parameters){
                 'value'		=> $font_family,
                 'default'		=> '',
                 'placeholder'		=> 'Open Sans',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            ob_start();
+            ?>
+            <code onclick="this.select()">
+                .element-<?php echo $element_index?>{}
+
+            </code>
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'use_css',
+                'title'		=> __('Use of CSS','breadcrumb'),
+                'details'	=> __('Use following class selector to add custom CSS for this element.','breadcrumb'),
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
             );
 
             $settings_tabs_field->generate_field($args);
@@ -750,6 +893,27 @@ function layout_elements_option_position($parameters){
             $settings_tabs_field->generate_field($args);
 
 
+            ob_start();
+            ?>
+            <code onclick="this.select()">
+                .element-<?php echo $element_index?>{}
+
+            </code>
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'use_css',
+                'title'		=> __('Use of CSS','breadcrumb'),
+                'details'	=> __('Use following class selector to add custom CSS for this element.','breadcrumb'),
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
             ?>
 
         </div>
@@ -772,6 +936,7 @@ function layout_elements_option_popup($parameters){
 
     $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}';
     $element_data = isset($parameters['element_data']) ? $parameters['element_data'] : array();
+    $element_index = isset($parameters['index']) ? $parameters['index'] : '';
 
     $meta_key = isset($element_data['meta_key']) ? $element_data['meta_key'] : '';
     $font_size = isset($element_data['font_size']) ? $element_data['font_size'] : '';
@@ -801,6 +966,28 @@ function layout_elements_option_popup($parameters){
 
             $settings_tabs_field->generate_field($args);
 
+
+            ob_start();
+            ?>
+            <code onclick="this.select()">
+                .element-<?php echo $element_index?>{}
+
+            </code>
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'use_css',
+                'title'		=> __('Use of CSS','breadcrumb'),
+                'details'	=> __('Use following class selector to add custom CSS for this element.','breadcrumb'),
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
             ?>
 
         </div>
@@ -823,6 +1010,7 @@ function layout_elements_option_wrapper_start($parameters){
 
     $input_name = isset($parameters['input_name']) ? $parameters['input_name'] : '{input_name}';
     $element_data = isset($parameters['element_data']) ? $parameters['element_data'] : array();
+    $element_index = isset($parameters['index']) ? $parameters['index'] : '';
 
     $wrapper_id = isset($element_data['wrapper_id']) ? $element_data['wrapper_id'] : '';
     $wrapper_class = isset($element_data['wrapper_class']) ? $element_data['wrapper_class'] : '';
@@ -881,6 +1069,27 @@ function layout_elements_option_wrapper_start($parameters){
 
             $settings_tabs_field->generate_field($args);
 
+
+            ob_start();
+            ?>
+            <code onclick="this.select()">
+                .element-<?php echo $element_index?>{}
+
+            </code>
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'use_css',
+                'title'		=> __('Use of CSS','breadcrumb'),
+                'details'	=> __('Use following class selector to add custom CSS for this element.','breadcrumb'),
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
 
             ?>
 

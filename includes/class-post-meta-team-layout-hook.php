@@ -238,6 +238,92 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
             $settings_tabs_field->generate_field($args);
 
 
+            ob_start();
+
+
+
+            ?>
+            <div class="layout-preview">
+
+                <div class="elements-wrapper">
+                    <?php
+                    foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
+                        foreach ($elementGroupData as $elementIndex => $elementData){
+
+
+
+
+                            $args['team_member_id'] = 47700;
+                            $args['elementData'] = $elementData;
+                            $args['element_index'] = $elementGroupIndex;
+
+                            //echo '<pre>'.var_export($elementIndex, true).'</pre>';
+
+                            //echo $elementIndex;
+                            do_action('team_showcase_item_elements_'.$elementIndex, $args);
+                        }
+                    }
+                    ?>
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+            <?php
+
+            foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
+                foreach ($elementGroupData as $elementIndex => $elementData){
+
+
+                    $args['elementData'] = $elementData;
+                    $args['element_index'] = $elementGroupIndex;
+
+                    //echo $elementIndex;
+                    do_action('team_showcase_item_elements_css_'.$elementIndex, $args);
+                }
+            }
+
+            ?>
+
+            <style type="text/css">
+                .layout-preview{
+                    background: url(<?php echo team_plugin_url; ?>assets/admin/css/tile.png);
+                    padding: 20px;
+                }
+
+                .layout-preview .elements-wrapper{
+                    width: 400px;
+                    overflow: hidden;
+                    margin: 0 auto;
+                }
+
+                .layout-preview img{
+                    width: 100%;
+                }
+
+            </style>
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'layout_preview',
+                //'parent'		=> '',
+                'title'		=> __('Layout preview','job-board-manager'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+                'default'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
 
             ?>
         </div>

@@ -103,9 +103,22 @@ function team_metabox_content_style($post_id){
 
     $settings_tabs_field = new settings_tabs_field();
 
-    $team_themes = get_post_meta($post_id,'team_themes', true);
+    $team_options = get_post_meta($post_id,'team_options', true);
+    $item_width = isset($team_options['item_width']) ? $team_options['item_width'] : array();
+
+    $team_width_large = isset($item_width['large']) ? $item_width['large'] : '';
+    $team_width_medium = isset($item_width['medium']) ? $item_width['medium'] : '';
+    $team_width_small = isset($item_width['small']) ? $item_width['small'] : '';
+
+    $item_margin = isset($team_options['item_margin']) ? $team_options['item_margin'] : '';
+    $item_text_align = isset($team_options['item_text_align']) ? $team_options['item_text_align'] : '';
+
+    $container_background_img_url = isset($team_options['container']['background_img_url']) ? $team_options['container']['background_img_url'] : '';
+    $container_background_color = isset($team_options['container']['background_color']) ? $team_options['container']['background_color'] : '';
+    $container_text_align = isset($team_options['container']['text_align']) ? $team_options['container']['text_align'] : '';
+
+
     $team_skins = array('flat'=>'Flat', 'zoomout'=>'ZoomOut','thumbrounded'=>'ThumbRounded',  );
-    $team_items_link_to_post = get_post_meta($post_id,'team_items_link_to_post', true);
     $team_items_max_width = get_post_meta($post_id,'team_items_max_width', true);
     $team_items_width_tablet = get_post_meta($post_id,'team_items_width_tablet', true);
     $team_items_width_mobile = get_post_meta($post_id,'team_items_width_mobile', true);
@@ -125,35 +138,6 @@ function team_metabox_content_style($post_id){
 
         <?php
 
-        $args = array(
-            'id'		=> 'job_bm_job_type',
-            //'parent'		=> '',
-            'title'		=> __('Skin','job-board-manager'),
-            'details'	=> __('Select team item skin','job-board-manager'),
-            'type'		=> 'select',
-            'value'		=> $team_themes,
-            'default'		=> '',
-            'args'		=> $team_skins,
-        );
-
-        $settings_tabs_field->generate_field($args);
-
-
-        $args = array(
-            'id'		=> 'team_items_link_to_post',
-            //'parent'		=> '',
-            'title'		=> __('Link to member','job-board-manager'),
-            'details'	=> __('Clickable link to post team member.','job-board-manager'),
-            'type'		=> 'select',
-            'value'		=> $team_items_link_to_post,
-            'default'		=> '',
-            'args'		=> array('no'=>'No','yes'=>'Yes'),
-        );
-
-        $settings_tabs_field->generate_field($args);
-
-
-
 
         $args = array(
             'id'		=> 'item_width',
@@ -162,32 +146,32 @@ function team_metabox_content_style($post_id){
             'type'		=> 'option_group',
             'options'		=> array(
                 array(
-                    'id'		=> 'team_items_max_width',
-                    //'parent'		=> 'team_options[item_width]',
+                    'id'		=> 'large',
+                    'parent'		=> 'team_options[item_width]',
                     'title'		=> __('In desktop','related-post'),
                     'details'	=> __('min-width: 1200px, ex: 45% or 280px','related-post'),
                     'type'		=> 'text',
-                    'value'		=> $team_items_max_width,
+                    'value'		=> $team_width_large,
                     'default'		=> '',
                     'placeholder'   => '45%',
                 ),
                 array(
-                    'id'		=> 'team_items_width_tablet',
-                    //'parent'		=> 'team_options[item_width]',
+                    'id'		=> 'medium',
+                    'parent'		=> 'team_options[item_width]',
                     'title'		=> __('In tablet & small desktop','related-post'),
                     'details'	=> __('min-width: 992px, ex: 90% or 280px','related-post'),
                     'type'		=> 'text',
-                    'value'		=> $team_items_width_tablet,
+                    'value'		=> $team_width_medium,
                     'default'		=> '',
                     'placeholder'   => '90%',
                 ),
                 array(
-                    'id'		=> 'team_items_width_mobile',
-                    //'parent'		=> 'team_options[item_width]',
+                    'id'		=> 'small',
+                    'parent'		=> 'team_options[item_width]',
                     'title'		=> __('In mobile','related-post'),
                     'details'	=> __('max-width: 768px, ex: 90% or 280px','related-post'),
                     'type'		=> 'text',
-                    'value'		=> $team_items_width_mobile,
+                    'value'		=> $team_width_small,
                     'default'		=> '',
                     'placeholder'   => '90%',
                 ),
@@ -199,12 +183,12 @@ function team_metabox_content_style($post_id){
 
 
         $args = array(
-            'id'		=> 'team_items_margin',
-            //'parent'		=> '',
-            'title'		=> __('Grid items margin','job-board-manager'),
+            'id'		=> 'item_margin',
+            'parent'		=> 'team_options',
+            'title'		=> __('Item margin','job-board-manager'),
             'details'	=> __('Set grid item margin, ex: <code>10px 5px</code>','job-board-manager'),
             'type'		=> 'text',
-            'value'		=> $team_items_margin,
+            'value'		=> $item_margin,
             'default'		=> '',
             'placeholder'		=> '10px 5px',
         );
@@ -212,12 +196,12 @@ function team_metabox_content_style($post_id){
         $settings_tabs_field->generate_field($args);
 
         $args = array(
-            'id'		=> 'team_item_text_align',
-            //'parent'		=> '',
-            'title'		=> __('Items text align','job-board-manager'),
+            'id'		=> 'item_text_align',
+            'parent'		=> 'team_options',
+            'title'		=> __('Item text align','job-board-manager'),
             'details'	=> __('Choose text align for grid items','job-board-manager'),
             'type'		=> 'select',
-            'value'		=> $team_item_text_align,
+            'value'		=> $item_text_align,
             'default'		=> '',
             'args'		=> array('left'=>'Left','center'=>'Center', 'right'=>'Right',),
         );
@@ -233,32 +217,32 @@ function team_metabox_content_style($post_id){
             'type'		=> 'option_group',
             'options'		=> array(
                 array(
-                    'id'		=> 'team_bg_img',
-                    //'parent'		=> 'team_options[item_width]',
+                    'id'		=> 'background_img_url',
+                    'parent'		=> 'team_options[container]',
                     'title'		=> __('Background image','related-post'),
                     'details'	=> __('Container background image','related-post'),
                     'type'		=> 'media_url',
-                    'value'		=> $team_bg_img,
+                    'value'		=> $container_background_img_url,
                     'default'		=> '',
                     'placeholder'   => '',
                 ),
                 array(
-                    'id'		=> 'team_container_bg_color',
-                    //'parent'		=> 'team_options[item_width]',
-                    'title'		=> __('Background colo','related-post'),
+                    'id'		=> 'background_color',
+                    'parent'		=> 'team_options[container]',
+                    'title'		=> __('Background color','related-post'),
                     'details'	=> __('Container background color','related-post'),
                     'type'		=> 'colorpicker',
-                    'value'		=> $team_container_bg_color,
+                    'value'		=> $container_background_color,
                     'default'		=> '',
                     'placeholder'   => '',
                 ),
                 array(
-                    'id'		=> 'team_grid_item_align',
-                    //'parent'		=> 'team_options[item_width]',
+                    'id'		=> 'text_align',
+                    'parent'		=> 'team_options[container]',
                     'title'		=> __('Text align','related-post'),
                     'details'	=> __('Container text align','related-post'),
                     'type'		=> 'select',
-                    'value'		=> $team_grid_item_align,
+                    'value'		=> $container_text_align,
                     'default'		=> '',
                     'args'		=> array('left'=>'Left','center'=>'Center', 'right'=>'Right',),
                 ),
@@ -550,7 +534,7 @@ function team_metabox_content_layouts($post_id){
             'type'		=> 'radio_image',
             'value'		=> $item_layout_id,
             'default'		=> '',
-            'width'		=> '350px',
+            'width'		=> '250px',
             'args'		=> $item_layout_args,
         );
 

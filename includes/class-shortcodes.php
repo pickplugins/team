@@ -32,7 +32,6 @@ class class_team_shortcodes  {
 
         $args = array('team_id'=> $team_id);
 
-        include_once team_plugin_dir.'/templates/team-showcase/team-showcase-hook.php';
 
         ob_start();
 

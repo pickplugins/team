@@ -48,16 +48,17 @@ class Team{
 
         include( 'includes/class-post-meta-team-layout.php' );
         include( 'includes/class-post-meta-team-layout-hook.php' );
+        include_once team_plugin_dir.'/templates/team-showcase/team-showcase-hook.php';
 
+    
+        include( 'templates/single-team/single-team_member-hook.php' );
+        include( 'includes/functions.php' );
 
-	include( 'templates/single-team/single-team_member-hook.php' );
-	include( 'includes/functions.php' );
-
-	add_action( 'wp_enqueue_scripts', array( $this, 'team_front_scripts' ) );
-	add_action( 'admin_enqueue_scripts', array( $this, 'team_admin_scripts' ) );
-	add_action( 'plugins_loaded', array( $this, 'team_load_textdomain' ));
-	add_filter('widget_text', 'do_shortcode');
-	register_activation_hook( __FILE__, array( $this, 'team_install' ) );
+        add_action( 'wp_enqueue_scripts', array( $this, 'team_front_scripts' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'team_admin_scripts' ) );
+        add_action( 'plugins_loaded', array( $this, 'team_load_textdomain' ));
+        add_filter('widget_text', 'do_shortcode');
+        register_activation_hook( __FILE__, array( $this, 'team_install' ) );
 		
 		
 	}

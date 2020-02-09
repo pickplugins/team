@@ -58,26 +58,26 @@
 .team-container .layer-content{}
 
 .team-container .layer-content .team-title {
-  font-size: 18px;
-  font-weight: bold;
-  padding: 0 10px 10px;
+  /*font-size: 18px;*/
+  /*font-weight: bold;*/
+  /*padding: 0 10px 10px;*/
 }
 
-.team-container .layer-content .team-position{
-	padding: 0 10px 10px;
-	}
-.team-container .layer-content .team-content{
-	padding: 0 10px 10px;
-	}
-.team-container .layer-content .team-meta{
-	padding: 0 10px 10px;
-	}
-.team-container .team-social {
-	padding: 0 10px 10px;
-	}
-.team-container .team-skill {
-	padding: 0 10px 10px;
-	}
+/*.team-container .layer-content .team-position{*/
+/*	padding: 0 10px 10px;*/
+/*	}*/
+/*.team-container .layer-content .team-content{*/
+/*	padding: 0 10px 10px;*/
+/*	}*/
+/*.team-container .layer-content .team-meta{*/
+/*	padding: 0 10px 10px;*/
+/*	}*/
+/*.team-container .team-social {*/
+/*	padding: 0 10px 10px;*/
+/*	}*/
+/*.team-container .team-skill {*/
+/*	padding: 0 10px 10px;*/
+/*	}*/
 
 
 
