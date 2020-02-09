@@ -19,8 +19,14 @@ if(!function_exists('team_layout_metabox_content_custom_scripts')){
 
         $settings_tabs_field = new settings_tabs_field();
         $custom_scripts = get_post_meta($post_id,'custom_scripts', true);
+        $layout_options = get_post_meta($post_id,'layout_options', true);
+
+
         $custom_css = isset($custom_scripts['custom_css']) ? $custom_scripts['custom_css'] : '';
         $custom_js = isset($custom_scripts['custom_js']) ? $custom_scripts['custom_js'] : '';
+        $layout_preview_img = isset($layout_options['layout_preview_img']) ? $layout_options['layout_preview_img'] : '';
+
+
 
         ?>
         <div class="section">
@@ -50,6 +56,19 @@ if(!function_exists('team_layout_metabox_content_custom_scripts')){
                 'details'	=> __('Write custom JS to override default style, do not use <code>&lt;script>&lt;/script></code> tag.','job-board-manager'),
                 'type'		=> 'scripts_js',
                 'value'		=> $custom_js,
+                'default'		=> '',
+                'placeholder'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            $args = array(
+                'id'		=> 'layout_preview_img',
+                'parent'		=> 'layout_options',
+                'title'		=> __('Preview image','job-board-manager'),
+                'details'	=> __('Set layout preview image.','job-board-manager'),
+                'type'		=> 'media_url',
+                'value'		=> $layout_preview_img,
                 'default'		=> '',
                 'placeholder'		=> '',
             );
@@ -349,7 +368,9 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
 add_action('team_layout_meta_box_save_team','team_layout_meta_box_save_team');
 
 function team_layout_meta_box_save_team($job_id){
-
+    
+    $layout_options = isset($_POST['layout_options']) ? stripslashes_deep($_POST['layout_options']) : '';
+    update_post_meta($job_id, 'layout_options', $layout_options);
 
     $layout_elements_data = isset($_POST['layout_elements_data']) ? stripslashes_deep($_POST['layout_elements_data']) : '';
     update_post_meta($job_id, 'layout_elements_data', $layout_elements_data);
