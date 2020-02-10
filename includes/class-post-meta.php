@@ -704,8 +704,7 @@ Team Post
             <li nav="3" class="nav3"><i class="fa fa-users"></i> <?php _e('Query Member','team'); ?></li>
             <li nav="5" class="nav5"><i class="fa fa-bug"></i> <?php _e('Custom CSS','team'); ?></li>
             <li nav="6" class="nav6"><i class="fa fa-qrcode"></i> <?php _e('Layout Builder','team'); ?></li>
-            <li nav="7" class="nav7"><i class="fa fa-qrcode"></i> <?php _e('Slider Options','team'); ?> <span class="team-pro" title="Only available in premium">Pro</span></li>
-                       
+
             
         </ul> <!-- tab-nav end -->
 		<ul class="box">
@@ -770,15 +769,7 @@ Team Post
 
                     </select>
 				</div>
-            
-            
-            
-            
-            
-            
-            
-            
-        
+
             
 				<div class="option-box">
                     <p class="option-title"><?php _e('Link to Member.','team'); ?></p>
@@ -786,10 +777,6 @@ Team Post
                     <select name="team_items_link_to_post" >
                    		<option  value="no" <?php if($team_items_link_to_post=="no")echo "selected"; ?>>No</option>
                     	<option value="yes" <?php if($team_items_link_to_post=="yes")echo "selected"; ?>>Team Member Page</option>
-                        <option disabled value="">Custom Link (Pro feature)</option>
-                        <option disabled value="" >Popup Profile (Pro feature)</option>
-                        <option disabled value="" >Popup Slider (Pro feature)</option>
-                        
                     </select>
                 </div>  
             
@@ -923,11 +910,7 @@ Team Post
                         <option value="parent" <?php if($team_query_orderby=="parent") echo "selected"; ?>><?php _e('Parent', 'team'); ?></option>
                         <option value="rand" <?php if($team_query_orderby=="rand") echo "selected"; ?>><?php _e('Random', 'team'); ?></option>
                         <option value="comment_count" <?php if($team_query_orderby=="comment_count") echo "selected"; ?>><?php _e('Comment Count', 'team'); ?></option>
-                        <option disabled value="" ><?php _e('Menu order', 'team'); ?> (Pro feature)</option>
-                        <option disabled value="" ><?php _e('Meta Value', 'team'); ?> (Pro feature)</option>
-                        <option disabled value="" ><?php _e('Meta Value(number)', 'team'); ?> (Pro feature)</option>
-                        <option disabled value="" ><?php _e('post__in', 'team'); ?> (Pro feature)</option>
-                        <option disabled value="" ><?php _e('post_name__in', 'team'); ?> (Pro feature)</option>
+
                                                          
                     </select>
                     
@@ -1012,10 +995,7 @@ Team Post
                     <div class="nav-top">
                     
                     <label><input <?php if($team_grid_style=='grid') echo 'checked'; ?> type="radio" name="team_grid_style" class="team_grid_style" value="grid" />Grid</label>
-                    <label><input disabled  type="radio" name="team_grid_style" class="team_grid_style" value="" />Filterable <span class="team-pro" title="Only available in premium.">Pro</span> </label>
-                    <label><input disabled type="radio" name="team_grid_style" class="team_grid_style" value="" />Slider <span class="team-pro" title="Only available in premium.">Pro</span></label>
-                    
-                    
+
 
                     </div>
                     
@@ -1064,85 +1044,7 @@ Team Post
 							echo '<input type="hidden" name="team_grid_items['.$item_key.']" value="'.$item_key.'"/>';
 							echo $item_name.'</div>';
 							
-							if($item_key == 'meta'){
-									
-								if(empty($team_grid_meta_keys))
-									{
-										$team_grid_meta_keys = array();
-									}
-								
-								?>
-								<div class="options">
-								<div class="option-box">
-									<p class="option-title"><?php _e('Meta key.','team'); ?></p>
-									<div class="meta-key-list">
-									<?php
-									
-									//var_dump($team_grid_meta_keys);
-									if(is_array($team_grid_meta_keys)){
-										
-										}
-									else{
-										
-											$meta_keys = explode(',',$team_grid_meta_keys);
-											//var_dump($meta_keys);
-											
-											$team_grid_meta_keys = array();
-											
-											foreach($meta_keys as $keys){
-												
-												$team_grid_meta_keys[] = array('key'=>$keys, 'wrapper'=>'%s'
-																				
-																			);
-												
-												
-												}
-											
-
-											
-											//var_dump($team_grid_meta_keys);
-										}
-									
-									
-									
-									foreach($team_grid_meta_keys as $id=>$meta_info){
-										
-											$wrapper = $meta_info['wrapper'];
-											$key = $meta_info['key'];
-											
-											//var_dump($meta_data);
-											
-											?>
-											<div>
-											<span class="remove"><i class="fa fa-times" aria-hidden="true"></i></span>
-											<span class="move"><i class="fa fa-bars" aria-hidden="true"></i></span>
-											<input placeholder="<div>%s</div>" type="text" name="team_grid_meta_keys[<?php echo $id; ?>][wrapper]" value="<?php echo esc_textarea($wrapper); ?>" />  
-											<input placeholder="meta_key" type="text" name="team_grid_meta_keys[<?php echo $id; ?>][key]" value="<?php echo $key; ?>" />
-											</div>
-											<?php
-
-										
-										
-										}
-									?>
-									
-									</div>
-
-									<div class="button add-meta-key"><?php _e('Add more', 'team'); ?></div>
-									
-								</div>
-								<div class="option-box">
-									<p class="option-title"><?php _e('Font family.','team'); ?></p>
-									<p class="option-info"></p>
-									<input type="text" name="team_items_meta_font_family" placeholder="Open Sans" id="team_items_meta_font_family" value="<?php if(!empty($team_items_meta_font_family)) echo $team_items_meta_font_family; ?>" />
-								</div>
-							</div>
-                                        
-                                        <?php
-
-									
-								}
-							elseif($item_key == 'thumbnail'){
+							if($item_key == 'thumbnail'){
 								
 								?>
                                 <div class="options">
@@ -1405,111 +1307,7 @@ Team Post
                                 <?php
 							}									
 								
-							elseif($item_key == 'popup'){
-								?>
-                                <div class="options">
-                                    <div class="option-box">
-                                        <p class="option-title"><?php _e('Member Bio Popup Content Display.','team'); ?> </p>
-                                        <p class="option-info"></p>
-                                        <ul class="content_source_area" >
-                                            <li>
-                                                <input class="team_content_source" name="team_items_popup_content" id="team_items_popup_content" type="radio" value="full" <?php if($team_items_popup_content=="full")  echo "checked";?> /> 
-                                                <label for="team_items_popup_content"><?php _e('Display full content.','team'); ?></label>
-                                                <div class="team_items_popup_content content-source-box">
-                                                <?php _e('Member bio content will display from full content.','team'); ?>
-                                                </div>
-                                            </li>
-                                            
-                                            
-                                            <li>
-                                                <input class="team_content_source" name="team_items_popup_content" id="team_items_popup_excerpt" type="radio" value="excerpt" <?php if($team_items_popup_content=="excerpt")  echo "checked";?> /> 
-                                                <label for="team_items_popup_excerpt"><?php _e('Display excerpt.','team'); ?></label>
-                                                <div class="team_items_popup_excerpt content-source-box">
-                                                <?php _e('Member bio content will display from excerpt.','team'); ?><br />
-                                                <?php _e('Excrept Length:','team'); ?>
-                                                <input type="text" placeholder="25" size="4" name="team_items_popup_excerpt_count" value="<?php if(!empty($team_items_popup_excerpt_count))  echo $team_items_popup_excerpt_count; else echo '25'; ?>" />
-                                                <br />
-                                                <?php _e('Read More Text:','team'); ?>
-                                                <input type="text" placeholder="Read More..." size="10" name="team_items_popup_excerpt_text" value="<?php if(!empty($team_items_popup_excerpt_text))  echo $team_items_popup_excerpt_text; else echo 'Read More'; ?>" />
-                                                
-                                                </div>
-                                            </li>                        
-                    
-                                        </ul>
-                                    </div>
-                                    
-                                    
-                                    
-                                    
-                                    <div class="option-box">
-                                        <p class="option-title"><?php _e('Popup box width.','team'); ?></p>
-                                        <p class="option-info"></p>
-                                        <input type="text" placeholder="80%" name="team_items_popup_width" id="team_items_popup_width" value="<?php if(!empty($team_items_popup_width)) echo $team_items_popup_width; else echo "80%"; ?>" />
-                                    </div>
-                                    
-                                    <div class="option-box">
-                                        <p class="option-title"><?php _e('Popup box height.','team'); ?></p>
-                                        <p class="option-info"></p>
-                                        <input type="text" placeholder="70%" name="team_items_popup_height" id="team_items_popup_height" value="<?php if(!empty($team_items_popup_height)) echo $team_items_popup_height; else echo "70%"; ?>" />
-                                    </div>                                   
-                                    
-                                    
-                                    <div class="option-box">
-                                        <p class="option-title"><?php _e('Thumbnail Size.','team'); ?></p>
-                                        <p class="option-info"><?php _e('Thumbnail size of member on popup.','team'); ?></p>
-                                        <select name="team_items_popup_thumb_size" >
-										<?php
 
-										$get_intermediate_image_sizes =  get_intermediate_image_sizes();
-										foreach($get_intermediate_image_sizes as $size_key){
-											
-											?>
-											<option value="<?php echo $size_key; ?>" <?php if($team_items_popup_thumb_size==$size_key)echo "selected"; ?>>
-											<?php 
-											
-											$size_key = str_replace('_', ' ',$size_key);
-											$size_key = str_replace('-', ' ',$size_key);						
-											$size_key = ucfirst($size_key);
-					
-											echo $size_key; 
-											
-											?>
-											</option>
-
-											<?php
-											}
-
-											?>      
-                                        </select>
-                                    </div> 
-                                    
-                                    
-                                    
-                                </div>
-                                <?php
-								
-								
-								
-								
-								
-								
-								
-								
-								}	
-							elseif($item_key == 'skill'){
-								?>
-                                <div class="options">
-                                    <div class="option-box">
-                                        <p class="option-title"><?php _e('Font Color.','team'); ?></p>
-                                        <p class="option-info"></p>
-                                        <input type="text" name="team_items_skill_bg_color" id="team_items_skill_bg_color" value="<?php if(!empty($team_items_skill_bg_color)) echo $team_items_skill_bg_color; else echo "#399fe7"; ?>" />
-                                    </div>
-                                </div>
-                                
-                                <?php
-								
-							}
-								
 							
 							
 							echo '</div>';
@@ -1524,8 +1322,7 @@ Team Post
                     
                     <label><input  <?php if($team_pagination_type=='none'){ echo 'checked'; } ?> type="radio" name="team_pagination_type" value="none" />None</label>
                     <label><input <?php if($team_pagination_type=='pagination'){ echo 'checked'; } ?> type="radio" name="team_pagination_type" value="pagination" />Pagination</label>                    
-                    <label><input disabled  type="radio" name="team_pagination_type" value="" />Jquery Pagination <span class="team-pro" title="Only available in premium.">Pro</span></label>
-                    
+
                     </div>  
                         
                     </div>
@@ -1580,224 +1377,13 @@ Team Post
 				</div>
                 
                 
-				<div class="option-box">
-                    <p class="option-title"><?php _e('Filterable','team'); ?> <span class="team-pro" title="Only available in premium">Pro</span></p>
-                    <p class="option-info"><?php _e('Filterable post per page.','team'); ?></p>
-                    <input type="text" placeholder="3" name="team_items_post_per_page_mixitup" id="team_items_post_per_page_mixitup" value="<?php if(!empty($team_items_post_per_page_mixitup)) echo $team_items_post_per_page_mixitup; else echo "3"; ?>" />
 
-                    <p class="option-info"><?php _e('Display group of member at first.','team'); ?></p>
-
-
-
-                    <?php
-
-					//var_dump($team_taxonomy_terms);
-					$team_taxonomy = 'team_group';
-					if($team_items_default_filter_mixitup=='all'){
-						echo '<label><input checked type="radio" name="team_items_default_filter_mixitup" value="all" />All</label><br />';
-						}
-					else{
-						echo '<label><input type="radio" name="team_items_default_filter_mixitup" value="all" />All</label><br />';
-						}
-
-					if(!empty($team_taxonomy_terms))
-						{
-
-
-
-							foreach($team_taxonomy_terms as $term_id)
-								{
-									$term = get_term( $term_id, $team_taxonomy );
-									$term_slug = $term->slug;
-									$term_name = $term->name;
-									echo '<label><input type="radio" name="team_items_default_filter_mixitup" value="'.$term_slug.'" ';
-
-									if($team_items_default_filter_mixitup == $term_slug)
-										{
-											echo 'checked';
-										}
-
-									echo '/>'.$term_name.'</label><br />';
-
-								}
-						}
-					else
-						{
-							echo __('Please select team group first from <b>Content(tab) > Filter Member > Display from Member Group','team').'</b>.';
-						}
-
-					?>
-
-
-                    <p class="option-info"><?php _e('Filterable navs default background color.','team'); ?></p>
-                    <input type="text" class="team_color" name="team_filter_bg_color" id="team_filter_bg_color" value="<?php if(!empty($team_filter_bg_color)) echo $team_filter_bg_color; else echo "#2eb3f8"; ?>" />
-
-
-                    <p class="option-info"><?php _e('Filterable navs active background color.','team'); ?></p>
-                    <input type="text" class="team_color" name="team_filter_active_bg_color" id="team_filter_active_bg_color" value="<?php if(!empty($team_filter_active_bg_color)) echo $team_filter_active_bg_color; else echo "#249bd9"; ?>" />
-
-
-                    <p class="option-info"><?php _e('Filterable navs text color.','team'); ?></p>
-                    <input type="text" class="team_color" name="team_filter_text_color" id="team_filter_text_color" value="<?php if(!empty($team_filter_text_color)) echo $team_filter_text_color; else echo "#666666"; ?>" />
-
-
-                    <p class="option-info"><?php _e('Scroll top when pagination clicked.','team'); ?></p>
-                    <select name="team_filter_scroll_top"  >
-                    <option  value="no" <?php if($team_filter_scroll_top=="no")echo "selected"; ?>><?php _e('No','team'); ?></option>
-                    <option  value="yes" <?php if($team_filter_scroll_top=="yes")echo "selected"; ?>><?php _e('Yes','team'); ?></option>
-
-                    </select>
-
-
-
-
-				</div>
-
-				
                 
                 
                 
             </li>
             
-            
-            
-            <li style="display: none;" class="box7 tab-box">
-				
 
-				<div class="option-box">
-                    <p class="option-title"><?php _e('Slider Column Number','team');?></p>
-                    
-                    <p class="option-info"><?php _e('In Destop: (min:1000px and max)','team');?></p>
-					<input type="text" placeholder="4"   name="team_column_number" value="<?php echo $team_column_number;  ?>" />
-
-                    <p class="option-info"><?php _e('In Tablet & Small Desktop: (900px max width)','team');?></p>
-                    <input type="text" placeholder="2"  name="team_column_number_tablet" value="<?php echo $team_column_number_tablet;  ?>" />  
-                   
-                    <p class="option-info"><?php _e('In Mobile: (479px max width)','team');?></p>
-                    <input type="text" placeholder="1"  name="team_column_number_mobile" value="<?php echo $team_column_number_mobile;  ?>" />
-                    
-                  
-                               
-                </div>   
-
-				<div class="option-box">
-                    <p class="option-title"><?php _e('Slider Auto Play','team');?></p>
-                    <p class="option-info"></p>
-                    
-                    
-                        <select name="team_auto_play">
-                            <option value="true" <?php if(($team_auto_play=="true")) echo "selected"; ?> ><?php _e('True','team');?></option>
-                            <option value="false" <?php if(($team_auto_play=="false")) echo "selected"; ?> ><?php _e('False','team');?></option>
-                        </select>
-
-                </div>     
-				<div class="option-box">
-                    <p class="option-title"><?php _e('Slider Stop on Hover','team');?></p>
-                    <p class="option-info"></p>
-                    
-                        <select name="team_stop_on_hover">
-                            <option value="true" <?php if(($team_stop_on_hover=="true")) echo "selected"; ?> ><?php _e('True','team');?></option>
-                            <option value="false" <?php if(($team_stop_on_hover=="false")) echo "selected"; ?> ><?php _e('False','team');?></option>
-                        </select>
-                    
-                
-                </div>   
-				<div class="option-box">
-                    <p class="option-title"><?php _e('Slider Navigation','team');?></p>
-                    <p class="option-info"><?php _e('Slider Navigation at Top','team');?></p>
-                    
-                        <select name="team_slider_navigation">
-                            <option value="true" <?php if(($team_slider_navigation=="true")) echo "selected"; ?> ><?php _e('True','team');?></option>
-                            <option value="false" <?php if(($team_slider_navigation=="false")) echo "selected"; ?> ><?php _e('False','team');?></option>
-                        </select>
-
-                        
-                        <p class="option-info"><?php _e('Slider Navigation Position','team');?></p>
-                        <select name="team_slider_navigation_position">
-                            <option value="middle" <?php if(($team_slider_navigation_position=="middle")) echo "selected"; ?> ><?php _e('Middle','team');?></option>
-
-                        </select>
-                        
-                                        
-                </div>
-
-                
-                
-				<div class="option-box">
-                    <p class="option-title"><?php _e('Slider Pagination','team');?></p>
-                    <p class="option-info"><?php _e('Slider Pagination at Bottom','team');?></p>
-                    
-                        <select name="team_slider_pagination">
-                            <option value="true" <?php if(($team_slider_pagination=="true")) echo "selected"; ?> ><?php _e('True','team');?></option>
-                            <option value="false" <?php if(($team_slider_pagination=="false")) echo "selected"; ?> ><?php _e('False','team');?></option>
-                        </select>
- 
-                        
-                        
-                       <p class="option-info"><?php _e('Pagination Background Color','team');?></p>
-                        <input type="text" name="team_slider_pagination_bg" class="team_color" id="team_slider_pagination_bg" value="<?php if(!empty($team_slider_pagination_bg)) echo $team_slider_pagination_bg; else echo "#1eb286"; ?>" />
-                        
-                        <p class="option-info"><?php _e('Pagination Text Color','team');?></p>
-                        <input type="text" name="team_slider_pagination_text_color" class="team_color" id="team_slider_pagination_text_color" value="<?php if(!empty($team_slider_pagination_text_color)) echo $team_slider_pagination_text_color; else echo "#fff"; ?>" /> 
-                        
-                        <p class="option-info"><?php _e('Pagination Number Counting','team');?></p>
-                        <select name="team_slider_pagination_count">
-                        	<option value="false" <?php if(($team_slider_pagination_count=="false")) echo "selected"; ?> ><?php _e('False','team');?></option>
-                            <option value="true" <?php if(($team_slider_pagination_count=="true")) echo "selected"; ?> ><?php _e('True','team');?></option>
-                            
-                        </select>
-                        
-  
-                        
-                                       
-                </div>
-                
-
-                
-				     
-				<div class="option-box">
-                    <p class="option-title"><?php _e('Slide Speed','team');?></p>
-                    <p class="option-info"></p>
-					<input type="text" id="team_slide_speed" name="team_slide_speed" value="<?php if(!empty($team_slide_speed)) echo $team_slide_speed; else echo "1000"; ?>"  />                 
-                </div>   
-				<div class="option-box">
-                    <p class="option-title"><?php _e('Pagination Slide Speed','team');?></p>
-                    <p class="option-info"></p>
-					<input type="text" id="team_pagination_slide_speed" name="team_pagination_slide_speed" value="<?php if(!empty($team_pagination_slide_speed)) echo $team_pagination_slide_speed; else echo "1000"; ?>"  />                 
-                </div>
-                
-				<div class="option-box">
-                    <p class="option-title"><?php _e('Slider Touch Drag Enabled','team');?></p>
-                    <p class="option-info"></p>
-                    
-                    
-                        <select name="team_slider_touch_drag">
-                            <option value="true" <?php if(($team_slider_touch_drag=="true")) echo "selected"; ?> ><?php _e('True','team');?></option>
-                            <option value="false" <?php if(($team_slider_touch_drag=="false")) echo "selected"; ?> ><?php _e('False','team');?></option>
-                        </select>
-                    
-                 
-                </div>       
-				<div class="option-box">
-                    <p class="option-title"><?php _e('Slider Mouse Drag Enabled','team');?></p>
-                    <p class="option-info"></p>
-                    
-                        <select name="team_slider_mouse_drag">
-                            <option value="true" <?php if(($team_slider_mouse_drag=="true")) echo "selected"; ?> ><?php _e('True','team');?></option>
-                            <option value="false" <?php if(($team_slider_mouse_drag=="false")) echo "selected"; ?> ><?php _e('False','team');?></option>
-                        </select>
-                    
-                
-                </div>  
-            
-            </li>
-            
-            
-            
-            
-            
-            
-            
             
 		</ul><!-- box end -->
         

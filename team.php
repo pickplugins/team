@@ -33,6 +33,7 @@ class Team{
         define('team_customer_type', 'free' );	 // pro & free
         define('team_tutorial_doc_url', 'http://pickplugins.com/docs/documentation/team/' );
 
+        include( 'includes/functions-data-upgrade.php' );
 
         include( 'includes/class-post-meta-team.php' );
         include( 'includes/class-post-meta-team-hook.php' );

@@ -387,7 +387,12 @@ function team_metabox_content_custom_scripts($post_id){
 
 
     $settings_tabs_field = new settings_tabs_field();
-    $team_items_custom_css = get_post_meta($post_id,'team_items_custom_css', true);
+    $team_options = get_post_meta($post_id,'team_options', true);
+    $custom_scripts = isset($team_options['custom_scripts']) ? $team_options['custom_scripts'] : array();
+
+    $custom_css = isset($custom_scripts['custom_css']) ? $custom_scripts['custom_css'] : '';
+
+
 
 
     ?>
@@ -398,12 +403,12 @@ function team_metabox_content_custom_scripts($post_id){
 
         <?php
         $args = array(
-            'id'		=> 'team_items_custom_css',
-            //'parent'		=> '',
+            'id'		=> 'custom_css',
+            'parent'		=> 'team_options[custom_scripts]',
             'title'		=> __('Custom CSS','job-board-manager'),
             'details'	=> __('Write custom CSS to override default style, do not use <code>&lt;style>&lt;/style></code> tag.','job-board-manager'),
             'type'		=> 'scripts_css',
-            'value'		=> $team_items_custom_css,
+            'value'		=> $custom_css,
             'default'		=> '',
             'placeholder'		=> '',
         );
@@ -570,6 +575,8 @@ function team_metabox_content_pagination($post_id){
     $team_options = get_post_meta($post_id,'team_options', true);
     $pagination = isset($team_options['pagination']) ? $team_options['pagination'] : array();
 
+    $pagination_type = isset($pagination['type']) ? $pagination['type'] : '';
+
     $pagination_prev_text = isset($pagination['prev_text']) ? $pagination['prev_text'] : '';
     $pagination_next_text = isset($pagination['next_text']) ? $pagination['next_text'] : '';
     $pagination_background_color = isset($pagination['background_color']) ? $pagination['background_color'] : '';
@@ -582,6 +589,20 @@ function team_metabox_content_pagination($post_id){
 
 
         <?php
+
+
+        $args = array(
+            'id'		=> 'type',
+            'parent' => 'team_options[pagination]',
+            'title'		=> __('View type','job-board-manager'),
+            'details'	=> '',
+            'type'		=> 'radio',
+            'value'		=> $pagination_type,
+            'default'		=> '',
+            'args'		=> array('normal'=>'Normal','jquery'=>'jQuery pagination','ajax'=>'Ajax' ),
+        );
+
+        $settings_tabs_field->generate_field($args);
 
         $args = array(
             'id'		=> 'prev_text',
