@@ -46,9 +46,14 @@ class Team{
 
         include( 'includes/class-settings-tabs.php' );
         include( 'includes/functions-settings-hook.php' );
+        include( 'includes/functions-layout-hook.php' );
 
         include( 'includes/class-post-meta-team-layout.php' );
         include( 'includes/class-post-meta-team-layout-hook.php' );
+        include( 'includes/class-post-meta-team-member.php' );
+        include( 'includes/class-post-meta-team-member-hook.php' );
+
+
         include_once team_plugin_dir.'/templates/team-showcase/team-showcase-hook.php';
 
     

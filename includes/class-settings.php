@@ -30,7 +30,7 @@ class team_class_settings  {
 	
 	public function settings(){
 		
-		include( 'menu/settings.php' );	
+		include( 'menu/settings.php' );
 		
 		}
 	

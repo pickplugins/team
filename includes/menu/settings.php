@@ -1,289 +1,183 @@
 <?php	
-
-/*
-* @Author 		ParaTheme
-* Copyright: 	2015 ParaTheme
-*/
-
-if ( ! defined('ABSPATH')) exit;  // if direct access 	
+if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
+$current_tab = isset($_POST['tab']) ? $_POST['tab'] : 'general';
 
-if(empty($_POST['team_hidden'])){
-		$team_member_slug = get_option( 'team_member_slug' );		
-		$team_member_meta_fields = get_option( 'team_member_meta_fields' );		
-		$team_member_social_field = get_option( 'team_member_social_field' );
+$team_settings_tab = array();
 
-	}
-else{	
+$team_settings_tab[] = array(
+    'id' => 'general',
+    'title' => sprintf(__('%s General','related-post'),'<i class="fas fa-list-ul"></i>'),
+    'priority' => 1,
+    'active' => ($current_tab == 'general') ? true : false,
 
-		$nonce = $_POST['_wpnonce'];
-
-		if(wp_verify_nonce( $nonce, 'nonce_team' ) &&  $_POST['team_hidden'] == 'Y') {
-			//Form data sent
-
-			$team_member_slug = sanitize_text_field($_POST['team_member_slug']);
-			update_option('team_member_slug', $team_member_slug);
-
-			$team_member_meta_fields = stripslashes_deep($_POST['team_member_meta_fields']);
-			update_option('team_member_meta_fields', $team_member_meta_fields);
-
-			$team_member_social_field = stripslashes_deep($_POST['team_member_social_field']);
-			update_option('team_member_social_field', $team_member_social_field);
-
-			?>
-			<div class="updated"><p><strong><?php _e('Changes Saved.', 'team' ); ?></strong></p></div>
-	
-			<?php
-			} 
-	}
-	
+);
 
 
+$team_settings_tab = apply_filters('team_settings_tabs', $team_settings_tab);
 
-	$class_team_functions = new class_team_functions();
-	$default_social_field = $class_team_functions->team_member_social_field();
+$tabs_sorted = array();
+foreach ($team_settings_tab as $page_key => $tab) $tabs_sorted[$page_key] = isset( $tab['priority'] ) ? $tab['priority'] : 0;
+array_multisort($tabs_sorted, SORT_ASC, $team_settings_tab);
+
+
+wp_enqueue_script('jquery');
+wp_enqueue_script('jquery-ui-sortable');
+wp_enqueue_script( 'jquery-ui-core' );
+wp_enqueue_script('jquery-ui-accordion');
+wp_enqueue_style( 'wp-color-picker' );
+wp_enqueue_script('wp-color-picker');
+wp_enqueue_style('font-awesome-5');
+wp_enqueue_style('settings-tabs');
+wp_enqueue_script('settings-tabs');
+
+
+$review_status = isset($_GET['review_status']) ? sanitize_text_field($_GET['review_status']) : '';
+$team_info = get_option('team_info');
+$team_settings = get_option('team_settings');
 
 ?>
-
-
 <div class="wrap">
+	<div id="icon-tools" class="icon32"><br></div><h2><?php echo sprintf(__('%s Settings', 'related-post'), team_plugin_name)?></h2>
 
-	<div id="icon-tools" class="icon32"><br></div><?php echo "<h2>".__(team_plugin_name.' Settings', 'team')."</h2>";?>
+
+    <?php
+    $gmt_offset = get_option('gmt_offset');
+    $current_date = date('Y-m-d H:i:s', strtotime('+'.$gmt_offset.' hour'));
+    //echo '<pre>'.var_export($current_date, true).'</pre>';
+
+
+    if($review_status =='remind_later'):
+
+        $team_info['review_status'] = 'remind_later';
+        $team_info['remind_date'] = date('Y-m-d H:i:s', strtotime('+30 days'));
+
+
+        ?>
+        <div class="update-nag is-dismissible">We will remind you later.</div>
+        <?php
+        update_option('team_info', $team_info);
+
+    elseif ($review_status =='done'):
+
+        $team_info['review_status'] = 'done';
+        ?>
+        <div class="update-nag notice is-dismissible">Thanks for your time and feedback.</div>
+        <?php
+
+        update_option('team_info', $team_info);
+
+    endif;
+
+    ?>
+
+
+
 		<form  method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
-	<input type="hidden" name="team_hidden" value="Y">
-        <?php settings_fields( 'team_plugin_options' );
-				do_settings_sections( 'team_plugin_options' );
-			
-		?>
+	        <input type="hidden" name="team_hidden" value="Y">
+            <input type="hidden" name="tab" value="<?php echo $current_tab; ?>">
 
-    <div class="para-settings team-settings">
-    
-        <ul class="tab-nav"> 
-            <li nav="1" class="nav1 active">Options</li>       
-   
-        </ul> <!-- tab-nav end --> 
-		<ul class="box">
-       		<li style="display: block;" class="box1 tab-box active">
-            
-                <div class="option-box">
-                    <p class="option-title"><?php _e('Team member slug.','team'); ?></p>
-                    <p class="option-info"><?php _e('ex: volunteers','team'); ?></p>   
-					<input type="text" size="30" placeholder="team_member_slug"   name="team_member_slug" value="<?php if(!empty($team_member_slug)) echo $team_member_slug; ?>" />
-                              
-            	</div>
-                <div class="option-box">
-                    <p class="option-title"><?php _e('Custom meta fields on team member profile.','team'); ?></p>
-                    <p class="option-info"><?php //_e('','team'); ?></p>            
-                
-                
-                
-            <div class="">
-                <table class="widefat team-member-meta-fields">
-                <thead>
-                    <tr> 
-                    <th>Sorting</th>                   
-                    <th>Meta Name</th>
-                    <th>Meta Key</th>
-                    <th>Remove</th>            
-                    </tr>
-                    </thead>
-                    <tbody>
-                    
-                    <?php
-                    
-                    if(empty($team_member_meta_fields)){
-                        
-                        $team_member_meta_fields = array(
-                                                    'address' => array('name'=>'Address','meta_key'=>'team_address'),
-                                                    //'mobile' => array('name'=>'Mobile','meta_key'=>'team_mobile'),											
-                                                );
-                        
-                        }
-                    //var_dump($team_member_skill);
-                    
-                        foreach ($team_member_meta_fields as $meta_key=>$meta_info) {
-                            
-                            ?>
-                    <tr>
-                    <td class="sorting"></td>
-                    <td>
-                        
-                        <?php //var_dump($skill_info); ?>
-                    
-                        <input type="text" size="30" placeholder="Meta Name"   name="team_member_meta_fields[<?php echo $meta_key; ?>][name]" value="<?php if(!empty($team_member_meta_fields[$meta_key]['name'])) echo $team_member_meta_fields[$meta_key]['name']; ?>" />
-                    
-                    </td>
-                    <td>
-                        <input type="text" size="30" placeholder="meta_key"   name="team_member_meta_fields[<?php echo $meta_key; ?>][meta_key]" value="<?php if(!empty($team_member_meta_fields[$meta_key]['meta_key'])) echo $team_member_meta_fields[$meta_key]['meta_key']; ?>" />
-                    </td>
-                    
-                    <td>
-                    <span class="remove-meta"><i class="fa fa-times"></i></span>
-                    </td>            
-                    </tr>
-                        <?php
-                        }
-                ?>
-                </tbody>
-                </table>
-                
-                <div class="button add_team_member_meta">Add new</div>
-            </div>
-                
-                
- <script>
- jQuery(document).ready(function($)
-	{
-		$(function() {
-			$( ".team-member-meta-fields tbody" ).sortable();
-			//$( ".items" ).disableSelection();
-			});
-		
-		})
+            <?php
+            if(!empty($_POST['team_hidden'])){
 
-</script>
-                
-                
-                
-                </div>
-            
-            
-            
-            
-            
-            
-			<div class="option-box">
-				<p class="option-title"><?php _e('Display social field on team member profile.','team'); ?></p>
- 				<p class="option-info"><?php _e('By adding bellow input you can control extra input field under member page. if you want to remove one profile field then please empty this field and save changes or to add new profile field simply click add new. some default profile fields are mobile, website, email, skype, facebook, twitter, googleplus, pinterest.','team'); ?></p>
-                
-            <div class="button reset_team_member_social_field">Reset</div>
-			<table class="team_member_social_field widefat " id="team_member_social_field">
-                <thead><tr><th>Sort</th><th>Meta name</th><th>Meta key</th><th>Icon</th><th>Visibility</th><th>Remove</th>
-                
-                </tr>  
-              </thead>
-            <?php 
+                $nonce = sanitize_text_field($_POST['_wpnonce']);
 
-			
-			if(empty($team_member_social_field)){
-					$team_member_social_field = $default_social_field;
-				}
+                if(wp_verify_nonce( $nonce, 'team_nonce' ) && $_POST['team_hidden'] == 'Y') {
 
-            foreach ($team_member_social_field as $field_key=>$field_info) {
-                if(!empty($field_key))
-                    {
-                        ?>
-                    <tr><td class="sorting"></td>
-                    <td>
+                    do_action('team_settings_save');
 
-                    <input name="team_member_social_field[<?php echo $field_key; ?>][name]" type="text" value="<?php if(isset($team_member_social_field[$field_key]['name'])) echo $team_member_social_field[$field_key]['name']; ?>" />
-                    </td>                    
-                    
-                    <td>
-                    
-					<input name="team_member_social_field[<?php echo $field_key; ?>][meta_key]" type="text" value="<?php if(isset($team_member_social_field[$field_key]['meta_key'])) echo $team_member_social_field[$field_key]['meta_key']; ?>" />
-                    
-                   
-                    </td>
-                    
-                    <td>
-                    <span style=" <?php if(!empty($team_member_social_field[$field_key]['icon'])) echo 'background:url('.$team_member_social_field[$field_key]['icon'].') no-repeat scroll 0 0 rgba(0, 0, 0, 0);';  ?>" title="Icon for this field." class="team_member_social_icon <?php if(empty($team_member_social_field[$field_key]['icon'])) echo 'empty_icon';?>" icon-name="<?php echo $field_key; ?>"> </span>
-                    
-                    <input class="team_member_social_icon team_member_social_icon_<?php echo $field_key; ?>" name="team_member_social_field[<?php echo $field_key; ?>][icon]" type="hidden" value="<?php if(isset($team_member_social_field[$field_key]['icon'])) echo $team_member_social_field[$field_key]['icon']; ?>" />
-                    
-                    
-                    </td>
-                    <td>
-                    
-                    <?php if(isset($team_member_social_field[$field_key]['visibility'])) $checked = 'checked'; else $checked = ''; ?>
-                    
-                    
-                    <input <?php echo $checked; ?> name="team_member_social_field[<?php echo $field_key; ?>][visibility]" type="checkbox" value="1" />
-                    
-                    </td>                    
-                    <td>
-                    
-                    <?php
-                    if($field_info['can_remove']=='yes'){
-					?>
-                    
-                    <span class="remove_icon"><i class="fa fa-times"></i></span>
+                    ?>
+                    <div class="updated notice  is-dismissible"><p><strong><?php _e('Changes Saved.', 'related-post' ); ?></strong></p></div>
 
                     <?php
-					}
-					else{
-						echo '<span title="Can\'t remove.">...</span>';
-						
-						}
-					
-					?>
-                    
-                    <input name="team_member_social_field[<?php echo $field_key; ?>][can_remove]" type="hidden" value="<?php echo $field_info['can_remove']; ?>" />
-                    
-                    
-                    </td>
-                    
-                    
-                    </tr>
-                        <?php
-						
-						
-                    
-                    }
+                }
             }
-            
             ?>
 
-                    
-                    </table> 
-                    
-        
-        
- 
-        
- <script>
- jQuery(document).ready(function($)
-	{
-		$(function() {
-			$( "#team_member_social_field tbody" ).sortable();
-			//$( ".items" ).disableSelection();
-			});
-		
-		})
+            <div class="settings-tabs-loading" style="">Loading...</div>
+            <div class="settings-tabs vertical has-right-panel" style="display: none">
 
-</script>
-        
-        
-        
-        
-                    <div class="button new_team_member_social_field"><?php _e('Add New','team'); ?></div>
-        
+
+                <div class="settings-tabs-right-panel">
+                    <?php
+                    foreach ($team_settings_tab as $tab) {
+                        $id = $tab['id'];
+                        $active = $tab['active'];
+
+                        ?>
+                        <div class="right-panel-content <?php if($active) echo 'active';?> right-panel-content-<?php echo $id; ?>">
+                            <?php
+
+                            do_action('team_settings_tabs_right_panel_'.$id);
+                            ?>
+
+                        </div>
+                        <?php
+
+                    }
+                    ?>
                 </div>
 
-            
-            </li>
-          
-        </ul>
-    
-    
-		
-
-        
-    </div>
-
-
+                <ul class="tab-navs">
+                    <?php
+                    foreach ($team_settings_tab as $tab){
+                        $id = $tab['id'];
+                        $title = $tab['title'];
+                        $active = $tab['active'];
+                        $data_visible = isset($tab['data_visible']) ? $tab['data_visible'] : '';
+                        $hidden = isset($tab['hidden']) ? $tab['hidden'] : false;
+                        $is_pro = isset($tab['is_pro']) ? $tab['is_pro'] : false;
+                        $pro_text = isset($tab['pro_text']) ? $tab['pro_text'] : '';
 
 
+                        ?>
+                        <li <?php if(!empty($data_visible)):  ?> data_visible="<?php echo $data_visible; ?>" <?php endif; ?> class="tab-nav <?php if($hidden) echo 'hidden';?> <?php if($active) echo 'active';?>" data-id="<?php echo $id; ?>">
+                            <?php echo $title; ?>
+                            <?php
+                            if($is_pro):
+                                ?><span class="pro-feature"><?php echo $pro_text; ?></span> <?php
+                            endif;
+                            ?>
+
+                        </li>
+                        <?php
+                    }
+                    ?>
 
 
-				<p class="submit">
-                
-                	<?php wp_nonce_field( 'nonce_team' ); ?>
-                
-                    <input class="button button-primary" type="submit" name="Submit" value="<?php _e('Save Changes','team' ); ?>" />
+
+                </ul>
+
+
+
+                <?php
+                foreach ($team_settings_tab as $tab){
+                    $id = $tab['id'];
+                    $title = $tab['title'];
+                    $active = $tab['active'];
+                    ?>
+
+                    <div class="tab-content <?php if($active) echo 'active';?>" id="<?php echo $id; ?>">
+                        <?php
+                        do_action('team_settings_content_'.$id, $tab);
+                        ?>
+
+
+                    </div>
+
+                    <?php
+                }
+                ?>
+
+                <div class="clear clearfix"></div>
+                <p class="submit">
+                    <?php wp_nonce_field( 'team_nonce' ); ?>
+                    <input class="button button-primary" type="submit" name="Submit" value="<?php _e('Save Changes','related-post' ); ?>" />
                 </p>
+
+            </div>
+
+
 		</form>
-
-
 </div>
