@@ -194,7 +194,7 @@ class team_class_post_types{
                 'hierarchical' 			=> false,
                 'rewrite' 				=> true,
                 'query_var' 			=> true,
-                'supports' 				=> array( 'title','thumbnail'),
+                'supports' 				=> array( 'title'),
                 'show_in_nav_menus' 	=> false,
                 'show_in_menu' 	=> 'edit.php?post_type=team',
                 'menu_icon' => 'dashicons-groups',

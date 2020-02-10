@@ -26,9 +26,10 @@ function update_team_data(){
         while ( $wp_query->have_posts() ) : $wp_query->the_post();
 
             $team_id = get_the_id();
+            $team_title = get_the_title();
             $team_options = array();
 
-            echo get_the_title().'<br/>';
+            echo $team_title.'<br/>';
 
 
 
@@ -104,6 +105,7 @@ function update_team_data(){
             $team_pagination_active_bg_color = get_post_meta( $team_id, 'team_pagination_active_bg_color', true );
             $team_options['pagination']['active_background_color'] = $team_pagination_active_bg_color;
 
+            // Create layout from team settings.
             $team_grid_items = get_post_meta( $team_id, 'team_grid_items', true );
             unset($team_grid_items['popup']);
             unset($team_grid_items['skill']);
@@ -120,7 +122,112 @@ function update_team_data(){
             $team_options['items_hide'] = $team_grid_items_hide;
 
 
+            $layout_elements_data = array();
 
+            $layout_elements_data[0]['wrapper_start']['wrapper_id'] = '';
+            $layout_elements_data[0]['wrapper_start']['wrapper_class'] = 'layer-media';
+            $layout_elements_data[0]['wrapper_start']['css_idle'] = '';
+
+            $team_items_thumb_size = get_post_meta( $team_id, 'team_items_thumb_size', true );
+            $team_items_thumb_max_hieght = get_post_meta( $team_id, 'team_items_thumb_max_hieght', true );
+            $team_items_thumb_max_hieght_tablet = get_post_meta( $team_id, 'team_items_thumb_max_hieght_tablet', true );
+            $team_items_thumb_max_hieght_mobile = get_post_meta( $team_id, 'team_items_thumb_max_hieght_mobile', true );
+
+            $layout_elements_data[1]['thumbnail']['thumb_size'] = $team_items_thumb_size;
+            $layout_elements_data[1]['thumbnail']['thumb_height']['large'] = $team_items_thumb_max_hieght;
+            $layout_elements_data[1]['thumbnail']['thumb_height']['medium'] = $team_items_thumb_max_hieght_tablet;
+            $layout_elements_data[1]['thumbnail']['thumb_height']['small'] = $team_items_thumb_max_hieght_mobile;
+
+            $layout_elements_data[2]['wrapper_end']['wrapper_id'] = '';
+
+
+            $layout_elements_data[3]['wrapper_start']['wrapper_id'] = '';
+            $layout_elements_data[3]['wrapper_start']['wrapper_class'] = 'layer-content';
+            $layout_elements_data[3]['wrapper_start']['css_idle'] = '';
+
+
+
+            $item_count = 4;
+            foreach ($team_grid_items as $itemIndex => $item){
+
+
+                if($itemIndex == 'thumbnail'){
+
+                }elseif($itemIndex == 'social'){
+                    $team_items_social_icon_type = get_post_meta( $team_id, 'team_items_social_icon_type', true );
+                    $team_items_social_icon_width = get_post_meta( $team_id, 'team_items_social_icon_width', true );
+                    $team_items_social_icon_height = get_post_meta( $team_id, 'team_items_social_icon_height', true );
+                    $team_items_social_font_family = get_post_meta( $team_id, 'team_items_social_font_family', true );
+
+                    $layout_elements_data[$item_count]['social']['social_icon_type'] = $team_items_social_icon_type;
+                    $layout_elements_data[$item_count]['social']['social_icon_width'] = $team_items_social_icon_width;
+                    $layout_elements_data[$item_count]['social']['social_icon_height'] = $team_items_social_icon_height;
+
+                    $layout_elements_data[$item_count]['social']['font_size'] = '';
+                    $layout_elements_data[$item_count]['social']['color'] = '';
+                    $layout_elements_data[$item_count]['social']['font_family'] = $team_items_social_font_family;
+
+                }elseif($itemIndex == 'title'){
+                    $team_items_title_font_size = get_post_meta( $team_id, 'team_items_title_font_size', true );
+                    $team_items_title_font_family = get_post_meta( $team_id, 'team_items_title_font_family', true );
+                    $team_items_title_color = get_post_meta( $team_id, 'team_items_title_color', true );
+
+                    $layout_elements_data[$item_count]['title']['color'] = $team_items_title_color;
+                    $layout_elements_data[$item_count]['title']['font_size'] = $team_items_title_font_size;
+                    $layout_elements_data[$item_count]['title']['font_family'] = $team_items_title_font_family;
+
+                }elseif($itemIndex == 'position'){
+                    $team_items_position_font_size = get_post_meta( $team_id, 'team_items_position_font_size', true );
+                    $team_items_position_font_family = get_post_meta( $team_id, 'team_items_position_font_family', true );
+                    $team_items_position_color = get_post_meta( $team_id, 'team_items_position_color', true );
+
+                    $layout_elements_data[$item_count]['position']['color'] = $team_items_position_color;
+                    $layout_elements_data[$item_count]['position']['font_size'] = $team_items_position_font_size;
+                    $layout_elements_data[$item_count]['position']['font_family'] = $team_items_position_font_family;
+
+                }elseif($itemIndex == 'content'){
+
+                    $team_items_content = get_post_meta( $team_id, 'team_items_content', true );
+                    $team_items_excerpt_count = get_post_meta( $team_id, 'team_items_excerpt_count', true );
+                    $team_items_excerpt_text = get_post_meta( $team_id, 'team_items_excerpt_text', true );
+                    $team_items_content_color = get_post_meta( $team_id, 'team_items_content_color', true );
+                    $team_items_content_font_size = get_post_meta( $team_id, 'team_items_content_font_size', true );
+                    $team_items_content_font_family = get_post_meta( $team_id, 'team_items_content_font_family', true );
+
+                    $layout_elements_data[$item_count]['content']['content_source'] = $team_items_content;
+                    $layout_elements_data[$item_count]['content']['word_count'] = $team_items_excerpt_count;
+                    $layout_elements_data[$item_count]['content']['read_more_text'] = $team_items_excerpt_text;
+
+                    $layout_elements_data[$item_count]['content']['color'] = $team_items_content_color;
+                    $layout_elements_data[$item_count]['content']['read_more_color'] = $team_items_content_color;
+
+                    $layout_elements_data[$item_count]['content']['font_size'] = $team_items_content_font_size;
+                    $layout_elements_data[$item_count]['content']['font_family'] = $team_items_content_font_family;
+                }
+
+                $item_count++;
+            }
+
+            $layout_elements_data[$item_count]['wrapper_end']['wrapper_id'] = '';
+
+
+            $team_layout_id = wp_insert_post(
+                array(
+                    'post_title'    => $team_id.' - '.$team_title,
+                    'post_content'  => '',
+                    'post_status'   => 'publish',
+                    'post_type'   	=> 'team_layout',
+                    'post_author'   => 1,
+                )
+            );
+
+
+            update_post_meta($team_layout_id, 'layout_elements_data', $layout_elements_data);
+
+
+            ?>
+            <pre><?php echo var_export($layout_elements_data, true); ?></pre>
+            <?php
 
             // Slider Options
             //$team_options['slider_column_desktop'] = $team_column_number;
@@ -129,9 +236,7 @@ function update_team_data(){
 
 
 
-        ?>
-            <pre><?php echo var_export($team_options, true); ?></pre>
-        <?php
+
 
 
 
