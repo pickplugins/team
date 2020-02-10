@@ -117,19 +117,6 @@ function team_metabox_content_style($post_id){
     $container_background_color = isset($team_options['container']['background_color']) ? $team_options['container']['background_color'] : '';
     $container_text_align = isset($team_options['container']['text_align']) ? $team_options['container']['text_align'] : '';
 
-
-    $team_skins = array('flat'=>'Flat', 'zoomout'=>'ZoomOut','thumbrounded'=>'ThumbRounded',  );
-    $team_items_max_width = get_post_meta($post_id,'team_items_max_width', true);
-    $team_items_width_tablet = get_post_meta($post_id,'team_items_width_tablet', true);
-    $team_items_width_mobile = get_post_meta($post_id,'team_items_width_mobile', true);
-
-    $team_items_margin = get_post_meta($post_id,'team_items_margin', true);
-    $team_item_text_align = get_post_meta($post_id,'team_item_text_align', true);
-
-    $team_bg_img = get_post_meta($post_id,'team_bg_img', true);
-    $team_container_bg_color = get_post_meta($post_id,'team_container_bg_color', true);
-    $team_grid_item_align = get_post_meta($post_id,'team_grid_item_align', true);
-
     ?>
     <div class="section">
         <div class="section-title"><?php echo __('Style', 'team'); ?></div>
@@ -273,11 +260,15 @@ function team_metabox_content_query_member($post_id){
 
     $settings_tabs_field = new settings_tabs_field();
 
-    $team_query_orderby = get_post_meta($post_id,'team_query_orderby', true);
-    $team_query_orderby_meta_key = get_post_meta($post_id,'team_query_orderby_meta_key', true);
-    $team_query_order = get_post_meta($post_id,'team_query_order', true);
-    $team_total_items = get_post_meta($post_id,'team_total_items', true);
-    $team_taxonomy_terms = get_post_meta($post_id,'team_taxonomy_terms', true);
+
+    $team_options = get_post_meta($post_id,'team_options', true);
+    $query = isset($team_options['query']) ? $team_options['query'] : array();
+
+    $query_orderby = isset($query['orderby']) ? $query['orderby'] : '';
+    $query_orderby_meta_key = isset($query['orderby_meta_key']) ? $query['orderby_meta_key'] : '';
+    $query_order = isset($query['order']) ? $query['order'] : '';
+    $query_post_per_page = isset($query['post_per_page']) ? $query['post_per_page'] : '';
+    $query_taxonomy_terms = isset($query['taxonomy_terms']) ? $query['taxonomy_terms'] : '';
 
     ?>
     <div class="section">
@@ -288,12 +279,12 @@ function team_metabox_content_query_member($post_id){
         <?php
 
         $args = array(
-            'id'		=> 'team_query_orderby',
-            //'parent'		=> '',
+            'id'		=> 'orderby',
+            'parent'		=> 'team_options[query]',
             'title'		=> __('Query orderby','job-board-manager'),
             'details'	=> __('Set query ordeby.','job-board-manager'),
             'type'		=> 'select',
-            'value'		=> $team_query_orderby,
+            'value'		=> $query_orderby,
             'default'		=> '',
             'args'		=> array('ID'=>'ID','author'=>'Author','title'=>'Title','name'=>'Name', 'type'=>'Type','date'=>'Date', 'post_date'=>'post_date','modified'=>'modified', 'parent'=>'parent', 'rand'=>'Random','comment_count'=>'Comment Count',  ),
         );
@@ -302,12 +293,12 @@ function team_metabox_content_query_member($post_id){
 
 
         $args = array(
-            'id'		=> 'team_query_orderby_meta_key',
-            //'parent'		=> '',
-            'title'		=> __('orderby meta value','job-board-manager'),
+            'id'		=> 'orderby_meta_key',
+            'parent'		=> 'team_options[query]',
+            'title'		=> __('Order-by meta value','job-board-manager'),
             'details'	=> __('Use meta meta key to orderby meta value.','job-board-manager'),
             'type'		=> 'text',
-            'value'		=> $team_query_orderby_meta_key,
+            'value'		=> $query_orderby_meta_key,
             'default'		=> '',
             'placeholder'		=> 'meta_key',
         );
@@ -316,12 +307,12 @@ function team_metabox_content_query_member($post_id){
 
 
         $args = array(
-            'id'		=> 'team_query_order',
-            //'parent'		=> '',
+            'id'		=> 'order',
+            'parent'		=> 'team_options[query]',
             'title'		=> __('Query order','job-board-manager'),
             'details'	=> __('Set query order.','job-board-manager'),
             'type'		=> 'select',
-            'value'		=> $team_query_order,
+            'value'		=> $query_order,
             'default'		=> '',
             'args'		=> array('ASC'=>'Ascending','DESC'=>'Descending'),
         );
@@ -330,14 +321,14 @@ function team_metabox_content_query_member($post_id){
 
 
         $args = array(
-            'id'		=> 'team_total_items',
-            //'parent'		=> '',
+            'id'		=> 'post_per_page',
+            'parent'		=> 'team_options[query]',
             'title'		=> __('Post per page','job-board-manager'),
             'details'	=> __('You can display pagination or total number of member on grid. set -1 to display all.','job-board-manager'),
             'type'		=> 'text',
-            'value'		=> $team_total_items,
+            'value'		=> $query_post_per_page,
             'default'		=> '',
-            'placeholder'		=> '',
+            'placeholder'		=> '10',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -361,12 +352,12 @@ function team_metabox_content_query_member($post_id){
 
 
         $args = array(
-            'id'		=> 'team_taxonomy_terms',
-            //'parent'		=> '',
+            'id'		=> 'taxonomy_terms',
+            'parent'		=> 'team_options[query]',
             'title'		=> __('Team groups','job-board-manager'),
             'details'	=> __('Choose team groups.','job-board-manager'),
             'type'		=> 'checkbox',
-            'value'		=> $team_taxonomy_terms,
+            'value'		=> $query_taxonomy_terms,
             'default'		=> '',
             'args'		=> $team_groups,
         );
@@ -444,7 +435,9 @@ function team_metabox_content_masonry($post_id){
 
     $settings_tabs_field = new settings_tabs_field();
 
-    $team_masonry_enable = get_post_meta($post_id,'team_masonry_enable', true);
+    $team_options = get_post_meta($post_id,'team_options', true);
+    $masonry_enable = isset($team_options['masonry_enable']) ? $team_options['masonry_enable'] : '';
+
 
     ?>
     <div class="section">
@@ -455,12 +448,12 @@ function team_metabox_content_masonry($post_id){
         <?php
 
         $args = array(
-            'id'		=> 'team_masonry_enable',
-            //'parent'		=> '',
+            'id'		=> 'masonry_enable',
+            'parent' => 'team_options',
             'title'		=> __('Active masonry','job-board-manager'),
             'details'	=> __('Choose masonry style grid.','job-board-manager'),
             'type'		=> 'select',
-            'value'		=> $team_masonry_enable,
+            'value'		=> $masonry_enable,
             'default'		=> '',
             'args'		=> array('no'=>'No', 'yes'=>'Yes'),
         );
@@ -486,12 +479,9 @@ function team_metabox_content_layouts($post_id){
 
 
     $settings_tabs_field = new settings_tabs_field();
-
     $team_options = get_post_meta($post_id,'team_options', true);
-
     $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : '';
 
-    echo '<pre>'.var_export($team_options, true).'</pre>';
 
 
     ?>
@@ -577,28 +567,31 @@ function team_metabox_content_pagination($post_id){
 
 
     $settings_tabs_field = new settings_tabs_field();
+    $team_options = get_post_meta($post_id,'team_options', true);
+    $pagination = isset($team_options['pagination']) ? $team_options['pagination'] : array();
 
-    $team_pagination_prev_text = get_post_meta($post_id,'team_pagination_prev_text', true);
-    $team_pagination_next_text = get_post_meta($post_id,'team_pagination_next_text', true);
-    $team_pagination_bg_color = get_post_meta($post_id,'team_pagination_bg_color', true);
-    $team_pagination_active_bg_color = get_post_meta($post_id,'team_pagination_active_bg_color', true);
+    $pagination_prev_text = isset($pagination['prev_text']) ? $pagination['prev_text'] : '';
+    $pagination_next_text = isset($pagination['next_text']) ? $pagination['next_text'] : '';
+    $pagination_background_color = isset($pagination['background_color']) ? $pagination['background_color'] : '';
+    $pagination_active_background_color = isset($pagination['active_background_color']) ? $pagination['active_background_color'] : '';
 
     ?>
     <div class="section">
-        <div class="section-title"><?php echo __('Masonry', 'team'); ?></div>
-        <p class="description section-description"><?php echo __('Customize masonry settings.', 'team'); ?></p>
+        <div class="section-title"><?php echo __('Pagination', 'team'); ?></div>
+        <p class="description section-description"><?php echo __('Customize pagination settings.', 'team'); ?></p>
 
 
         <?php
 
         $args = array(
-            'id'		=> 'team_pagination_prev_text',
-            //'parent'		=> '',
+            'id'		=> 'prev_text',
+            'parent' => 'team_options[pagination]',
             'title'		=> __('Previous text','job-board-manager'),
-            'details'	=> __('Write previous text.','job-board-manager'),
+            'details'	=> __('Write previous text. ex: <code>« Previous</code>','job-board-manager'),
             'type'		=> 'text',
-            'value'		=> $team_pagination_prev_text,
+            'value'		=> $pagination_prev_text,
             'default'		=> '',
+            'placeholder'		=> '« Previous',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -606,24 +599,26 @@ function team_metabox_content_pagination($post_id){
 
 
         $args = array(
-            'id'		=> 'team_pagination_next_text',
-            //'parent'		=> '',
+            'id'		=> 'next_text',
+            'parent' => 'team_options[pagination]',
             'title'		=> __('Next text','job-board-manager'),
-            'details'	=> __('Write next text.','job-board-manager'),
+            'details'	=> __('Write next text. ex <code>Next »</code>','job-board-manager'),
             'type'		=> 'text',
-            'value'		=> $team_pagination_next_text,
+            'value'		=> $pagination_next_text,
             'default'		=> '',
+            'placeholder'		=> 'Next »',
         );
 
         $settings_tabs_field->generate_field($args);
 
         $args = array(
-            'id'		=> 'team_pagination_bg_color',
-            //'parent'		=> '',
+            'id'		=> 'background_color',
+            'css_id'		=> 'pagination_background_color',
+            'parent' => 'team_options[pagination]',
             'title'		=> __('Background color','job-board-manager'),
             'details'	=> __('Choose background color.','job-board-manager'),
             'type'		=> 'colorpicker',
-            'value'		=> $team_pagination_bg_color,
+            'value'		=> $pagination_background_color,
             'default'		=> '',
         );
 
@@ -631,12 +626,13 @@ function team_metabox_content_pagination($post_id){
 
 
         $args = array(
-            'id'		=> 'team_pagination_active_bg_color',
-            //'parent'		=> '',
-            'title'		=> __('active background color','job-board-manager'),
+            'id'		=> 'active_background_color',
+            'css_id'		=> 'pagination_active_background_color',
+            'parent' => 'team_options[pagination]',
+            'title'		=> __('Active background color','job-board-manager'),
             'details'	=> __('Choose active background color.','job-board-manager'),
             'type'		=> 'colorpicker',
-            'value'		=> $team_pagination_active_bg_color,
+            'value'		=> $pagination_active_background_color,
             'default'		=> '',
         );
 

@@ -16,7 +16,7 @@ class class_team_post_meta_team{
 
 	public function team_post_meta_team($post_type){
 
-            add_meta_box('metabox-team-data',__('team data', 'team'), array($this, 'meta_box_team_data'), 'team', 'normal', 'high');
+            add_meta_box('metabox-team-data',__('Team data', 'team'), array($this, 'meta_box_team_data'), 'team', 'normal', 'high');
 
 		}
 
@@ -44,7 +44,7 @@ class class_team_post_meta_team{
             'id' => 'shortcodes',
             'title' => sprintf(__('%s Shortcodes','team'),'<i class="fas fa-code"></i>'),
             'priority' => 1,
-            'active' => false,
+            'active' => true,
         );
 
         $team_settings_tab[] = array(
@@ -65,7 +65,7 @@ class class_team_post_meta_team{
             'id' => 'layouts',
             'title' => sprintf(__('%s Layouts','team'),'<i class="fas fa-qrcode"></i>'),
             'priority' => 4,
-            'active' => true,
+            'active' => false,
         );
 
         $team_settings_tab[] = array(
@@ -107,6 +107,11 @@ class class_team_post_meta_team{
         wp_enqueue_style( 'font-awesome-5' );
         wp_enqueue_style( 'settings-tabs' );
         wp_enqueue_script( 'settings-tabs' );
+
+
+        //$team_options = get_post_meta($post_id,'team_options', true);
+        //echo '<pre>'.var_export($team_options, true).'</pre>';
+
 
 
 		?>

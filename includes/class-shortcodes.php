@@ -13,7 +13,7 @@ class class_team_shortcodes  {
 	
     public function __construct(){
 		
-		add_shortcode( 'team', array( $this, 'team_display' ) );
+		add_shortcode( 'team', array( $this, 'team_showcase_display' ) );
 		add_shortcode( 'team_pickplugins', array( $this, 'team_display' ) ); // To avoid Conflict
 
         add_shortcode( 'team_showcase', array( $this, 'team_showcase_display' ) );
