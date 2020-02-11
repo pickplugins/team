@@ -9,7 +9,7 @@ function team_member_metabox_content_general($post_id){
 
     $settings_tabs_field = new settings_tabs_field();
     $team_settings = get_option('team_settings');
-    $team_member_meta_fields = isset($team_settings['team_member_meta_fields']) ? $team_settings['team_member_meta_fields'] : '';
+    $team_member_meta_fields = isset($team_settings['custom_meta_fields']) ? $team_settings['custom_meta_fields'] : '';
 
     $team_member_data = get_post_meta($post_id, 'team_member_data', true);
 
@@ -29,8 +29,8 @@ function team_member_metabox_content_general($post_id){
         $args = array(
             'id'		=> 'member_image',
             'parent'		=> 'team_member_data',
-            'title'		=> __('Member image','related-post'),
-            'details'	=> __('Add team member image.','related-post'),
+            'title'		=> __('Member image','team'),
+            'details'	=> __('Add team member image.','team'),
             'type'		=> 'media_url',
             'value'		=> $member_image,
 
@@ -59,8 +59,8 @@ function team_member_metabox_content_general($post_id){
 
         $args = array(
             'id'		=> 'team_member_meta_fields',
-            'title'		=> __('Meta fields','related-post'),
-            'details'	=> sprintf(__('Customize meta fields. you can customize meta fields here on <a href="%s">setting page</a>','related-post'), admin_url().'edit.php?post_type=team&page=settings'),
+            'title'		=> __('Meta fields','team'),
+            'details'	=> sprintf(__('Customize meta fields. you can customize meta fields here on <a href="%s">setting page</a>','team'), admin_url().'edit.php?post_type=team&page=settings'),
             'type'		=> 'option_group',
             'options'		=> $input_fields,
 
@@ -88,7 +88,7 @@ function team_member_metabox_content_social($post_id){
     $settings_tabs_field = new settings_tabs_field();
     $team_settings = get_option('team_settings');
 
-    $team_member_social_field = isset($team_settings['team_member_social_field']) ? $team_settings['team_member_social_field'] : '';
+    $team_member_social_field = isset($team_settings['custom_social_fields']) ? $team_settings['custom_social_fields'] : '';
 
     $team_member_data = get_post_meta($post_id, 'team_member_data', true);
 
@@ -128,8 +128,8 @@ function team_member_metabox_content_social($post_id){
 
         $args = array(
             'id'		=> 'team_member_meta_fields',
-            'title'		=> __('Social fields','related-post'),
-            'details'	=> __('Customize social fields.','related-post'),
+            'title'		=> __('Social fields','team'),
+            'details'	=> __('Customize social fields.','team'),
             'type'		=> 'option_group',
             'options'		=> $input_fields,
 

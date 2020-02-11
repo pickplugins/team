@@ -39,7 +39,7 @@ class Team{
         include( 'includes/class-post-meta-team-hook.php' );
 
         include( 'includes/class-post-types.php' );
-        //include( 'includes/class-post-meta.php' );
+        include( 'includes/class-post-meta.php' );
         include( 'includes/class-settings.php' );
         include( 'includes/class-functions.php' );
         include( 'includes/class-shortcodes.php' );
@@ -62,20 +62,22 @@ class Team{
 
         add_action( 'wp_enqueue_scripts', array( $this, 'team_front_scripts' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'team_admin_scripts' ) );
-        add_action( 'plugins_loaded', array( $this, 'team_load_textdomain' ));
+        add_action( 'plugins_loaded', array( $this, '_textdomain' ));
         add_filter('widget_text', 'do_shortcode');
-        register_activation_hook( __FILE__, array( $this, 'team_install' ) );
+        register_activation_hook( __FILE__, array( $this, '_activation' ) );
+        register_deactivation_hook(__FILE__, array( $this, '_deactivation' ));
+        add_filter( 'cron_schedules', array( $this, 'cron_recurrence_interval' ) );
+
+
+    }
 		
 		
-	}
-		
-		
-	public function team_load_textdomain() {
+	public function _textdomain() {
 	  load_plugin_textdomain( 'team', false, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 
 		
-	public function team_install(){
+	public function _activation(){
 		
 		// Update social fields in option
 		team_update_team_member_social_field();
@@ -84,24 +86,50 @@ class Team{
 		$team_class_post_types= new team_class_post_types();
 		$team_class_post_types->_posttype_team_member();
 		flush_rewrite_rules();
-		
-		
-		do_action( 'team_action_install' );
+
+        wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team_members');
+
+
+        do_action( 'team_action_install' );
 		
 		}		
-		
+
+
 	public function team_uninstall(){
 		
 		do_action( 'team_action_uninstall' );
 		}		
 		
-	public function team_deactivation(){
-		
-		do_action( 'team_action_deactivation' );
+	public function _deactivation(){
+
+        wp_clear_scheduled_hook('team_cron_upgrade_team_members');
+
+        do_action( 'team_action_deactivation' );
 		}
-		
-		
-	public function team_front_scripts(){
+
+
+
+
+    function cron_recurrence_interval( $schedules ){
+
+        $schedules['5minute'] = array(
+            'interval'  => 300,
+            'display'   => __( '5 Minute', 'textdomain' )
+        );
+
+
+
+
+        return $schedules;
+    }
+
+
+
+
+
+
+
+    public function team_front_scripts(){
 			
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('team_front_js', plugins_url( '/assets/front/js/scripts.js' , __FILE__ ) , array( 'jquery' ));	

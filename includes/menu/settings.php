@@ -8,14 +8,14 @@ $team_settings_tab = array();
 
 $team_settings_tab[] = array(
     'id' => 'general',
-    'title' => sprintf(__('%s General','related-post'),'<i class="fas fa-list-ul"></i>'),
+    'title' => sprintf(__('%s General','team'),'<i class="fas fa-list-ul"></i>'),
     'priority' => 1,
     'active' => ($current_tab == 'general') ? true : false,
 );
 
 $team_settings_tab[] = array(
     'id' => 'help_support',
-    'title' => sprintf(__('%s Help & support','related-post'),'<i class="fas fa-hands-helping"></i>'),
+    'title' => sprintf(__('%s Help & support','team'),'<i class="fas fa-hands-helping"></i>'),
     'priority' => 2,
     'active' => ($current_tab == 'help_support') ? true : false,
 );
@@ -46,7 +46,7 @@ $team_settings = get_option('team_settings');
 
 ?>
 <div class="wrap">
-	<div id="icon-tools" class="icon32"><br></div><h2><?php echo sprintf(__('%s Settings', 'related-post'), team_plugin_name)?></h2>
+	<div id="icon-tools" class="icon32"><br></div><h2><?php echo sprintf(__('%s Settings', 'team'), team_plugin_name)?></h2>
 
 
     <?php
@@ -95,7 +95,7 @@ $team_settings = get_option('team_settings');
                     do_action('team_settings_save');
 
                     ?>
-                    <div class="updated notice  is-dismissible"><p><strong><?php _e('Changes Saved.', 'related-post' ); ?></strong></p></div>
+                    <div class="updated notice  is-dismissible"><p><strong><?php _e('Changes Saved.', 'team' ); ?></strong></p></div>
 
                     <?php
                 }
@@ -180,7 +180,7 @@ $team_settings = get_option('team_settings');
                 <div class="clear clearfix"></div>
                 <p class="submit">
                     <?php wp_nonce_field( 'team_nonce' ); ?>
-                    <input class="button button-primary" type="submit" name="Submit" value="<?php _e('Save Changes','related-post' ); ?>" />
+                    <input class="button button-primary" type="submit" name="Submit" value="<?php _e('Save Changes','team' ); ?>" />
                 </p>
 
             </div>

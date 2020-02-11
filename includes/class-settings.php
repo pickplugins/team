@@ -24,18 +24,49 @@ class team_class_settings  {
 	
 	
 	public function admin_menu() {
-		add_submenu_page( 'edit.php?post_type=team', __( 'Settings', 'team' ), __( 'Settings', 'team' ), 'manage_options', 'settings', array( $this, 'settings' ) );
+
+        $team_plugin_info = get_option('team_plugin_info');
+        $team_settings_upgrade = isset($team_plugin_info['settings_upgrade']) ? $team_plugin_info['settings_upgrade'] : '';
+        $team_member_upgrade = isset($team_plugin_info['team_member_upgrade']) ? $team_plugin_info['team_member_upgrade'] : '';
+
+        add_submenu_page( 'edit.php?post_type=team', __( 'Settings', 'team' ), __( 'Settings', 'team' ), 'manage_options', 'settings', array( $this, 'settings' ) );
+
+
+        if($team_settings_upgrade != 'done'){
+            add_submenu_page( 'edit.php?post_type=team', __( 'Update - Settings', 'team' ), __( 'Update - Settings', 'team' ), 'manage_options', 'update_settings', array( $this, 'update_settings' ) );
+
+        }
+
+        if($team_member_upgrade != 'done'){
+            add_submenu_page( 'edit.php?post_type=team', __( 'Update - Team member', 'team' ), __( 'Update - Team member', 'team' ), 'manage_options', 'team_member_upgrade', array( $this, 'team_member_upgrade' ) );
+
+        }
+
+
 
 	}
 	
 	public function settings(){
 		
-		include( 'menu/settings.php' );
-		
-		}
-	
+		//include( 'menu/settings-old.php' );
+        include( 'menu/settings.php' );
 
-	
+    }
+
+
+    public function update_settings(){
+
+        //include( 'menu/settings-old.php' );
+        include( 'menu/update-settings.php' );
+
+    }
+
+    public function team_member_upgrade(){
+
+        //include( 'menu/settings-old.php' );
+        include( 'menu/team-member-upgrade.php' );
+
+    }
 	
 
 }

@@ -124,8 +124,19 @@ add_filter('the_content','single_team_member_content');
 
 
 function team_add_thumb_column( $columns ) {
-    return array_merge( $columns, 
-        array( 'thumb' => __( 'Thumb', 'team' ) ) );
+
+//    unset($columns['title']);
+//    unset($columns['date']);
+//    unset($columns['taxonomy-team_group']);
+
+    $columns['thumb'] = __( 'Thumb', 'team' );
+//    $columns['title'] = __( 'Title', 'team' );
+//    $columns['taxonomy-team_group'] = __( 'Team group', 'team' );
+//    $columns['date'] = __( 'Date', 'team' );
+
+
+    return $columns;
+
 }
 add_filter( 'manage_team_member_posts_columns' , 'team_add_thumb_column' );
 
@@ -133,13 +144,16 @@ add_filter( 'manage_team_member_posts_columns' , 'team_add_thumb_column' );
 
 
 function team_member_posts_thumb_display( $column, $post_id ) {
+
     if ($column == 'thumb'){
-		
-		$team_thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post_id), 'thumbnail' );
-		$team_thumb_url = $team_thumb['0'];
-		if(!empty($team_thumb_url))
-        echo '<img width="40px" height="40px" src="'.$team_thumb_url.'">';
+        $team_thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post_id), 'thumbnail' );
+        $team_thumb_url = $team_thumb['0'];
+        if(!empty($team_thumb_url))
+            echo '<img width="40px" height="40px" src="'.$team_thumb_url.'">';
     }
+
+
+
 }
 add_action( 'manage_team_member_posts_custom_column' , 'team_member_posts_thumb_display', 10, 2 );
 

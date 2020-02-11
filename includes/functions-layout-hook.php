@@ -199,15 +199,15 @@ function layout_elements_option_thumbnail($parameters){
 
             $args = array(
                 'id'		=> 'thumb_height',
-                'title'		=> __('Thumbnail height','related-post'),
-                'details'	=> __('Set thumbnail height.','related-post'),
+                'title'		=> __('Thumbnail height','team'),
+                'details'	=> __('Set thumbnail height.','team'),
                 'type'		=> 'option_group',
                 'options'		=> array(
                     array(
                         'id'		=> 'large',
                         'parent'		=> $input_name.'[thumbnail][thumb_height]',
-                        'title'		=> __('In desktop','related-post'),
-                        'details'	=> __('min-width: 1200px, ex: 280px','related-post'),
+                        'title'		=> __('In desktop','team'),
+                        'details'	=> __('min-width: 1200px, ex: 280px','team'),
                         'type'		=> 'text',
                         'value'		=> $thumb_height_large,
                         'default'		=> '',
@@ -216,8 +216,8 @@ function layout_elements_option_thumbnail($parameters){
                     array(
                         'id'		=> 'medium',
                         'parent'		=> $input_name.'[thumbnail][thumb_height]',
-                        'title'		=> __('In tablet & small desktop','related-post'),
-                        'details'	=> __('min-width: 992px, ex: 280px','related-post'),
+                        'title'		=> __('In tablet & small desktop','team'),
+                        'details'	=> __('min-width: 992px, ex: 280px','team'),
                         'type'		=> 'text',
                         'value'		=> $thumb_height_medium,
                         'default'		=> '',
@@ -226,8 +226,8 @@ function layout_elements_option_thumbnail($parameters){
                     array(
                         'id'		=> 'small',
                         'parent'		=> $input_name.'[thumbnail][thumb_height]',
-                        'title'		=> __('In mobile','related-post'),
-                        'details'	=> __('max-width: 768px, ex: 280px','related-post'),
+                        'title'		=> __('In mobile','team'),
+                        'details'	=> __('max-width: 768px, ex: 280px','team'),
                         'type'		=> 'text',
                         'value'		=> $thumb_height_small,
                         'default'		=> '',

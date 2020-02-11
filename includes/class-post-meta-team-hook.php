@@ -128,15 +128,15 @@ function team_metabox_content_style($post_id){
 
         $args = array(
             'id'		=> 'item_width',
-            'title'		=> __('Item width','related-post'),
-            'details'	=> __('Set item width.','related-post'),
+            'title'		=> __('Item width','team'),
+            'details'	=> __('Set item width.','team'),
             'type'		=> 'option_group',
             'options'		=> array(
                 array(
                     'id'		=> 'large',
                     'parent'		=> 'team_options[item_width]',
-                    'title'		=> __('In desktop','related-post'),
-                    'details'	=> __('min-width: 1200px, ex: 45% or 280px','related-post'),
+                    'title'		=> __('In desktop','team'),
+                    'details'	=> __('min-width: 1200px, ex: 45% or 280px','team'),
                     'type'		=> 'text',
                     'value'		=> $team_width_large,
                     'default'		=> '',
@@ -145,8 +145,8 @@ function team_metabox_content_style($post_id){
                 array(
                     'id'		=> 'medium',
                     'parent'		=> 'team_options[item_width]',
-                    'title'		=> __('In tablet & small desktop','related-post'),
-                    'details'	=> __('min-width: 992px, ex: 90% or 280px','related-post'),
+                    'title'		=> __('In tablet & small desktop','team'),
+                    'details'	=> __('min-width: 992px, ex: 90% or 280px','team'),
                     'type'		=> 'text',
                     'value'		=> $team_width_medium,
                     'default'		=> '',
@@ -155,8 +155,8 @@ function team_metabox_content_style($post_id){
                 array(
                     'id'		=> 'small',
                     'parent'		=> 'team_options[item_width]',
-                    'title'		=> __('In mobile','related-post'),
-                    'details'	=> __('max-width: 768px, ex: 90% or 280px','related-post'),
+                    'title'		=> __('In mobile','team'),
+                    'details'	=> __('max-width: 768px, ex: 90% or 280px','team'),
                     'type'		=> 'text',
                     'value'		=> $team_width_small,
                     'default'		=> '',
@@ -199,15 +199,15 @@ function team_metabox_content_style($post_id){
 
         $args = array(
             'id'		=> 'item_width',
-            'title'		=> __('Container style','related-post'),
-            'details'	=> __('Customize container style.','related-post'),
+            'title'		=> __('Container style','team'),
+            'details'	=> __('Customize container style.','team'),
             'type'		=> 'option_group',
             'options'		=> array(
                 array(
                     'id'		=> 'background_img_url',
                     'parent'		=> 'team_options[container]',
-                    'title'		=> __('Background image','related-post'),
-                    'details'	=> __('Container background image','related-post'),
+                    'title'		=> __('Background image','team'),
+                    'details'	=> __('Container background image','team'),
                     'type'		=> 'media_url',
                     'value'		=> $container_background_img_url,
                     'default'		=> '',
@@ -216,8 +216,8 @@ function team_metabox_content_style($post_id){
                 array(
                     'id'		=> 'background_color',
                     'parent'		=> 'team_options[container]',
-                    'title'		=> __('Background color','related-post'),
-                    'details'	=> __('Container background color','related-post'),
+                    'title'		=> __('Background color','team'),
+                    'details'	=> __('Container background color','team'),
                     'type'		=> 'colorpicker',
                     'value'		=> $container_background_color,
                     'default'		=> '',
@@ -226,8 +226,8 @@ function team_metabox_content_style($post_id){
                 array(
                     'id'		=> 'text_align',
                     'parent'		=> 'team_options[container]',
-                    'title'		=> __('Text align','related-post'),
-                    'details'	=> __('Container text align','related-post'),
+                    'title'		=> __('Text align','team'),
+                    'details'	=> __('Container text align','team'),
                     'type'		=> 'select',
                     'value'		=> $container_text_align,
                     'default'		=> '',
