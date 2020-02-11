@@ -45,7 +45,7 @@ $team_member_upgrade = isset($team_plugin_info['team_member_upgrade']) ? $team_p
             $team_id = get_the_id();
             $team_title = get_the_title();
             ?>
-            <li><?php echo $team_title; ?></li>
+            <li><?php echo $team_title; ?> - Done</li>
             <?php
 
         endwhile;
