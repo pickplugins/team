@@ -88,6 +88,7 @@ class Team{
 		flush_rewrite_rules();
 
         wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team_members');
+        wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team');
 
 
         do_action( 'team_action_install' );
@@ -103,6 +104,7 @@ class Team{
 	public function _deactivation(){
 
         wp_clear_scheduled_hook('team_cron_upgrade_team_members');
+        wp_clear_scheduled_hook('team_cron_upgrade_team');
 
         do_action( 'team_action_deactivation' );
 		}
