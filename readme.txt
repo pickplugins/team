@@ -1,10 +1,10 @@
 ﻿=== Team Showcase ===
 	Contributors: PickPlugins
 	Donate link: https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=wordpress.org
-	Tags: team, members profiles, our teams, team members, team plugin wordpress, meet the team, team showcase, my team,
+	Tags: team, team showcase, members profiles, our teams, team members, team plugin wordpress, meet the team, my team,
 	Requires at least: 3.8
 	Tested up to: 5.3
-	Stable tag: 1.21.5
+	Stable tag: 1.22.0
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,6 +104,9 @@ then paste this shortcode anywhere in your page to display Team gird.<br />
 5. screenshot-5
 
 == Changelog ==
+
+= 1.22.0 =
+* 2020-02-11 update - re-write plugin.
 
 = 1.21.5 =
 * 26/05/2018 update - Team member single page remove single_template and replace by the_content

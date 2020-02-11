@@ -483,10 +483,10 @@ class settings_tabs_field{
 
                     now = jQuery.now();
                     fields_arr = <?php echo json_encode($fields); ?>;
-                    html = '<div class="item-wrap collapsible"><div class="header"><span class="button remove" ' +
+                    html = '<div class="item-wrap collapsible"><div class="header"><span class="remove" ' +
                         'onclick="jQuery(this).parent().parent().remove()"><?php echo $remove_text; ?></span> ';
                     <?php if($sortable):?>
-                    html += '<span class="button sort" ><i class="fas fa-arrows-alt"></i></span>';
+                    html += '<span class="sort" ><i class="fas fa-arrows-alt"></i></span>';
                     <?php endif; ?>
                     html += ' <span  class="title-text">#'+now+'</span></div>';
 
@@ -538,7 +538,7 @@ class settings_tabs_field{
         </script>
         <div id="input-wrapper-<?php echo $css_id; ?>" class=" input-wrapper field-repeatable-wrapper
             field-repeatable-wrapper-<?php echo $css_id; ?>">
-            <div class="add-repeat-field button"><?php _e('Add','breadcrumb'); ?></div>
+            <div class="add-repeat-field"><i class="far fa-plus-square"></i> <?php _e('Add','breadcrumb'); ?></div>
             <div class="repeatable-field-list sortable" id="<?php echo $css_id; ?>">
                 <?php
                 if(!empty($values)):
@@ -550,12 +550,10 @@ class settings_tabs_field{
                             <?php if($collapsible):?>
                             <div class="header">
                                 <?php endif; ?>
-                                <span class="button remove" onclick="jQuery(this).parent().parent().remove()"><?php echo $remove_text; ?></span>
-                                <!--                                    <span index_id="--><?php //echo $index; ?><!--" class="button clone"><i class="far fa-clone"></i></span>-->
+                                <span class="remove" onclick="jQuery(this).parent().parent().remove()"><?php echo $remove_text; ?></span>
                                 <?php if($sortable):?>
-                                    <span class="button sort"><i class="fas fa-arrows-alt"></i></span>
+                                    <span class="sort"><i class="fas fa-arrows-alt"></i></span>
                                 <?php endif; ?>
-                                <span class="button clone"><i class="far fa-copy"></i></span>
 
                                 <span class="title-text"><?php echo $title_field_val; ?></span>
                                 <?php if($collapsible):?>

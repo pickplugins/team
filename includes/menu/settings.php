@@ -11,8 +11,15 @@ $team_settings_tab[] = array(
     'title' => sprintf(__('%s General','related-post'),'<i class="fas fa-list-ul"></i>'),
     'priority' => 1,
     'active' => ($current_tab == 'general') ? true : false,
-
 );
+
+$team_settings_tab[] = array(
+    'id' => 'help_support',
+    'title' => sprintf(__('%s Help & support','related-post'),'<i class="fas fa-hands-helping"></i>'),
+    'priority' => 2,
+    'active' => ($current_tab == 'help_support') ? true : false,
+);
+
 
 
 $team_settings_tab = apply_filters('team_settings_tabs', $team_settings_tab);

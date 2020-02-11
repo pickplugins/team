@@ -267,9 +267,37 @@
 
 }
 
+.field-repeatable-wrapper .sort{
+    background: rgba(87, 99, 117, 0.48) none repeat scroll 0 0;
+    color: rgb(255, 255, 255);
+    cursor: n-resize;
+    margin-right: 5px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
 
+.field-repeatable-wrapper .remove{
+    background: rgb(228, 65, 8) none repeat scroll 0 0;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.field-repeatable-wrapper .title-text{
+    cursor: pointer;
+}
 
-
+.field-repeatable-wrapper .add-repeat-field{
+    background: rgba(87, 99, 117, 0.48) none repeat scroll 0 0;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 5px 15px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
 
 /*input*/
 
@@ -293,6 +321,7 @@
         width: auto;
         float: none;
         font-size: 14px;
+        margin-bottom: 10px;
     }
     .settings-tabs .setting-field .field-input{
         margin-left: 0px;
@@ -439,8 +468,8 @@
     background: rgb(228, 65, 8) none repeat scroll 0 0;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    margin-right: 10px;
-    padding: 2px 7px;
+    margin-right: 5px;
+    padding: 5px 10px;
     border-radius: 3px;
 }
 
@@ -448,8 +477,8 @@
     background: rgba(87, 99, 117, 0.48) none repeat scroll 0 0;
     color: rgb(255, 255, 255);
     cursor: n-resize;
-    margin-right: 10px;
-    padding: 2px 7px;
+    margin-right: 5px;
+    padding: 5px 10px;
     border-radius: 3px;
 }
 

@@ -3,7 +3,7 @@
 Plugin Name: Team
 Plugin URI: http://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashboard
 Description: Fully responsive and mobile ready meet the team showcase plugin for wordpress.
-Version: 1.21.5
+Version: 1.22.0
 Author: pickplugins
 Author URI: http://pickplugins.com
 Text Domain: team
@@ -29,7 +29,7 @@ class Team{
         define('team_conatct_url', 'http://www.pickplugins.com/contact/?ref=dashboard' );
         define('team_qa_url', 'http://www.pickplugins.com/support/?ref=dashboard' );
         define('team_plugin_name', 'Team' );
-        define('team_plugin_version', '1.21.5' );
+        define('team_plugin_version', '1.22.0' );
         define('team_customer_type', 'free' );	 // pro & free
         define('team_tutorial_doc_url', 'http://pickplugins.com/docs/documentation/team/' );
 
@@ -39,7 +39,7 @@ class Team{
         include( 'includes/class-post-meta-team-hook.php' );
 
         include( 'includes/class-post-types.php' );
-        include( 'includes/class-post-meta.php' );
+        //include( 'includes/class-post-meta.php' );
         include( 'includes/class-settings.php' );
         include( 'includes/class-functions.php' );
         include( 'includes/class-shortcodes.php' );
@@ -82,7 +82,7 @@ class Team{
 		
 		// Reset permalink
 		$team_class_post_types= new team_class_post_types();
-		$team_class_post_types->team_posttype_team_member();
+		$team_class_post_types->_posttype_team_member();
 		flush_rewrite_rules();
 		
 		

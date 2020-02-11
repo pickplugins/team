@@ -42,14 +42,14 @@ class class_team_post_meta_team_member{
 
         $team_member_settings_tab[] = array(
             'id' => 'general',
-            'title' => sprintf(__('%s General','team'),'<i class="fas fa-code"></i>'),
+            'title' => sprintf(__('%s General','team'),'<i class="fas fa-cog"></i>'),
             'priority' => 1,
             'active' => true,
         );
 
         $team_member_settings_tab[] = array(
             'id' => 'social',
-            'title' => sprintf(__('%s Social','team'),'<i class="fas fa-code"></i>'),
+            'title' => sprintf(__('%s Social','team'),'<i class="fas fa-share-alt"></i>'),
             'priority' => 1,
             'active' => false,
         );
