@@ -87,8 +87,8 @@ class Team{
 		$team_class_post_types->_posttype_team_member();
 		flush_rewrite_rules();
 
-        wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team_members');
-        wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team');
+        //wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team_members');
+        //wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team');
 
 
         do_action( 'team_action_install' );

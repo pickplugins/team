@@ -32,15 +32,12 @@ class team_class_settings  {
         add_submenu_page( 'edit.php?post_type=team', __( 'Settings', 'team' ), __( 'Settings', 'team' ), 'manage_options', 'settings', array( $this, 'settings' ) );
 
 
-        if($team_settings_upgrade != 'done'){
+        //if($team_settings_upgrade != 'done'){
             add_submenu_page( 'edit.php?post_type=team', __( 'Update - Settings', 'team' ), __( 'Update - Settings', 'team' ), 'manage_options', 'update_settings', array( $this, 'update_settings' ) );
 
-        }
+        //}
 
-        if($team_member_upgrade != 'done'){
-            add_submenu_page( 'edit.php?post_type=team', __( 'Update - Team member', 'team' ), __( 'Update - Team member', 'team' ), 'manage_options', 'team_member_upgrade', array( $this, 'team_member_upgrade' ) );
 
-        }
 
 
 

@@ -15,25 +15,104 @@ $team_member_upgrade = isset($team_plugin_info['team_member_upgrade']) ? $team_p
 
 
 
+    <h3>Team upgrade status</h3>
     <?php
 
-    if($team_settings_upgrade != 'done'){
-        team_upgrade_settings();
+    $meta_query = array();
 
-        $team_plugin_info['settings_upgrade'] = 'done';
+    $meta_query[] = array(
+        'key' => 'team_upgrade_status',
+        'value' => 'done',
+        'compare' => '='
+    );
 
-        update_option('team_plugin_info', $team_plugin_info);
+    $args = array(
+        'post_type'=>'team',
+        'post_status'=>'any',
+        'posts_per_page'=> 2,
+        'meta_query'=> $meta_query,
 
+    );
+
+    $wp_query = new WP_Query($args);
+
+    if ( $wp_query->have_posts() ) :
         ?>
-        <p>Settings migration completed.</p>
+        <ul>
         <?php
+        while ( $wp_query->have_posts() ) : $wp_query->the_post();
 
-    }else{
+            $team_id = get_the_id();
+            $team_title = get_the_title();
+            ?>
+            <li><?php echo $team_title; ?></li>
+            <?php
+
+        endwhile;
         ?>
-        <p>Settings migration already completed.</p>
-        <?php
-    }
+        </ul>
+    <?php
+
+    endif;
 
     ?>
+
+
+
+    <h3>Team members upgrade status</h3>
+    <?php
+
+    $meta_query = array();
+
+    $meta_query[] = array(
+        'key' => 'team_upgrade_status',
+        'value' => 'done',
+        'compare' => '='
+    );
+
+    $args = array(
+        'post_type'=>'team_member',
+        'post_status'=>'any',
+        'posts_per_page'=> -1,
+        'meta_query'=> $meta_query,
+
+    );
+
+    $wp_query = new WP_Query($args);
+
+    if ( $wp_query->have_posts() ) :
+        ?>
+        <ul>
+            <?php
+            while ( $wp_query->have_posts() ) : $wp_query->the_post();
+
+                $team_id = get_the_id();
+                $team_title = get_the_title();
+                ?>
+                <li><?php echo $team_title; ?> - Done!</li>
+            <?php
+
+            endwhile;
+            ?>
+        </ul>
+    <?php
+
+    endif;
+
+    ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
