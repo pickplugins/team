@@ -12,50 +12,79 @@ function team_cron_upgrade_settings(){
     $team_member_meta_fields = get_option( 'team_member_meta_fields' );
     $team_member_social_field = get_option( 'team_member_social_field' );
 
+    //echo '<pre>'.var_export($team_member_meta_fields, true).'</pre>';
+
+
+
+
     $team_settings = array();
     $team_settings['team_member_slug'] = $team_member_slug;
 
     $meta_fields_new = array();
 
-    if(!empty($team_member_meta_fields))
-    foreach ($team_member_meta_fields as $fieldIndex => $field){
-        $field_name = isset($field['name']) ? $field['name'] : '';
-        $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
+    $meta_fields_new[] = array('name'=> 'Custom link', 'meta_key'=> 'custom_link');
+    $meta_fields_new[] = array('name'=> 'Position', 'meta_key'=> 'position');
 
-        $meta_fields_new[] = array('name'=> $field_name, 'meta_key'=> $field_meta_key);
+    if(!empty($team_member_meta_fields)){
+        foreach ($team_member_meta_fields as $fieldIndex => $field){
+            $field_name = isset($field['name']) ? $field['name'] : '';
+            $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
+
+            $meta_fields_new[] = array('name'=> $field_name, 'meta_key'=> $field_meta_key);
+        }
     }
 
-    $meta_fields_new[] = array('name'=> 'Custom link', 'meta_key'=> 'custom_link');
+
+
+
+
 
     $team_settings['custom_meta_fields'] = $meta_fields_new;
 
 
     $social_fields_new = array();
 
-    if(!empty($team_member_social_field))
-    foreach ($team_member_social_field as $fieldIndex => $field){
-        $field_name = isset($field['name']) ? $field['name'] : '';
-        $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
-        $field_icon = isset($field['icon']) ? $field['icon'] : '';
-        $field_visibility = isset($field['visibility']) ? $field['visibility'] : '';
+    if(!empty($team_member_social_field)){
+        foreach ($team_member_social_field as $fieldIndex => $field){
+            $field_name = isset($field['name']) ? $field['name'] : '';
+            $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
+            $field_icon = isset($field['icon']) ? $field['icon'] : '';
+            $field_visibility = isset($field['visibility']) ? $field['visibility'] : '';
 
-        $social_fields_new[] = array('name'=> $field_name, 'meta_key'=> $field_meta_key, 'icon'=> $field_icon, 'visibility'=> $field_visibility,   );
+            $social_fields_new[] = array('name'=> $field_name, 'meta_key'=> $field_meta_key, 'icon'=> $field_icon, 'visibility'=> $field_visibility,   );
+        }
+    }else{
+
+        $social_fields_new[] = array('name'=> 'Mobile', 'meta_key'=> 'mobile', 'icon'=> 'https://i.imgur.com/rXGIG9B.png', 'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Website', 'meta_key'=> 'website', 'icon'=> 'https://i.imgur.com/Dcueqwy.png', 'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Email', 'meta_key'=> 'email', 'icon'=> 'https://i.imgur.com/OS2saH8.png', 'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Skype', 'meta_key'=> 'skype', 'icon'=> 'https://i.imgur.com/CmSSnZE.png', 'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Facebook', 'meta_key'=> 'facebook', 'icon'=> 'https://i.imgur.com/IftZ9Ng.png', 'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Twitter', 'meta_key'=> 'twitter', 'icon'=> 'https://i.imgur.com/JZDm0R5.png', 'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Pinterest', 'meta_key'=> 'pinterest', 'icon'=> 'https://i.imgur.com/VxUWxZC.png', 'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Linkedin', 'meta_key'=> 'linkedin', 'icon'=> 'https://i.imgur.com/8kuHCtD.png', 'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Vimeo', 'meta_key'=> 'vimeo', 'icon'=> 'https://i.imgur.com/6b3drl7.png', 'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Instagram', 'meta_key'=> 'instagram', 'icon'=> 'https://i.imgur.com/DYj382i.png', 'visibility'=> 1,   );
+
     }
+
 
     $team_settings['custom_social_fields'] = $social_fields_new;
 
 
-    $update_status = update_option('team_settings', $team_settings);
+    update_option('team_settings', $team_settings);
 
-    if($update_status){
-        wp_clear_scheduled_hook('team_cron_upgrade_settings');
-        wp_schedule_event(time(), '2minute', 'team_cron_upgrade_team_members');
+    //echo '<pre>'.var_export($update_status, true).'</pre>';
 
-        $team_plugin_info = get_option('team_plugin_info');
-        $team_plugin_info['settings_upgrade'] = 'done';
-        update_option('team_plugin_info', $team_plugin_info);
 
-    }
+    wp_clear_scheduled_hook('team_cron_upgrade_settings');
+    wp_schedule_event(time(), '2minute', 'team_cron_upgrade_team_members');
+
+    $team_plugin_info = get_option('team_plugin_info');
+    $team_plugin_info['settings_upgrade'] = 'done';
+    update_option('team_plugin_info', $team_plugin_info);
+
+
 
 
 
@@ -99,7 +128,7 @@ if(!function_exists('team_cron_upgrade_team_members')){
         $args = array(
             'post_type' => 'team_member',
             'post_status' => 'any',
-            'posts_per_page' => 3,
+            'posts_per_page' => 5,
             'meta_query' => $meta_query,
         );
 
@@ -121,6 +150,7 @@ if(!function_exists('team_cron_upgrade_team_members')){
                 $team_member_link_to_post = get_post_meta( $team_member_id, 'team_member_link_to_post', true );
                 $team_member_data['custom_fields']['custom_link'] = $team_member_link_to_post;
 
+                if(!empty($custom_meta_fields))
                 foreach ($custom_meta_fields as $field){
                     $field_name = isset($field['name']) ? $field['name'] : '';
                     $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
@@ -134,6 +164,7 @@ if(!function_exists('team_cron_upgrade_team_members')){
                 }
 
 
+                if(!empty($custom_social_fields))
                 foreach ($custom_social_fields as $field){
                     $field_name = isset($field['name']) ? $field['name'] : '';
                     $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
@@ -326,6 +357,8 @@ function team_cron_upgrade_team(){
 
 
             $item_count = 4;
+
+            if(!empty($team_grid_items))
             foreach ($team_grid_items as $itemIndex => $item){
 
 
