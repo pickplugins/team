@@ -4,7 +4,8 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 $team_plugin_info = get_option('team_plugin_info');
 
 $team_settings_upgrade = isset($team_plugin_info['settings_upgrade']) ? $team_plugin_info['settings_upgrade'] : '';
-$team_member_upgrade = isset($team_plugin_info['team_member_upgrade']) ? $team_plugin_info['team_member_upgrade'] : '';
+$team_members_upgrade = isset($team_plugin_info['team_members_upgrade']) ? $team_plugin_info['team_members_upgrade'] : '';
+$team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['team_upgrade'] : '';
 
 ?>
 <?php
@@ -13,7 +14,23 @@ $team_member_upgrade = isset($team_plugin_info['team_member_upgrade']) ? $team_p
 <div class="wrap">
 	<div id="icon-tools" class="icon32"><br></div><h2><?php echo sprintf(__('%s Settings - Update', 'team'), team_plugin_name)?></h2>
 
+    <pre><?php echo var_export($team_plugin_info, true); ?></pre>
 
+    <h3>Team settings upgrade status</h3>
+
+    <?php
+
+    if($team_settings_upgrade){
+        ?>
+        <p>Completed</p>
+        <?php
+    }else{
+        ?>
+        <p>Pending</p>
+        <?php
+    }
+
+    ?>
 
     <h3>Team upgrade status</h3>
     <?php
@@ -29,7 +46,7 @@ $team_member_upgrade = isset($team_plugin_info['team_member_upgrade']) ? $team_p
     $args = array(
         'post_type'=>'team',
         'post_status'=>'any',
-        'posts_per_page'=> 2,
+        'posts_per_page'=> -1,
         'meta_query'=> $meta_query,
 
     );
@@ -51,8 +68,12 @@ $team_member_upgrade = isset($team_plugin_info['team_member_upgrade']) ? $team_p
         endwhile;
         ?>
         </ul>
-    <?php
+        <?php
 
+    else:
+        ?>
+        <p>Pending</p>
+        <?php
     endif;
 
     ?>
@@ -96,7 +117,10 @@ $team_member_upgrade = isset($team_plugin_info['team_member_upgrade']) ? $team_p
             ?>
         </ul>
     <?php
-
+    else:
+        ?>
+        <p>Pending</p>
+        <?php
     endif;
 
     ?>

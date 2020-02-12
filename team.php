@@ -56,7 +56,7 @@ class Team{
 
         include_once team_plugin_dir.'/templates/team-showcase/team-showcase-hook.php';
 
-    
+
         include( 'templates/single-team/single-team_member-hook.php' );
         include( 'includes/functions.php' );
 
@@ -87,8 +87,9 @@ class Team{
 		$team_class_post_types->_posttype_team_member();
 		flush_rewrite_rules();
 
-        wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team_members');
-        wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team');
+        wp_schedule_event(time(), '5minute', 'team_cron_upgrade_settings');
+
+
 
 
         do_action( 'team_action_install' );
@@ -105,6 +106,7 @@ class Team{
 
         wp_clear_scheduled_hook('team_cron_upgrade_team_members');
         wp_clear_scheduled_hook('team_cron_upgrade_team');
+        wp_clear_scheduled_hook('team_cron_upgrade_settings');
 
         do_action( 'team_action_deactivation' );
 		}

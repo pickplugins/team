@@ -2,12 +2,84 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
+
+add_shortcode('team_cron_upgrade_settings', 'team_cron_upgrade_settings');
+add_action('team_cron_upgrade_settings', 'team_cron_upgrade_settings');
+
+function team_cron_upgrade_settings(){
+
+    $team_member_slug = get_option( 'team_member_slug' );
+    $team_member_meta_fields = get_option( 'team_member_meta_fields' );
+    $team_member_social_field = get_option( 'team_member_social_field' );
+
+    $team_settings = array();
+    $team_settings['team_member_slug'] = $team_member_slug;
+
+    $meta_fields_new = array();
+
+    foreach ($team_member_meta_fields as $fieldIndex => $field){
+        $field_name = isset($field['name']) ? $field['name'] : '';
+        $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
+
+        $meta_fields_new[] = array('name'=> $field_name, 'meta_key'=> $field_meta_key);
+    }
+
+    $meta_fields_new[] = array('name'=> 'Custom link', 'meta_key'=> 'custom_link');
+
+    $team_settings['custom_meta_fields'] = $meta_fields_new;
+
+
+    $social_fields_new = array();
+
+    foreach ($team_member_social_field as $fieldIndex => $field){
+        $field_name = isset($field['name']) ? $field['name'] : '';
+        $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
+        $field_icon = isset($field['icon']) ? $field['icon'] : '';
+        $field_visibility = isset($field['visibility']) ? $field['visibility'] : '';
+
+        $social_fields_new[] = array('name'=> $field_name, 'meta_key'=> $field_meta_key, 'icon'=> $field_icon, 'visibility'=> $field_visibility,   );
+    }
+
+    $team_settings['custom_social_fields'] = $social_fields_new;
+
+
+    $update_status = update_option('team_settings', $team_settings);
+
+    if($update_status){
+        wp_clear_scheduled_hook('team_cron_upgrade_settings');
+        wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team_members');
+
+        $team_plugin_info = get_option('team_plugin_info');
+        $team_plugin_info['settings_upgrade'] = 'done';
+        update_option('team_plugin_info', $team_plugin_info);
+
+    }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 add_shortcode('team_cron_upgrade_team_members', 'team_cron_upgrade_team_members');
 
 add_action('team_cron_upgrade_team_members', 'team_cron_upgrade_team_members');
 
 if(!function_exists('team_cron_upgrade_team_members')){
     function team_cron_upgrade_team_members() {
+
+
 
         $team_options = array();
         $meta_query = array();
@@ -25,7 +97,7 @@ if(!function_exists('team_cron_upgrade_team_members')){
         $args = array(
             'post_type' => 'team_member',
             'post_status' => 'any',
-            'posts_per_page' => 2,
+            'posts_per_page' => 1,
             'meta_query' => $meta_query,
         );
 
@@ -83,7 +155,11 @@ if(!function_exists('team_cron_upgrade_team_members')){
             endwhile;
         else:
             wp_clear_scheduled_hook('team_cron_upgrade_team_members');
+            wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team');
 
+            $team_plugin_info = get_option('team_plugin_info');
+            $team_plugin_info['team_members_upgrade'] = 'done';
+            update_option('team_plugin_info', $team_plugin_info);
 
         endif;
 
@@ -93,163 +169,6 @@ if(!function_exists('team_cron_upgrade_team_members')){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-add_shortcode('team_upgrade_settings', 'team_upgrade_settings');
-
-function team_upgrade_settings(){
-
-    $team_member_slug = get_option( 'team_member_slug' );
-    $team_member_meta_fields = get_option( 'team_member_meta_fields' );
-    $team_member_social_field = get_option( 'team_member_social_field' );
-
-    $team_settings = array();
-    $team_settings['team_member_slug'] = $team_member_slug;
-
-    $meta_fields_new = array();
-
-    foreach ($team_member_meta_fields as $fieldIndex => $field){
-        $field_name = isset($field['name']) ? $field['name'] : '';
-        $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
-
-        $meta_fields_new[] = array('name'=> $field_name, 'meta_key'=> $field_meta_key);
-    }
-
-    $meta_fields_new[] = array('name'=> 'Custom link', 'meta_key'=> 'custom_link');
-
-    $team_settings['custom_meta_fields'] = $meta_fields_new;
-
-
-    $social_fields_new = array();
-
-    foreach ($team_member_social_field as $fieldIndex => $field){
-        $field_name = isset($field['name']) ? $field['name'] : '';
-        $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
-        $field_icon = isset($field['icon']) ? $field['icon'] : '';
-        $field_visibility = isset($field['visibility']) ? $field['visibility'] : '';
-
-        $social_fields_new[] = array('name'=> $field_name, 'meta_key'=> $field_meta_key, 'icon'=> $field_icon, 'visibility'=> $field_visibility,   );
-    }
-
-    $team_settings['custom_social_fields'] = $social_fields_new;
-
-
-    update_option('team_settings', $team_settings);
-    ?>
-    <pre><?php //echo var_export($social_fields_new, true); ?></pre>
-    <?php
-
-
-}
-
-
-
-//
-//add_shortcode('team_cron_upgrade_team', 'team_cron_upgrade_team');
-//
-//
-//function team_cron_upgrade_team(){
-//
-//    $team_options = array();
-//    $meta_query = array();
-//
-//    $team_settings = get_option('team_settings');
-//    $custom_meta_fields = isset($team_settings['custom_meta_fields']) ? $team_settings['custom_meta_fields'] : '';
-//    $custom_social_fields = isset($team_settings['custom_social_fields']) ? $team_settings['custom_social_fields'] : '';
-//
-//
-//    $meta_query[] = array(
-//        'key' => 'team_upgrade_status',
-//        'compare' => 'NOT EXISTS'
-//    );
-//
-//    $args = array(
-//        'post_type' => 'team_member',
-//        'post_status' => 'any',
-//        'posts_per_page' => 2,
-//        'meta_query' => $meta_query,
-//
-//    );
-//
-//
-//    $wp_query = new WP_Query($args);
-//
-//
-//
-//    if ($wp_query->have_posts()) :
-//        while ($wp_query->have_posts()) : $wp_query->the_post();
-//
-//            $team_member_id = get_the_id();
-//            $team_member_data = array();
-//
-//            $team_member_social_links = get_post_meta( $team_member_id, 'team_member_social_links', true );
-//
-//            $team_member_position = get_post_meta( $team_member_id, 'team_member_position', true );
-//            $team_member_data['custom_fields']['position'] = $team_member_position;
-//
-//            $team_member_link_to_post = get_post_meta( $team_member_id, 'team_member_link_to_post', true );
-//            $team_member_data['custom_fields']['custom_link'] = $team_member_link_to_post;
-//
-//            ?><!--####-->
-<!--            <pre>--><?php //echo var_export($team_member_id, true); ?><!--</pre>-->
-<!---->
-<!--            --><?php
-//
-//
-//
-//            foreach ($custom_meta_fields as $field){
-//                $field_name = isset($field['name']) ? $field['name'] : '';
-//                $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
-//
-//
-//                if($field_meta_key == 'position' || $field_meta_key == 'custom_link') continue;
-//
-//
-//                $meta_value = get_post_meta($team_member_id, $field_meta_key, true);
-//                $team_member_data['custom_fields'][$field_meta_key] = $meta_value;
-//            }
-//
-//
-//            foreach ($custom_social_fields as $field){
-//                $field_name = isset($field['name']) ? $field['name'] : '';
-//                $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
-//
-//                $team_member_data['social_fields'][$field_meta_key] = $team_member_social_links[$field_meta_key];
-//            }
-//
-//
-//            $team_thumb = wp_get_attachment_image_src( get_post_thumbnail_id($team_member_id), 'full' );
-//            $team_thumb_url = isset($team_thumb['0']) ? $team_thumb['0'] : '';
-//
-//            $team_member_data['member_image'] = $team_thumb_url;
-//
-//
-//            ?>
-<!--            <pre>--><?php //echo var_export($team_member_data, true); ?><!--</pre>-->
-<!---->
-<!--        --><?php
-//
-//            update_post_meta($team_member_id, 'team_upgrade_status', 'done');
-//
-//            update_post_meta($team_member_id, 'team_member_data', $team_member_data);
-//
-//
-//        endwhile;
-//    endif;
-//
-//
-//
-//
-//}
 
 
 
@@ -269,7 +188,7 @@ function team_cron_upgrade_team(){
     $args = array(
         'post_type'=>'team',
         'post_status'=>'any',
-        'posts_per_page'=> 2,
+        'posts_per_page'=> 1,
         'meta_query'=> $meta_query,
 
     );
@@ -486,6 +405,12 @@ function team_cron_upgrade_team(){
             wp_reset_query();
             wp_reset_postdata();
         endwhile;
+    else:
+        wp_clear_scheduled_hook('team_cron_upgrade_team');
+
+        $team_plugin_info = get_option('team_plugin_info');
+        $team_plugin_info['team_upgrade'] = 'done';
+        update_option('team_plugin_info', $team_plugin_info);
     endif;
 
 
