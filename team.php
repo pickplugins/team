@@ -78,18 +78,16 @@ class Team{
 
 		
 	public function _activation(){
-		
-		// Update social fields in option
-		team_update_team_member_social_field();
-		
-		// Reset permalink
-		$team_class_post_types= new team_class_post_types();
-		$team_class_post_types->_posttype_team_member();
-		flush_rewrite_rules();
 
         wp_schedule_event(time(), '5minute', 'team_cron_upgrade_settings');
 
-
+        // Update social fields in option
+		//team_update_team_member_social_field();
+		
+		// Reset permalink
+//		$team_class_post_types= new team_class_post_types();
+//		$team_class_post_types->_posttype_team_member();
+//		flush_rewrite_rules();
 
 
         do_action( 'team_action_install' );
@@ -104,9 +102,9 @@ class Team{
 		
 	public function _deactivation(){
 
+        wp_clear_scheduled_hook('team_cron_upgrade_settings');
         wp_clear_scheduled_hook('team_cron_upgrade_team_members');
         wp_clear_scheduled_hook('team_cron_upgrade_team');
-        wp_clear_scheduled_hook('team_cron_upgrade_settings');
 
         do_action( 'team_action_deactivation' );
 		}

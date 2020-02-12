@@ -97,7 +97,7 @@ if(!function_exists('team_cron_upgrade_team_members')){
         $args = array(
             'post_type' => 'team_member',
             'post_status' => 'any',
-            'posts_per_page' => 1,
+            'posts_per_page' => 2,
             'meta_query' => $meta_query,
         );
 
@@ -136,7 +136,7 @@ if(!function_exists('team_cron_upgrade_team_members')){
                     $field_name = isset($field['name']) ? $field['name'] : '';
                     $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
 
-                    $team_member_data['social_fields'][$field_meta_key] = $team_member_social_links[$field_meta_key];
+                    $team_member_data['social_fields'][$field_meta_key] = isset($team_member_social_links[$field_meta_key]) ? $team_member_social_links[$field_meta_key] : '';
                 }
 
 
@@ -397,6 +397,10 @@ function team_cron_upgrade_team(){
                 )
             );
 
+
+            $team_options['item_layout_id'] = $team_layout_id;
+
+            update_post_meta($team_id, 'team_options', $team_options);
             update_post_meta($team_layout_id, 'layout_elements_data', $layout_elements_data);
             update_post_meta($team_id, 'team_upgrade_status', 'done');
 
