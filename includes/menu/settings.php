@@ -25,6 +25,8 @@ $team_settings_tab[] = array(
 $team_settings_tab = apply_filters('team_settings_tabs', $team_settings_tab);
 
 $tabs_sorted = array();
+
+if(!empty($team_settings_tab))
 foreach ($team_settings_tab as $page_key => $tab) $tabs_sorted[$page_key] = isset( $tab['priority'] ) ? $tab['priority'] : 0;
 array_multisort($tabs_sorted, SORT_ASC, $team_settings_tab);
 
@@ -108,6 +110,7 @@ $team_settings = get_option('team_settings');
 
                 <div class="settings-tabs-right-panel">
                     <?php
+                    if(!empty($team_settings_tab))
                     foreach ($team_settings_tab as $tab) {
                         $id = $tab['id'];
                         $active = $tab['active'];
@@ -128,6 +131,7 @@ $team_settings = get_option('team_settings');
 
                 <ul class="tab-navs">
                     <?php
+                    if(!empty($team_settings_tab))
                     foreach ($team_settings_tab as $tab){
                         $id = $tab['id'];
                         $title = $tab['title'];
@@ -159,6 +163,8 @@ $team_settings = get_option('team_settings');
 
 
                 <?php
+
+                if(!empty($team_settings_tab))
                 foreach ($team_settings_tab as $tab){
                     $id = $tab['id'];
                     $title = $tab['title'];

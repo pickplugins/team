@@ -95,6 +95,8 @@ class class_team_post_meta_team{
         $team_settings_tab = apply_filters('team_metabox_navs', $team_settings_tab);
 
         $tabs_sorted = array();
+
+        if(!empty($team_settings_tab))
         foreach ($team_settings_tab as $page_key => $tab) $tabs_sorted[$page_key] = isset( $tab['priority'] ) ? $tab['priority'] : 0;
         array_multisort($tabs_sorted, SORT_ASC, $team_settings_tab);
 

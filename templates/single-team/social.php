@@ -30,6 +30,7 @@ $html_social = '';
 
     <?php
 
+    if(!empty($team_member_social_field))
     foreach ($team_member_social_field as $field_key=>$field_info) {
 
         $visibility = isset($field_info['visibility']) ? $field_info['visibility'] : '';

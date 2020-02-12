@@ -20,6 +20,7 @@ $team_member_meta_fields = get_option( 'team_member_meta_fields' );
 
     ob_start();
 
+    if(!empty($team_member_meta_fields))
     foreach ($team_member_meta_fields as $meta){
 
         $name = $meta['name'];

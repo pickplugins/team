@@ -9,7 +9,7 @@ function team_member_metabox_content_general($post_id){
 
     $settings_tabs_field = new settings_tabs_field();
     $team_settings = get_option('team_settings');
-    $team_member_meta_fields = isset($team_settings['custom_meta_fields']) ? $team_settings['custom_meta_fields'] : '';
+    $team_member_meta_fields = isset($team_settings['custom_meta_fields']) ? $team_settings['custom_meta_fields'] : array();
 
     $team_member_data = get_post_meta($post_id, 'team_member_data', true);
 
@@ -38,7 +38,9 @@ function team_member_metabox_content_general($post_id){
 
         $settings_tabs_field->generate_field($args);
 
+        $input_fields = array();
 
+        if(!empty($team_member_meta_fields))
         foreach ($team_member_meta_fields as $field){
 
             $field_name = $field['name'];
@@ -88,7 +90,7 @@ function team_member_metabox_content_social($post_id){
     $settings_tabs_field = new settings_tabs_field();
     $team_settings = get_option('team_settings');
 
-    $team_member_social_field = isset($team_settings['custom_social_fields']) ? $team_settings['custom_social_fields'] : '';
+    $team_member_social_field = isset($team_settings['custom_social_fields']) ? $team_settings['custom_social_fields'] : array();
 
     $team_member_data = get_post_meta($post_id, 'team_member_data', true);
 
@@ -106,8 +108,9 @@ function team_member_metabox_content_social($post_id){
         <?php
 
 
+        $input_fields = array();
 
-
+        if(!empty($team_member_social_field))
         foreach ($team_member_social_field as $field){
 
             $field_name = $field['name'];

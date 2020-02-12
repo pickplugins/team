@@ -343,6 +343,7 @@ function team_metabox_content_query_member($post_id){
 
         $team_groups = array();
 
+        if(!empty($categories))
         foreach($categories as $category){
             $cat_ID = $category->cat_ID;
             $cat_name = $category->cat_name;
@@ -496,6 +497,8 @@ function team_metabox_content_layouts($post_id){
 
 
         <?php
+
+        $item_layout_args = array();
 
         $query_args['post_type'] 		= array('team_layout');
         $query_args['post_status'] 		= array('publish');

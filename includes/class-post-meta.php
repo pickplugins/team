@@ -61,7 +61,8 @@ class team_class_post_meta{
 										);
 			
 			}
- 
+
+		if(!empty($team_member_meta_fields))
  		foreach($team_member_meta_fields as $meta_key=>$meta_info){
 			
 			${$meta_info['meta_key']} = get_post_meta($post -> ID, $meta_info['meta_key'], true);
@@ -122,7 +123,7 @@ class team_class_post_meta{
                         
                         }
                     //var_dump($team_member_skill);
-                    
+                        if(!empty($team_member_skill))
                         foreach ($team_member_skill as $skill_key=>$skill_info) {
                             
                             ?>
@@ -167,7 +168,8 @@ class team_class_post_meta{
         </div> <!-- option-box -->
         
         <?php
-		
+
+        if(!empty($team_member_meta_fields))
 		foreach($team_member_meta_fields as $meta_key=>$meta_info){
 			
 
@@ -262,7 +264,8 @@ public function meta_boxes_team_member_save_meta_fileds($post_id) {
 										);
 			
 			}
-		
+
+		if(!empty($team_member_meta_fields))
 		foreach($team_member_meta_fields as $meta_key=>$meta_info){
 			
 				$meta_key = $meta_info['meta_key'];
@@ -326,6 +329,7 @@ public function meta_boxes_team_member_save_meta_fileds($post_id) {
 		
 		echo '<div class="para-settings">';
 
+		if(!empty($team_member_social_field))
 		foreach ($team_member_social_field as $field_key=>$field_info) {
 			
 			if(!empty($field_key) && !empty($field_info['visibility'])){
@@ -751,6 +755,7 @@ Team Post
 						$class_team_functions = new class_team_functions();
 						$skins = $class_team_functions->skins();						
 
+						if(!empty($skins))
 						foreach($skins as $skin_key => $skin_data){
 
 						    $disabled = $skin_data['disabled'];

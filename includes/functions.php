@@ -6,7 +6,30 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
 
+function team_first_team_member(){
 
+    $args = array(
+        'post_type' => 'team_member',
+        'post_status' => 'publish',
+        'posts_per_page' => 1,
+    );
+
+    $post_id ='';
+
+    $wp_query = new WP_Query($args);
+
+    if ($wp_query->have_posts()) :
+        while ($wp_query->have_posts()) : $wp_query->the_post();
+
+        $team_member_id = get_the_id();
+
+        return $team_member_id;
+
+        endwhile;
+    else:
+
+    endif;
+}
 
 
 

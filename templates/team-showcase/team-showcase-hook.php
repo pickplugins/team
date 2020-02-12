@@ -94,7 +94,11 @@ function team_showcase_item($args, $team_member_id){
         ?>
         <div class="elements-wrapper layout-<?php echo $item_layout_id; ?>">
             <?php
+
+            if(!empty($layout_elements_data))
             foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
+
+                if(!empty($elementGroupData))
                 foreach ($elementGroupData as $elementIndex => $elementData){
 
 
@@ -198,7 +202,10 @@ function team_showcase_main_custom_css($args){
 
     <?php
 
+    if(!empty($layout_elements_data))
     foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
+
+        if(!empty($elementGroupData))
         foreach ($elementGroupData as $elementIndex => $elementData){
 
 
@@ -254,14 +261,13 @@ function team_showcase_item_elements_thumbnail($args){
     $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
 
-    $thumb_size = isset($args['thumb_size']) ? $args['thumb_size'] : 'full';
 
-    $team_thumb = wp_get_attachment_image_src( get_post_thumbnail_id($team_member_id), $thumb_size );
-    $team_thumb_url = $team_thumb['0'];
+    $team_member_data = get_post_meta($team_member_id,'team_member_data', true);
+    $member_image = isset($team_member_data['member_image']) ? $team_member_data['member_image'] : '';
 
 
     ?>
-    <div class="team-thumb <?php echo $element_class; ?>"><a href="<?php echo get_permalink($team_member_id); ?>"><img src="<?php echo $team_thumb_url; ?>" /></a></div>
+    <div class="team-thumb <?php echo $element_class; ?>"><a href="<?php echo get_permalink($team_member_id); ?>"><img src="<?php echo $member_image; ?>" /></a></div>
 
     <?php
 

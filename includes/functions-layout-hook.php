@@ -172,6 +172,8 @@ function layout_elements_option_thumbnail($parameters){
             $thumbnail_sizes = array();
 
             $get_intermediate_image_sizes =  get_intermediate_image_sizes();
+
+            if(!empty($get_intermediate_image_sizes))
             foreach($get_intermediate_image_sizes as $size_key){
                 $size_name = str_replace('_', ' ',$size_key);
                 $size_name = str_replace('-', ' ',$size_name);

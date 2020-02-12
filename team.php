@@ -39,7 +39,7 @@ class Team{
         include( 'includes/class-post-meta-team-hook.php' );
 
         include( 'includes/class-post-types.php' );
-        include( 'includes/class-post-meta.php' );
+        //include( 'includes/class-post-meta.php' );
         include( 'includes/class-settings.php' );
         include( 'includes/class-functions.php' );
         include( 'includes/class-shortcodes.php' );
@@ -79,7 +79,7 @@ class Team{
 		
 	public function _activation(){
 
-        wp_schedule_event(time(), '5minute', 'team_cron_upgrade_settings');
+        wp_schedule_event(time(), '2minute', 'team_cron_upgrade_settings');
 
         // Update social fields in option
 		//team_update_team_member_social_field();
@@ -113,6 +113,11 @@ class Team{
 
 
     function cron_recurrence_interval( $schedules ){
+
+        $schedules['2minute'] = array(
+            'interval'  => 120,
+            'display'   => __( '2 Minute', 'textdomain' )
+        );
 
         $schedules['5minute'] = array(
             'interval'  => 300,

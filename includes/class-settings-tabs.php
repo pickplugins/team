@@ -126,6 +126,7 @@ class settings_tabs_field{
             <div sortable="<?php echo ($sortable) ? 'true':  'false'; ?>" class='option-group-accordion accordion'>
                 <?php
 
+                if(!empty($args_index))
                 foreach( $args_index as $index ):
 
                     //foreach( $args as $key => $value ):

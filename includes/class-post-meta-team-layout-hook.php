@@ -273,7 +273,7 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
 
 
 
-                            $args['team_member_id'] = 47700;
+                            $args['team_member_id'] = team_first_team_member();
                             $args['elementData'] = $elementData;
                             $args['element_index'] = $elementGroupIndex;
 

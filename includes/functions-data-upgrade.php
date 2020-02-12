@@ -17,6 +17,7 @@ function team_cron_upgrade_settings(){
 
     $meta_fields_new = array();
 
+    if(!empty($team_member_meta_fields))
     foreach ($team_member_meta_fields as $fieldIndex => $field){
         $field_name = isset($field['name']) ? $field['name'] : '';
         $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
@@ -31,6 +32,7 @@ function team_cron_upgrade_settings(){
 
     $social_fields_new = array();
 
+    if(!empty($team_member_social_field))
     foreach ($team_member_social_field as $fieldIndex => $field){
         $field_name = isset($field['name']) ? $field['name'] : '';
         $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
@@ -47,7 +49,7 @@ function team_cron_upgrade_settings(){
 
     if($update_status){
         wp_clear_scheduled_hook('team_cron_upgrade_settings');
-        wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team_members');
+        wp_schedule_event(time(), '2minute', 'team_cron_upgrade_team_members');
 
         $team_plugin_info = get_option('team_plugin_info');
         $team_plugin_info['settings_upgrade'] = 'done';
@@ -97,7 +99,7 @@ if(!function_exists('team_cron_upgrade_team_members')){
         $args = array(
             'post_type' => 'team_member',
             'post_status' => 'any',
-            'posts_per_page' => 2,
+            'posts_per_page' => 3,
             'meta_query' => $meta_query,
         );
 
@@ -155,7 +157,7 @@ if(!function_exists('team_cron_upgrade_team_members')){
             endwhile;
         else:
             wp_clear_scheduled_hook('team_cron_upgrade_team_members');
-            wp_schedule_event(time(), '5minute', 'team_cron_upgrade_team');
+            wp_schedule_event(time(), '2minute', 'team_cron_upgrade_team');
 
             $team_plugin_info = get_option('team_plugin_info');
             $team_plugin_info['team_members_upgrade'] = 'done';
@@ -188,7 +190,7 @@ function team_cron_upgrade_team(){
     $args = array(
         'post_type'=>'team',
         'post_status'=>'any',
-        'posts_per_page'=> 1,
+        'posts_per_page'=> 2,
         'meta_query'=> $meta_query,
 
     );

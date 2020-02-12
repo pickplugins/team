@@ -16,7 +16,8 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 				}
 			
 			$html_social = '';
-			
+
+			if(!empty($team_member_social_field))
             foreach ($team_member_social_field as $field_key=>$field_info) {
 				
 				$visibility = $field_info['visibility'];
