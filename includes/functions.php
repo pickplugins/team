@@ -229,7 +229,99 @@ add_action('wp_ajax_reset_team_member_social_field', 'reset_team_member_social_f
 
 
 
+function team_layout_css($layout){
+
+    ob_start();
+
+    if($layout == 'flat'){
+
+        ?>
+        .__ID__ {
+        vertical-align: top;
+        }
+        .__ID__ .layer-media{}
+        .__ID__ .layer-content {
+        padding: 5px 10px;
+        }
+        .__ID__ .layer-hover {
+        display: none;
+        }
+        <?php
+
+    }elseif($layout == 'zoomout'){
+
+        ?>
+        .__ID__ {
+        overflow: hidden;
+        position: relative;
+        vertical-align: top;
+        }
+        .__ID__:hover .layer-media {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        }
+
+        .__ID__ .layer-media {
+        -webkit-transition: all 1s ease 0s;
+        transition: all 1s ease 0s;
+        left: 0;
+        top: 0;
+        width: 100%;
+        }
+        .__ID__:hover .layer-content{
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        }
+        .__ID__ .layer-content {
+        left: 0;
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        position: absolute;
+        top: 0;
+        width: 100%;
+        -webkit-transition: all 1s ease 0s;
+        transition: all 1s ease 0s;
+        }
+        .__ID__ .layer-hover {
+        display: none;
+        }
+
+        <?php
+
+    }
 
 
-	
-	
+    return ob_get_clean();
+
+
+
+
+}
+
+
+
+
+function team_layout_preview_img($layout){
+
+
+
+    if($layout == 'flat'){
+
+        $img = 'https://i.imgur.com/QLfbYkC.png';
+
+
+    }elseif($layout == 'zoomout'){
+
+        $img = 'https://i.imgur.com/JSJ8ySV.gif';
+    }
+
+
+    return $img;
+
+
+
+
+}
+

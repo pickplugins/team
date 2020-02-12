@@ -110,7 +110,8 @@ class class_team_functions  {
 
 
 						
-						);
+
+            );
 		
 		$skins = apply_filters('team_filter_skins', $skins);	
 		

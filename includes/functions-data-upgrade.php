@@ -435,8 +435,22 @@ function team_cron_upgrade_team(){
 
             $team_options['item_layout_id'] = $team_layout_id;
 
+            $layout_css = team_layout_css($team_themes);
+            $layout_preview_img = team_layout_preview_img($team_themes);
+
+            echo '<pre>'.var_export($layout_css, true).'</pre>';
+
+            $layout_scripts['custom_css'] = $layout_css;
+            $layout_options['layout_preview_img'] = $layout_preview_img;
+
+
+
             update_post_meta($team_id, 'team_options', $team_options);
+
+            update_post_meta($team_layout_id, 'custom_scripts', $layout_scripts);
+            update_post_meta($team_layout_id, 'layout_options', $layout_options);
             update_post_meta($team_layout_id, 'layout_elements_data', $layout_elements_data);
+            
             update_post_meta($team_id, 'team_upgrade_status', 'done');
 
 

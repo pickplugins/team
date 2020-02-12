@@ -28,6 +28,7 @@ if(!function_exists('team_layout_metabox_content_custom_scripts')){
 
 
 
+
         ?>
         <div class="section">
             <div class="section-title"><?php echo __('Custom scripts', 'team'); ?></div>
