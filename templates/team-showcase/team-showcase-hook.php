@@ -484,7 +484,7 @@ function team_showcase_item_elements_css_thumbnail($args){
         @media only screen and (min-width: 1024px ){
             .element-<?php echo $element_index; ?>{
                 <?php if(!empty($thumb_height_large)): ?>
-                height: <?php echo $thumb_height_large; ?>;
+                max-height: <?php echo $thumb_height_large; ?>;
                 <?php endif; ?>
             }
         }
@@ -492,7 +492,7 @@ function team_showcase_item_elements_css_thumbnail($args){
         @media only screen and ( min-width: 768px ) and ( max-width: 1023px ) {
             .element-<?php echo $element_index; ?>{
                 <?php if(!empty($thumb_height_medium)): ?>
-                height: <?php echo $thumb_height_medium; ?>;
+                max-height: <?php echo $thumb_height_medium; ?>;
                 <?php endif; ?>
             }
         }
@@ -500,7 +500,7 @@ function team_showcase_item_elements_css_thumbnail($args){
         @media only screen and ( min-width: 0px ) and ( max-width: 767px ){
             .element-<?php echo $element_index; ?>{
                 <?php if(!empty($thumb_height_small)): ?>
-                    height: <?php echo $thumb_height_small; ?>;
+                max-height: <?php echo $thumb_height_small; ?>;
                 <?php endif; ?>
             }
         }

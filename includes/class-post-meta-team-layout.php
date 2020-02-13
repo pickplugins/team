@@ -163,11 +163,11 @@ class class_team_post_meta_team_layout{
         /* OK, its safe for us to save the data now. */
 
         // Sanitize the user input.
-        $grid_item_layout = stripslashes_deep($_POST['grid_item_layout']);
+        //$grid_item_layout = stripslashes_deep($_POST['grid_item_layout']);
 
 
         // Update the meta field.
-        update_post_meta($post_id, 'grid_item_layout', $grid_item_layout);
+        //update_post_meta($post_id, 'grid_item_layout', $grid_item_layout);
 
         do_action('team_layout_meta_box_save_team', $post_id);
 

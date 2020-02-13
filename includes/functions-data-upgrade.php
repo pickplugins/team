@@ -222,7 +222,7 @@ function team_cron_upgrade_team(){
     $args = array(
         'post_type'=>'team',
         'post_status'=>'any',
-        'posts_per_page'=> 2,
+        'posts_per_page'=> 5,
         'meta_query'=> $meta_query,
 
     );
@@ -436,12 +436,14 @@ function team_cron_upgrade_team(){
 
             $team_options['item_layout_id'] = $team_layout_id;
 
-            $layout_css = team_layout_css($team_themes);
-            $layout_preview_img = team_layout_preview_img($team_themes);
+            $layout_data = team_layout_data($team_themes);
 
-            echo '<pre>'.var_export($layout_css, true).'</pre>';
+            $layout_data_css = isset($layout_data['css']) ? $layout_data['css'] : '';
+            $layout_preview_img = isset($layout_data['preview_img']) ? $layout_data['preview_img'] : '';
 
-            $layout_scripts['custom_css'] = $layout_css;
+            //echo '<pre>'.var_export($layout_data_css, true).'</pre>';
+
+            $layout_scripts['custom_css'] = $layout_data_css;
             $layout_options['layout_preview_img'] = $layout_preview_img;
 
 

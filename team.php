@@ -73,7 +73,11 @@ class Team{
 		
 		
 	public function _textdomain() {
-	  load_plugin_textdomain( 'team', false, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
+
+        $locale = apply_filters( 'plugin_locale', get_locale(), 'team' );
+        load_textdomain('team', WP_LANG_DIR .'/team/team-'. $locale .'.mo' );
+
+        load_plugin_textdomain( 'team', false, plugin_basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 
 		
