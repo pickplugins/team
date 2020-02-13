@@ -240,7 +240,7 @@ function team_cron_upgrade_team(){
     $args = array(
         'post_type'=>'team',
         'post_status'=>'any',
-        'posts_per_page'=> 5,
+        'posts_per_page'=> 1,
         'meta_query'=> $meta_query,
 
     );
@@ -318,6 +318,25 @@ function team_cron_upgrade_team(){
             $team_masonry_enable = get_post_meta( $team_id, 'team_masonry_enable', true );
             $team_options['masonry_enable'] = $team_masonry_enable;
 
+            $team_items_post_per_page_mixitup = get_post_meta( $team_id, 'team_items_post_per_page_mixitup', true );
+            $team_options['filterable']['post_per_page'] = $team_items_post_per_page_mixitup;
+
+            $team_items_default_filter_mixitup = get_post_meta( $team_id, 'team_items_default_filter_mixitup', true );
+            $team_options['filterable']['active_filter'] = $team_items_default_filter_mixitup;
+
+            $team_filter_bg_color = get_post_meta( $team_id, 'team_filter_bg_color', true );
+            $team_options['filterable']['background_color'] = $team_filter_bg_color;
+
+            $team_filter_active_bg_color = get_post_meta( $team_id, 'team_filter_active_bg_color', true );
+            $team_options['filterable']['active_background_color'] = $team_filter_active_bg_color;
+
+            $team_filter_text_color = get_post_meta( $team_id, 'team_filter_text_color', true );
+            $team_options['filterable']['font_color'] = $team_filter_text_color;
+
+
+            $team_filter_scroll_top = get_post_meta( $team_id, 'team_filter_scroll_top', true );
+            $team_options['pagination']['scroll_top'] = $team_filter_scroll_top;
+
             $team_pagination_type = get_post_meta( $team_id, 'team_pagination_type', true );
             $team_options['pagination']['type'] = $team_pagination_type;
 
@@ -333,18 +352,66 @@ function team_cron_upgrade_team(){
             $team_pagination_active_bg_color = get_post_meta( $team_id, 'team_pagination_active_bg_color', true );
             $team_options['pagination']['active_background_color'] = $team_pagination_active_bg_color;
 
+            $team_pagination_top = get_post_meta( $team_id, 'team_pagination_top', true );
+            $team_options['pagination']['on_top'] = $team_pagination_top;
+
+
+            $team_column_number = get_post_meta( $team_id, 'team_column_number', true );
+            $team_options['slider']['column_large'] = $team_column_number;
+
+            $team_column_number_tablet = get_post_meta( $team_id, 'team_column_number_tablet', true );
+            $team_options['slider']['column_medium'] = $team_column_number_tablet;
+
+            $team_column_number_mobile = get_post_meta( $team_id, 'team_column_number_mobile', true );
+            $team_options['slider']['column_small'] = $team_column_number_mobile;
+
+            $team_auto_play = get_post_meta( $team_id, 'team_auto_play', true );
+            $team_options['slider']['auto_play'] = $team_auto_play;
+
+            $team_slide_speed = get_post_meta( $team_id, 'team_slide_speed', true );
+            $team_options['slider']['slide_speed'] = $team_slide_speed;
+
+            $team_pagination_slide_speed = get_post_meta( $team_id, 'team_pagination_slide_speed', true );
+            $team_options['slider']['pagination_speed'] = $team_pagination_slide_speed;
+
+            $team_slide_loop = get_post_meta( $team_id, 'team_slide_loop', true );
+            $team_options['slider']['loop'] = $team_slide_loop;
+
+            $team_slide_rewind = get_post_meta( $team_id, 'team_slide_rewind', true );
+            $team_options['slider']['rewind'] = $team_slide_rewind;
+
+            $team_slide_center = get_post_meta( $team_id, 'team_slide_center', true );
+            $team_options['slider']['center'] = $team_slide_center;
+
+            $team_slide_rtl = get_post_meta( $team_id, 'team_slide_rtl', true );
+            $team_options['slider']['rtl'] = $team_slide_rtl;
+
+            $team_stop_on_hover = get_post_meta( $team_id, 'team_stop_on_hover', true );
+            $team_options['slider']['stop_on_hover'] = $team_stop_on_hover;
+
+            $team_slider_pagination = get_post_meta( $team_id, 'team_slider_pagination', true );
+            $team_options['slider']['pagination'] = $team_slider_pagination;
+
+            $team_slider_pagination_count = get_post_meta( $team_id, 'team_slider_pagination_count', true );
+            $team_options['slider']['pagination_count'] = $team_slider_pagination_count;
+
+            $team_slider_touch_drag = get_post_meta( $team_id, 'team_slider_touch_drag', true );
+            $team_options['slider']['touch_drag'] = $team_slider_touch_drag;
+
+
+
             // Create layout from team settings.
             $team_grid_items = get_post_meta( $team_id, 'team_grid_items', true );
             unset($team_grid_items['popup']);
-            unset($team_grid_items['skill']);
-            unset($team_grid_items['meta']);
+            //unset($team_grid_items['skill']);
+            //unset($team_grid_items['meta']);
 
             $team_options['grid_items'] = $team_grid_items;
 
             $team_grid_items_hide = get_post_meta( $team_id, 'team_grid_items_hide', true );
             unset($team_grid_items_hide['popup']);
-            unset($team_grid_items_hide['skill']);
-            unset($team_grid_items_hide['meta']);
+            //unset($team_grid_items_hide['skill']);
+            //unset($team_grid_items_hide['meta']);
 
 
             $team_options['items_hide'] = $team_grid_items_hide;
@@ -433,7 +500,46 @@ function team_cron_upgrade_team(){
 
                     $layout_elements_data[$item_count]['content']['font_size'] = $team_items_content_font_size;
                     $layout_elements_data[$item_count]['content']['font_family'] = $team_items_content_font_family;
+                }elseif($itemIndex == 'skill'){
+
+                    $team_items_skill_bg_color = get_post_meta( $team_id, 'team_items_skill_bg_color', true );
+                    $layout_elements_data[$item_count]['skill']['background_color'] = $team_items_skill_bg_color;
+
+                    $team_items_skill_sort = get_post_meta( $team_id, 'team_items_skill_sort', true );
+                    $layout_elements_data[$item_count]['skill']['order'] = $team_items_skill_sort;
+
+
+
+                }elseif($itemIndex == 'meta'){
+
+                    $team_items_meta_font_family = get_post_meta( $team_id, 'team_items_meta_font_family', true );
+                    $team_grid_meta_keys = get_post_meta( $team_id, 'team_grid_meta_keys', true );
+
+
+                    if(!empty($team_grid_meta_keys))
+                        foreach ($team_grid_meta_keys as $meta){
+
+                            $wrapper = isset($meta['wrapper']) ? $meta['wrapper'] : '';
+                            $key = isset($meta['key']) ?$meta['key'] : '';
+
+                            $layout_elements_data[$item_count]['meta']['meta_key'] = $key;
+                            $layout_elements_data[$item_count]['meta']['wrapper'] = $wrapper;
+                            $layout_elements_data[$item_count]['meta']['font_family'] = $team_items_meta_font_family;
+
+                            $layout_elements_data[$item_count]['meta']['font_size'] = '';
+                            $layout_elements_data[$item_count]['meta']['color'] = '';
+
+                            $item_count++;
+
+                        }
+
+
+
+
                 }
+
+
+
 
                 $item_count++;
             }

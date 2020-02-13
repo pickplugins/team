@@ -392,6 +392,7 @@ function team_metabox_content_custom_scripts($post_id){
     $custom_scripts = isset($team_options['custom_scripts']) ? $team_options['custom_scripts'] : array();
 
     $custom_css = isset($custom_scripts['custom_css']) ? $custom_scripts['custom_css'] : '';
+    $custom_js = isset($custom_scripts['custom_js']) ? $custom_scripts['custom_js'] : '';
 
 
 
@@ -417,6 +418,19 @@ function team_metabox_content_custom_scripts($post_id){
         $settings_tabs_field->generate_field($args);
 
 
+
+        $args = array(
+            'id'		=> 'custom_js',
+            'parent'		=> 'team_options[custom_scripts]',
+            'title'		=> __('Custom JS','team'),
+            'details'	=> __('Write custom js to override default style, do not use <code>&lt;script>&lt;/script></code> tag.','team'),
+            'type'		=> 'scripts_js',
+            'value'		=> $custom_js,
+            'default'		=> '',
+            'placeholder'		=> '',
+        );
+
+        $settings_tabs_field->generate_field($args);
 
 
 
@@ -584,6 +598,8 @@ function team_metabox_content_pagination($post_id){
     $pagination_next_text = isset($pagination['next_text']) ? $pagination['next_text'] : '';
     $pagination_background_color = isset($pagination['background_color']) ? $pagination['background_color'] : '';
     $pagination_active_background_color = isset($pagination['active_background_color']) ? $pagination['active_background_color'] : '';
+    $pagination_on_top = isset($pagination['on_top']) ? $pagination['on_top'] : '';
+
 
     ?>
     <div class="section">
@@ -601,8 +617,8 @@ function team_metabox_content_pagination($post_id){
             'details'	=> __('Choose pagination type','team'),
             'type'		=> 'radio',
             'value'		=> $pagination_type,
-            'default'		=> '',
-            'args'		=> array('normal'=>'Normal','jquery'=>'jQuery pagination','ajax'=>'Ajax' ),
+            'default'		=> 'normal',
+            'args'		=> array('none'=>'None','normal'=>'Normal','jquery'=>'jQuery pagination','ajax'=>'Ajax' ),
         );
 
         $settings_tabs_field->generate_field($args);
@@ -661,6 +677,23 @@ function team_metabox_content_pagination($post_id){
         );
 
         $settings_tabs_field->generate_field($args);
+
+
+        $args = array(
+            'id'		=> 'on_top',
+            'parent'		=> 'team_options[pagination]',
+            'title'		=> __('Pagination on top','team'),
+            'details'	=> __('Display pagination on top.','team'),
+            'type'		=> 'select',
+            'value'		=> $pagination_on_top,
+            'default'		=> 'no',
+            'args'		=> array(
+                'yes'=>__('Yes','team'),
+                'no'=>__('No','team'),
+            ),
+        );
+
+        $settings_tabs_field->generate_field($args, $post_id);
 
 
 
