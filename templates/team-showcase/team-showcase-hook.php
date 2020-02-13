@@ -44,8 +44,11 @@ function team_showcase_main_items($args){
 
 
     if ( $wp_query->have_posts() ) :
+
+        $team_items_class = apply_filters('team_items_wrapper_class', 'team-items', $args);
+
         ?>
-        <div class="team-items">
+        <div class="<?php echo $team_items_class; ?>">
             <?php
 
             while ( $wp_query->have_posts() ) : $wp_query->the_post();
