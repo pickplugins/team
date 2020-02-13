@@ -323,15 +323,25 @@ class settings_tabs_field{
             <div class="media-preview-wrap" style="width: 150px;margin-bottom: 10px;background: #eee;padding: 5px;    text-align: center;">
                 <?php
 
+                //var_dump($media_type);
+
                 if( "audio/mpeg" == $media_type ){
                     ?>
                     <div class="media-preview" class="dashicons dashicons-format-audio" style="font-size: 70px;display: inline;"></div>
                     <div><?php echo $media_title; ?></div>
                     <?php
                 }
-                elseif( "images/png" == $media_type || "images/jpg" == $media_type || "images/jpeg" == $media_type ||
+                elseif( "images/png" == $media_type ||
+                    "image/png" == $media_type ||
                     "images/gif" == $media_type  ||
-                    "images/ico" == $media_type){
+                    "image/gif" == $media_type  ||
+                    "images/jpeg" == $media_type ||
+                    "image/jpeg" == $media_type ||
+                    "images/jpg" == $media_type ||
+                    "image/jpg" == $media_type ||
+                    "images/ico" == $media_type||
+                    "image/ico" == $media_type
+                ){
                     ?>
                     <img class="media-preview" src="<?php echo $media_url; ?>" style="width:100%"/>
                     <div><?php echo $media_title; ?></div>

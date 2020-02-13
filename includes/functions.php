@@ -168,8 +168,15 @@ function team_member_posts_thumb_display( $column, $post_id ) {
     if ($column == 'thumb'){
         $team_thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post_id), 'thumbnail' );
         $team_thumb_url = $team_thumb['0'];
-        if(!empty($team_thumb_url))
-            echo '<img width="40px" height="40px" src="'.$team_thumb_url.'">';
+
+        $team_member_data = get_post_meta($post_id,'team_member_data', true);
+        $member_image_id = isset($team_member_data['member_image']) ? $team_member_data['member_image'] : '';
+        $member_image_url = wp_get_attachment_url( $member_image_id, 'full' );
+
+        //var_dump($member_image_id);
+
+        if(!empty($member_image_url))
+        echo '<img width="40px"  src="'.$member_image_url.'">';
     }
 
 
@@ -311,12 +318,13 @@ function team_layout_preview_img($layout){
 
         $img = 'https://i.imgur.com/QLfbYkC.png';
 
-
     }elseif($layout == 'zoomout'){
 
         $img = 'https://i.imgur.com/JSJ8ySV.gif';
-    }
+    }elseif($layout == 'thumbrounded'){
 
+        $img = 'https://i.imgur.com/2T0ilNB.png';
+    }
 
     return $img;
 

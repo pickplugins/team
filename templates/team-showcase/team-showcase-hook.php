@@ -263,11 +263,11 @@ function team_showcase_item_elements_thumbnail($args){
 
 
     $team_member_data = get_post_meta($team_member_id,'team_member_data', true);
-    $member_image = isset($team_member_data['member_image']) ? $team_member_data['member_image'] : '';
-
+    $member_image_id = isset($team_member_data['member_image']) ? $team_member_data['member_image'] : '';
+    $member_image_url = wp_get_attachment_url( $member_image_id, 'full' );
 
     ?>
-    <div class="team-thumb <?php echo $element_class; ?>"><a href="<?php echo get_permalink($team_member_id); ?>"><img src="<?php echo $member_image; ?>" /></a></div>
+    <div class="team-thumb <?php echo $element_class; ?>"><a href="<?php echo get_permalink($team_member_id); ?>"><img src="<?php echo $member_image_url; ?>" /></a></div>
 
     <?php
 

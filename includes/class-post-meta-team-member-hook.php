@@ -31,7 +31,7 @@ function team_member_metabox_content_general($post_id){
             'parent'		=> 'team_member_data',
             'title'		=> __('Member image','team'),
             'details'	=> __('Add team member image.','team'),
-            'type'		=> 'media_url',
+            'type'		=> 'media',
             'value'		=> $member_image,
 
         );

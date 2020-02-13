@@ -173,10 +173,11 @@ if(!function_exists('team_cron_upgrade_team_members')){
                 }
 
 
-                $team_thumb = wp_get_attachment_image_src( get_post_thumbnail_id($team_member_id), 'full' );
-                $team_thumb_url = isset($team_thumb['0']) ? $team_thumb['0'] : '';
+                $thumbnail_id = get_post_thumbnail_id($team_member_id);
+                //$team_thumb = wp_get_attachment_image_src( $thumbnail_id, 'full' );
+                //$team_thumb_url = isset($team_thumb['0']) ? $team_thumb['0'] : '';
 
-                $team_member_data['member_image'] = $team_thumb_url;
+                $team_member_data['member_image'] = $thumbnail_id;
 
 
 
