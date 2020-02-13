@@ -39,8 +39,8 @@ if(!function_exists('team_layout_metabox_content_custom_scripts')){
             $args = array(
                 'id'		=> 'custom_css',
                 'parent'		=> 'custom_scripts',
-                'title'		=> __('Custom CSS','job-board-manager'),
-                'details'	=> __('Write custom CSS to override default style, do not use <code>&lt;style>&lt;/style></code> tag. use <code>__ID__</code> to replace by layout id <code>layout-'.$post_id.'</code>.','job-board-manager'),
+                'title'		=> __('Custom CSS','team'),
+                'details'	=> __('Write custom CSS to override default style, do not use <code>&lt;style>&lt;/style></code> tag. use <code>__ID__</code> to replace by layout id <code>layout-'.$post_id.'</code>.','team'),
                 'type'		=> 'scripts_css',
                 'value'		=> $custom_css,
                 'default'		=> '',
@@ -53,8 +53,8 @@ if(!function_exists('team_layout_metabox_content_custom_scripts')){
             $args = array(
                 'id'		=> 'custom_js',
                 'parent'		=> 'custom_scripts',
-                'title'		=> __('Custom JS','job-board-manager'),
-                'details'	=> __('Write custom JS to override default style, do not use <code>&lt;script>&lt;/script></code> tag.','job-board-manager'),
+                'title'		=> __('Custom JS','team'),
+                'details'	=> __('Write custom JS to override default style, do not use <code>&lt;script>&lt;/script></code> tag.','team'),
                 'type'		=> 'scripts_js',
                 'value'		=> $custom_js,
                 'default'		=> '',
@@ -66,8 +66,8 @@ if(!function_exists('team_layout_metabox_content_custom_scripts')){
             $args = array(
                 'id'		=> 'layout_preview_img',
                 'parent'		=> 'layout_options',
-                'title'		=> __('Preview image','job-board-manager'),
-                'details'	=> __('Set layout preview image.','job-board-manager'),
+                'title'		=> __('Preview image','team'),
+                'details'	=> __('Set layout preview image.','team'),
                 'type'		=> 'media_url',
                 'value'		=> $layout_preview_img,
                 'default'		=> '',
@@ -114,25 +114,24 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
             <div class="section-title"><?php echo __('Layout builder', 'team'); ?></div>
             <p class="description section-description"><?php echo __('Customize layout settings.', 'team'); ?></p>
 
-
             <?php
+            $layout_elements['wrapper_start'] = array('name' =>__('Wrapper start','team'));
+            $layout_elements['wrapper_end'] = array('name' =>__('Wrapper end','team'));
+            $layout_elements['thumbnail'] = array('name' =>__('Thumbnail','team'));
+            $layout_elements['title'] = array('name' =>__('Title','team'));
+            $layout_elements['position'] = array('name' =>__('Position','team'));
+            $layout_elements['content'] = array('name' =>__('Content','team'));
+            $layout_elements['social'] = array('name' =>__('Social','team'));
+            $layout_elements['meta'] = array('name' =>__('Meta fields','team'));
 
-            $layout_elements_list = array(
-                'thumbnail'=> array('name' =>__('Thumbnail','team')),
-                'title'=> array('name' =>__('Title','team')),
-                'position'=> array('name' =>__('Position','team')),
-                'content'=> array('name' =>__('Content','team')),
-                'social'=> array('name' =>__('Social','team')),
-                //'popup'=>array('name' =>__('Pop up','team')),
-                'meta'=> array('name' =>__('Meta fields','team')),
-                //'skill'=>array('name' =>__('Skill','team')),
-                'wrapper_start'=> array('name' =>__('Wrapper start','team')),
-                'wrapper_end'=> array('name' =>__('Wrapper end','team')),
-            );
+
+            $layout_elements = apply_filters('team_layout_elements', $layout_elements);
+
 
             $layout_elements_option = array();
 
-            foreach ($layout_elements_list as $elementIndex => $element):
+            if(!empty($layout_elements))
+            foreach ($layout_elements as $elementIndex => $element):
 
                 ob_start();
 
@@ -141,14 +140,6 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
                 $layout_elements_option[$elementIndex] = ob_get_clean();
 
             endforeach;
-
-
-
-
-            //echo '<pre>'.var_export($layout_elements_data, true).'</pre>';
-
-
-
 
             ob_start();
 
@@ -178,7 +169,8 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
                 <div class="layout-tags">
                     <?php
 
-                    foreach ($layout_elements_list as $elementIndex => $element):
+                    if(!empty($layout_elements))
+                    foreach ($layout_elements as $elementIndex => $element):
                         $element_name = isset($element['name']) ? $element['name'] : '';
                         ?>
                         <span input_name="<?php echo 'layout_elements_data'; ?>"  tag_id="<?php echo $elementIndex; ?>"><?php echo $element_name; ?></span>
@@ -206,7 +198,7 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
                     else:
                         ?>
                         <div class="empty-element">
-                            <?php echo sprintf(__('%s Click to add tags.','breadcrumb'), '<i class="far fa-hand-point-up"></i>') ?>
+                            <?php echo sprintf(__('%s Click to add tags.','team'), '<i class="far fa-hand-point-up"></i>') ?>
                         </div>
                     <?php
                     endif;
@@ -248,8 +240,8 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
             $args = array(
                 'id'		=> 'layout_builder',
                 //'parent'		=> '',
-                'title'		=> __('Layout elements','job-board-manager'),
-                'details'	=> __('Customize layout elements.','job-board-manager'),
+                'title'		=> __('Layout elements','team'),
+                'details'	=> __('Customize layout elements.','team'),
                 'type'		=> 'custom_html',
                 'html'		=> $html,
                 'default'		=> '',
@@ -344,8 +336,8 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
             $args = array(
                 'id'		=> 'layout_preview',
                 //'parent'		=> '',
-                'title'		=> __('Layout preview','job-board-manager'),
-                'details'	=> '',
+                'title'		=> __('Layout preview','team'),
+                'details'	=> __('Layout preview','team'),
                 'type'		=> 'custom_html',
                 'html'		=> $html,
                 'default'		=> '',

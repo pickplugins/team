@@ -74,7 +74,16 @@ jQuery(document).ready(function($){
     //     $("#media_preview_<?php echo $id; ?>").attr("src","");
     // })
 
+    $(document).on('click','.settings-tabs .field-media-wrapper .clear ',function(e){
 
+        $(this).parent().children().children('.media-preview').attr('src', '');
+        $(this).parent().children().children('.media-title').html('');
+        $(this).parent().children('.media-input-value').val('');
+
+        placeholder = $(this).attr('placeholder');
+        $(this).parent().children().children('.media-preview').attr('src', placeholder);
+
+    })
 
     $(document).on('click','.settings-tabs .field-media-wrapper .media-upload',function(e){
         var side_uploader;
@@ -99,13 +108,16 @@ jQuery(document).ready(function($){
             attachment = side_uploader.state().get('selection').first().toJSON();
 
             attachmentId = attachment.id;
+
             src_url = attachment.url;
+            src_filename = attachment.filename;
+
             //console.log(attachment);
 
             $(this_).prev().val(attachmentId);
 
             $(this_).parent().children('.media-preview-wrap').children('img').attr('src',src_url);
-
+            $(this_).parent().children().children('.media-title').html(src_filename);
         });
 
         //Open the uploader dialog

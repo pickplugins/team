@@ -306,11 +306,18 @@ class settings_tabs_field{
 
         $media_url	= wp_get_attachment_url( $value );
         $media_type	= get_post_mime_type( $value );
-        $media_title= get_the_title( $value );
+        $media_title = !empty($value) ? get_the_title( $value ) : __('Placeholder.jpg','settings-tabs');
+
+
         $media_url = !empty($media_url) ? $media_url : $default;
+
+        $placeholder = 'https://i.imgur.com/qOPTTdQ.jpg';
+        $media_url = !empty($media_url) ? $media_url : $placeholder;
+        $media_basename = wp_basename($media_type);
 
         $field_name     = !empty( $field_name ) ? $field_name : $id;
         $field_name = !empty($parent) ? $parent.'['.$field_name.']' : $field_name;
+
 
 
 
@@ -320,7 +327,7 @@ class settings_tabs_field{
         ?>
         <div id="input-wrapper-<?php echo $css_id; ?>" class="input-wrapper field-media-wrapper
             field-media-wrapper-<?php echo $css_id; ?>">
-            <div class="media-preview-wrap" style="width: 150px;margin-bottom: 10px;background: #eee;padding: 5px;    text-align: center;">
+            <div class="media-preview-wrap" style="width: 150px;margin-bottom: 10px;background: #eee;padding: 5px;    text-align: center;word-break: break-all;">
                 <?php
 
                 //var_dump($media_type);
@@ -328,10 +335,9 @@ class settings_tabs_field{
                 if( "audio/mpeg" == $media_type ){
                     ?>
                     <div class="media-preview" class="dashicons dashicons-format-audio" style="font-size: 70px;display: inline;"></div>
-                    <div><?php echo $media_title; ?></div>
+                    <div class="media-title"><?php echo $media_title; ?></div>
                     <?php
-                }
-                elseif( "images/png" == $media_type ||
+                }elseif( "images/png" == $media_type ||
                     "image/png" == $media_type ||
                     "images/gif" == $media_type  ||
                     "image/gif" == $media_type  ||
@@ -344,21 +350,20 @@ class settings_tabs_field{
                 ){
                     ?>
                     <img class="media-preview" src="<?php echo $media_url; ?>" style="width:100%"/>
-                    <div><?php echo $media_title; ?></div>
+                    <div class="media-title"><?php echo $media_title; ?></div>
                     <?php
-                }
-
-                else {
+                }else {
                     ?>
-                    <span><?php echo wp_basename($media_type); ?></span>
+                    <img class="media-preview" src="<?php echo $media_url; ?>" style="width:100%"/>
+                    <div class="media-title"><?php echo $media_title; ?></div>
 
                     <?php
                 }
                 ?>
             </div>
-            <input type="hidden" name="<?php echo $field_name; ?>" id="media_input_<?php echo $css_id; ?>" value="<?php echo $value; ?>" />
-            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload','breadcrumb');?></div>
-            <div class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','breadcrumb');?></div>
+            <input class="media-input-value" type="hidden" name="<?php echo $field_name; ?>" id="media_input_<?php echo $css_id; ?>" value="<?php echo $value; ?>" />
+            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload','team');?></div>
+            <div placeholder="<?php echo $placeholder; ?>" class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','breadcrumb');?></div>
             <div class="error-mgs"></div>
         </div>
 

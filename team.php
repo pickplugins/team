@@ -120,12 +120,12 @@ class Team{
 
         $schedules['2minute'] = array(
             'interval'  => 120,
-            'display'   => __( '2 Minute', 'textdomain' )
+            'display'   => __( '2 Minute', 'team' )
         );
 
         $schedules['5minute'] = array(
             'interval'  => 300,
-            'display'   => __( '5 Minute', 'textdomain' )
+            'display'   => __( '5 Minute', 'team' )
         );
 
 

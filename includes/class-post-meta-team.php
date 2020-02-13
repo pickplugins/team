@@ -126,15 +126,17 @@ class class_team_post_meta_team{
 
                 <?php
 
+                $team_view_types = apply_filters('team_view_types', array('grid'=>'Grid'));
+
                 $args = array(
                     'id'		=> 'view_type',
                     'parent'		=> 'team_options',
-                    'title'		=> __('View type','job-board-manager'),
+                    'title'		=> __('View type','team'),
                     'details'	=> '',
                     'type'		=> 'radio',
                     'value'		=> $view_type,
                     'default'		=> '',
-                    'args'		=> array('grid'=>'Grid','slider'=>'Slider','filterable'=>'Filterable','glossary'=>'Glossary'  ),
+                    'args'		=> $team_view_types,
                 );
 
                 $settings_tabs_field->generate_field($args);

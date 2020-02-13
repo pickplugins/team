@@ -140,6 +140,10 @@ if(!function_exists('team_cron_upgrade_team_members')){
             while ($wp_query->have_posts()) : $wp_query->the_post();
 
                 $team_member_id = get_the_id();
+                $team_member_title = get_the_title();
+
+                var_dump($team_member_title);
+
                 $team_member_data = array();
 
                 $team_member_social_links = get_post_meta( $team_member_id, 'team_member_social_links', true );
@@ -149,6 +153,10 @@ if(!function_exists('team_cron_upgrade_team_members')){
 
                 $team_member_link_to_post = get_post_meta( $team_member_id, 'team_member_link_to_post', true );
                 $team_member_data['custom_fields']['custom_link'] = $team_member_link_to_post;
+
+                $team_member_skill = get_post_meta( $team_member_id, 'team_member_skill', true );
+
+
 
                 if(!empty($custom_meta_fields))
                 foreach ($custom_meta_fields as $field){
@@ -171,6 +179,16 @@ if(!function_exists('team_cron_upgrade_team_members')){
 
                     $team_member_data['social_fields'][$field_meta_key] = isset($team_member_social_links[$field_meta_key]) ? $team_member_social_links[$field_meta_key] : '';
                 }
+
+
+                if(!empty($team_member_skill))
+                foreach ($team_member_skill as $skillIndex => $skill){
+                    $skill_name = isset($skill['name']) ? $skill['name'] : '';
+                    $skill_value = isset($skill['value']) ? $skill['value'] : '';
+
+                    $team_member_data['skill'][] = array('skill_name'=> $skill_name, 'skill_value'=> $skill_value);
+                }
+
 
 
                 $thumbnail_id = get_post_thumbnail_id($team_member_id);

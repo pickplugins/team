@@ -22,8 +22,8 @@ function team_settings_content_general(){
         $args = array(
             'id'		=> 'wrapper_id',
             'parent' => 'team_settings',
-            'title'		=> __('Team member slug','breadcrumb'),
-            'details'	=> __('Write custom team member slug.','breadcrumb'),
+            'title'		=> __('Team member slug','team'),
+            'details'	=> __('Write custom team member slug.','team'),
             'type'		=> 'text',
             'value'		=> $team_member_slug,
             'default'		=> '',
