@@ -73,6 +73,14 @@ function team_showcase_main_items($args){
 
             ?>
         </div>
+
+        <?php
+        $args['paged'] = $paged;
+
+        do_action('team_showcase_after_items', $wp_query, $args);
+
+        ?>
+
         <?php
     else:
         do_action('team_showcase_no_item');
@@ -250,8 +258,6 @@ function team_showcase_item_elements_title($args){
 
 
 add_action('team_showcase_item_elements_thumbnail', 'team_showcase_item_elements_thumbnail');
-
-
 function team_showcase_item_elements_thumbnail($args){
 
     $element_index = isset($args['element_index']) ? $args['element_index'] : '';
@@ -280,8 +286,6 @@ function team_showcase_item_elements_thumbnail($args){
 
 
 add_action('team_showcase_item_elements_position', 'team_showcase_item_elements_position');
-
-
 function team_showcase_item_elements_position($args){
 
     $element_index = isset($args['element_index']) ? $args['element_index'] : '';
@@ -300,9 +304,93 @@ function team_showcase_item_elements_position($args){
 }
 
 
+
+add_action('team_showcase_item_elements_social', 'team_showcase_item_elements_social');
+function team_showcase_item_elements_social($args){
+
+    $element_index = isset($args['element_index']) ? $args['element_index'] : '';
+    $element_class = !empty($element_index) ? 'element-'.$element_index : '';
+
+    //
+    $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
+    $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+
+    $social_icon_type = isset($elementData['social_icon_type']) ? $elementData['social_icon_type'] : '';
+    $social_icon_width = isset($elementData['social_icon_width']) ? $elementData['social_icon_width'] : '';
+    $social_icon_height = isset($elementData['social_icon_height']) ? $elementData['social_icon_height'] : '';
+    $social_icon_color = isset($elementData['color']) ? $elementData['color'] : '';
+    $social_icon_font_size = isset($elementData['font_size']) ? $elementData['font_size'] : '';
+    $social_icon_font_family = isset($elementData['font_family']) ? $elementData['font_family'] : '';
+
+
+
+    $team_member_data = get_post_meta($team_member_id, 'team_member_data', true);
+    $social_fields = isset($team_member_data['social_fields']) ? $team_member_data['social_fields'] : '';
+
+    $team_settings = get_option('team_settings');
+    $custom_social_fields = isset($team_settings['custom_social_fields']) ? $team_settings['custom_social_fields'] : array();
+
+    $social_fields_data = array();
+
+    foreach ($custom_social_fields as $social_field){
+
+        $name = isset($social_field['name']) ? $social_field['name'] : '';
+        $meta_key = isset($social_field['meta_key']) ? $social_field['meta_key'] : '';
+        $icon = isset($social_field['icon']) ? $social_field['icon'] : '';
+        $visibility = isset($social_field['visibility']) ? $social_field['visibility'] : '';
+
+        $social_fields_data[$meta_key] = array('icon'=>$icon, 'name'=>$name, 'visibility'=>$visibility,);
+    }
+
+    //echo '<pre>'.var_export($elementData, true).'</pre>';
+
+
+    ob_start();
+
+    if(!empty($social_fields)):
+        foreach ($social_fields as $fieldIndex => $field):
+
+            $field_icon = isset($social_fields_data[$fieldIndex]['icon']) ? $social_fields_data[$fieldIndex]['icon'] : '';
+
+            if(!empty($field_icon) && !empty($field)):
+                ?>
+                <span><a href="<?php echo $field; ?>"><img src="<?php echo $field_icon; ?>"></a></span>
+                <?php
+            endif;
+
+
+        endforeach;
+
+    endif;
+
+    $html = ob_get_clean();
+
+    ?>
+    <div class="team-social <?php echo $element_class; ?>"><?php echo $html; ?></div>
+
+    <style type="text/css">
+        .team-social{
+            margin: 15px 0;
+        }
+        .team-social a{}
+        .team-social a img{
+            width: <?php echo $social_icon_width; ?>;
+            height: <?php echo $social_icon_height; ?>;
+            display: inline-block !important;
+            border-radius: 0;
+            box-shadow: none;
+        }
+    </style>
+
+
+    <?php
+
+}
+
+
+
+
 add_action('team_showcase_item_elements_content', 'team_showcase_item_elements_content');
-
-
 function team_showcase_item_elements_content($args){
 
     $element_index = isset($args['element_index']) ? $args['element_index'] : '';
@@ -517,4 +605,100 @@ function team_showcase_item_elements_css_thumbnail($args){
 
 
 
+add_action('team_showcase_main', 'team_showcase_main_masonry', 99);
+
+function team_showcase_main_masonry($args){
+    $team_id = isset($args['team_id']) ? $args['team_id'] : '';
+
+    $team_options = get_post_meta($team_id, 'team_options', true);
+    $view_type = isset($team_options['view_type']) ? $team_options['view_type'] : '';
+    $masonry_enable = isset($team_options['masonry_enable']) ? $team_options['masonry_enable'] : 'no';
+
+    if ($view_type != 'grid') return;
+    if ($masonry_enable != 'yes') return;
+
+    wp_enqueue_script('masonry');
+    wp_enqueue_script('imagesloaded');
+
+    ?>
+    <script>
+        jQuery('#team-<?php echo $team_id; ?>').ready(function($){
+
+            var $container = $('#team-<?php echo $team_id; ?> .team-items');
+
+            $container.masonry({
+                itemSelector: '.item',
+                columnWidth: '.item', //as you wish , you can use numeric
+                isAnimated: true,
+                isFitWidth: true,
+                horizontalOrder: true,
+            });
+
+
+            $container.imagesLoaded().done( function() {
+                $container.masonry('layout');
+            });
+
+
+
+        })
+
+
+    </script>
+    <?php
+
+}
+
+
+
+
+add_action('team_showcase_after_items', 'team_showcase_after_items_pagination', 10, 2);
+
+function team_showcase_after_items_pagination($wp_query, $args){
+    $team_id = isset($args['team_id']) ? $args['team_id'] : '';
+    $paged = isset($args['paged']) ? $args['paged'] : 1;
+
+
+    $team_options = get_post_meta($team_id, 'team_options', true);
+    $view_type = isset($team_options['view_type']) ? $team_options['view_type'] : '';
+    $masonry_enable = isset($team_options['masonry_enable']) ? $team_options['masonry_enable'] : '';
+
+    if ($view_type != 'grid') return;
+
+    $pagination = isset($team_options['pagination']) ? $team_options['pagination'] : '';
+    $pagination_prev_text = isset($pagination['prev_text']) ? $pagination['prev_text'] : '';
+    $pagination_next_text = isset($pagination['next_text']) ? $pagination['next_text'] : '';
+    $pagination_background_color = isset($pagination['background_color']) ? $pagination['background_color'] : '';
+    $pagination_active_background_color = isset($pagination['active_background_color']) ? $pagination['active_background_color'] : '';
+
+    //var_dump($paged);
+
+
+    ?>
+    <div class="paginate">
+        <?php
+
+        $big = 999999999; // need an unlikely integer
+        echo paginate_links( array(
+            'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+            'format' => '?paged=%#%',
+            'current' => max( 1, $paged ),
+            'total' => $wp_query->max_num_pages
+        ) );
+
+        ?>
+    </div>
+
+    <style type="text/css">
+        #team-<?php echo $team_id; ?> .paginate .page-numbers{
+            background-color: <?php echo $pagination_background_color; ?>;
+        }
+        #team-<?php echo $team_id; ?> .paginate .current{
+            background-color: <?php echo $pagination_active_background_color; ?>;
+        }
+    </style>
+
+    <?php
+
+}
 

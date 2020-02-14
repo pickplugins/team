@@ -150,9 +150,10 @@ class Team{
 		wp_enqueue_style('single-team-member', plugins_url( 'assets/front/css/single-team-member.css', __FILE__ ));			
 
 		wp_enqueue_style('team-style.skins', plugins_url( 'assets/global/css/style.skins.css', __FILE__ ));			
-		wp_enqueue_style('team-style.layout', plugins_url( 'assets/global/css/style.layout.css', __FILE__ ));				
+		wp_enqueue_style('team-style.layout', plugins_url( 'assets/global/css/style.layout.css', __FILE__ ));
 
-		wp_enqueue_script('masonry.pkgd.min', plugins_url( '/assets/front/js/masonry.pkgd.min.js' , __FILE__ ) , array( 'jquery' ));
+        wp_register_script('masonry', plugins_url( '/assets/front/js/masonry.js' , __FILE__ ) , array( 'jquery' ));
+        wp_register_script('imagesloaded', plugins_url( '/assets/front/js/imagesloaded.js' , __FILE__ ) , array( 'jquery' ));
 
 
 		do_action('team_action_front_scripts');

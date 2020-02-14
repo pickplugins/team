@@ -81,36 +81,6 @@
 
 
 
-.team-container .team-social {
-    }
-
-.team-container .team-social.text_link{
-    }
-
-.team-container .team-social.text_link span {
-	display: inline-block;
-	margin: 0 5px;
-	
-}
-
-.team-container .team-social.text_link span a{
-	text-decoration: none;
-    }
-
-.team-container .team-social span {
-    -webkit-background-size: 100% auto !important;
-    background-size: 100% auto !important;
-    display: inline-block;
-    height: 20px;
-    margin: 0 2px;
-    width: 20px
-    }
-
-.team-container .team-social a {
-    display: block;
-    height: 100%;
-    width: 100%
-    }
 
 
 
@@ -140,50 +110,6 @@
     -webkit-border-radius: 10px;
     border-radius: 5px
     }
-
-.team-container .team-social .website {
-    background: url(icons/website.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
-    }
-
-.team-container .team-social .email {
-    background: url(icons/email.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
-    }
-
-.team-container .team-social .skype {
-    background: url(icons/skype.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
-    }
-
-.team-container .team-social .mobile {
-    background: url(icons/mobile.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
-    }
-
-.team-container .team-social .facebook {
-    background: url(icons/facebook.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
-    }
-
-.team-container .team-social .twitter {
-    background: url(icons/twitter.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
-    }
-
-.team-container .team-social .googleplus {
-    background: url(icons/googleplus.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
-    }
-
-.team-container .team-social .pinterest {
-    background: url(icons/pinterest.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
-    }
-	
-.team-container .team-social .linkedin {
-    background: url(icons/linkedin.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
-    }	
-	
-.team-container .team-social .vimeo {
-    background: url(icons/vimeo.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
-    }	
-	
-.team-container .team-social .instagram {
-    background: url(icons/instagram.png) repeat scroll 0 0 rgba(0, 0, 0, 0)
-    }	
 
 /*   ###################skill###########################   */
 
