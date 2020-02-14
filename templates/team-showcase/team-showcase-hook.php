@@ -7,6 +7,16 @@ function team_showcase_main_items($args){
 
     $team_id = isset($args['team_id']) ? $args['team_id'] : '';
 
+    $team_options       = get_post_meta( $team_id, 'team_options', true );
+    $query              = isset($team_options['query']) ? $team_options['query'] : '';
+    $query_orderby      = isset($query['orderby']) ? $query['orderby'] : '';
+    $query_orderby_meta_key = isset($query['orderby_meta_key']) ? $query['orderby_meta_key'] : '';
+    $query_order        = isset($query['order']) ? $query['order'] : '';
+    $query_post_per_page = isset($query['post_per_page']) ? $query['post_per_page'] : '';
+    $query_taxonomy_terms        = isset($query['taxonomy_terms']) ? $query['taxonomy_terms'] : '';
+
+
+
     //if(empty($post_id)) return;
 
     $tax_query = array();
@@ -20,21 +30,23 @@ function team_showcase_main_items($args){
     }
 
     $query_args['post_type'] 		= 'team_member';
-    $query_args['orderby']  		= get_post_meta( $team_id, 'team_query_orderby', true );;
-    //$query_args['meta_key'] = get_post_meta( $team_id, 'team_query_orderby_meta_key', true );
-    $query_args['order']  			= get_post_meta( $team_id, 'team_query_order', true );
-    $query_args['posts_per_page'] 	= get_post_meta( $team_id, 'team_total_items', true );
+    $query_args['orderby']  		= $query_orderby;
+
+    if(!empty($query_orderby_meta_key))
+    $query_args['meta_key']         = $query_orderby_meta_key;
+
+    $query_args['order']  			= $query_order;
+    $query_args['posts_per_page'] 	= $query_post_per_page;
     $query_args['paged']  			= $paged;
 
-    $team_taxonomy_terms = get_post_meta( $team_id, 'team_taxonomy_terms', true );
 
-    if(!empty($team_taxonomy_terms)){
+    if(!empty($query_taxonomy_terms)){
 
         $query_args['tax_query']  	= array(
             array(
                 'taxonomy' => 'team_group',
                 'field' => 'id',
-                'terms' => $team_taxonomy_terms,
+                'terms' => $query_taxonomy_terms,
             )
         );
 
@@ -45,7 +57,7 @@ function team_showcase_main_items($args){
 
     if ( $wp_query->have_posts() ) :
 
-        $team_items_class = apply_filters('team_items_wrapper_class', 'team-items', $args);
+        $team_items_class = apply_filters('team_items_wrapper_class', 'team-items ', $args);
 
         ?>
         <div class="<?php echo $team_items_class; ?>">
@@ -79,19 +91,18 @@ add_action('team_showcase_item', 'team_showcase_item', 10, 2);
 function team_showcase_item($args, $team_member_id){
 
     $team_id = isset($args['team_id']) ? $args['team_id'] : '';
-    $team_themes = get_post_meta( $team_id, 'team_themes', true );
+
+    $args['team_member_id'] = $team_member_id;
+
     $team_options = get_post_meta( $team_id, 'team_options', true );
     $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : '';
     $layout_elements_data = get_post_meta( $item_layout_id, 'layout_elements_data', true );
 
-
-    $grid_item_layout = get_post_meta( $team_id, 'grid_item_layout', true );
-
-    //echo '<pre>'.var_export($layout_elements_data, true).'</pre>';
+    $team_item_class = apply_filters('team_showcase_item_class', 'item ', $args);
 
 
     ?>
-    <div class="item skin <?php echo team_term_slug_list($team_member_id); ?>">
+    <div class="<?php echo $team_item_class; ?>">
 
         <?php
         ?>
@@ -149,19 +160,6 @@ function team_showcase_main_custom_css($args){
     $container_background_color = isset($team_options['container']['background_color']) ? $team_options['container']['background_color'] : '';
     $container_text_align = isset($team_options['container']['text_align']) ? $team_options['container']['text_align'] : '';
 
-
-
-    $team_container_bg_color = get_post_meta( $team_id, 'team_container_bg_color', true );
-    $team_bg_img = get_post_meta( $team_id, 'team_bg_img', true );
-    $team_grid_item_align = get_post_meta( $team_id, 'team_grid_item_align', true );
-    $team_item_text_align = get_post_meta( $team_id, 'team_item_text_align', true );
-    $team_items_margin = get_post_meta( $team_id, 'team_items_margin', true );
-    $team_items_max_width = get_post_meta( $team_id, 'team_items_max_width', true );
-
-    $team_items_width_tablet = get_post_meta( $team_id, 'team_items_width_tablet', true );
-    $team_items_width_mobile = get_post_meta( $team_id, 'team_items_width_mobile', true );
-
-    $team_options = get_post_meta( $team_id, 'team_options', true );
     $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : '';
 
     $custom_scripts = get_post_meta($item_layout_id,'custom_scripts', true);

@@ -191,9 +191,8 @@
 
 
 .settings-tabs .setting-field{
-    margin-bottom: 15px;
     border-bottom: 1px solid #eee;
-    padding: 0 15px 15px 15px;
+    padding: 15px;
 }
 .settings-tabs .setting-field:last-child{
     border-bottom: 1px solid #eee0;
@@ -250,6 +249,13 @@
     margin-left: 0px;
 }
 
+.settings-tabs .field-error {
+    background: #ff3f3f1a;
+}
+
+.settings-tabs .field-error .error-details{
+    color: #c11f1f;
+}
 
 /*field-repeatable-wrapper*/
 

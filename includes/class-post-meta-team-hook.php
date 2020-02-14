@@ -347,8 +347,9 @@ function team_metabox_content_query_member($post_id){
         foreach($categories as $category){
             $cat_ID = $category->cat_ID;
             $cat_name = $category->cat_name;
+            $cat_count = $category->count;
 
-            $team_groups[$cat_ID] = $cat_name;
+            $team_groups[$cat_ID] = $cat_name.'('.$cat_count.')';
         }
 
 
@@ -359,7 +360,7 @@ function team_metabox_content_query_member($post_id){
             'details'	=> __('Choose team groups.','team'),
             'type'		=> 'checkbox',
             'value'		=> $query_taxonomy_terms,
-            'default'		=> '',
+            'default'		=> array(),
             'args'		=> $team_groups,
         );
 
