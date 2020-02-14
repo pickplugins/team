@@ -15,7 +15,7 @@ function team_showcase_main_items($args){
     $query_post_per_page = isset($query['post_per_page']) ? $query['post_per_page'] : '';
     $query_taxonomy_terms        = isset($query['taxonomy_terms']) ? $query['taxonomy_terms'] : '';
 
-
+    wp_enqueue_style( 'font-awesome-5' );
 
     //if(empty($post_id)) return;
 
@@ -325,7 +325,7 @@ function team_showcase_item_elements_social($args){
 
 
     $team_member_data = get_post_meta($team_member_id, 'team_member_data', true);
-    $social_fields = isset($team_member_data['social_fields']) ? $team_member_data['social_fields'] : '';
+    $social_fields = isset($team_member_data['social_fields']) ? $team_member_data['social_fields'] : array();
 
     $team_settings = get_option('team_settings');
     $custom_social_fields = isset($team_settings['custom_social_fields']) ? $team_settings['custom_social_fields'] : array();
@@ -337,12 +337,14 @@ function team_showcase_item_elements_social($args){
         $name = isset($social_field['name']) ? $social_field['name'] : '';
         $meta_key = isset($social_field['meta_key']) ? $social_field['meta_key'] : '';
         $icon = isset($social_field['icon']) ? $social_field['icon'] : '';
+        $font_icon = isset($social_field['font_icon']) ? $social_field['font_icon'] : '';
+
         $visibility = isset($social_field['visibility']) ? $social_field['visibility'] : '';
 
-        $social_fields_data[$meta_key] = array('icon'=>$icon, 'name'=>$name, 'visibility'=>$visibility,);
+        $social_fields_data[$meta_key] = array('icon'=>$icon, 'font_icon'=>$font_icon, 'name'=>$name, 'visibility'=>$visibility,);
     }
 
-    //echo '<pre>'.var_export($elementData, true).'</pre>';
+
 
 
     ob_start();
@@ -351,10 +353,33 @@ function team_showcase_item_elements_social($args){
         foreach ($social_fields as $fieldIndex => $field):
 
             $field_icon = isset($social_fields_data[$fieldIndex]['icon']) ? $social_fields_data[$fieldIndex]['icon'] : '';
+            $field_font_icon = isset($social_fields_data[$fieldIndex]['font_icon']) ? $social_fields_data[$fieldIndex]['font_icon'] : '';
+            //echo '<pre>'.var_export($field_font_icon, true).'</pre>';
 
-            if(!empty($field_icon) && !empty($field)):
+            if(!empty($field)):
                 ?>
-                <span><a href="<?php echo $field; ?>"><img src="<?php echo $field_icon; ?>"></a></span>
+                <span class="<?php echo $social_icon_type; ?>">
+                    <a href="<?php echo $field; ?>">
+                        <?php
+                        if($social_icon_type == 'image_icon'):
+
+                            if(!empty($field_icon)):
+                            ?><img src="<?php echo $field_icon; ?>"><?php
+                            endif;
+
+                        elseif($social_icon_type == 'font_icon'):
+
+                            if(!empty($field_font_icon)):
+                            ?><?php echo $field_font_icon; ?><?php
+                            endif;
+
+                        elseif($social_icon_type == 'text_link'):
+
+                                ?><?php echo $field_font_icon; ?> <?php echo $field; ?><?php
+                        endif;
+
+                        ?></a>
+                </span>
                 <?php
             endif;
 
@@ -372,7 +397,19 @@ function team_showcase_item_elements_social($args){
         .team-social{
             margin: 15px 0;
         }
-        .team-social a{}
+        .team-social a{
+            font-size: <?php echo $social_icon_font_size; ?>;
+            color: <?php echo $social_icon_color; ?>;
+        }
+
+        .team-social .text_link{
+            display: block;
+        }
+
+        .team-social .text_link a{
+            text-decoration: none;
+        }
+
         .team-social a img{
             width: <?php echo $social_icon_width; ?>;
             height: <?php echo $social_icon_height; ?>;
@@ -380,6 +417,9 @@ function team_showcase_item_elements_social($args){
             border-radius: 0;
             box-shadow: none;
         }
+
+
+
     </style>
 
 

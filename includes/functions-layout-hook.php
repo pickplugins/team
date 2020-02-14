@@ -490,7 +490,7 @@ function layout_elements_option_social($parameters){
                 'type'		=> 'select',
                 'value'		=> $social_icon_type,
                 'default'		=> 'image_icon',
-                'args'		=> array('image_icon'=> __('Image icon', 'team'), 'text_link'=> __('Text link', 'team')),
+                'args'		=> array('image_icon'=> __('Image icon', 'team'), 'font_icon'=> __('Font icon', 'team'), 'text_link'=> __('Text link', 'team')),
             );
 
             $settings_tabs_field->generate_field($args);

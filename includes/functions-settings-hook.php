@@ -100,16 +100,27 @@ function team_settings_content_general(){
             array(
                 'id'		=> 'icon',
                 'title'		=> __('Add icon','team'),
-                'details'	=> __('Write meta key here.','team'),
+                'details'	=> __('Upload icon image here.','team'),
                 'type'		=> 'media_url',
                 'value'		=> '',
                 'default'		=> '',
                 'placeholder'		=> '',
             ),
+
+            array(
+                'id'		=> 'font_icon',
+                'title'		=> __('Add font icon','team'),
+                'details'	=> __('Add font icon html here, you can use <a href="https://fontawesome.com/icons">fontawesome</a>  ex: <code> &lt;i class="fab fa-facebook-square">&lt;/i></code>.','team'),
+                'type'		=> 'text',
+                'value'		=> '',
+                'default'		=> '',
+                'placeholder'		=> '<i class=&quot;fab fa-facebook-square&quot;></i>',
+            ),
+
             array(
                 'id'		=> 'visibility',
                 'title'		=> __('Visibility','team'),
-                'details'	=> __('Write meta key here.','team'),
+                'details'	=> __('Choose visibility.','team'),
                 'type'		=> 'select',
                 'value'		=> '',
                 'default'		=> '',

@@ -154,6 +154,7 @@ class Team{
 
         wp_register_script('masonry', plugins_url( '/assets/front/js/masonry.js' , __FILE__ ) , array( 'jquery' ));
         wp_register_script('imagesloaded', plugins_url( '/assets/front/js/imagesloaded.js' , __FILE__ ) , array( 'jquery' ));
+        wp_register_style('font-awesome-5', team_plugin_url.'assets/admin/css/fontawesome.css');
 
 
 		do_action('team_action_front_scripts');
