@@ -2,10 +2,13 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
 $team_plugin_info = get_option('team_plugin_info');
-
 $team_settings_upgrade = isset($team_plugin_info['settings_upgrade']) ? $team_plugin_info['settings_upgrade'] : '';
 $team_members_upgrade = isset($team_plugin_info['team_members_upgrade']) ? $team_plugin_info['team_members_upgrade'] : '';
 $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['team_upgrade'] : '';
+
+//echo '<pre>'.var_export($team_plugin_info, ture).'</pre>';
+
+
 
 ?>
 <?php
@@ -16,6 +19,8 @@ $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['te
     <p>Team settings and team member data should automatic upgrade. please wait until all team member and team data update completed. each loop will take 2 minute to completed, based on your team members and team it will take take few minutes to completed.</p>
     <p>If you have any issue please <a href="https://www.pickplugins.com/forum/">create support ticket</a> on our forum</p>
     <p>Don't panic while updating, your old data still saved on database and you can downgrade plugin any time, please <a href="https://wordpress.org/plugins/team/advanced/#plugin-download-history-stats">download from here</a> old version and reinstall.</p>
+
+
 
     <h3>Team settings upgrade status</h3>
 

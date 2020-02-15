@@ -240,7 +240,7 @@ function team_cron_upgrade_team(){
     $args = array(
         'post_type'=>'team',
         'post_status'=>'any',
-        'posts_per_page'=> 2,
+        'posts_per_page'=> 5,
         'meta_query'=> $meta_query,
 
     );

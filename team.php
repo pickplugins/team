@@ -52,6 +52,7 @@ class Team{
         include( 'includes/class-post-meta-team-layout-hook.php' );
         include( 'includes/class-post-meta-team-member.php' );
         include( 'includes/class-post-meta-team-member-hook.php' );
+        include( 'includes/class-admin-notices.php' );
 
 
         include_once team_plugin_dir.'/templates/team-showcase/team-showcase-hook.php';
@@ -83,12 +84,13 @@ class Team{
 		
 	public function _activation(){
 
+
         $team_plugin_info = get_option('team_plugin_info');
         $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['team_upgrade'] : '';
 
 
         if($team_upgrade != 'done'){
-            wp_schedule_event(time(), '2minute', 'team_cron_upgrade_settings');
+            //wp_schedule_event(time(), '2minute', 'team_cron_upgrade_settings');
         }
 
 

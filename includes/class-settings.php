@@ -15,12 +15,12 @@ class team_class_settings{
 	public function admin_menu() {
 
         $team_plugin_info = get_option('team_plugin_info');
-        $team_settings_upgrade = isset($team_plugin_info['settings_upgrade']) ? $team_plugin_info['settings_upgrade'] : '';
+        $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['team_upgrade'] : '';
 
         add_submenu_page( 'edit.php?post_type=team', __( 'Settings', 'team' ), __( 'Settings', 'team' ), 'manage_options', 'settings', array( $this, 'settings' ) );
 
 
-        if($team_settings_upgrade != 'done'){
+        if($team_upgrade != 'done'){
             add_submenu_page( 'edit.php?post_type=team', __( 'Upgrade status', 'team' ), __( 'Upgrade status', 'team' ), 'manage_options', 'upgrade_status', array( $this, 'upgrade_status' ) );
 
         }
