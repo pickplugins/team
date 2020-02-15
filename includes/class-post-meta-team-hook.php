@@ -619,7 +619,7 @@ function team_metabox_content_pagination($post_id){
             'type'		=> 'radio',
             'value'		=> $pagination_type,
             'default'		=> 'normal',
-            'args'		=> array('none'=>'None','normal'=>'Normal','jquery'=>'jQuery pagination','ajax'=>'Ajax' ),
+            'args'		=> apply_filters('team_pagination_types', array('none'=>'None','pagination'=>'Normal' )),
         );
 
         $settings_tabs_field->generate_field($args);

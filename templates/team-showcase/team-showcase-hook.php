@@ -706,11 +706,14 @@ function team_showcase_after_items_pagination($wp_query, $args){
 
     $team_options = get_post_meta($team_id, 'team_options', true);
     $view_type = isset($team_options['view_type']) ? $team_options['view_type'] : '';
-    $masonry_enable = isset($team_options['masonry_enable']) ? $team_options['masonry_enable'] : '';
-
-    if ($view_type != 'grid') return;
-
     $pagination = isset($team_options['pagination']) ? $team_options['pagination'] : '';
+    $pagination_type = isset($pagination['type']) ? $pagination['type'] : '';
+
+    if ($view_type != 'grid' ) return;
+    if ($pagination_type != 'pagination' ) return;
+
+
+
     $pagination_prev_text = isset($pagination['prev_text']) ? $pagination['prev_text'] : '';
     $pagination_next_text = isset($pagination['next_text']) ? $pagination['next_text'] : '';
     $pagination_background_color = isset($pagination['background_color']) ? $pagination['background_color'] : '';

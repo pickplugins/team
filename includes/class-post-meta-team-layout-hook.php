@@ -260,6 +260,7 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
 
                 <div class="elements-wrapper layout-<?php echo $item_layout_id; ?>">
                     <?php
+                    if(!empty($layout_elements_data))
                     foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
                         foreach ($elementGroupData as $elementIndex => $elementData){
 
@@ -289,6 +290,7 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
 
             <?php
 
+            if(!empty($layout_elements_data))
             foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
                 foreach ($elementGroupData as $elementIndex => $elementData){
 
