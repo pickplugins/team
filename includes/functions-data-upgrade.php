@@ -48,23 +48,25 @@ function team_cron_upgrade_settings(){
         foreach ($team_member_social_field as $fieldIndex => $field){
             $field_name = isset($field['name']) ? $field['name'] : '';
             $field_meta_key = isset($field['meta_key']) ? $field['meta_key'] : '';
-            $field_icon = isset($field['icon']) ? $field['icon'] : '';
+            $field_icon = !empty($field['icon']) ? $field['icon'] : team_plugin_url.'assets/front/css/icons/'.$field_meta_key.'.png';
+            $font_icon = !empty($field['font_icon']) ? $field['font_icon'] : '';
+
             $field_visibility = isset($field['visibility']) ? $field['visibility'] : '';
 
-            $social_fields_new[] = array('name'=> $field_name, 'meta_key'=> $field_meta_key, 'icon'=> $field_icon, 'visibility'=> $field_visibility,   );
+            $social_fields_new[] = array('name'=> $field_name, 'meta_key'=> $field_meta_key, 'icon'=> $field_icon, 'font_icon'=> $font_icon,'visibility'=> $field_visibility,   );
         }
     }else{
 
-        $social_fields_new[] = array('name'=> 'Mobile', 'meta_key'=> 'mobile', 'icon'=> 'https://i.imgur.com/rXGIG9B.png', 'visibility'=> 1,   );
-        $social_fields_new[] = array('name'=> 'Website', 'meta_key'=> 'website', 'icon'=> 'https://i.imgur.com/Dcueqwy.png', 'visibility'=> 1,   );
-        $social_fields_new[] = array('name'=> 'Email', 'meta_key'=> 'email', 'icon'=> 'https://i.imgur.com/OS2saH8.png', 'visibility'=> 1,   );
-        $social_fields_new[] = array('name'=> 'Skype', 'meta_key'=> 'skype', 'icon'=> 'https://i.imgur.com/CmSSnZE.png', 'visibility'=> 1,   );
-        $social_fields_new[] = array('name'=> 'Facebook', 'meta_key'=> 'facebook', 'icon'=> 'https://i.imgur.com/IftZ9Ng.png', 'visibility'=> 1,   );
-        $social_fields_new[] = array('name'=> 'Twitter', 'meta_key'=> 'twitter', 'icon'=> 'https://i.imgur.com/JZDm0R5.png', 'visibility'=> 1,   );
-        $social_fields_new[] = array('name'=> 'Pinterest', 'meta_key'=> 'pinterest', 'icon'=> 'https://i.imgur.com/VxUWxZC.png', 'visibility'=> 1,   );
-        $social_fields_new[] = array('name'=> 'Linkedin', 'meta_key'=> 'linkedin', 'icon'=> 'https://i.imgur.com/8kuHCtD.png', 'visibility'=> 1,   );
-        $social_fields_new[] = array('name'=> 'Vimeo', 'meta_key'=> 'vimeo', 'icon'=> 'https://i.imgur.com/6b3drl7.png', 'visibility'=> 1,   );
-        $social_fields_new[] = array('name'=> 'Instagram', 'meta_key'=> 'instagram', 'icon'=> 'https://i.imgur.com/DYj382i.png', 'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Mobile', 'meta_key'=> 'mobile', 'icon'=> 'https://i.imgur.com/rXGIG9B.png','font_icon'=> '', 'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Website', 'meta_key'=> 'website', 'icon'=> 'https://i.imgur.com/Dcueqwy.png','font_icon'=> '',  'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Email', 'meta_key'=> 'email', 'icon'=> 'https://i.imgur.com/OS2saH8.png','font_icon'=> '',  'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Skype', 'meta_key'=> 'skype', 'icon'=> 'https://i.imgur.com/CmSSnZE.png','font_icon'=> '',  'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Facebook', 'meta_key'=> 'facebook', 'icon'=> 'https://i.imgur.com/IftZ9Ng.png','font_icon'=> '',  'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Twitter', 'meta_key'=> 'twitter', 'icon'=> 'https://i.imgur.com/JZDm0R5.png','font_icon'=> '',  'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Pinterest', 'meta_key'=> 'pinterest', 'icon'=> 'https://i.imgur.com/VxUWxZC.png','font_icon'=> '',  'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Linkedin', 'meta_key'=> 'linkedin', 'icon'=> 'https://i.imgur.com/8kuHCtD.png','font_icon'=> '',  'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Vimeo', 'meta_key'=> 'vimeo', 'icon'=> 'https://i.imgur.com/6b3drl7.png','font_icon'=> '',  'visibility'=> 1,   );
+        $social_fields_new[] = array('name'=> 'Instagram', 'meta_key'=> 'instagram', 'icon'=> 'https://i.imgur.com/DYj382i.png','font_icon'=> '',  'visibility'=> 1,   );
 
     }
 
@@ -74,7 +76,7 @@ function team_cron_upgrade_settings(){
 
     update_option('team_settings', $team_settings);
 
-    //echo '<pre>'.var_export($update_status, true).'</pre>';
+    echo '<pre>'.var_export($social_fields_new, true).'</pre>';
 
 
     wp_clear_scheduled_hook('team_cron_upgrade_settings');
@@ -83,11 +85,6 @@ function team_cron_upgrade_settings(){
     $team_plugin_info = get_option('team_plugin_info');
     $team_plugin_info['settings_upgrade'] = 'done';
     update_option('team_plugin_info', $team_plugin_info);
-
-
-
-
-
 
 }
 

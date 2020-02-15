@@ -6,7 +6,7 @@ $team_settings_upgrade = isset($team_plugin_info['settings_upgrade']) ? $team_pl
 $team_members_upgrade = isset($team_plugin_info['team_members_upgrade']) ? $team_plugin_info['team_members_upgrade'] : '';
 $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['team_upgrade'] : '';
 
-//echo '<pre>'.var_export($team_plugin_info, ture).'</pre>';
+echo '<pre>'.var_export($team_plugin_info, true).'</pre>';
 
 
 
@@ -26,7 +26,7 @@ $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['te
 
     <?php
 
-    if($team_settings_upgrade){
+    if(!empty($team_settings_upgrade)){
         ?>
         <p>Completed</p>
         <?php

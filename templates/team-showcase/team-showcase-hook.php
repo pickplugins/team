@@ -295,10 +295,15 @@ function team_showcase_item_elements_position($args){
     $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
 
-    $team_member_position = get_post_meta($team_member_id,'position', true);
+
+    $team_member_data = get_post_meta($team_member_id, 'team_member_data', true);
+    $position = isset($team_member_data['custom_fields']['position']) ? $team_member_data['custom_fields']['position'] : '';
+
+
+    //$team_member_position = get_post_meta($team_member_id,'position', true);
 
     ?>
-    <div class="team-position <?php echo $element_class; ?>"><?php echo $team_member_position; ?></div>
+    <div class="team-position <?php echo $element_class; ?>"><?php echo $position; ?></div>
     <?php
 
 }
