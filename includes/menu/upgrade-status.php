@@ -13,8 +13,9 @@ $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['te
 ?>
 <div class="wrap">
 	<div id="icon-tools" class="icon32"><br></div><h2><?php echo sprintf(__('%s Settings - Update', 'team'), team_plugin_name)?></h2>
-
-    <pre><?php echo var_export($team_plugin_info, true); ?></pre>
+    <p>Team settings and team member data should automatic upgrade. please wait until all team member and team data update completed. each loop will take 2 minute to completed, based on your team members and team it will take take few minutes to completed.</p>
+    <p>If you have any issue please <a href="https://www.pickplugins.com/forum/">create support ticket</a> on our forum</p>
+    <p>Don't panic while updating, your old data still saved on database and you can downgrade plugin any time, please <a href="https://wordpress.org/plugins/team/advanced/#plugin-download-history-stats">download from here</a> old version and reinstall.</p>
 
     <h3>Team settings upgrade status</h3>
 
