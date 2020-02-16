@@ -317,7 +317,7 @@ function team_layout_data($layout){
     $layout_data = apply_filters('team_layout_data', $layout_data);
 
 
-    return $layout_data[$layout];
+    return isset($layout_data[$layout]) ? $layout_data[$layout] : array();
 
 }
 

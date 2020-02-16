@@ -28,7 +28,12 @@ $team_settings_tab[] = array(
     'active' => ($current_tab == 'help_support') ? true : false,
 );
 
-
+$team_settings_tab[] = array(
+    'id' => 'buy_pro',
+    'title' => sprintf(__('%s Buy Pro','team'),'<i class="fas fa-store"></i>'),
+    'priority' => 9,
+    'active' => ($current_tab == 'buy_pro') ? true : false,
+);
 
 $team_settings_tab = apply_filters('team_settings_tabs', $team_settings_tab);
 
