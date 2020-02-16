@@ -48,6 +48,7 @@ if( ! class_exists( 'Team' ) ) {
 
             include_once team_plugin_dir . '/templates/team-showcase/team-showcase-hook.php';
 
+            include('includes/functions-layout-element.php');
 
             include('templates/single-team/single-team_member-hook.php');
             include('includes/functions.php');

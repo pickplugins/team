@@ -114,6 +114,8 @@ then paste this shortcode anywhere in your page to display Team gird.<br />
 
 = 1.22.0 =
 * 2020-02-11 update - re-write plugin.
+* 2020-02-16 remove - remove unnecessary files.
+* 2020-02-16 optimize - optimize CSS and JS file load.
 
 = 1.21.5 =
 * 26/05/2018 update - Team member single page remove single_template and replace by the_content

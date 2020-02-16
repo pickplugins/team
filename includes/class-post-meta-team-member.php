@@ -50,7 +50,14 @@ class class_team_post_meta_team_member{
         $team_member_settings_tab[] = array(
             'id' => 'social',
             'title' => sprintf(__('%s Social','team'),'<i class="fas fa-share-alt"></i>'),
-            'priority' => 1,
+            'priority' => 2,
+            'active' => false,
+        );
+
+        $team_member_settings_tab[] = array(
+            'id' => 'layouts',
+            'title' => sprintf(__('%s Layouts','team'),'<i class="fas fa-qrcode"></i>'),
+            'priority' => 3,
             'active' => false,
         );
 

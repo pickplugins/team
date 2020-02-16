@@ -274,7 +274,7 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
                             //echo '<pre>'.var_export($elementIndex, true).'</pre>';
 
                             //echo $elementIndex;
-                            do_action('team_showcase_item_elements_'.$elementIndex, $args);
+                            do_action('team_layout_element_'.$elementIndex, $args);
                         }
                     }
                     ?>
@@ -299,7 +299,7 @@ if(!function_exists('team_layout_metabox_content_layout_builder')){
                     $args['element_index'] = $elementGroupIndex;
 
                     //echo $elementIndex;
-                    do_action('team_showcase_item_elements_css_'.$elementIndex, $args);
+                    do_action('team_layout_element_css_'.$elementIndex, $args);
                 }
             }
 

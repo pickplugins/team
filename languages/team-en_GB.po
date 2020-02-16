@@ -1,838 +1,1059 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Team\n"
-"POT-Creation-Date: 2017-10-17 01:32+0600\n"
-"PO-Revision-Date: 2017-10-17 01:52+0600\n"
+"POT-Creation-Date: 2020-02-16 13:00+0600\n"
+"PO-Revision-Date: 2020-02-16 13:00+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-SearchPath-0: includes\n"
 "X-Poedit-SearchPath-1: templates\n"
 
-#: includes/class-functions.php:69
+#: includes/class-admin-notices.php:35
+#, php-format
+msgid ""
+"Data migrate required for team plugin, please <a class=\"button button-"
+"primary\" href=\"%s\">click to start</a> migration."
+msgstr ""
+
+#: includes/class-functions.php:66
+#: includes/class-post-meta-team-layout-hook.php:120
+#: includes/functions-layout-hook.php:184
 msgid "Thumbnail"
 msgstr ""
 
-#: includes/class-functions.php:70 includes/class-post-meta.php:916
+#: includes/class-functions.php:67
+#: includes/class-post-meta-team-layout-hook.php:121
+#: includes/functions-layout-hook.php:34
 msgid "Title"
 msgstr ""
 
-#: includes/class-functions.php:71
+#: includes/class-functions.php:68
+#: includes/class-post-meta-team-layout-hook.php:122
+#: includes/functions-layout-hook.php:828
 msgid "Position"
 msgstr ""
 
-#: includes/class-functions.php:72
+#: includes/class-functions.php:69
+#: includes/class-post-meta-team-layout-hook.php:123
+#: includes/functions-layout-hook.php:340
+#: includes/functions-layout-hook.php:355
 msgid "Content"
 msgstr ""
 
-#: includes/class-functions.php:73
+#: includes/class-functions.php:70
+#: includes/class-post-meta-team-layout-hook.php:124
+#: includes/class-post-meta-team-member-hook.php:104
+#: includes/functions-layout-hook.php:524
 msgid "Social"
 msgstr ""
 
-#: includes/class-functions.php:74
-msgid ""
-"Pop up <span class=\"team-pro\" title=\"Only available in premium\">Pro</"
-"span>"
-msgstr ""
-
-#: includes/class-functions.php:75
-msgid ""
-"Meta fields <span class=\"team-pro\" title=\"Only available in premium"
-"\">Pro</span>"
-msgstr ""
-
-#: includes/class-functions.php:76
-msgid ""
-"Skill bars <span class=\"team-pro\" title=\"Only available in premium\">Pro</"
-"span>"
-msgstr ""
-
-#: includes/class-functions.php:331
+#: includes/class-functions.php:135
 msgid "Core"
 msgstr ""
 
-#: includes/class-functions.php:335
+#: includes/class-functions.php:139
 msgid "How to upgrade to premium ?"
 msgstr ""
 
-#: includes/class-functions.php:340
+#: includes/class-functions.php:144
 msgid "How to activate license ?"
 msgstr ""
 
-#: includes/class-functions.php:345
+#: includes/class-functions.php:149
 msgid "How to create team ?"
 msgstr ""
 
-#: includes/class-functions.php:350
+#: includes/class-functions.php:154
 msgid "How to add custom profile fields ?"
 msgstr ""
 
-#: includes/class-functions.php:355
+#: includes/class-functions.php:159
 msgid "Team member page 404 not found."
 msgstr ""
 
-#: includes/class-functions.php:360
+#: includes/class-functions.php:164
 msgid "Team member page full width/broken"
 msgstr ""
 
-#: includes/class-functions.php:366
+#: includes/class-functions.php:170
 msgid "How to change team member slug ?"
 msgstr ""
 
-#: includes/class-functions.php:371
+#: includes/class-functions.php:175
 msgid "How to display team member by group ?"
 msgstr ""
 
-#: includes/class-functions.php:377
+#: includes/class-functions.php:181
 msgid "How to display team member by id’s ?"
 msgstr ""
 
-#: includes/class-functions.php:441
+#: includes/class-functions.php:245
 msgid "No Items Found!"
 msgstr ""
 
-#: includes/class-post-meta.php:79
-msgid "Member Position."
+#: includes/class-post-meta-team-hook.php:75
+msgid "Shortcodes"
 msgstr ""
 
-#: includes/class-post-meta.php:93
-msgid "Custom link to this member."
-msgstr ""
-
-#: includes/class-post-meta.php:104
-msgid " Member Skill."
-msgstr ""
-
-#: includes/class-post-meta.php:340
-msgid " Member Skype."
-msgstr ""
-
-#: includes/class-post-meta.php:353
-msgid " Member Mobile ."
-msgstr ""
-
-#: includes/class-post-meta.php:366
-msgid " Member Telephone ."
-msgstr ""
-
-#: includes/class-post-meta.php:379
-msgid " Member Email."
-msgstr ""
-
-#: includes/class-post-meta.php:391
-msgid " Member Website."
-msgstr ""
-
-#: includes/class-post-meta.php:701 includes/functions.php:123
-msgid "Shortcode"
-msgstr ""
-
-#: includes/class-post-meta.php:702
+#: includes/class-post-meta-team-hook.php:122
 msgid "Style"
 msgstr ""
 
-#: includes/class-post-meta.php:703
-msgid "Query Member"
+#: includes/class-post-meta-team-hook.php:123
+msgid "Choose style settings."
 msgstr ""
 
-#: includes/class-post-meta.php:704
-msgid "Custom CSS"
+#: includes/class-post-meta-team-hook.php:131
+msgid "Item width"
 msgstr ""
 
-#: includes/class-post-meta.php:705
-msgid "Layout Builder"
+#: includes/class-post-meta-team-hook.php:132
+msgid "Set item width."
 msgstr ""
 
-#: includes/class-post-meta.php:706
-msgid "Slider Options"
+#: includes/class-post-meta-team-hook.php:138
+#: includes/functions-layout-hook.php:229
+msgid "In desktop"
 msgstr ""
 
-#: includes/class-post-meta.php:715
-msgid "Shortcode."
+#: includes/class-post-meta-team-hook.php:139
+#, php-format
+msgid "min-width: 1200px, ex: 45% or 280px"
 msgstr ""
 
-#: includes/class-post-meta.php:716
-msgid ""
-"Copy this shortcode and paste on page or post where you want to display "
-"Team. <br />Use PHP code to your themes file to display Team."
+#: includes/class-post-meta-team-hook.php:148
+#: includes/functions-layout-hook.php:239
+msgid "In tablet & small desktop"
 msgstr ""
 
-#: includes/class-post-meta.php:736
-msgid "Skin."
+#: includes/class-post-meta-team-hook.php:149
+#, php-format
+msgid "min-width: 992px, ex: 90% or 280px"
 msgstr ""
 
-#: includes/class-post-meta.php:737
-msgid "Skin for Team grid items."
+#: includes/class-post-meta-team-hook.php:158
+#: includes/functions-layout-hook.php:249
+msgid "In mobile"
 msgstr ""
 
-#: includes/class-post-meta.php:783
-msgid "Link to Member."
+#: includes/class-post-meta-team-hook.php:159
+#, php-format
+msgid "max-width: 768px, ex: 90% or 280px"
 msgstr ""
 
-#: includes/class-post-meta.php:784
-msgid "Clickable link to post team member."
+#: includes/class-post-meta-team-hook.php:175
+msgid "Item margin"
 msgstr ""
 
-#: includes/class-post-meta.php:798
-msgid "Grid item max Width(px)."
+#: includes/class-post-meta-team-hook.php:176
+msgid "Set grid item margin, ex: <code>10px 5px</code>"
 msgstr ""
 
-#: includes/class-post-meta.php:799
-msgid "Maximum width for grid items."
+#: includes/class-post-meta-team-hook.php:188
+msgid "Item text align"
 msgstr ""
 
-#: includes/class-post-meta.php:803 includes/class-post-meta.php:1184
-msgid "For Destop: (min-width:1024px)"
+#: includes/class-post-meta-team-hook.php:189
+msgid "Choose text align for grid items"
 msgstr ""
 
-#: includes/class-post-meta.php:810 includes/class-post-meta.php:1191
-msgid "For Tablet: ( min-width:768px )"
+#: includes/class-post-meta-team-hook.php:202
+msgid "Container style"
 msgstr ""
 
-#: includes/class-post-meta.php:816 includes/class-post-meta.php:1197
-msgid "For Mobile: ( min-width : 320px, )"
+#: includes/class-post-meta-team-hook.php:203
+msgid "Customize container style."
 msgstr ""
 
-#: includes/class-post-meta.php:827
-msgid "Grid Items Margin (px)."
+#: includes/class-post-meta-team-hook.php:209
+msgid "Background image"
 msgstr ""
 
-#: includes/class-post-meta.php:828
-msgid ""
-"You can use general CSS rules for margin, ex:10px, <br /> 10px 10px, <br /> "
-"10px 10px 10px, <br /> 10px 10px 10px 10px."
+#: includes/class-post-meta-team-hook.php:210
+msgid "Container background image"
 msgstr ""
 
-#: includes/class-post-meta.php:834
-msgid "Grid Items Text Align."
+#: includes/class-post-meta-team-hook.php:219
+#: includes/class-post-meta-team-hook.php:659
+msgid "Background color"
 msgstr ""
 
-#: includes/class-post-meta.php:837 includes/class-post-meta.php:880
-msgid "Left"
+#: includes/class-post-meta-team-hook.php:220
+msgid "Container background color"
 msgstr ""
 
-#: includes/class-post-meta.php:839 includes/class-post-meta.php:882
-msgid "Center"
+#: includes/class-post-meta-team-hook.php:229
+msgid "Text align"
 msgstr ""
 
-#: includes/class-post-meta.php:841 includes/class-post-meta.php:884
-msgid "Right"
+#: includes/class-post-meta-team-hook.php:230
+msgid "Container text align"
 msgstr ""
 
-#: includes/class-post-meta.php:847
-msgid "Container Options."
+#: includes/class-post-meta-team-hook.php:275
+#, fuzzy
+#| msgid "Team Members"
+msgid "Query team members"
+msgstr "Crew"
+
+#: includes/class-post-meta-team-hook.php:276
+msgid "Choose settings to query team members."
 msgstr ""
 
-#: includes/class-post-meta.php:848
-msgid "Background image:"
-msgstr ""
-
-#: includes/class-post-meta.php:853
-msgid "Clear"
-msgstr ""
-
-#: includes/class-post-meta.php:874
-msgid "Background color:"
-msgstr ""
-
-#: includes/class-post-meta.php:878
-msgid "Text align:"
-msgstr ""
-
-#: includes/class-post-meta.php:910
+#: includes/class-post-meta-team-hook.php:284
 msgid "Query orderby"
 msgstr ""
 
-#: includes/class-post-meta.php:913
-msgid "none"
+#: includes/class-post-meta-team-hook.php:285
+msgid "Set query ordeby."
 msgstr ""
 
-#: includes/class-post-meta.php:914
-msgid "ID"
+#: includes/class-post-meta-team-hook.php:298
+msgid "Order-by meta value"
 msgstr ""
 
-#: includes/class-post-meta.php:915
-msgid "Author"
+#: includes/class-post-meta-team-hook.php:299
+msgid "Use meta meta key to orderby meta value."
 msgstr ""
 
-#: includes/class-post-meta.php:917
-msgid "Name"
-msgstr ""
-
-#: includes/class-post-meta.php:918
-msgid "Type"
-msgstr ""
-
-#: includes/class-post-meta.php:919
-msgid "Date"
-msgstr ""
-
-#: includes/class-post-meta.php:920
-msgid "post_date"
-msgstr ""
-
-#: includes/class-post-meta.php:921
-msgid "Modified"
-msgstr ""
-
-#: includes/class-post-meta.php:922
-msgid "Parent"
-msgstr ""
-
-#: includes/class-post-meta.php:923
-msgid "Random"
-msgstr ""
-
-#: includes/class-post-meta.php:924
-msgid "Comment Count"
-msgstr ""
-
-#: includes/class-post-meta.php:925
-msgid "Menu order"
-msgstr ""
-
-#: includes/class-post-meta.php:926
-msgid "Meta Value"
-msgstr ""
-
-#: includes/class-post-meta.php:927
-msgid "Meta Value(number)"
-msgstr ""
-
-#: includes/class-post-meta.php:928
-msgid "post__in"
-msgstr ""
-
-#: includes/class-post-meta.php:929
-msgid "post_name__in"
-msgstr ""
-
-#: includes/class-post-meta.php:944
+#: includes/class-post-meta-team-hook.php:312
 msgid "Query order"
 msgstr ""
 
-#: includes/class-post-meta.php:947
-msgid "ASC"
+#: includes/class-post-meta-team-hook.php:313
+msgid "Set query order."
 msgstr ""
 
-#: includes/class-post-meta.php:948
-msgid "DESC"
+#: includes/class-post-meta-team-hook.php:326
+msgid "Post per page"
 msgstr ""
 
-#: includes/class-post-meta.php:957
-msgid "Post per page."
-msgstr ""
-
-#: includes/class-post-meta.php:958
+#: includes/class-post-meta-team-hook.php:327
 msgid ""
 "You can display pagination or total number of member on grid. set -1 to "
 "display all."
 msgstr ""
 
-#: includes/class-post-meta.php:964
+#: includes/class-post-meta-team-hook.php:359
 #, fuzzy
 #| msgid "Team Members"
 msgid "Team groups"
 msgstr "Crew"
 
-#: includes/class-post-meta.php:965
-msgid "Display from member group."
+#: includes/class-post-meta-team-hook.php:360
+#, fuzzy
+#| msgid "Team Members"
+msgid "Choose team groups."
+msgstr "Crew"
+
+#: includes/class-post-meta-team-hook.php:403
+#: includes/class-post-meta-team-layout-hook.php:34
+msgid "Custom scripts"
 msgstr ""
 
-#: includes/class-post-meta.php:983
-msgid "Custom CSS for this Team Grid."
+#: includes/class-post-meta-team-hook.php:404
+#: includes/class-post-meta-team-layout-hook.php:35
+msgid "Write custom scripts to override CSS and scripts."
 msgstr ""
 
-#: includes/class-post-meta.php:984
+#: includes/class-post-meta-team-hook.php:411
+#: includes/class-post-meta-team-layout-hook.php:42
+#: includes/functions-layout-hook.php:987
+msgid "Custom CSS"
+msgstr ""
+
+#: includes/class-post-meta-team-hook.php:412
 msgid ""
-"Do not use &lt;style>&lt;/style> tag, you can use bellow prefix to your css, "
-"sometime you need use \"!important\" to overrid."
+"Write custom CSS to override default style, do not use <code>&lt;style>&lt;/"
+"style></code> tag."
 msgstr ""
 
-#: includes/class-post-meta.php:1006
-msgid "Grid elements"
+#: includes/class-post-meta-team-hook.php:426
+#: includes/class-post-meta-team-layout-hook.php:56
+msgid "Custom JS"
 msgstr ""
 
-#: includes/class-post-meta.php:1007
-msgid "You can sort grid items from here."
+#: includes/class-post-meta-team-hook.php:427
+msgid ""
+"Write custom js to override default style, do not use <code>&lt;script>&lt;/"
+"script></code> tag."
 msgstr ""
 
-#: includes/class-post-meta.php:1076
-msgid "Meta key."
+#: includes/class-post-meta-team-hook.php:465
+msgid "Masonry"
 msgstr ""
 
-#: includes/class-post-meta.php:1130
-msgid "Add more"
+#: includes/class-post-meta-team-hook.php:466
+msgid "Customize masonry settings."
 msgstr ""
 
-#: includes/class-post-meta.php:1134 includes/class-post-meta.php:1237
-#: includes/class-post-meta.php:1266 includes/class-post-meta.php:1322
-#: includes/class-post-meta.php:1392
-msgid "Font family."
+#: includes/class-post-meta-team-hook.php:474
+msgid "Active masonry"
 msgstr ""
 
-#: includes/class-post-meta.php:1149 includes/class-post-meta.php:1457
-msgid "Thumbnail Size."
+#: includes/class-post-meta-team-hook.php:475
+msgid "Choose masonry style grid."
 msgstr ""
 
-#: includes/class-post-meta.php:1150
-msgid "Thumbnail size of member on grid."
+#: includes/class-post-meta-team-hook.php:510
+msgid "Layouts"
 msgstr ""
 
-#: includes/class-post-meta.php:1178
-msgid "Grid item thumbnail max Height(px)."
+#: includes/class-post-meta-team-hook.php:511
+msgid "Choose item layouts."
 msgstr ""
 
-#: includes/class-post-meta.php:1179
-msgid "Maximum Height for grid items thumbnail."
+#: includes/class-post-meta-team-hook.php:551
+msgid "Item layouts"
 msgstr ""
 
-#: includes/class-post-meta.php:1224 includes/class-post-meta.php:1378
-#: includes/class-post-meta.php:1502
-msgid "Font Color."
+#: includes/class-post-meta-team-hook.php:552
+msgid "Choose grid item layout."
 msgstr ""
 
-#: includes/class-post-meta.php:1231 includes/class-post-meta.php:1385
-msgid "Font Size."
+#: includes/class-post-meta-team-hook.php:607
+msgid "Pagination"
 msgstr ""
 
-#: includes/class-post-meta.php:1254
-msgid "Member Position Font Color."
+#: includes/class-post-meta-team-hook.php:608
+msgid "Customize pagination settings."
 msgstr ""
 
-#: includes/class-post-meta.php:1260
-msgid "Member Position Font Size."
+#: includes/class-post-meta-team-hook.php:617
+msgid "Pagination type"
 msgstr ""
 
-#: includes/class-post-meta.php:1290
-msgid "Social icon type."
+#: includes/class-post-meta-team-hook.php:618
+msgid "Choose pagination type"
 msgstr ""
 
-#: includes/class-post-meta.php:1293
-msgid "Image icon"
+#: includes/class-post-meta-team-hook.php:630
+msgid "Previous text"
 msgstr ""
 
-#: includes/class-post-meta.php:1294
-msgid "Text link"
+#: includes/class-post-meta-team-hook.php:631
+msgid "Write previous text. ex: <code>« Previous</code>"
 msgstr ""
 
-#: includes/class-post-meta.php:1300
-msgid "Social icons size(px)."
+#: includes/class-post-meta-team-hook.php:645
+msgid "Next text"
 msgstr ""
 
-#: includes/class-post-meta.php:1301
-msgid "you can change social icons height & width here."
+#: includes/class-post-meta-team-hook.php:646
+msgid "Write next text. ex <code>Next »</code>"
 msgstr ""
 
-#: includes/class-post-meta.php:1309
-msgid "Social icon style."
+#: includes/class-post-meta-team-hook.php:660
+msgid "Choose background color."
 msgstr ""
 
-#: includes/class-post-meta.php:1312
-msgid "Flat"
+#: includes/class-post-meta-team-hook.php:673
+msgid "Active background color"
 msgstr ""
 
-#: includes/class-post-meta.php:1313
-msgid "Rounded"
+#: includes/class-post-meta-team-hook.php:674
+msgid "Choose active background color."
 msgstr ""
 
-#: includes/class-post-meta.php:1314
-msgid "Rounded Border"
+#: includes/class-post-meta-team-hook.php:686
+msgid "Pagination on top"
 msgstr ""
 
-#: includes/class-post-meta.php:1315
-msgid "Semi Rounded"
+#: includes/class-post-meta-team-hook.php:687
+msgid "Display pagination on top."
 msgstr ""
 
-#: includes/class-post-meta.php:1350
-msgid "Member Bio Content Display."
-msgstr ""
-
-#: includes/class-post-meta.php:1355 includes/class-post-meta.php:1416
-msgid "Display full content."
-msgstr ""
-
-#: includes/class-post-meta.php:1357 includes/class-post-meta.php:1418
-msgid "Member bio content will display from full content."
-msgstr ""
-
-#: includes/class-post-meta.php:1362
-msgid "Display excerpt"
-msgstr ""
-
-#: includes/class-post-meta.php:1364 includes/class-post-meta.php:1427
-msgid "Member bio content will display from excerpt."
-msgstr ""
-
-#: includes/class-post-meta.php:1365 includes/class-post-meta.php:1428
-msgid "Excrept Length:"
-msgstr ""
-
-#: includes/class-post-meta.php:1368 includes/class-post-meta.php:1431
-msgid "Read More Text:"
-msgstr ""
-
-#: includes/class-post-meta.php:1411
-msgid "Member Bio Popup Content Display."
-msgstr ""
-
-#: includes/class-post-meta.php:1425
-msgid "Display excerpt."
-msgstr ""
-
-#: includes/class-post-meta.php:1444
-msgid "Popup box width."
-msgstr ""
-
-#: includes/class-post-meta.php:1450
-msgid "Popup box height."
-msgstr ""
-
-#: includes/class-post-meta.php:1458
-msgid "Thumbnail size of member on popup."
-msgstr ""
-
-#: includes/class-post-meta.php:1549
-msgid "Active Masonry Grid."
-msgstr ""
-
-#: includes/class-post-meta.php:1550
-msgid "Masonry Style grid."
-msgstr ""
-
-#: includes/class-post-meta.php:1552 includes/class-post-meta.php:1645
-msgid "No"
-msgstr ""
-
-#: includes/class-post-meta.php:1553 includes/class-post-meta.php:1646
+#: includes/class-post-meta-team-hook.php:692
 msgid "Yes"
 msgstr ""
 
-#: includes/class-post-meta.php:1563
-msgid "Pagination."
+#: includes/class-post-meta-team-hook.php:693
+msgid "No"
 msgstr ""
 
-#: includes/class-post-meta.php:1566
-msgid "Pagination Previous text."
-msgstr ""
-
-#: includes/class-post-meta.php:1569
-msgid "Pagination Next text."
-msgstr ""
-
-#: includes/class-post-meta.php:1572
-msgid "Pagination default background color."
-msgstr ""
-
-#: includes/class-post-meta.php:1576
-msgid "Pagination active background color."
-msgstr ""
-
-#: includes/class-post-meta.php:1583
-msgid "Filterable"
-msgstr ""
-
-#: includes/class-post-meta.php:1584
-msgid "Filterable post per page."
-msgstr ""
-
-#: includes/class-post-meta.php:1587
-msgid "Display group of member at first."
-msgstr ""
-
-#: includes/class-post-meta.php:1625
+#: includes/class-post-meta-team-layout-hook.php:43
 msgid ""
-"Please select team group first from <b>Content(tab) > Filter Member > "
-"Display from Member Group"
+"Write custom CSS to override default style, do not use <code>&lt;style>&lt;/"
+"style></code> tag. use <code>__ID__</code> to replace by layout id "
+"<code>layout-"
 msgstr ""
 
-#: includes/class-post-meta.php:1631
-msgid "Filterable navs default background color."
+#: includes/class-post-meta-team-layout-hook.php:57
+msgid ""
+"Write custom JS to override default style, do not use <code>&lt;script>&lt;/"
+"script></code> tag."
 msgstr ""
 
-#: includes/class-post-meta.php:1635
-msgid "Filterable navs active background color."
+#: includes/class-post-meta-team-layout-hook.php:69
+msgid "Preview image"
 msgstr ""
 
-#: includes/class-post-meta.php:1639
-msgid "Filterable navs text color."
+#: includes/class-post-meta-team-layout-hook.php:70
+msgid "Set layout preview image."
 msgstr ""
 
-#: includes/class-post-meta.php:1643
-msgid "Scroll top when pagination clicked."
+#: includes/class-post-meta-team-layout-hook.php:114
+msgid "Layout builder"
 msgstr ""
 
-#: includes/class-post-meta.php:1667
-msgid "Slider Column Number"
+#: includes/class-post-meta-team-layout-hook.php:115
+msgid "Customize layout settings."
 msgstr ""
 
-#: includes/class-post-meta.php:1669
-msgid "In Destop: (min:1000px and max)"
+#: includes/class-post-meta-team-layout-hook.php:118
+#: includes/functions-layout-hook.php:949
+msgid "Wrapper start"
 msgstr ""
 
-#: includes/class-post-meta.php:1672
-msgid "In Tablet & Small Desktop: (900px max width)"
+#: includes/class-post-meta-team-layout-hook.php:119
+#: includes/functions-layout-hook.php:1062
+msgid "Wrapper end"
 msgstr ""
 
-#: includes/class-post-meta.php:1675
-msgid "In Mobile: (479px max width)"
+#: includes/class-post-meta-team-layout-hook.php:125
+#: includes/class-post-meta-team-member-hook.php:64
+msgid "Meta fields"
 msgstr ""
 
-#: includes/class-post-meta.php:1683
-msgid "Slider Auto Play"
+#: includes/class-post-meta-team-layout-hook.php:201
+#, php-format
+msgid "%s Click to add tags."
 msgstr ""
 
-#: includes/class-post-meta.php:1688 includes/class-post-meta.php:1698
-#: includes/class-post-meta.php:1709 includes/class-post-meta.php:1730
-#: includes/class-post-meta.php:1745 includes/class-post-meta.php:1774
-#: includes/class-post-meta.php:1785
-msgid "True"
+#: includes/class-post-meta-team-layout-hook.php:243
+msgid "Layout elements"
 msgstr ""
 
-#: includes/class-post-meta.php:1689 includes/class-post-meta.php:1699
-#: includes/class-post-meta.php:1710 includes/class-post-meta.php:1731
-#: includes/class-post-meta.php:1744 includes/class-post-meta.php:1775
-#: includes/class-post-meta.php:1786
-msgid "False"
+#: includes/class-post-meta-team-layout-hook.php:244
+msgid "Customize layout elements."
 msgstr ""
 
-#: includes/class-post-meta.php:1694
-msgid "Slider Stop on Hover"
+#: includes/class-post-meta-team-layout-hook.php:341
+#: includes/class-post-meta-team-layout-hook.php:342
+msgid "Layout preview"
 msgstr ""
 
-#: includes/class-post-meta.php:1705
-msgid "Slider Navigation"
+#: includes/class-post-meta-team-layout.php:19
+msgid "Layout data"
 msgstr ""
 
-#: includes/class-post-meta.php:1706
-msgid "Slider Navigation at Top"
+#: includes/class-post-meta-team-layout.php:45
+#, php-format
+msgid "%s Layout builder"
 msgstr ""
 
-#: includes/class-post-meta.php:1714
-msgid "Slider Navigation Position"
+#: includes/class-post-meta-team-layout.php:53
+#: includes/class-post-meta-team.php:88
+#, php-format
+msgid "%s Custom scripts"
 msgstr ""
 
-#: includes/class-post-meta.php:1716
-msgid "Middle"
+#: includes/class-post-meta-team-member-hook.php:23
+#: includes/functions-settings-hook.php:17
+msgid "General"
 msgstr ""
 
-#: includes/class-post-meta.php:1726
-msgid "Slider Pagination"
+#: includes/class-post-meta-team-member-hook.php:24
+msgid "Choose some general settings."
 msgstr ""
 
-#: includes/class-post-meta.php:1727
-msgid "Slider Pagination at Bottom"
+#: includes/class-post-meta-team-member-hook.php:32
+msgid "Member image"
 msgstr ""
 
-#: includes/class-post-meta.php:1736
-msgid "Pagination Background Color"
+#: includes/class-post-meta-team-member-hook.php:33
+msgid "Add team member image."
 msgstr ""
 
-#: includes/class-post-meta.php:1739
-msgid "Pagination Text Color"
+#: includes/class-post-meta-team-member-hook.php:65
+#, php-format
+msgid ""
+"Customize meta fields. you can customize meta fields here on <a href=\"%s"
+"\">setting page</a>"
 msgstr ""
 
-#: includes/class-post-meta.php:1742
-msgid "Pagination Number Counting"
+#: includes/class-post-meta-team-member-hook.php:105
+msgid "Fill social & contact list."
 msgstr ""
 
-#: includes/class-post-meta.php:1758
-msgid "Slide Speed"
+#: includes/class-post-meta-team-member-hook.php:134
+msgid "Social fields"
 msgstr ""
 
-#: includes/class-post-meta.php:1763
-msgid "Pagination Slide Speed"
+#: includes/class-post-meta-team-member-hook.php:135
+msgid "Customize social fields."
 msgstr ""
 
-#: includes/class-post-meta.php:1769
-msgid "Slider Touch Drag Enabled"
+#: includes/class-post-meta-team-member.php:19
+#, fuzzy
+#| msgid "Team Member"
+msgid "Team member"
+msgstr "Crew"
+
+#: includes/class-post-meta-team-member.php:45 includes/menu/settings.php:11
+#, php-format
+msgid "%s General"
 msgstr ""
 
-#: includes/class-post-meta.php:1781
-msgid "Slider Mouse Drag Enabled"
+#: includes/class-post-meta-team-member.php:52
+#, php-format
+msgid "%s Social"
 msgstr ""
 
-#: includes/class-post-types.php:28 includes/class-post-types.php:41
+#: includes/class-post-meta-team.php:19
+msgid "Team data"
+msgstr ""
+
+#: includes/class-post-meta-team.php:45
+#, php-format
+msgid "%s Shortcodes"
+msgstr ""
+
+#: includes/class-post-meta-team.php:52
+#, php-format
+msgid "%s Style"
+msgstr ""
+
+#: includes/class-post-meta-team.php:59
+#, fuzzy, php-format
+#| msgid "Team Member"
+msgid "%s Query Member"
+msgstr "Crew"
+
+#: includes/class-post-meta-team.php:66
+#, php-format
+msgid "%s Layouts"
+msgstr ""
+
+#: includes/class-post-meta-team.php:73
+#, php-format
+msgid "%s Masonry"
+msgstr ""
+
+#: includes/class-post-meta-team.php:80
+#, php-format
+msgid "%s Pagination"
+msgstr ""
+
+#: includes/class-post-meta-team.php:134
+msgid "View type"
+msgstr ""
+
+#: includes/class-post-types.php:30 includes/class-post-types.php:43
 msgid "Team Member"
 msgstr "Crew"
 
-#: includes/class-post-types.php:29
+#: includes/class-post-types.php:31
 msgid "Team Members"
 msgstr "Crew"
 
-#: includes/class-post-types.php:42 includes/class-post-types.php:88
-#: includes/class-post-types.php:124
+#: includes/class-post-types.php:44 includes/class-post-types.php:90
+#: includes/class-post-types.php:129 includes/class-post-types.php:174
 #, php-format
 msgid "All %s"
 msgstr ""
 
-#: includes/class-post-types.php:43 includes/class-post-types.php:125
-#: includes/menu/settings.php:260
+#: includes/class-post-types.php:45 includes/class-post-types.php:130
+#: includes/class-post-types.php:175
 msgid "Add New"
 msgstr ""
 
-#: includes/class-post-types.php:44 includes/class-post-types.php:126
+#: includes/class-post-types.php:46 includes/class-post-types.php:131
+#: includes/class-post-types.php:176
 #, php-format
 msgid "Add %s"
 msgstr ""
 
-#: includes/class-post-types.php:45 includes/class-post-types.php:127
+#: includes/class-post-types.php:47 includes/class-post-types.php:132
+#: includes/class-post-types.php:177
 msgid "Edit"
 msgstr ""
 
-#: includes/class-post-types.php:46 includes/class-post-types.php:91
-#: includes/class-post-types.php:128
+#: includes/class-post-types.php:48 includes/class-post-types.php:93
+#: includes/class-post-types.php:133 includes/class-post-types.php:178
 #, php-format
 msgid "Edit %s"
 msgstr ""
 
-#: includes/class-post-types.php:47 includes/class-post-types.php:129
+#: includes/class-post-types.php:49 includes/class-post-types.php:134
+#: includes/class-post-types.php:179
 #, php-format
 msgid "New %s"
 msgstr ""
 
-#: includes/class-post-types.php:48 includes/class-post-types.php:49
-#: includes/class-post-types.php:130 includes/class-post-types.php:131
+#: includes/class-post-types.php:50 includes/class-post-types.php:51
+#: includes/class-post-types.php:135 includes/class-post-types.php:136
+#: includes/class-post-types.php:180 includes/class-post-types.php:181
 #, php-format
 msgid "View %s"
 msgstr ""
 
-#: includes/class-post-types.php:50 includes/class-post-types.php:87
-#: includes/class-post-types.php:132
+#: includes/class-post-types.php:52 includes/class-post-types.php:89
+#: includes/class-post-types.php:137 includes/class-post-types.php:182
 #, php-format
 msgid "Search %s"
 msgstr ""
 
-#: includes/class-post-types.php:51 includes/class-post-types.php:133
+#: includes/class-post-types.php:53 includes/class-post-types.php:138
+#: includes/class-post-types.php:183
 #, php-format
 msgid "No %s found"
 msgstr ""
 
-#: includes/class-post-types.php:52 includes/class-post-types.php:134
+#: includes/class-post-types.php:54 includes/class-post-types.php:139
+#: includes/class-post-types.php:184
 #, php-format
 msgid "No %s found in trash"
 msgstr ""
 
-#: includes/class-post-types.php:53 includes/class-post-types.php:89
-#: includes/class-post-types.php:135
+#: includes/class-post-types.php:55 includes/class-post-types.php:91
+#: includes/class-post-types.php:140 includes/class-post-types.php:185
 #, php-format
 msgid "Parent %s"
 msgstr ""
 
-#: includes/class-post-types.php:55 includes/class-post-types.php:137
+#: includes/class-post-types.php:57 includes/class-post-types.php:142
+#: includes/class-post-types.php:187
 #, php-format
 msgid "This is where you can create and manage %s."
 msgstr ""
 
-#: includes/class-post-types.php:73
+#: includes/class-post-types.php:75
 msgid "Team Group"
 msgstr ""
 
-#: includes/class-post-types.php:74
+#: includes/class-post-types.php:76
 msgid "Team Groups"
-msgstr ""
-
-#: includes/class-post-types.php:90
-#, php-format
-msgid "Parent %s:"
 msgstr ""
 
 #: includes/class-post-types.php:92
 #, php-format
-msgid "Update %s"
-msgstr ""
-
-#: includes/class-post-types.php:93
-#, php-format
-msgid "Add New %s"
+msgid "Parent %s:"
 msgstr ""
 
 #: includes/class-post-types.php:94
 #, php-format
+msgid "Update %s"
+msgstr ""
+
+#: includes/class-post-types.php:95
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#: includes/class-post-types.php:96
+#, php-format
 msgid "New %s Name"
 msgstr ""
 
-#: includes/class-post-types.php:114 includes/class-post-types.php:115
+#: includes/class-post-types.php:119 includes/class-post-types.php:120
 msgid "Team"
 msgstr ""
 
-#: includes/class-settings.php:27
+#: includes/class-post-types.php:164
+#, fuzzy
+#| msgid "Team Members"
+msgid "Team layout"
+msgstr "Crew"
+
+#: includes/class-post-types.php:165
+#, fuzzy
+#| msgid "Team Members"
+msgid "Team layouts"
+msgstr "Crew"
+
+#: includes/class-settings-tabs.php:317
+msgid "Placeholder.jpg"
+msgstr ""
+
+#: includes/class-settings-tabs.php:373 includes/class-settings-tabs.php:454
+msgid "Upload"
+msgstr ""
+
+#: includes/class-settings-tabs.php:374 includes/class-settings-tabs.php:455
+msgid "Clear"
+msgstr ""
+
+#: includes/class-settings-tabs.php:565 includes/class-settings-tabs.php:819
+msgid "Add"
+msgstr ""
+
+#: includes/class-settings.php:20
 msgid "Settings"
 msgstr ""
 
-#: includes/class-settings.php:28
-msgid "Help"
+#: includes/class-settings.php:24
+msgid "Upgrade status"
 msgstr ""
 
-#: includes/class-shortcodes.php:105
-msgid "No Team Member Found"
+#: includes/functions-layout-hook.php:44 includes/functions-layout-hook.php:410
+#: includes/functions-layout-hook.php:580
+#: includes/functions-layout-hook.php:715
+#: includes/functions-layout-hook.php:837
+msgid "Color"
 msgstr ""
 
-#: includes/functions.php:100
+#: includes/functions-layout-hook.php:45 includes/functions-layout-hook.php:411
+#: includes/functions-layout-hook.php:581
+#: includes/functions-layout-hook.php:716
+#: includes/functions-layout-hook.php:838
+msgid "Title text color."
+msgstr ""
+
+#: includes/functions-layout-hook.php:57 includes/functions-layout-hook.php:423
+#: includes/functions-layout-hook.php:593
+#: includes/functions-layout-hook.php:728
+#: includes/functions-layout-hook.php:850
+msgid "Font size"
+msgstr ""
+
+#: includes/functions-layout-hook.php:58 includes/functions-layout-hook.php:424
+#: includes/functions-layout-hook.php:594
+#: includes/functions-layout-hook.php:729
+#: includes/functions-layout-hook.php:851
+msgid "Set font size."
+msgstr ""
+
+#: includes/functions-layout-hook.php:72 includes/functions-layout-hook.php:438
+#: includes/functions-layout-hook.php:608
+#: includes/functions-layout-hook.php:743
+#: includes/functions-layout-hook.php:865
+msgid "Font family"
+msgstr ""
+
+#: includes/functions-layout-hook.php:73 includes/functions-layout-hook.php:439
+#: includes/functions-layout-hook.php:609
+#: includes/functions-layout-hook.php:744
+#: includes/functions-layout-hook.php:866
+msgid "Set font family."
+msgstr ""
+
+#: includes/functions-layout-hook.php:87 includes/functions-layout-hook.php:266
+#: includes/functions-layout-hook.php:452
+#: includes/functions-layout-hook.php:623
+#: includes/functions-layout-hook.php:757
+#: includes/functions-layout-hook.php:879
+#: includes/functions-layout-hook.php:1000
+msgid "Margin"
+msgstr ""
+
+#: includes/functions-layout-hook.php:88 includes/functions-layout-hook.php:267
+#: includes/functions-layout-hook.php:453
+#: includes/functions-layout-hook.php:624
+#: includes/functions-layout-hook.php:758
+#: includes/functions-layout-hook.php:880
+#: includes/functions-layout-hook.php:1001
+msgid "Set margin."
+msgstr ""
+
+#: includes/functions-layout-hook.php:108
+#: includes/functions-layout-hook.php:288
+#: includes/functions-layout-hook.php:476
+#: includes/functions-layout-hook.php:646
+#: includes/functions-layout-hook.php:779
+#: includes/functions-layout-hook.php:901
+#: includes/functions-layout-hook.php:1022
+msgid "Use of CSS"
+msgstr ""
+
+#: includes/functions-layout-hook.php:109
+#: includes/functions-layout-hook.php:289
+#: includes/functions-layout-hook.php:477
+#: includes/functions-layout-hook.php:647
+#: includes/functions-layout-hook.php:780
+#: includes/functions-layout-hook.php:902
+#: includes/functions-layout-hook.php:1023
+msgid "Use following class selector to add custom CSS for this element."
+msgstr ""
+
+#: includes/functions-layout-hook.php:206
+msgid "Thumbnail size"
+msgstr ""
+
+#: includes/functions-layout-hook.php:207
+msgid "Choose thumbnail size."
+msgstr ""
+
+#: includes/functions-layout-hook.php:222
+msgid "Thumbnail height"
+msgstr ""
+
+#: includes/functions-layout-hook.php:223
+msgid "Set thumbnail height."
+msgstr ""
+
+#: includes/functions-layout-hook.php:230
+msgid "min-width: 1200px, ex: 280px"
+msgstr ""
+
+#: includes/functions-layout-hook.php:240
+msgid "min-width: 992px, ex: 280px"
+msgstr ""
+
+#: includes/functions-layout-hook.php:250
+msgid "max-width: 768px, ex: 280px"
+msgstr ""
+
+#: includes/functions-layout-hook.php:350
+msgid "Content source"
+msgstr ""
+
+#: includes/functions-layout-hook.php:351
+msgid "Choose content source."
+msgstr ""
+
+#: includes/functions-layout-hook.php:355
+msgid "Excerpt"
+msgstr ""
+
+#: includes/functions-layout-hook.php:364
+msgid "Word count"
+msgstr ""
+
+#: includes/functions-layout-hook.php:365
+msgid "Set word count."
+msgstr ""
+
+#: includes/functions-layout-hook.php:379
+msgid "Read more text"
+msgstr ""
+
+#: includes/functions-layout-hook.php:380
+msgid "Set custom read more text."
+msgstr ""
+
+#: includes/functions-layout-hook.php:394
+msgid "Read more color"
+msgstr ""
+
+#: includes/functions-layout-hook.php:395
+msgid "Set custom read more color."
+msgstr ""
+
+#: includes/functions-layout-hook.php:535
+msgid "Social icon type"
+msgstr ""
+
+#: includes/functions-layout-hook.php:536
+msgid "Choose icon type."
+msgstr ""
+
+#: includes/functions-layout-hook.php:540
+msgid "Image icon"
+msgstr ""
+
+#: includes/functions-layout-hook.php:540
+msgid "Font icon"
+msgstr ""
+
+#: includes/functions-layout-hook.php:540
+msgid "Text link"
+msgstr ""
+
+#: includes/functions-layout-hook.php:550
+msgid "Icon width"
+msgstr ""
+
+#: includes/functions-layout-hook.php:551
+msgid "Set icon width."
+msgstr ""
+
+#: includes/functions-layout-hook.php:565
+msgid "Icon height"
+msgstr ""
+
+#: includes/functions-layout-hook.php:566
+msgid "Set icon height."
+msgstr ""
+
+#: includes/functions-layout-hook.php:691
+msgid "Meta"
+msgstr ""
+
+#: includes/functions-layout-hook.php:701
+#: includes/functions-settings-hook.php:49
+#: includes/functions-settings-hook.php:92
+msgid "Meta key"
+msgstr ""
+
+#: includes/functions-layout-hook.php:702
+msgid "Write meta key."
+msgstr ""
+
+#: includes/functions-layout-hook.php:961
+#: includes/functions-layout-hook.php:1072
+msgid "Wrapper id"
+msgstr ""
+
+#: includes/functions-layout-hook.php:962
+msgid "Write wrapper id, ex: my-unique-id."
+msgstr ""
+
+#: includes/functions-layout-hook.php:974
+msgid "Wrapper class"
+msgstr ""
+
+#: includes/functions-layout-hook.php:975
+msgid "Write wrapper class, ex: layer-thumbnail"
+msgstr ""
+
+#: includes/functions-layout-hook.php:988
+msgid "Write custom CSS. do not use <code>&lt;style>&lt;/style></code>"
+msgstr ""
+
+#: includes/functions-layout-hook.php:1073
+msgid "Write wrapper id, ex: div, p, span."
+msgstr ""
+
+#: includes/functions-settings-hook.php:18
+msgid "Choose some general options."
+msgstr ""
+
+#: includes/functions-settings-hook.php:25
+#, fuzzy
+#| msgid "Team Members"
+msgid "Team member slug"
+msgstr "Crew"
+
+#: includes/functions-settings-hook.php:26
+msgid "Write custom team member slug."
+msgstr ""
+
+#: includes/functions-settings-hook.php:40
+#: includes/functions-settings-hook.php:83
+msgid "Meta Name"
+msgstr ""
+
+#: includes/functions-settings-hook.php:41
+#: includes/functions-settings-hook.php:84
+msgid "Write meta field name here."
+msgstr ""
+
+#: includes/functions-settings-hook.php:50
+#: includes/functions-settings-hook.php:93
+msgid "Write meta key here."
+msgstr ""
+
+#: includes/functions-settings-hook.php:64
+msgid "Custom meta fields"
+msgstr ""
+
+#: includes/functions-settings-hook.php:65
+msgid "Custom meta fields on team member profile"
+msgstr ""
+
+#: includes/functions-settings-hook.php:102
+msgid "Add icon"
+msgstr ""
+
+#: includes/functions-settings-hook.php:103
+msgid "Upload icon image here."
+msgstr ""
+
+#: includes/functions-settings-hook.php:112
+msgid "Add font icon"
+msgstr ""
+
+#: includes/functions-settings-hook.php:113
+msgid ""
+"Add font icon html here, you can use <a href=\"https://fontawesome.com/icons"
+"\">fontawesome</a>  ex: <code> &lt;i class=\"fab fa-facebook-square\">&lt;/"
+"i></code>."
+msgstr ""
+
+#: includes/functions-settings-hook.php:122
+msgid "Visibility"
+msgstr ""
+
+#: includes/functions-settings-hook.php:123
+msgid "Choose visibility."
+msgstr ""
+
+#: includes/functions-settings-hook.php:136
+msgid "Custom social fields"
+msgstr ""
+
+#: includes/functions-settings-hook.php:137
+msgid "Custom social fields on team member profile"
+msgstr ""
+
+#: includes/functions-settings-hook.php:174
+msgid "Get support"
+msgstr ""
+
+#: includes/functions-settings-hook.php:175
+msgid "Use following to get help and support from our expert team."
+msgstr ""
+
+#: includes/functions-settings-hook.php:183
+msgid ""
+"Ask question for free on our forum and get quick reply from our expert team "
+"members."
+msgstr ""
+
+#: includes/functions-settings-hook.php:184
+msgid "Create support ticket"
+msgstr ""
+
+#: includes/functions-settings-hook.php:186
+msgid "Read our documentation before asking your question."
+msgstr ""
+
+#: includes/functions-settings-hook.php:187
+msgid "Documentation"
+msgstr ""
+
+#: includes/functions-settings-hook.php:189
+msgid "Watch video tutorials."
+msgstr ""
+
+#: includes/functions-settings-hook.php:190
+msgid "All tutorials"
+msgstr ""
+
+#: includes/functions-settings-hook.php:206
+msgid "Ask question"
+msgstr ""
+
+#: includes/functions-settings-hook.php:231
+msgid "Submit reviews"
+msgstr ""
+
+#: includes/functions.php:99
 msgid "Thumb"
 msgstr ""
 
-#: includes/functions.php:185
-msgid "Please activate your license for"
+#: includes/functions.php:133
+msgid "Shortcode"
 msgstr ""
 
-#: includes/functions.php:185
-msgid "License"
+#: includes/menu/settings.php:18
+#, php-format
+msgid "%s Help & support"
 msgstr ""
 
-#: includes/menu/help.php:32 includes/menu/license.php:28
-#: includes/menu/settings.php:35
+#: includes/menu/settings.php:51
+#, php-format
+msgid "%s Settings"
+msgstr ""
+
+#: includes/menu/settings.php:100
 msgid "Changes Saved."
 msgstr ""
 
-#: includes/menu/help.php:49 includes/menu/settings.php:52
-msgid " Settings"
-msgstr ""
-
-#: includes/menu/help.php:115
-msgid "FAQ"
-msgstr ""
-
-#: includes/menu/help.php:171 includes/menu/settings.php:284
+#: includes/menu/settings.php:189
 msgid "Save Changes"
 msgstr ""
 
-#: includes/menu/license.php:59
-msgid " License"
-msgstr ""
-
-#: includes/menu/settings.php:70
-msgid "Team member slug."
-msgstr ""
-
-#: includes/menu/settings.php:71
-msgid "ex: volunteers"
-msgstr ""
-
-#: includes/menu/settings.php:76
-msgid "Custom meta fields on team member profile."
-msgstr ""
-
-#: includes/menu/settings.php:157
-msgid "Display social field on team member profile."
-msgstr ""
-
-#: includes/menu/settings.php:158
-msgid ""
-"By adding bellow input you can control extra input field under member page. "
-"if you want to remove one profile field then please empty this field and "
-"save changes or to add new profile field simply click add new. some default "
-"profile fields are mobile, website, email, skype, facebook, twitter, "
-"googleplus, pinterest."
-msgstr ""
-
-#: templates/variables.php:155
-msgid "Read More"
+#: includes/menu/upgrade-status.php:18
+#, php-format
+msgid "%s Settings - Update"
 msgstr ""

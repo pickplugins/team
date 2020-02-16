@@ -150,6 +150,81 @@ function team_member_metabox_content_social($post_id){
 
 
 
+add_action('team_member_metabox_content_layouts','team_member_metabox_content_layouts');
+function team_member_metabox_content_layouts($post_id){
+
+
+    $settings_tabs_field = new settings_tabs_field();
+    $team_member_data = get_post_meta($post_id,'team_member_data', true);
+    $layout_id = isset($team_member_data['layout_id']) ? $team_member_data['layout_id'] : '';
+
+
+
+    ?>
+    <div class="section">
+        <div class="section-title"><?php echo __('Layouts', 'team'); ?></div>
+        <p class="description section-description"><?php echo __('Choose item layouts.', 'team'); ?></p>
+
+
+        <?php
+
+        $item_layout_args = array();
+
+        $query_args['post_type'] 		= array('team_layout');
+        $query_args['post_status'] 		= array('publish');
+        $query_args['orderby']  		= 'date';
+        $query_args['order']  			= 'DESC';
+        $query_args['posts_per_page'] 	= -1;
+        $wp_query = new WP_Query($query_args);
+
+        if ( $wp_query->have_posts() ) :
+
+            while ( $wp_query->have_posts() ) : $wp_query->the_post();
+
+                $post_id = get_the_id();
+                $layout_name = get_the_title();
+                $team_thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post_id), 'full' );
+                $team_thumb_url = isset($team_thumb['0']) ? esc_url_raw($team_thumb['0']) : '';
+
+                $layout_options = get_post_meta($post_id,'layout_options', true);
+                $layout_preview_img = isset($layout_options['layout_preview_img']) ? $layout_options['layout_preview_img'] : '';
+
+                $team_thumb_url = !empty( $team_thumb_url ) ? $team_thumb_url : $layout_preview_img;
+
+                $item_layout_args[$post_id] = array('name'=>$layout_name, 'link_text'=>'Edit', 'link'=> get_edit_post_link($post_id), 'thumb'=> $team_thumb_url, );
+
+            endwhile;
+        endif;
+
+
+
+
+
+        $args = array(
+            'id'		=> 'layout_id',
+            'parent' => 'team_member_data',
+            'title'		=> __('Team member layout','team'),
+            'details'	=> __('Choose team member single page layout.','team'),
+            'type'		=> 'radio_image',
+            'value'		=> $layout_id,
+            'default'		=> '',
+            'width'		=> '250px',
+            'args'		=> $item_layout_args,
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+
+        ?>
+    </div>
+    <?php
+
+
+}
+
+
+
 
 
 

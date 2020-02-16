@@ -72,7 +72,8 @@ function single_team_member_content($content){
         wp_enqueue_style( 'single-team-member' );
 
 		ob_start();
-		include( team_plugin_dir . 'templates/single-team/single-team.php');
+		//include( team_plugin_dir . 'templates/single-team/single-team.php');
+        include( team_plugin_dir . 'templates/single-team-member/single-team-member-hook.php');
 
 		$content =  ob_get_clean();
 		return $content;
