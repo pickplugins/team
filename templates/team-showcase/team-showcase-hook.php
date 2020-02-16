@@ -178,35 +178,43 @@ function team_showcase_main_custom_css($args){
 
     ?>
     <style type="text/css">
+        .team-container {
+            width: 100%
+        }
         #team-<?php echo $team_id; ?>{
             background: <?php echo $container_background_color; ?> url(<?php echo $container_background_img_url; ?>) repeat scroll 0 0;
             text-align: <?php echo $container_text_align; ?>;
         }
-
         #team-<?php echo $team_id; ?> .item{
             text-align: <?php echo $item_text_align; ?>;
             margin: <?php echo $item_margin; ?>;
-
+            display: inline-block;
+            vertical-align: top;
         }
-
+        #team-<?php echo $team_id; ?> .layer-media .team-thumb {
+            overflow: hidden;
+        }
+        #team-<?php echo $team_id; ?> .layer-media img {
+            border-radius: 0;
+            box-shadow: none;
+            width:100%;
+            margin:0;
+            padding:0;
+        }
         @media only screen and ( min-width: 0px ) and ( max-width: 767px ) {
             #team-<?php echo $team_id; ?> .item{width: <?php echo $team_width_small; ?>}
         }
-
         @media only screen and ( min-width: 768px ) and ( max-width: 1023px ) {
             #team-<?php echo $team_id; ?> .item{width: <?php echo $team_width_medium; ?>}
         }
-
         @media only screen and (min-width: 1024px ) {
             #team-<?php echo $team_id; ?> .item{width: <?php echo $team_width_large; ?>}
         }
-
         <?php
 
         echo str_replace('__ID__', 'layout-'.$item_layout_id, $custom_css);
 
         ?>
-
     </style>
 
     <?php
@@ -757,9 +765,24 @@ function team_showcase_after_items_pagination($wp_query, $args){
     </div>
 
     <style type="text/css">
-        #team-<?php echo $team_id; ?> .paginate .page-numbers{
-            background-color: <?php echo $pagination_background_color; ?>;
+
+        #team-<?php echo $team_id; ?> .paginate {
+            padding: 30px;
+            text-align: center;
         }
+
+        #team-<?php echo $team_id; ?> .paginate .page-numbers {
+            background-color: <?php echo $pagination_background_color; ?>;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+            line-height: 1em;
+            margin: 3px 0;
+            padding: 10px 15px;
+            text-decoration: none;
+        }
+
         #team-<?php echo $team_id; ?> .paginate .current{
             background-color: <?php echo $pagination_active_background_color; ?>;
         }

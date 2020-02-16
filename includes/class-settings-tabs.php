@@ -371,7 +371,7 @@ class settings_tabs_field{
             </div>
             <input class="media-input-value" type="hidden" name="<?php echo $field_name; ?>" id="media_input_<?php echo $css_id; ?>" value="<?php echo $value; ?>" />
             <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload','team');?></div>
-            <div placeholder="<?php echo $placeholder; ?>" class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','breadcrumb');?></div>
+            <div placeholder="<?php echo $placeholder; ?>" class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','team');?></div>
             <div class="error-mgs"></div>
         </div>
 
@@ -451,8 +451,8 @@ class settings_tabs_field{
                 ?>
             </div>
             <input type="text" placeholder="<?php echo $placeholder; ?>" name="<?php echo $field_name; ?>" id="media_input_<?php echo $css_id; ?>" value="<?php echo $value; ?>" />
-            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload','breadcrumb');?></div>
-            <div class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','breadcrumb');?></div>
+            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload','team');?></div>
+            <div class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','team');?></div>
             <div class="error-mgs"></div>
         </div>
 
@@ -562,7 +562,7 @@ class settings_tabs_field{
         </script>
         <div id="input-wrapper-<?php echo $css_id; ?>" class=" input-wrapper field-repeatable-wrapper
             field-repeatable-wrapper-<?php echo $css_id; ?>">
-            <div class="add-repeat-field"><i class="far fa-plus-square"></i> <?php _e('Add','breadcrumb'); ?></div>
+            <div class="add-repeat-field"><i class="far fa-plus-square"></i> <?php _e('Add','team'); ?></div>
             <div class="repeatable-field-list sortable" id="<?php echo $css_id; ?>">
                 <?php
                 if(!empty($values)):
@@ -816,7 +816,7 @@ class settings_tabs_field{
         ?>
         <div  id="input-wrapper-<?php echo $id; ?>" class="input-wrapper input-text-multi-wrapper
             input-text-multi-wrapper-<?php echo $css_id; ?>">
-            <span data-placeholder="<?php echo esc_attr($placeholder); ?>" data-sort="<?php echo $sortable; ?>" data-clone="<?php echo $allow_clone; ?>" data-name="<?php echo $field_name; ?>[]" class="button add-item"><?php echo __('Add','breadcrumb'); ?></span>
+            <span data-placeholder="<?php echo esc_attr($placeholder); ?>" data-sort="<?php echo $sortable; ?>" data-clone="<?php echo $allow_clone; ?>" data-name="<?php echo $field_name; ?>[]" class="button add-item"><?php echo __('Add','team'); ?></span>
             <div class="field-list <?php if($sortable){ echo 'sortable'; }?>" id="<?php echo $css_id; ?>">
                 <?php
                 if(!empty($values)):

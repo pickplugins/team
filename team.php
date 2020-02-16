@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Team
+Plugin Name: Team Showcase by PickPlugins
 Plugin URI: http://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashboard
 Description: Fully responsive and mobile ready meet the team showcase plugin for wordpress.
 Version: 1.22.0
-Author: pickplugins
+Author: PickPlugins
 Author URI: http://pickplugins.com
 Text Domain: team
 License: GPLv2 or later
@@ -22,16 +22,8 @@ class Team{
 	
         define('team_plugin_url', plugins_url('/', __FILE__) );
         define('team_plugin_dir', plugin_dir_path( __FILE__ ) );
-        define('team_wp_url', 'http://wordpress.org/plugins/team/' );
-        define('team_wp_reviews', 'https://wordpress.org/plugins/team/#reviews' );
-        define('team_pro_url', 'https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashboard' );
-        define('team_demo_url', 'http://www.pickplugins.com/demo/team/?ref=dashboard' );
-        define('team_conatct_url', 'http://www.pickplugins.com/contact/?ref=dashboard' );
-        define('team_qa_url', 'http://www.pickplugins.com/support/?ref=dashboard' );
         define('team_plugin_name', 'Team' );
         define('team_plugin_version', '1.22.0' );
-        define('team_customer_type', 'free' );	 // pro & free
-        define('team_tutorial_doc_url', 'http://pickplugins.com/docs/documentation/team/' );
 
         include( 'includes/functions-data-upgrade.php' );
 
@@ -39,7 +31,6 @@ class Team{
         include( 'includes/class-post-meta-team-hook.php' );
 
         include( 'includes/class-post-types.php' );
-        //include( 'includes/class-post-meta.php' );
         include( 'includes/class-settings.php' );
         include( 'includes/class-functions.php' );
         include( 'includes/class-shortcodes.php' );
@@ -85,11 +76,6 @@ class Team{
 	public function _activation(){
 
 
-
-
-        // Update social fields in option
-		//team_update_team_member_social_field();
-		
 		// Reset permalink
 		$team_class_post_types= new team_class_post_types();
 		$team_class_post_types->_posttype_team_member();
@@ -145,18 +131,12 @@ class Team{
     public function team_front_scripts(){
 			
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('team_front_js', plugins_url( '/assets/front/js/scripts.js' , __FILE__ ) , array( 'jquery' ));	
-		wp_localize_script('team_front_js', 'team_ajax', array( 'team_ajaxurl' => admin_url( 'admin-ajax.php')));
 
-		wp_enqueue_style('team-style', plugins_url( 'assets/front/css/style.css', __FILE__ ));	
-		wp_enqueue_style('single-team-member', plugins_url( 'assets/front/css/single-team-member.css', __FILE__ ));			
-
-		wp_enqueue_style('team-style.skins', plugins_url( 'assets/global/css/style.skins.css', __FILE__ ));			
-		wp_enqueue_style('team-style.layout', plugins_url( 'assets/global/css/style.layout.css', __FILE__ ));
-
+        wp_register_style('single-team-member', plugins_url( 'assets/front/css/single-team-member.css', __FILE__ ));
         wp_register_script('masonry', plugins_url( '/assets/front/js/masonry.js' , __FILE__ ) , array( 'jquery' ));
         wp_register_script('imagesloaded', plugins_url( '/assets/front/js/imagesloaded.js' , __FILE__ ) , array( 'jquery' ));
         wp_register_style('font-awesome-5', team_plugin_url.'assets/admin/css/fontawesome.css');
+
 
 
 		do_action('team_action_front_scripts');
@@ -177,17 +157,9 @@ class Team{
 							
 							));
 		
-		
-		wp_enqueue_style('team_admin_style', plugins_url( 'assets/admin/css/style.css', __FILE__ ));
-		//wp_enqueue_style('font-awesome.min', plugins_url( 'assets/global/css/font-awesome.min.css', __FILE__ ));
 
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'color-picker', plugins_url('/assets/admin/js/color-picker.js', __FILE__ ), array( 'wp-color-picker' ), true, true );
-		
-		
-		//ParaAdmin
-		wp_enqueue_style('ParaAdmin', plugins_url( 'assets/admin/ParaAdmin/css/ParaAdmin.css', __FILE__ ));
-		wp_enqueue_script('ParaAdmin', plugins_url( 'assets/admin/ParaAdmin/js/ParaAdmin.js' , __FILE__ ) , array( 'jquery' ));
 
         wp_register_script('settings-tabs', team_plugin_url.'assets/admin/js/settings-tabs.js', array( 'jquery' ));
         wp_register_style('settings-tabs', team_plugin_url.'assets/admin/css/settings-tabs.css');

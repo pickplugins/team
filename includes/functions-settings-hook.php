@@ -202,7 +202,7 @@ if(!function_exists('team_settings_content_help_support')) {
 
             $args = array(
                 'id'		=> 'get_support',
-                'parent'		=> 'related_post_settings',
+                //'parent'		=> '',
                 'title'		=> __('Ask question','team'),
                 'details'	=> '',
                 'type'		=> 'custom_html',
@@ -216,7 +216,7 @@ if(!function_exists('team_settings_content_help_support')) {
             ob_start();
             ?>
 
-            <p class="">We wish your 2 minutes to write your feedback about the related post plugin. give us <span style="color: #ffae19"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
+            <p class="">We wish your 2 minutes to write your feedback about the team plugin. give us <span style="color: #ffae19"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
 
             <a target="_blank" href="https://wordpress.org/plugins/team/#reviews" class="button"><i class="fab fa-wordpress"></i> Write a review</a>
 
@@ -227,7 +227,7 @@ if(!function_exists('team_settings_content_help_support')) {
 
             $args = array(
                 'id'		=> 'reviews',
-                'parent'		=> 'related_post_settings',
+                //'parent'		=> '',
                 'title'		=> __('Submit reviews','team'),
                 'details'	=> '',
                 'type'		=> 'custom_html',

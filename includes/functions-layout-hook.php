@@ -1019,8 +1019,8 @@ function layout_elements_option_wrapper_start($parameters){
 
             $args = array(
                 'id'		=> 'use_css',
-                'title'		=> __('Use of CSS','breadcrumb'),
-                'details'	=> __('Use following class selector to add custom CSS for this element.','breadcrumb'),
+                'title'		=> __('Use of CSS','team'),
+                'details'	=> __('Use following class selector to add custom CSS for this element.','team'),
                 'type'		=> 'custom_html',
                 'html'		=> $html,
 
@@ -1059,7 +1059,7 @@ function layout_elements_option_wrapper_end($parameters){
             <span class="remove" onclick="jQuery(this).parent().parent().remove()"><i class="fas fa-times"></i></span>
             <span class="sort"><i class="fas fa-sort"></i></span>
 
-            <span class="expand"><?php echo __('Wrapper end','breadcrumb'); ?></span>
+            <span class="expand"><?php echo __('Wrapper end','team'); ?></span>
             <span class="handle-end"><i class="fas fa-level-down-alt"></i></span>
         </div>
         <div class="element-options options">
@@ -1069,8 +1069,8 @@ function layout_elements_option_wrapper_end($parameters){
             $args = array(
                 'id'		=> 'wrapper_id',
                 'parent' => $input_name.'[wrapper_end]',
-                'title'		=> __('Wrapper id','breadcrumb'),
-                'details'	=> __('Write wrapper id, ex: div, p, span.','breadcrumb'),
+                'title'		=> __('Wrapper id','team'),
+                'details'	=> __('Write wrapper id, ex: div, p, span.','team'),
                 'type'		=> 'text',
                 'value'		=> $meta_key,
                 'default'		=> '',
