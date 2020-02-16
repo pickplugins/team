@@ -138,9 +138,8 @@ if( ! class_exists( 'Team' ) ) {
 
 
 
-
+            wp_enqueue_script('wp-color-picker');
             wp_enqueue_style('wp-color-picker');
-            wp_enqueue_script('color-picker', plugins_url('/assets/admin/js/color-picker.js', __FILE__), array('wp-color-picker'), true, true);
 
             wp_register_script('settings-tabs', team_plugin_url . 'assets/admin/js/settings-tabs.js', array('jquery'));
             wp_register_style('settings-tabs', team_plugin_url . 'assets/admin/css/settings-tabs.css');

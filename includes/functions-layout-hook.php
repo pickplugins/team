@@ -262,7 +262,7 @@ function layout_elements_option_thumbnail($parameters){
             $args = array(
                 'id'		=> 'margin',
                 'css_id'		=> $element_index.'_margin',
-                'parent' => $input_name.'[title]',
+                'parent' => $input_name.'[thumbnail]',
                 'title'		=> __('Margin','team'),
                 'details'	=> __('Set margin.','team'),
                 'type'		=> 'text',
@@ -448,7 +448,7 @@ function layout_elements_option_content($parameters){
             $args = array(
                 'id'		=> 'margin',
                 'css_id'		=> $element_index.'_margin',
-                'parent' => $input_name.'[title]',
+                'parent' => $input_name.'[content]',
                 'title'		=> __('Margin','team'),
                 'details'	=> __('Set margin.','team'),
                 'type'		=> 'text',
@@ -619,7 +619,7 @@ function layout_elements_option_social($parameters){
             $args = array(
                 'id'		=> 'margin',
                 'css_id'		=> $element_index.'_margin',
-                'parent' => $input_name.'[title]',
+                'parent' => $input_name.'[social]',
                 'title'		=> __('Margin','team'),
                 'details'	=> __('Set margin.','team'),
                 'type'		=> 'text',
@@ -753,7 +753,7 @@ function layout_elements_option_meta($parameters){
             $args = array(
                 'id'		=> 'margin',
                 'css_id'		=> $element_index.'_margin',
-                'parent' => $input_name.'[title]',
+                'parent' => $input_name.'[meta]',
                 'title'		=> __('Margin','team'),
                 'details'	=> __('Set margin.','team'),
                 'type'		=> 'text',
@@ -875,7 +875,7 @@ function layout_elements_option_position($parameters){
             $args = array(
                 'id'		=> 'margin',
                 'css_id'		=> $element_index.'_margin',
-                'parent' => $input_name.'[title]',
+                'parent' => $input_name.'[position]',
                 'title'		=> __('Margin','team'),
                 'details'	=> __('Set margin.','team'),
                 'type'		=> 'text',
@@ -996,7 +996,7 @@ function layout_elements_option_wrapper_start($parameters){
             $args = array(
                 'id'		=> 'margin',
                 'css_id'		=> $element_index.'_margin',
-                'parent' => $input_name.'[title]',
+                'parent' => $input_name.'[wrapper_start]',
                 'title'		=> __('Margin','team'),
                 'details'	=> __('Set margin.','team'),
                 'type'		=> 'text',
