@@ -30,13 +30,12 @@ class team_class_post_types{
 		$singular  = __( 'Team Member', 'team' );
 		$plural    = __( 'Team Members', 'team' );
 	 
-	 	$team_member_slug = get_option('team_member_slug');
-		
-		if(empty($team_member_slug)) {$team_member_slug = 'team_member';}
-		
+	 	$team_settings = get_option('team_settings');
+        $team_member_slug = !empty($team_settings['team_member_slug']) ? $team_settings['team_member_slug'] : 'team_member';
+
 	 
 		register_post_type( "team_member",
-			apply_filters( "register_post_type_team_member", array(
+			apply_filters( "team_posttype_team_member", array(
 				'labels' => array(
 					'name' 					=> $plural,
 					'singular_name' 		=> $singular,
@@ -76,8 +75,8 @@ class team_class_post_types{
 			$plural    = __( 'Team Groups', 'team' );
 	 
 			register_taxonomy( "team_group",
-				apply_filters( 'register_taxonomy_team_group_object_type', array( 'team_member' ) ),
-	       	 	apply_filters( 'register_taxonomy_team_group_args', array(
+				apply_filters( 'team_taxonomy_team_group_type', array( 'team_member' ) ),
+	       	 	apply_filters( 'team_taxonomy_team_group_args', array(
 		            'hierarchical' 			=> true,
 		            'show_admin_column' 	=> true,					
 		            'update_count_callback' => '_update_post_term_count',
@@ -121,7 +120,7 @@ class team_class_post_types{
 	 
 	 
 		register_post_type( "team",
-			apply_filters( "register_post_type_team", array(
+			apply_filters( "team_posttype_team", array(
 				'labels' => array(
 					'name' 					=> $plural,
 					'singular_name' 		=> $singular,
@@ -166,7 +165,7 @@ class team_class_post_types{
 
 
         register_post_type( "team_layout",
-            apply_filters( "register_post_type_team_layout", array(
+            apply_filters( "team_posttype_team_layout", array(
                 'labels' => array(
                     'name' 					=> $plural,
                     'singular_name' 		=> $singular,

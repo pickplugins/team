@@ -20,7 +20,7 @@ function team_settings_content_general(){
         <?php
 
         $args = array(
-            'id'		=> 'wrapper_id',
+            'id'		=> 'team_member_slug',
             'parent' => 'team_settings',
             'title'		=> __('Team member slug','team'),
             'details'	=> __('Write custom team member slug.','team'),

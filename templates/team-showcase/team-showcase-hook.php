@@ -52,6 +52,9 @@ function team_showcase_main_items($args){
 
     }
 
+    $query_args = apply_filters('team_showcase_query_args', $query_args, $team_id);
+
+
     $wp_query = new WP_Query($query_args);
 
 
@@ -103,7 +106,7 @@ function team_showcase_item($args, $team_member_id){
     $args['team_member_id'] = $team_member_id;
 
     $team_options = get_post_meta( $team_id, 'team_options', true );
-    $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : team_first_team_layout();
+    $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : '';
     $layout_elements_data = get_post_meta( $item_layout_id, 'layout_elements_data', true );
 
     $team_item_class = apply_filters('team_showcase_item_class', 'item ', $args);
@@ -111,12 +114,8 @@ function team_showcase_item($args, $team_member_id){
 
     ?>
     <div class="<?php echo $team_item_class; ?>">
-
-        <?php
-        ?>
         <div class="elements-wrapper layout-<?php echo $item_layout_id; ?>">
             <?php
-
             if(!empty($layout_elements_data))
             foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
 
@@ -131,9 +130,6 @@ function team_showcase_item($args, $team_member_id){
             }
             ?>
         </div>
-        <?php
-        ?>
-
     </div>
     <?php
 
@@ -229,7 +225,6 @@ function team_showcase_main_custom_css($args){
 
 
 }
-
 
 
 

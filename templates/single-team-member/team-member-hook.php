@@ -5,7 +5,7 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
 
-add_action('team_single_team_member', 'team_single_team_member', 10, 2);
+add_action('team_single_team_member', 'team_single_team_member');
 
 function team_single_team_member($team_member_id){
 
