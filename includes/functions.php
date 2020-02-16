@@ -69,11 +69,13 @@ function single_team_member_content($content){
 
 	if(is_singular('team_member')){
 
+	    $team_id = get_the_id();
+
         wp_enqueue_style( 'single-team-member' );
 
 		ob_start();
-		//include( team_plugin_dir . 'templates/single-team/single-team.php');
-        include( team_plugin_dir . 'templates/single-team-member/single-team-member-hook.php');
+
+		do_action('team_single_team_member', $team_id);
 
 		$content =  ob_get_clean();
 		return $content;
