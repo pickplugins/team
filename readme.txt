@@ -1,7 +1,7 @@
 ﻿=== Team Showcase ===
 	Contributors: PickPlugins
 	Donate link: https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=wordpress.org
-	Tags: team, team showcase, members profiles, our teams, team members, team plugin wordpress, meet the team, my team,
+	Tags: team, team showcase, members profiles, our team, team members, team plugin wordpress, meet the team, my team, team page
 	Requires at least: 3.8
 	Tested up to: 5.3
 	Stable tag: 1.22.0
@@ -12,15 +12,36 @@
 
 == Description ==
 
-
-Team is pure html & css3 responsive meet the team grid for wordpress.
-Display team member profiles with descriptions and links to social media using our shortcode, widget. this plugin also support themes.
+Team is simple and easy to display team showcase page on your website, you can display anywhere via shortcode, easy to customize and build your own layout. we provide some basic styling option and you can build your own layout by layout builder.
 
 ### Team by http://pickplugins.com
 
 * [Team Premium &raquo;](https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=wordpress.org)
 * [Documentation &raquo;](https://www.pickplugins.com/documentation/team/?ref=wordpress.org)
 * [Support &raquo;](https://www.pickplugins.com/support/?ref=wordpress.org)
+
+**Team members**
+We added custom post types for creating team members, so you can create unlimited team members as you want. you can assing them to team groups(categories), team member image, social and contact data and custom fields.
+
+**Custom links for team members**
+You can set custom link for team members so that you can linked to each team member to external link like project link or social links.
+
+**Grid item width**
+For grid style view you can set custom value for grid item width, you can also set custom width value for tablet and mobile devices.
+
+**Container style**
+You can customize team showcase container style by background image, background color and text align.
+
+**Pagination style**
+You can display pagination for grid view so use can access to view others item by clicking on pagination, you can change next & previous text, background colors of pagination elements.
+
+###Premium Features
+
+**Team members skill**
+You set skills for team members and display skill bars on team showcase.
+
+**Team members custom class**
+You can assign custom class for team members, so you can apply your own style and CSS.
 
 
 <strong>Plugin Features</strong><br />
@@ -51,20 +72,6 @@ Display team member profiles with descriptions and links to social media using o
 * Query orderby.
 * Custom  sLug for team members
 
-
-<strong>Premium Features</strong><br />
-
-* 30+ Ready Different Skin.
-* Display from member categories(group).
-* Display by member id’s.
-* Custom icons for custom social links.
-* Click-able link to custom post team members.
-* Click-able link to custom link to team members.
-* Popup profile box on click member thumbnail.
-* Popup Slider on click member.
-* Mixitup style team grid.
-* Skill bars.
-* Short-code support for team member content.
 
 
 

@@ -268,7 +268,7 @@ function team_showcase_item_elements_thumbnail($args){
     $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
 
-    $thumb_size = isset($elementData['thumb_size']) ? $elementData['thumb_size'] : '';
+    $thumb_size = isset($elementData['thumb_size']) ? $elementData['thumb_size'] : 'full';
 
     //echo '<pre>'.var_export($elementData, true).'</pre>';
 
@@ -532,6 +532,7 @@ function team_showcase_item_elements_css_title($args){
     $color = isset($elementData['color']) ? $elementData['color'] : '';
     $font_size = isset($elementData['font_size']) ? $elementData['font_size'] : '';
     $font_family = isset($elementData['font_family']) ? $elementData['font_family'] : '';
+    $margin = isset($elementData['margin']) ? $elementData['margin'] : '';
 
 
     ?>
@@ -540,6 +541,8 @@ function team_showcase_item_elements_css_title($args){
             color: <?php echo $color; ?>;
             font-size: <?php echo $font_size; ?>;
             font-family: <?php echo $font_family; ?>;
+            margin: <?php echo $margin; ?>;
+
         }
     </style>
     <?php
@@ -557,6 +560,7 @@ function team_showcase_item_elements_css_position($args){
     $color = isset($elementData['color']) ? $elementData['color'] : '';
     $font_size = isset($elementData['font_size']) ? $elementData['font_size'] : '';
     $font_family = isset($elementData['font_family']) ? $elementData['font_family'] : '';
+    $margin = isset($elementData['margin']) ? $elementData['margin'] : '';
 
 
     ?>
@@ -565,6 +569,8 @@ function team_showcase_item_elements_css_position($args){
             color: <?php echo $color; ?>;
             font-size: <?php echo $font_size; ?>;
             font-family: <?php echo $font_family; ?>;
+            margin: <?php echo $margin; ?>;
+
         }
     </style>
     <?php
@@ -581,6 +587,7 @@ function team_showcase_item_elements_css_content($args){
     $color = isset($elementData['color']) ? $elementData['color'] : '';
     $font_size = isset($elementData['font_size']) ? $elementData['font_size'] : '';
     $font_family = isset($elementData['font_family']) ? $elementData['font_family'] : '';
+    $margin = isset($elementData['margin']) ? $elementData['margin'] : '';
 
 
     ?>
@@ -589,6 +596,8 @@ function team_showcase_item_elements_css_content($args){
             color: <?php echo $color; ?>;
             font-size: <?php echo $font_size; ?>;
             font-family: <?php echo $font_family; ?>;
+            margin: <?php echo $margin; ?>;
+
         }
 
         .element-<?php echo $element_index; ?> a{
@@ -614,6 +623,7 @@ function team_showcase_item_elements_css_thumbnail($args){
     $thumb_height_medium = isset($thumb_height['medium']) ? $thumb_height['medium'] : '';
     $thumb_height_small = isset($thumb_height['small']) ? $thumb_height['small'] : '';
 
+    $margin = isset($elementData['margin']) ? $elementData['margin'] : '';
 
 
     ?>
@@ -621,6 +631,7 @@ function team_showcase_item_elements_css_thumbnail($args){
 
         .element-<?php echo $element_index; ?>{
             overflow: hidden;
+            margin: <?php echo $margin; ?>;
         }
 
         @media only screen and (min-width: 1024px ){

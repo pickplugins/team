@@ -14,7 +14,7 @@ function team_cron_upgrade_settings(){
 
     //echo '<pre>'.var_export($team_member_meta_fields, true).'</pre>';
 
-
+    //echo '<pre>'.var_export($team_member_meta_fields, true).'</pre>';
 
 
     $team_settings = array();
@@ -76,7 +76,7 @@ function team_cron_upgrade_settings(){
 
     update_option('team_settings', $team_settings);
 
-    echo '<pre>'.var_export($social_fields_new, true).'</pre>';
+    //echo '<pre>'.var_export($social_fields_new, true).'</pre>';
 
 
     wp_clear_scheduled_hook('team_cron_upgrade_settings');
@@ -460,6 +460,8 @@ function team_cron_upgrade_team(){
                     $layout_elements_data[$item_count]['social']['font_size'] = '';
                     $layout_elements_data[$item_count]['social']['color'] = '';
                     $layout_elements_data[$item_count]['social']['font_family'] = $team_items_social_font_family;
+                    $layout_elements_data[$item_count]['social']['margin'] = '5px 0';
+
 
                 }elseif($itemIndex == 'title'){
                     $team_items_title_font_size = get_post_meta( $team_id, 'team_items_title_font_size', true );
@@ -469,6 +471,7 @@ function team_cron_upgrade_team(){
                     $layout_elements_data[$item_count]['title']['color'] = $team_items_title_color;
                     $layout_elements_data[$item_count]['title']['font_size'] = $team_items_title_font_size;
                     $layout_elements_data[$item_count]['title']['font_family'] = $team_items_title_font_family;
+                    $layout_elements_data[$item_count]['title']['margin'] = '5px 0';
 
                 }elseif($itemIndex == 'position'){
                     $team_items_position_font_size = get_post_meta( $team_id, 'team_items_position_font_size', true );
@@ -478,6 +481,7 @@ function team_cron_upgrade_team(){
                     $layout_elements_data[$item_count]['position']['color'] = $team_items_position_color;
                     $layout_elements_data[$item_count]['position']['font_size'] = $team_items_position_font_size;
                     $layout_elements_data[$item_count]['position']['font_family'] = $team_items_position_font_family;
+                    $layout_elements_data[$item_count]['position']['margin'] = '5px 0';
 
                 }elseif($itemIndex == 'content'){
 
@@ -497,6 +501,8 @@ function team_cron_upgrade_team(){
 
                     $layout_elements_data[$item_count]['content']['font_size'] = $team_items_content_font_size;
                     $layout_elements_data[$item_count]['content']['font_family'] = $team_items_content_font_family;
+                    $layout_elements_data[$item_count]['content']['margin'] = '5px 0';
+
                 }elseif($itemIndex == 'skill'){
 
                     $team_items_skill_bg_color = get_post_meta( $team_id, 'team_items_skill_bg_color', true );
@@ -504,7 +510,7 @@ function team_cron_upgrade_team(){
 
                     $team_items_skill_sort = get_post_meta( $team_id, 'team_items_skill_sort', true );
                     $layout_elements_data[$item_count]['skill']['order'] = $team_items_skill_sort;
-
+                    $layout_elements_data[$item_count]['skill']['margin'] = '5px 0';
 
 
                 }elseif($itemIndex == 'meta'){
@@ -525,7 +531,7 @@ function team_cron_upgrade_team(){
 
                             $layout_elements_data[$item_count]['meta']['font_size'] = '';
                             $layout_elements_data[$item_count]['meta']['color'] = '';
-
+                            $layout_elements_data[$item_count]['meta']['margin'] = '5px 0';
                             $item_count++;
 
                         }

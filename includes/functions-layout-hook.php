@@ -18,6 +18,7 @@ function layout_elements_option_title($parameters){
     $color = isset($element_data['color']) ? $element_data['color'] : '';
     $font_size = isset($element_data['font_size']) ? $element_data['font_size'] : '';
     $font_family = isset($element_data['font_family']) ? $element_data['font_family'] : '';
+    $margin = isset($element_data['margin']) ? $element_data['margin'] : '';
 
     $custom_css = isset($element_data['custom_css']) ? $element_data['custom_css'] : '';
     $custom_css_hover = isset($element_data['custom_css_hover']) ? $element_data['custom_css_hover'] : '';
@@ -77,6 +78,22 @@ function layout_elements_option_title($parameters){
             );
 
             $settings_tabs_field->generate_field($args);
+
+
+            $args = array(
+                'id'		=> 'margin',
+                'css_id'		=> $element_index.'_margin',
+                'parent' => $input_name.'[title]',
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin.','team'),
+                'type'		=> 'text',
+                'value'		=> $margin,
+                'default'		=> '',
+                'placeholder'		=> '5px 0',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
 
 
             ob_start();
@@ -151,6 +168,7 @@ function layout_elements_option_thumbnail($parameters){
 
     $thumb_size = isset($element_data['thumb_size']) ? $element_data['thumb_size'] : '';
     $thumb_height = isset($element_data['thumb_height']) ? $element_data['thumb_height'] : '';
+    $margin = isset($element_data['margin']) ? $element_data['margin'] : '';
 
     $thumb_height_large = isset($thumb_height['large']) ? $thumb_height['large'] : '';
     $thumb_height_medium = isset($thumb_height['medium']) ? $thumb_height['medium'] : '';
@@ -241,7 +259,19 @@ function layout_elements_option_thumbnail($parameters){
 
             $settings_tabs_field->generate_field($args);
 
+            $args = array(
+                'id'		=> 'margin',
+                'css_id'		=> $element_index.'_margin',
+                'parent' => $input_name.'[title]',
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin.','team'),
+                'type'		=> 'text',
+                'value'		=> $margin,
+                'default'		=> '',
+                'placeholder'		=> '5px 0',
+            );
 
+            $settings_tabs_field->generate_field($args);
 
             ob_start();
             ?>
@@ -296,6 +326,7 @@ function layout_elements_option_content($parameters){
     $color = isset($element_data['color']) ? $element_data['color'] : '';
     $font_size = isset($element_data['font_size']) ? $element_data['font_size'] : '';
     $font_family = isset($element_data['font_family']) ? $element_data['font_family'] : '';
+    $margin = isset($element_data['margin']) ? $element_data['margin'] : '';
 
     $custom_css = isset($element_data['custom_css']) ? $element_data['custom_css'] : '';
     $custom_css_hover = isset($element_data['custom_css_hover']) ? $element_data['custom_css_hover'] : '';
@@ -414,6 +445,21 @@ function layout_elements_option_content($parameters){
 
             $settings_tabs_field->generate_field($args);
 
+            $args = array(
+                'id'		=> 'margin',
+                'css_id'		=> $element_index.'_margin',
+                'parent' => $input_name.'[title]',
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin.','team'),
+                'type'		=> 'text',
+                'value'		=> $margin,
+                'default'		=> '',
+                'placeholder'		=> '5px 0',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
 
             ob_start();
             ?>
@@ -467,6 +513,7 @@ function layout_elements_option_social($parameters){
     $color = isset($element_data['color']) ? $element_data['color'] : '';
     $font_size = isset($element_data['font_size']) ? $element_data['font_size'] : '';
     $font_family = isset($element_data['font_family']) ? $element_data['font_family'] : '';
+    $margin = isset($element_data['margin']) ? $element_data['margin'] : '';
 
     ?>
     <div class="item">
@@ -569,6 +616,21 @@ function layout_elements_option_social($parameters){
             $settings_tabs_field->generate_field($args);
 
 
+            $args = array(
+                'id'		=> 'margin',
+                'css_id'		=> $element_index.'_margin',
+                'parent' => $input_name.'[title]',
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin.','team'),
+                'type'		=> 'text',
+                'value'		=> $margin,
+                'default'		=> '',
+                'placeholder'		=> '5px 0',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
             ob_start();
             ?>
             <code onclick="this.select()">
@@ -615,6 +677,7 @@ function layout_elements_option_meta($parameters){
     $color = isset($element_data['color']) ? $element_data['color'] : '';
     $font_size = isset($element_data['font_size']) ? $element_data['font_size'] : '';
     $font_family = isset($element_data['font_family']) ? $element_data['font_family'] : '';
+    $margin = isset($element_data['margin']) ? $element_data['margin'] : '';
 
     $custom_css = isset($element_data['custom_css']) ? $element_data['custom_css'] : '';
     $custom_css_hover = isset($element_data['custom_css_hover']) ? $element_data['custom_css_hover'] : '';
@@ -687,6 +750,19 @@ function layout_elements_option_meta($parameters){
 
             $settings_tabs_field->generate_field($args);
 
+            $args = array(
+                'id'		=> 'margin',
+                'css_id'		=> $element_index.'_margin',
+                'parent' => $input_name.'[title]',
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin.','team'),
+                'type'		=> 'text',
+                'value'		=> $margin,
+                'default'		=> '',
+                'placeholder'		=> '5px 0',
+            );
+
+            $settings_tabs_field->generate_field($args);
 
             ob_start();
             ?>
@@ -738,6 +814,7 @@ function layout_elements_option_position($parameters){
     $color = isset($element_data['color']) ? $element_data['color'] : '';
     $font_size = isset($element_data['font_size']) ? $element_data['font_size'] : '';
     $font_family = isset($element_data['font_family']) ? $element_data['font_family'] : '';
+    $margin = isset($element_data['margin']) ? $element_data['margin'] : '';
 
     $custom_css = isset($element_data['custom_css']) ? $element_data['custom_css'] : '';
     $custom_css_hover = isset($element_data['custom_css_hover']) ? $element_data['custom_css_hover'] : '';
@@ -795,6 +872,19 @@ function layout_elements_option_position($parameters){
 
             $settings_tabs_field->generate_field($args);
 
+            $args = array(
+                'id'		=> 'margin',
+                'css_id'		=> $element_index.'_margin',
+                'parent' => $input_name.'[title]',
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin.','team'),
+                'type'		=> 'text',
+                'value'		=> $margin,
+                'default'		=> '',
+                'placeholder'		=> '5px 0',
+            );
+
+            $settings_tabs_field->generate_field($args);
 
             ob_start();
             ?>
@@ -848,6 +938,7 @@ function layout_elements_option_wrapper_start($parameters){
     $wrapper_id = isset($element_data['wrapper_id']) ? $element_data['wrapper_id'] : '';
     $wrapper_class = isset($element_data['wrapper_class']) ? $element_data['wrapper_class'] : '';
     $css_idle = isset($element_data['css_idle']) ? $element_data['css_idle'] : '';
+    $margin = isset($element_data['margin']) ? $element_data['margin'] : '';
 
     ?>
     <div class="item">
@@ -902,6 +993,19 @@ function layout_elements_option_wrapper_start($parameters){
 
             $settings_tabs_field->generate_field($args);
 
+            $args = array(
+                'id'		=> 'margin',
+                'css_id'		=> $element_index.'_margin',
+                'parent' => $input_name.'[title]',
+                'title'		=> __('Margin','team'),
+                'details'	=> __('Set margin.','team'),
+                'type'		=> 'text',
+                'value'		=> $margin,
+                'default'		=> '',
+                'placeholder'		=> '5px 0',
+            );
+
+            $settings_tabs_field->generate_field($args);
 
             ob_start();
             ?>
