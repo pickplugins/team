@@ -51,7 +51,6 @@ if( ! class_exists( 'Team' ) ) {
 
             include('includes/functions-layout-element.php');
 
-            include('templates/single-team/single-team_member-hook.php');
             include('includes/functions.php');
 
             add_action('wp_enqueue_scripts', array($this, '_front_scripts'));

@@ -18,7 +18,7 @@ function team_single_team_member($team_member_id){
 
 
     ?>
-    <div class="">
+
 
         <?php
         ?>
@@ -42,7 +42,6 @@ function team_single_team_member($team_member_id){
         <?php
         ?>
 
-    </div>
     <?php
 
 }

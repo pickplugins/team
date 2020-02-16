@@ -11,11 +11,13 @@ function team_layout_element_title($args){
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
     $element_index = isset($args['element_index']) ? $args['element_index'] : '';
 
+    $post_data = get_post($team_member_id);
+    $post_title = isset($post_data->post_title) ? $post_data->post_title : '';
 
     $element_class = !empty($element_index) ? 'element-'.$element_index : '';
 
     ?>
-    <div class="team-title <?php echo $element_class; ?>"><?php echo get_the_title($team_member_id); ?></div>
+    <div class="team-title <?php echo $element_class; ?>"><?php echo $post_title; ?></div>
     <?php
 
 }

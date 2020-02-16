@@ -116,6 +116,12 @@ then paste this shortcode anywhere in your page to display Team gird.<br />
 * 2020-02-11 update - re-write plugin.
 * 2020-02-16 remove - remove unnecessary files.
 * 2020-02-16 optimize - optimize CSS and JS file load.
+* 2020-02-16 add - added option to hide feature image from single team member page
+* 2020-02-16 add - added option to hide post title from single team member page
+* 2020-02-16 add - layout builder for single team member page.
+
+
+
 
 = 1.21.5 =
 * 26/05/2018 update - Team member single page remove single_template and replace by the_content

@@ -75,7 +75,15 @@ function single_team_member_content($content){
 
 		ob_start();
 
-		do_action('team_single_team_member', $team_id);
+		?>
+        <div class="team-member single-team-member">
+            <?php
+            do_action('team_single_team_member', $team_id);
+            ?>
+        </div>
+        <?php
+
+
 
 		$content =  ob_get_clean();
 		return $content;
@@ -90,6 +98,46 @@ add_filter('the_content','single_team_member_content');
 
 
 
+function single_team_member_post_title($post_title){
+
+    if(is_singular('team_member') && in_the_loop()){
+        $team_settings = get_option('team_settings');
+        $hide_post_title = isset($team_settings['team_member']['hide_post_title']) ? $team_settings['team_member']['hide_post_title'] : '';
+
+        if($hide_post_title == 'yes') return;
+
+
+        return $post_title;
+    }
+    else{
+        return $post_title;
+    }
+
+}
+
+add_filter('the_title','single_team_member_post_title');
+
+
+function single_team_member_post_thumbnail($post_thumbnail){
+
+    if(is_singular('team_member')){
+        $team_settings = get_option('team_settings');
+        $hide_featured_image = isset($team_settings['team_member']['hide_featured_image']) ? $team_settings['team_member']['hide_featured_image'] : '';
+
+        //var_dump($hide_featured_image);
+
+        if($hide_featured_image == 'yes') return;
+
+
+        return $post_thumbnail;
+    }
+    else{
+        return $post_thumbnail;
+    }
+
+}
+
+add_filter('post_thumbnail_html','single_team_member_post_thumbnail');
 
 
 

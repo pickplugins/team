@@ -14,9 +14,17 @@ $team_settings_tab[] = array(
 );
 
 $team_settings_tab[] = array(
+    'id' => 'team_member',
+    'title' => sprintf(__('%s Team member','team'),'<i class="fas fa-user-tag"></i>'),
+    'priority' => 2,
+    'active' => ($current_tab == 'team_member') ? true : false,
+);
+
+
+$team_settings_tab[] = array(
     'id' => 'help_support',
     'title' => sprintf(__('%s Help & support','team'),'<i class="fas fa-hands-helping"></i>'),
-    'priority' => 2,
+    'priority' => 3,
     'active' => ($current_tab == 'help_support') ? true : false,
 );
 

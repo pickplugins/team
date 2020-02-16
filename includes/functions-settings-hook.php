@@ -159,8 +159,56 @@ function team_settings_content_general(){
 
 }
 
+add_action('team_settings_content_team_member', 'team_settings_content_team_member');
+
+function team_settings_content_team_member(){
+    $settings_tabs_field = new settings_tabs_field();
+
+    $team_settings = get_option('team_settings');
+
+    $hide_featured_image = isset($team_settings['team_member']['hide_featured_image']) ? $team_settings['team_member']['hide_featured_image'] : '';
+    $hide_post_title = isset($team_settings['team_member']['hide_post_title']) ? $team_settings['team_member']['hide_post_title'] : '';
+
+    ?>
+    <div class="section">
+        <div class="section-title"><?php echo __('Single team member', 'team'); ?></div>
+        <p class="description section-description"><?php echo __('Choose some options for single team member page.', 'team'); ?></p>
 
 
+        <?php
+
+        $args = array(
+            'id'		=> 'hide_featured_image',
+            'parent' => 'team_settings[team_member]',
+            'title'		=> __('Hide featured image','team'),
+            'details'	=> __('Hide feature image from single team member page.','team'),
+            'type'		=> 'select',
+            'value'		=> $hide_featured_image,
+            'default'		=> '',
+            'args'		=> array('no'=>'No', 'yes'=>'Yes'),
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+        $args = array(
+            'id'		=> 'hide_post_title',
+            'parent' => 'team_settings[team_member]',
+            'title'		=> __('Hide post title','team'),
+            'details'	=> __('Hide post title from single team member page.','team'),
+            'type'		=> 'select',
+            'value'		=> $hide_post_title,
+            'default'		=> '',
+            'args'		=> array('no'=>'No', 'yes'=>'Yes'),
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
+
+        ?>
+    </div>
+        <?php
+}
 
 add_action('team_settings_content_help_support', 'team_settings_content_help_support');
 
