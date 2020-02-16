@@ -2,30 +2,6 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
 
-function team_single_team_member_20200516($team_id) {
-    ?>
-    <div class="">
-        <pre>HTML here.</pre>
-    </div>
-    <?php
-}
-
-//add_action('team_single_team_member', 'team_single_team_member_20200516');
-
-
-function team_posttype_team_layout_20200516($args) {
-
-    $args['labels']['name'] = 'My team layout';
-    return $args;
-}
-
-//add_filter('team_posttype_team_layout', 'team_posttype_team_layout_20200516', 99);
-
-
-
-
-
-
 
 
 function team_first_team_member(){
