@@ -501,7 +501,7 @@ function team_metabox_content_layouts($post_id){
 
     $settings_tabs_field = new settings_tabs_field();
     $team_options = get_post_meta($post_id,'team_options', true);
-    $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : '';
+    $item_layout_id = !empty($team_options['item_layout_id']) ? $team_options['item_layout_id'] : team_first_team_layout();
 
 
 

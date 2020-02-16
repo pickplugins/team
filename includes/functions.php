@@ -29,6 +29,32 @@ function team_first_team_member(){
 }
 
 
+function team_first_team_layout(){
+
+    $args = array(
+        'post_type' => 'team_layout',
+        'post_status' => 'publish',
+        'posts_per_page' => 1,
+    );
+
+    $post_id = '';
+
+    $wp_query = new WP_Query($args);
+
+    if ($wp_query->have_posts()) :
+        while ($wp_query->have_posts()) : $wp_query->the_post();
+
+            $post_id = get_the_id();
+
+            return $post_id;
+        endwhile;
+    else:
+
+    endif;
+}
+
+
+
 
 
 

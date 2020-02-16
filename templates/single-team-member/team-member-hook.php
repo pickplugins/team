@@ -9,38 +9,31 @@ add_action('team_single_team_member', 'team_single_team_member', 10, 2);
 
 function team_single_team_member($team_member_id){
 
-
-
     $team_member_data = get_post_meta( $team_member_id, 'team_member_data', true );
-    $item_layout_id = isset($team_member_data['layout_id']) ? $team_member_data['layout_id'] : '';
+    $item_layout_id = !empty($team_member_data['layout_id']) ? $team_member_data['layout_id'] : team_first_team_layout();
     $layout_elements_data = get_post_meta( $item_layout_id, 'layout_elements_data', true );
 
-
+    //var_dump($item_layout_id);
 
     ?>
 
-
+    <div class="elements-wrapper layout-<?php echo $item_layout_id; ?>">
         <?php
-        ?>
-        <div class="elements-wrapper layout-<?php echo $item_layout_id; ?>">
-            <?php
 
-            if(!empty($layout_elements_data))
-            foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
+        if(!empty($layout_elements_data))
+        foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
 
-                if(!empty($elementGroupData))
-                foreach ($elementGroupData as $elementIndex => $elementData){
-                    $args['team_member_id'] = $team_member_id;
-                    $args['elementData'] = $elementData;
-                    $args['element_index'] = $elementGroupIndex;
+            if(!empty($elementGroupData))
+            foreach ($elementGroupData as $elementIndex => $elementData){
+                $args['team_member_id'] = $team_member_id;
+                $args['elementData'] = $elementData;
+                $args['element_index'] = $elementGroupIndex;
 
-                    do_action('team_layout_element_'.$elementIndex, $args);
-                }
+                do_action('team_layout_element_'.$elementIndex, $args);
             }
-            ?>
-        </div>
-        <?php
+        }
         ?>
+    </div>
 
     <?php
 
@@ -55,7 +48,7 @@ function team_single_team_member_custom_css($team_member_id){
 
 
     $team_member_data = get_post_meta( $team_member_id, 'team_member_data', true );
-    $item_layout_id = isset($team_member_data['layout_id']) ? $team_member_data['layout_id'] : '';
+    $item_layout_id = !empty($team_member_data['layout_id']) ? $team_member_data['layout_id'] : team_first_team_layout();
 
     $custom_scripts = get_post_meta($item_layout_id,'custom_scripts', true);
     $custom_css = isset($custom_scripts['custom_css']) ? $custom_scripts['custom_css'] : '';

@@ -103,7 +103,7 @@ function team_showcase_item($args, $team_member_id){
     $args['team_member_id'] = $team_member_id;
 
     $team_options = get_post_meta( $team_id, 'team_options', true );
-    $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : '';
+    $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : team_first_team_layout();
     $layout_elements_data = get_post_meta( $item_layout_id, 'layout_elements_data', true );
 
     $team_item_class = apply_filters('team_showcase_item_class', 'item ', $args);

@@ -21,7 +21,16 @@ Team is simple and easy to display team showcase page on your website, you can d
 * [Support &raquo;](https://www.pickplugins.com/support/?ref=wordpress.org)
 
 **Team members**
-We added custom post types for creating team members, so you can create unlimited team members as you want. you can assing them to team groups(categories), team member image, social and contact data and custom fields.
+We added custom post types for creating team members, so you can create unlimited team members as you want. you can assign them to team groups(categories), team member image, social and contact data and custom fields.
+
+**Team Member Profile**
+You can create team member profiles for each team members and customize the layout via layout editor.
+
+**Team member slug**
+Team member slug can be customize as you want. default team member slug is `team_member`
+
+**Query team members**
+You can use query team member by team groups, order by id, date, meta value and etc.
 
 **Custom links for team members**
 You can set custom link for team members so that you can linked to each team member to external link like project link or social links.
@@ -32,13 +41,21 @@ For grid style view you can set custom value for grid item width, you can also s
 **Container style**
 You can customize team showcase container style by background image, background color and text align.
 
+**Masonry layout**
+You can display grid item like masonry style.
+
 **Pagination style**
 You can display pagination for grid view so use can access to view others item by clicking on pagination, you can change next & previous text, background colors of pagination elements.
+
+**
+
 
 ###Premium Features
 
 **Team members skill**
 You set skills for team members and display skill bars on team showcase.
+
+
 
 **Team members custom class**
 You can assign custom class for team members, so you can apply your own style and CSS.
