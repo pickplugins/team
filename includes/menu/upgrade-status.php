@@ -32,7 +32,7 @@ echo '<pre>'.var_export($team_plugin_info, true).'</pre>';
         <?php
     }else{
         ?>
-        <p>Pending</p>
+        <p>Pending - Please wait until complete</p>
         <?php
     }
 
@@ -78,7 +78,7 @@ echo '<pre>'.var_export($team_plugin_info, true).'</pre>';
     <?php
     else:
         ?>
-        <p>Pending</p>
+        <p>Pending - Please wait until complete</p>
     <?php
     endif;
 
@@ -127,7 +127,7 @@ echo '<pre>'.var_export($team_plugin_info, true).'</pre>';
 
     else:
         ?>
-        <p>Pending</p>
+        <p>Pending - Please wait until complete</p>
         <?php
     endif;
 

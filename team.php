@@ -85,22 +85,15 @@ class Team{
 	public function _activation(){
 
 
-        $team_plugin_info = get_option('team_plugin_info');
-        $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['team_upgrade'] : '';
-
-
-        if($team_upgrade != 'done'){
-            //wp_schedule_event(time(), '2minute', 'team_cron_upgrade_settings');
-        }
 
 
         // Update social fields in option
 		//team_update_team_member_social_field();
 		
 		// Reset permalink
-//		$team_class_post_types= new team_class_post_types();
-//		$team_class_post_types->_posttype_team_member();
-//		flush_rewrite_rules();
+		$team_class_post_types= new team_class_post_types();
+		$team_class_post_types->_posttype_team_member();
+		flush_rewrite_rules();
 
 
         do_action( 'team_action_install' );

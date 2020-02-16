@@ -268,15 +268,23 @@ function team_showcase_item_elements_thumbnail($args){
     $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
 
+    $thumb_size = isset($elementData['thumb_size']) ? $elementData['thumb_size'] : '';
+
+    //echo '<pre>'.var_export($elementData, true).'</pre>';
 
     $team_member_data = get_post_meta($team_member_id,'team_member_data', true);
     $member_image_id = isset($team_member_data['member_image']) ? $team_member_data['member_image'] : '';
-    $member_image_url = wp_get_attachment_url( $member_image_id, 'full' );
+    $member_image_arr = wp_get_attachment_image_src( $member_image_id, $thumb_size );
+    $member_image_url = isset($member_image_arr[0]) ? $member_image_arr[0] : '';
 
-    ?>
-    <div class="team-thumb <?php echo $element_class; ?>"><a href="<?php echo get_permalink($team_member_id); ?>"><img src="<?php echo $member_image_url; ?>" /></a></div>
+    //echo '<pre>'.var_export($member_image_url, true).'</pre>';
 
-    <?php
+    if(!empty($member_image_url)){
+        ?>
+        <div class="team-thumb <?php echo $element_class; ?>"><a href="<?php echo get_permalink($team_member_id); ?>"><img src="<?php echo $member_image_url; ?>" /></a></div>
+        <?php
+
+    }
 
 }
 
