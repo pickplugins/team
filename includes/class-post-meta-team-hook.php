@@ -260,6 +260,7 @@ function team_metabox_content_query_member($post_id){
 
     $settings_tabs_field = new settings_tabs_field();
 
+    $team_post_ids = get_post_meta($post_id,'team_post_ids', true);
 
     $team_options = get_post_meta($post_id,'team_options', true);
     $query = isset($team_options['query']) ? $team_options['query'] : array();
@@ -269,6 +270,10 @@ function team_metabox_content_query_member($post_id){
     $query_order = isset($query['order']) ? $query['order'] : '';
     $query_post_per_page = isset($query['post_per_page']) ? $query['post_per_page'] : '';
     $query_taxonomy_terms = isset($query['taxonomy_terms']) ? $query['taxonomy_terms'] : '';
+    $member_ids = isset($query['member_ids']) ? $query['member_ids'] : array();
+
+
+
 
     ?>
     <div class="section">
@@ -366,6 +371,113 @@ function team_metabox_content_query_member($post_id){
 
         $settings_tabs_field->generate_field($args);
 
+
+        echo '<pre>'.var_export($member_ids, true).'</pre>';
+
+
+        $all_team_mebers = get_posts(array('post_type'        => 'team_member','numberposts'      => -1,'orderby'          => 'date','order'            => 'DESC',));
+        //echo '<pre>'.var_export($all_team_mebers, true).'</pre>';
+
+
+        ob_start();
+
+        ?>
+
+
+
+        <div class="layout-builder">
+
+            <div class="elements expandable sortable">
+
+                <?php
+
+                if(!empty($all_team_mebers)):
+
+                    $all_team_mebers_new = array();
+
+                    $member_ids_new = array();
+
+                    foreach ($member_ids as $elementIndex => $post_id){
+
+                        $member_ids_new[$post_id]  = $post_id;
+                    }
+
+                    foreach ($all_team_mebers as $elementIndex => $post_data){
+                        $post_id = isset($post_data->ID) ? $post_data->ID : '';
+                        $all_team_mebers_new[$post_id]  = $post_id;
+                    }
+
+
+                    //$all_team_mebers_new = array_intersect($member_ids_new, $all_team_mebers_new);
+                    $all_team_mebers_new = array_replace(array_flip($member_ids_new), $all_team_mebers_new);
+
+                    echo '<pre>'.var_export($all_team_mebers_new, true).'</pre>';
+
+
+                    foreach ($all_team_mebers_new as $elementIndex => $post_id){
+
+                            $post_title = get_the_title($post_id);
+
+                            ?>
+                            <div class="item">
+                                <div class="element-title header ">
+                                    <span class="sort"><i class="fas fa-sort"></i></span>
+                                    <label><input <?php if(in_array($post_id, $member_ids)) echo 'checked'; ?>  name="team_options[query][member_ids][]" value="<?php echo $post_id; ?>" type="checkbox"> <span class="expand"><?php echo $post_title; ?> <?php echo $post_id; ?></span></label>
+
+                                </div>
+                                <div class="element-options options">
+
+                                    <?php
+
+                                    $args = array(
+                                        'id'		=> 'wrapper_id',
+                                        'parent' => '',
+                                        'title'		=> __('Wrapper id','team'),
+                                        'details'	=> __('Write wrapper id, ex: div, p, span.','team'),
+                                        'type'		=> 'text',
+                                        'value'		=> '',
+                                        'default'		=> '',
+                                    );
+
+                                    $settings_tabs_field->generate_field($args);
+
+
+
+                                    ?>
+
+                                </div>
+                            </div>
+                            <?php
+
+                        }
+
+
+
+                endif;
+
+                ?>
+
+            </div>
+
+
+        </div>
+
+        <?php
+
+        $html = ob_get_clean();
+
+
+        $args = array(
+            'id'		=> 'layout_builder',
+            //'parent'		=> '',
+            'title'		=> __('Team mebers','team'),
+            'details'	=> __('Select team members to display.','team'),
+            'type'		=> 'custom_html',
+            'html'		=> $html,
+            'default'		=> '',
+        );
+
+        $settings_tabs_field->generate_field($args);
 
 
 

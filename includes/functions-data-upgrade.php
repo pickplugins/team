@@ -304,6 +304,8 @@ function team_cron_upgrade_team(){
             $team_taxonomy_terms = get_post_meta( $team_id, 'team_taxonomy_terms', true );
             $team_options['query']['taxonomy_terms'] = $team_taxonomy_terms;
 
+            $team_post_ids = get_post_meta( $team_id, 'team_post_ids', true );
+            $team_options['query']['member_ids'] = $team_post_ids;
 
             $team_items_custom_css = get_post_meta( $team_id, 'team_items_custom_css', true );
             $team_options['custom_scripts']['custom_css'] = $team_items_custom_css;
