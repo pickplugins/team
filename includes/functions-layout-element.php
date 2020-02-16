@@ -231,7 +231,7 @@ function team_layout_element_content($args){
 
     $content_html = '';
 
-    if($content_source=='full'){
+    if($content_source=='content'){
         $content_html.= do_shortcode($content);
     }
     elseif($content_source=='excerpt'){
