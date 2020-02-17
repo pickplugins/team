@@ -116,6 +116,14 @@ then paste this shortcode anywhere in your page to display Team gird.<br />
 
 == Changelog ==
 
+= 1.22.1 =
+* 2020-02-17 add - layout placeholder image for empty image.
+* 2020-02-17 add - added help & support tabs.
+* 2020-02-17 add - create team members and manage link added under team query.
+* 2020-02-17 remove - remove single team member style css file.
+
+
+
 = 1.22.0 =
 * 2020-02-11 update - re-write plugin.
 * 2020-02-16 remove - remove unnecessary files.
