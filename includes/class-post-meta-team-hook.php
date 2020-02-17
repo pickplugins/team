@@ -14,8 +14,8 @@ function team_metabox_content_shortcodes($post_id){
 
     ?>
     <div class="section">
-        <div class="section-title">Shortcodes</div>
-        <p class="description section-description">Simply copy these shortcode and user under content</p>
+        <div class="section-title"><?php echo __('Shortcodes','team'); ?></div>
+        <p class="description section-description"><?php echo __('Simply copy these shortcode and user under content','team'); ?></p>
 
 
         <?php
@@ -26,26 +26,26 @@ function team_metabox_content_shortcodes($post_id){
         ?>
 
         <div class="copy-to-clipboard">
-            <input type="text" value="[team id='<?php echo $post_id;  ?>']"> <span class="copied">Copied</span>
-            <p class="description">You can use this shortcode under post content</p>
+            <input type="text" value="[team id='<?php echo $post_id;  ?>']"> <span class="copied"><?php echo __('Copied','team'); ?></span>
+            <p class="description"><?php echo __('You can use this shortcode under post content','team'); ?></p>
         </div>
 
 
         <div class="copy-to-clipboard">
-            <textarea cols="50" rows="1" style="background:#bfefff" onClick="this.select();" ><?php echo '<?php echo do_shortcode("[team id='; echo "'".$post_id."']"; echo '"); ?>'; ?></textarea> <span class="copied">Copied</span>
-            <p class="description">PHP Code, you can use under theme .php files.</p>
+            <textarea cols="50" rows="1" style="background:#bfefff" onClick="this.select();" ><?php echo '<?php echo do_shortcode("[team id='; echo "'".$post_id."']"; echo '"); ?>'; ?></textarea> <span class="copied"><?php echo __('Copied','team'); ?></span>
+            <p class="description"><?php echo __('PHP Code, you can use under theme .php files.','team'); ?></p>
         </div>
 
         <div class="copy-to-clipboard">
             To avoid conflict:<br>
-            <input type="text" value="[team_pickplugins id='<?php echo $post_id;  ?>']"> <span class="copied">Copied</span>
-            <p class="description">To avoid conflict with 3rd party shortcode also used same <code>[team]</code>You can use this shortcode under post content</p>
+            <input type="text" value="[team_pickplugins id='<?php echo $post_id;  ?>']"> <span class="copied"><?php echo __('Copied','team'); ?></span>
+            <p class="description"><?php echo __('To avoid conflict with 3rd party shortcode also used same <code>[team]</code>You can use this shortcode under post content','team'); ?></p>
         </div>
 
 
         <div class="copy-to-clipboard">
-            <textarea cols="50" rows="1" style="background:#bfefff" onClick="this.select();" ><?php echo '<?php echo do_shortcode("[team_pickplugins id='; echo "'".$post_id."']"; echo '"); ?>'; ?></textarea> <span class="copied">Copied</span>
-            <p class="description">To avoid conflict, PHP code you can use under theme .php files.</p>
+            <textarea cols="50" rows="1" style="background:#bfefff" onClick="this.select();" ><?php echo '<?php echo do_shortcode("[team_pickplugins id='; echo "'".$post_id."']"; echo '"); ?>'; ?></textarea> <span class="copied"><?php echo __('Copied','team'); ?></span>
+            <p class="description"><?php echo __('To avoid conflict, PHP code you can use under theme .php files.','team'); ?></p>
         </div>
 
         <style type="text/css">
@@ -283,6 +283,29 @@ function team_metabox_content_query_member($post_id){
 
         <?php
 
+        ob_start();
+
+        ?>
+        <p><a target="_blank" class="button" href="<?php echo admin_url().'post-new.php?post_type=team_member'; ?>"><?php echo __('Create new team members','team'); ?></a> </p>
+        <p><a target="_blank" class="button" href="<?php echo admin_url().'edit.php?post_type=team_member'; ?>"><?php echo __('Manage team members','team'); ?></a> </p>
+
+        <?php
+
+
+        $html = ob_get_clean();
+
+        $args = array(
+            'id'		=> 'create_team_members',
+            'parent'		=> 'team_options[query]',
+            'title'		=> __('Create team members','team'),
+            'details'	=> __('Please follow the links to create team members or manage.','team'),
+            'type'		=> 'custom_html',
+            'html'		=> $html,
+        );
+
+        $settings_tabs_field->generate_field($args);
+
+
         $args = array(
             'id'		=> 'orderby',
             'parent'		=> 'team_options[query]',
@@ -291,7 +314,7 @@ function team_metabox_content_query_member($post_id){
             'type'		=> 'select',
             'value'		=> $query_orderby,
             'default'		=> '',
-            'args'		=> array('ID'=>'ID','author'=>'Author','title'=>'Title','name'=>'Name', 'type'=>'Type','date'=>'Date', 'post_date'=>'post_date','modified'=>'modified', 'parent'=>'parent', 'rand'=>'Random','comment_count'=>'Comment Count',  ),
+            'args'		=> array('ID'=>'ID','author'=>'Author','title'=>'Title','name'=>'Name', 'type'=>'Type','date'=>'Date', 'post_date'=>'post_date','modified'=>'modified', 'parent'=>'parent', 'rand'=>'Random','comment_count'=>'Comment Count','menu_order'=>'Menu order','meta_value'=>'Meta Value','meta_value_num'=>'Meta Value(number)','post__in'=>'post__in',  'post_name__in'=>'post_name__in', ),
         );
 
         $settings_tabs_field->generate_field($args);
@@ -372,12 +395,8 @@ function team_metabox_content_query_member($post_id){
         $settings_tabs_field->generate_field($args);
 
 
-        echo '<pre>'.var_export($member_ids, true).'</pre>';
 
-
-        $all_team_mebers = get_posts(array('post_type'        => 'team_member','numberposts'      => -1,'orderby'          => 'date','order'            => 'DESC',));
-        //echo '<pre>'.var_export($all_team_mebers, true).'</pre>';
-
+        $all_team_members = get_posts(array('post_type' => 'team_member','numberposts' => -1,'orderby' => 'date','order' => 'DESC'));
 
         ob_start();
 
@@ -391,30 +410,29 @@ function team_metabox_content_query_member($post_id){
 
                 <?php
 
-                if(!empty($all_team_mebers)):
+                if(!empty($all_team_members)):
 
-                    $all_team_mebers_new = array();
+                    $all_team_members_new = array();
 
                     $member_ids_new = array();
 
+                    if(!empty($member_ids))
                     foreach ($member_ids as $elementIndex => $post_id){
-
                         $member_ids_new[$post_id]  = $post_id;
                     }
 
-                    foreach ($all_team_mebers as $elementIndex => $post_data){
+                    if(!empty($all_team_members))
+                    foreach ($all_team_members as $elementIndex => $post_data){
                         $post_id = isset($post_data->ID) ? $post_data->ID : '';
-                        $all_team_mebers_new[$post_id]  = $post_id;
+                        $all_team_members_new[$post_id]  = $post_id;
                     }
 
-
-                    //$all_team_mebers_new = array_intersect($member_ids_new, $all_team_mebers_new);
-                    $all_team_mebers_new = array_replace(array_flip($member_ids_new), $all_team_mebers_new);
-
-                    echo '<pre>'.var_export($all_team_mebers_new, true).'</pre>';
+                    $all_team_members_new = array_replace(array_flip($member_ids_new), $all_team_members_new);
 
 
-                    foreach ($all_team_mebers_new as $elementIndex => $post_id){
+
+                    if(!empty($all_team_members_new))
+                    foreach ($all_team_members_new as $elementIndex => $post_id){
 
                             $post_title = get_the_title($post_id);
 
@@ -422,7 +440,7 @@ function team_metabox_content_query_member($post_id){
                             <div class="item">
                                 <div class="element-title header ">
                                     <span class="sort"><i class="fas fa-sort"></i></span>
-                                    <label><input <?php if(in_array($post_id, $member_ids)) echo 'checked'; ?>  name="team_options[query][member_ids][]" value="<?php echo $post_id; ?>" type="checkbox"> <span class="expand"><?php echo $post_title; ?> <?php echo $post_id; ?></span></label>
+                                    <label><input <?php if(in_array($post_id, $member_ids)) echo 'checked'; ?>  name="team_options[query][member_ids][]" value="<?php echo $post_id; ?>" type="checkbox"> <span class="expand"><?php echo $post_title; ?> (#<?php echo $post_id; ?>)</span></label>
 
                                 </div>
                                 <div class="element-options options">
@@ -468,9 +486,9 @@ function team_metabox_content_query_member($post_id){
 
 
         $args = array(
-            'id'		=> 'layout_builder',
+            'id'		=> 'team_member_ids',
             //'parent'		=> '',
-            'title'		=> __('Team mebers','team'),
+            'title'		=> __('Team members','team'),
             'details'	=> __('Select team members to display.','team'),
             'type'		=> 'custom_html',
             'html'		=> $html,

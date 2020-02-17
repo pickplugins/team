@@ -36,50 +36,54 @@ class class_team_post_meta_team{
         $post_id = $post->ID;
 
 
+
         $settings_tabs_field = new settings_tabs_field();
 
         $team_settings_tab = array();
+        $team_options = get_post_meta($post_id,'team_options', true);
+        $current_tab = isset($team_options['current_tab']) ? $team_options['current_tab'] : 'query_member';
+
 
         $team_settings_tab[] = array(
             'id' => 'shortcodes',
             'title' => sprintf(__('%s Shortcodes','team'),'<i class="fas fa-code"></i>'),
             'priority' => 1,
-            'active' => true,
+            'active' => ($current_tab == 'shortcodes') ? true : false,
         );
 
         $team_settings_tab[] = array(
             'id' => 'style',
             'title' => sprintf(__('%s Style','team'),'<i class="far fa-building"></i>'),
             'priority' => 2,
-            'active' => false,
+            'active' => ($current_tab == 'style') ? true : false,
         );
 
         $team_settings_tab[] = array(
             'id' => 'query_member',
             'title' => sprintf(__('%s Query Member','team'),'<i class="fas fa-users"></i>'),
             'priority' => 3,
-            'active' => false,
+            'active' => ($current_tab == 'query_member') ? true : false,
         );
 
         $team_settings_tab[] = array(
             'id' => 'layouts',
             'title' => sprintf(__('%s Layouts','team'),'<i class="fas fa-qrcode"></i>'),
             'priority' => 4,
-            'active' => false,
+            'active' => ($current_tab == 'layouts') ? true : false,
         );
 
         $team_settings_tab[] = array(
             'id' => 'masonry',
-            'title' => sprintf(__('%s Masonry','team'),'<i class="fas fa-qrcode"></i>'),
+            'title' => sprintf(__('%s Masonry','team'),'<i class="fas fa-grip-vertical"></i>'),
             'priority' => 4,
-            'active' => false,
+            'active' => ($current_tab == 'masonry') ? true : false,
         );
 
         $team_settings_tab[] = array(
             'id' => 'pagination',
             'title' => sprintf(__('%s Pagination','team'),'<i class="fas fa-ellipsis-h"></i>'),
             'priority' => 4,
-            'active' => false,
+            'active' => ($current_tab == 'pagination') ? true : false,
         );
 
 
@@ -87,7 +91,7 @@ class class_team_post_meta_team{
             'id' => 'custom_scripts',
             'title' => sprintf(__('%s Custom scripts','team'),'<i class="far fa-building"></i>'),
             'priority' => 5,
-            'active' => false,
+            'active' => ($current_tab == 'custom_scripts') ? true : false,
         );
 
 
@@ -121,7 +125,7 @@ class class_team_post_meta_team{
 
 
         <div class="settings-tabs vertical">
-
+            <input class="current_tab" type="hidden" name="team_options[current_tab]" value="<?php echo $current_tab; ?>">
             <div class="view-types">
 
                 <?php
