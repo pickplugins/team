@@ -95,8 +95,6 @@ function single_team_member_content($content){
 
 	    $team_id = get_the_id();
 
-        wp_enqueue_style( 'single-team-member' );
-
 		ob_start();
 
 		?>

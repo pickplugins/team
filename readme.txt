@@ -4,7 +4,7 @@
 	Tags: team, team showcase, members profiles, our team, team members, team plugin wordpress, meet the team, my team, team page
 	Requires at least: 3.8
 	Tested up to: 5.3
-	Stable tag: 1.22.0
+	Stable tag: 1.22.1
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

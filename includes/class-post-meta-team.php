@@ -42,7 +42,9 @@ class class_team_post_meta_team{
         $team_settings_tab = array();
         $team_options = get_post_meta($post_id,'team_options', true);
         $current_tab = isset($team_options['current_tab']) ? $team_options['current_tab'] : 'query_member';
+        $view_type = isset($team_options['view_type']) ? $team_options['view_type'] : 'grid';
 
+        //var_dump($current_tab);
 
         $team_settings_tab[] = array(
             'id' => 'shortcodes',
@@ -60,7 +62,7 @@ class class_team_post_meta_team{
 
         $team_settings_tab[] = array(
             'id' => 'query_member',
-            'title' => sprintf(__('%s Query Member','team'),'<i class="fas fa-users"></i>'),
+            'title' => sprintf(__('%s Query Member','team'),'<i class="fas fa-users-cog"></i>'),
             'priority' => 3,
             'active' => ($current_tab == 'query_member') ? true : false,
         );
@@ -75,25 +77,42 @@ class class_team_post_meta_team{
         $team_settings_tab[] = array(
             'id' => 'masonry',
             'title' => sprintf(__('%s Masonry','team'),'<i class="fas fa-grip-vertical"></i>'),
-            'priority' => 4,
+            'priority' => 5,
             'active' => ($current_tab == 'masonry') ? true : false,
+            'data_visible' => 'grid',
+            'hidden' => ($view_type == 'slider')? true : false || ($view_type == 'filterable')? true : false,
         );
 
         $team_settings_tab[] = array(
             'id' => 'pagination',
             'title' => sprintf(__('%s Pagination','team'),'<i class="fas fa-ellipsis-h"></i>'),
-            'priority' => 4,
+            'priority' => 6,
             'active' => ($current_tab == 'pagination') ? true : false,
+            'data_visible' => 'grid glossary filterable',
+            'hidden' => ($view_type == 'slider')? true : false ,
         );
 
 
         $team_settings_tab[] = array(
             'id' => 'custom_scripts',
-            'title' => sprintf(__('%s Custom scripts','team'),'<i class="far fa-building"></i>'),
-            'priority' => 5,
+            'title' => sprintf(__('%s Custom scripts','team'),'<i class="fas fa-laptop-code"></i>'),
+            'priority' => 90,
             'active' => ($current_tab == 'custom_scripts') ? true : false,
         );
 
+        $team_settings_tab[] = array(
+            'id' => 'help_support',
+            'title' => sprintf(__('%s Help & support','team'),'<i class="fas fa-hands-helping"></i>'),
+            'priority' => 95,
+            'active' => ($current_tab == 'help_support') ? true : false,
+        );
+
+        $team_settings_tab[] = array(
+            'id' => 'buy_pro',
+            'title' => sprintf(__('%s Buy Pro','team'),'<i class="fas fa-store"></i>'),
+            'priority' => 99,
+            'active' => ($current_tab == 'buy_pro') ? true : false,
+        );
 
 
         $team_settings_tab = apply_filters('team_metabox_navs', $team_settings_tab);
@@ -122,7 +141,38 @@ class class_team_post_meta_team{
 
 		?>
 
+<script>
+    jQuery(document).ready(function($){
+        $(document).on('click', '.settings-tabs input[name="team_options[view_type]"]', function(){
+            var val = $(this).val();
 
+            console.log( val );
+
+            $('.settings-tabs .tab-navs li').each(function( index ) {
+                data_visible = $( this ).attr('data_visible');
+
+                if(typeof data_visible != 'undefined'){
+                    //console.log('undefined '+ data_visible );
+
+                    n = data_visible.indexOf(val);
+                    if(n<0){
+                        $( this ).hide();
+                    }else{
+                        $( this ).show();
+                    }
+                }else{
+                    console.log('Not matched: '+ data_visible );
+
+
+                }
+            });
+
+
+        })
+    })
+
+
+</script>
 
         <div class="settings-tabs vertical">
             <input class="current_tab" type="hidden" name="team_options[current_tab]" value="<?php echo $current_tab; ?>">

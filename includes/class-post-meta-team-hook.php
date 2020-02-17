@@ -396,107 +396,6 @@ function team_metabox_content_query_member($post_id){
 
 
 
-        $all_team_members = get_posts(array('post_type' => 'team_member','numberposts' => -1,'orderby' => 'date','order' => 'DESC'));
-
-        ob_start();
-
-        ?>
-
-
-
-        <div class="layout-builder">
-
-            <div class="elements expandable sortable">
-
-                <?php
-
-                if(!empty($all_team_members)):
-
-                    $all_team_members_new = array();
-
-                    $member_ids_new = array();
-
-                    if(!empty($member_ids))
-                    foreach ($member_ids as $elementIndex => $post_id){
-                        $member_ids_new[$post_id]  = $post_id;
-                    }
-
-                    if(!empty($all_team_members))
-                    foreach ($all_team_members as $elementIndex => $post_data){
-                        $post_id = isset($post_data->ID) ? $post_data->ID : '';
-                        $all_team_members_new[$post_id]  = $post_id;
-                    }
-
-                    $all_team_members_new = array_replace(array_flip($member_ids_new), $all_team_members_new);
-
-
-
-                    if(!empty($all_team_members_new))
-                    foreach ($all_team_members_new as $elementIndex => $post_id){
-
-                            $post_title = get_the_title($post_id);
-
-                            ?>
-                            <div class="item">
-                                <div class="element-title header ">
-                                    <span class="sort"><i class="fas fa-sort"></i></span>
-                                    <label><input <?php if(in_array($post_id, $member_ids)) echo 'checked'; ?>  name="team_options[query][member_ids][]" value="<?php echo $post_id; ?>" type="checkbox"> <span class="expand"><?php echo $post_title; ?> (#<?php echo $post_id; ?>)</span></label>
-
-                                </div>
-                                <div class="element-options options">
-
-                                    <?php
-
-                                    $args = array(
-                                        'id'		=> 'wrapper_id',
-                                        'parent' => '',
-                                        'title'		=> __('Wrapper id','team'),
-                                        'details'	=> __('Write wrapper id, ex: div, p, span.','team'),
-                                        'type'		=> 'text',
-                                        'value'		=> '',
-                                        'default'		=> '',
-                                    );
-
-                                    $settings_tabs_field->generate_field($args);
-
-
-
-                                    ?>
-
-                                </div>
-                            </div>
-                            <?php
-
-                        }
-
-
-
-                endif;
-
-                ?>
-
-            </div>
-
-
-        </div>
-
-        <?php
-
-        $html = ob_get_clean();
-
-
-        $args = array(
-            'id'		=> 'team_member_ids',
-            //'parent'		=> '',
-            'title'		=> __('Team members','team'),
-            'details'	=> __('Select team members to display.','team'),
-            'type'		=> 'custom_html',
-            'html'		=> $html,
-            'default'		=> '',
-        );
-
-        $settings_tabs_field->generate_field($args);
-
 
 
         ?>
@@ -662,7 +561,7 @@ function team_metabox_content_layouts($post_id){
                 $team_thumb_url = isset($team_thumb['0']) ? esc_url_raw($team_thumb['0']) : '';
 
                 $layout_options = get_post_meta($post_id,'layout_options', true);
-                $layout_preview_img = isset($layout_options['layout_preview_img']) ? $layout_options['layout_preview_img'] : '';
+                $layout_preview_img = !empty($layout_options['layout_preview_img']) ? $layout_options['layout_preview_img'] : 'https://i.imgur.com/JyurCtY.jpg';
 
                 $team_thumb_url = !empty( $team_thumb_url ) ? $team_thumb_url : $layout_preview_img;
 
@@ -841,6 +740,400 @@ function team_metabox_content_pagination($post_id){
 
 
 
+
+add_action('team_metabox_content_help_support', 'team_metabox_content_help_support');
+
+if(!function_exists('team_metabox_content_help_support')) {
+    function team_metabox_content_help_support($tab){
+
+        $settings_tabs_field = new settings_tabs_field();
+
+        ?>
+        <div class="section">
+            <div class="section-title"><?php echo __('Get support', 'team'); ?></div>
+            <p class="description section-description"><?php echo __('Use following to get help and support from our expert team.', 'team'); ?></p>
+
+            <?php
+
+
+            ob_start();
+            ?>
+
+            <p><?php echo __('Ask question for free on our forum and get quick reply from our expert team members.', 'team'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/create-support-ticket/"><?php echo __('Create support ticket', 'team'); ?></a>
+
+            <p><?php echo __('Read our documentation before asking your question.', 'team'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/documentation/team/"><?php echo __('Documentation', 'team'); ?></a>
+
+            <p><?php echo __('Watch video tutorials.', 'team'); ?></p>
+            <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94atYZswlnBMhDuIYoqlmlxy"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'team'); ?></a>
+
+<!--            <ul>-->
+<!--                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=9SZKa0QYgsc">How to install & setup</a></li>-->
+<!---->
+<!--            </ul>-->
+
+
+
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'get_support',
+                //'parent'		=> '',
+                'title'		=> __('Ask question','team'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            ob_start();
+            ?>
+
+            <p class="">We wish your 2 minutes to write your feedback about the team plugin. give us <span style="color: #ffae19"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span></p>
+
+            <a target="_blank" href="https://wordpress.org/plugins/team/#reviews" class="button"><i class="fab fa-wordpress"></i> Write a review</a>
+
+
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'reviews',
+                //'parent'		=> '',
+                'title'		=> __('Submit reviews','team'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            ?>
+
+
+        </div>
+        <?php
+
+
+    }
+}
+
+
+
+
+add_action('team_metabox_content_buy_pro', 'team_metabox_content_buy_pro');
+
+if(!function_exists('team_metabox_content_buy_pro')) {
+    function team_metabox_content_buy_pro($tab){
+
+        $settings_tabs_field = new settings_tabs_field();
+
+
+        ?>
+        <div class="section">
+            <div class="section-title"><?php echo __('Get Premium', 'team'); ?></div>
+            <p class="description section-description"><?php echo __('Thanks for using our plugin, if you looking for some advance feature please buy premium version.', 'team'); ?></p>
+
+            <?php
+
+
+            ob_start();
+            ?>
+
+            <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'team'); ?></p>
+            <a class="button" href="https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a>
+
+            <h2><?php echo __('See the differences','team'); ?></h2>
+
+            <table class="pro-features">
+                <thead>
+                <tr>
+                    <th class="col-features"><?php echo __('Features','team'); ?></th>
+                    <th class="col-free"><?php echo __('Free','team'); ?></th>
+                    <th class="col-pro"><?php echo __('Premium','team'); ?></th>
+                </tr>
+                </thead>
+
+                <tr>
+                    <td class="col-features"><?php echo __('View type - Slider','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('View type - Filterable','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('View type - Glossary','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Access to layout library(30+ ready layout)','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Query by team members id','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Pagination type - jQuery','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Pagination type - Ajax','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Layout element - Skill','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-features"><?php echo __('Team members custom class','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('View type - Grid','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Masonry style grid','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Item custom width','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Item margin','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Item text align','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Container style','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Layout builder','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Layout element - Wrapper start','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Layout element - Wrapper end','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Layout element - Thumbnail','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Layout element - Title','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Layout element - Position','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Layout element - Content','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Layout element - Social','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Layout element - Meta fields','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Pagination type - Normal','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Hide Pagination','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Custom CSS','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Custom JS','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+
+
+                <tr>
+                    <td class="col-features"><?php echo __('Hide featured image(Team member page)','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Hide post title(Team member page)','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Custom team member slug','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Custom meta fields','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Custom social fields','team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <th class="col-features"><?php echo __('Features','team'); ?></th>
+                    <th class="col-free"><?php echo __('Free','team'); ?></th>
+                    <th class="col-pro"><?php echo __('Premium','team'); ?></th>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Buy now','team'); ?></td>
+                    <td> </td>
+                    <td><a class="button" href="https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a></td>
+                </tr>
+
+            </table>
+
+
+
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'get_pro',
+//                'parent'		=> 'related_post_settings',
+                'title'		=> __('Get pro version','team'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+            ?>
+
+
+        </div>
+
+        <style type="text/css">
+            .pro-features{
+                margin: 30px 0;
+                border-collapse: collapse;
+                border: 1px solid #ddd;
+            }
+            .pro-features th{
+                width: 120px;
+                background: #ddd;
+                padding: 10px;
+            }
+            .pro-features tr{
+            }
+            .pro-features td{
+                border-bottom: 1px solid #ddd;
+                padding: 10px 10px;
+                text-align: center;
+            }
+            .pro-features .col-features{
+                width: 230px;
+                text-align: left;
+            }
+
+            .pro-features .col-free{
+            }
+            .pro-features .col-pro{
+            }
+
+            .pro-features i.fas.fa-check {
+                color: #139e3e;
+                font-size: 16px;
+            }
+            .pro-features i.fas.fa-times {
+                color: #f00;
+                font-size: 17px;
+            }
+        </style>
+        <?php
+
+
+    }
+}
 
 
 

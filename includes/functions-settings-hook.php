@@ -237,10 +237,10 @@ if(!function_exists('team_settings_content_help_support')) {
             <p><?php echo __('Watch video tutorials.', 'team'); ?></p>
             <a class="button" href="https://www.youtube.com/playlist?list=PL0QP7T2SN94atYZswlnBMhDuIYoqlmlxy"><i class="fab fa-youtube"></i> <?php echo __('All tutorials', 'team'); ?></a>
 
-            <ul>
-                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=9SZKa0QYgsc">How to install & setup</a></li>
-
-            </ul>
+<!--            <ul>-->
+<!--                <li><i class="far fa-dot-circle"></i> <a href="https://www.youtube.com/watch?v=9SZKa0QYgsc">How to install & setup</a></li>-->
+<!---->
+<!--            </ul>-->
 
 
 
@@ -320,7 +320,7 @@ if(!function_exists('team_settings_content_buy_pro')) {
             ?>
 
             <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'team'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a>
+            <a class="button" href="https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a>
 
             <h2><?php echo __('See the differences','team'); ?></h2>
 
@@ -534,7 +534,7 @@ if(!function_exists('team_settings_content_buy_pro')) {
                 <tr>
                     <td class="col-features"><?php echo __('Buy now','team'); ?></td>
                     <td> </td>
-                    <td><a class="button" href="https://www.pickplugins.com/item/breadcrumb-awesome-breadcrumbs-style-navigation-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a></td>
+                    <td><a class="button" href="https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a></td>
                 </tr>
 
             </table>
