@@ -13,8 +13,11 @@ function team_layout_element_title($args){
 
     $post_data = get_post($team_member_id);
     $post_title = isset($post_data->post_title) ? $post_data->post_title : '';
+    $post_title = apply_filters('team_layout_element_title_text', $post_title, $args);
+
 
     $element_class = !empty($element_index) ? 'element-'.$element_index : '';
+    $element_class = apply_filters('team_layout_element_title_class', $element_class, $args);
 
     ?>
     <div class="team-title <?php echo $element_class; ?>"><?php echo $post_title; ?></div>
@@ -29,11 +32,16 @@ function team_layout_element_thumbnail($args){
 
     $element_index = isset($args['element_index']) ? $args['element_index'] : '';
     $element_class = !empty($element_index) ? 'element-'.$element_index : '';
+    $element_class = apply_filters('team_layout_element_thumbnail_class', $element_class, $args);
 
     //echo '<pre>'.var_export($args, true).'</pre>';
     $team_id = isset($args['team_id']) ? $args['team_id'] : '';
     $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+
+    $permalink = get_permalink($team_member_id);
+    $team_member_url = apply_filters('team_layout_element_thumbnail_url', $permalink, $args);
+
 
     $thumb_size = isset($elementData['thumb_size']) ? $elementData['thumb_size'] : 'full';
 
@@ -44,11 +52,14 @@ function team_layout_element_thumbnail($args){
     $member_image_arr = wp_get_attachment_image_src( $member_image_id, $thumb_size );
     $member_image_url = isset($member_image_arr[0]) ? $member_image_arr[0] : '';
 
+    $member_image_url = apply_filters('team_layout_element_thumbnail_src', $member_image_url, $args);
+
+
     //echo '<pre>'.var_export($member_image_url, true).'</pre>';
 
     if(!empty($member_image_url)){
         ?>
-        <div class="team-thumb <?php echo $element_class; ?>"><a href="<?php echo get_permalink($team_member_id); ?>"><img src="<?php echo $member_image_url; ?>" /></a></div>
+        <div class="team-thumb <?php echo $element_class; ?>"><a href="<?php echo $team_member_url; ?>"><img src="<?php echo $member_image_url; ?>" /></a></div>
         <?php
 
     }
@@ -215,6 +226,7 @@ function team_layout_element_content($args){
 
     $element_index = isset($args['element_index']) ? $args['element_index'] : '';
     $element_class = !empty($element_index) ? 'element-'.$element_index : '';
+    $element_class = apply_filters('team_layout_element_content_class', $element_class, $args);
 
     //echo '<pre>'.var_export($args, true).'</pre>';
 
@@ -227,6 +239,9 @@ function team_layout_element_content($args){
 
     $post_data= get_post($team_member_id);
 
+    $team_member_url = get_permalink($team_member_id);
+    $team_member_url = apply_filters('team_layout_element_content_link',$team_member_url, $args);
+
     $content = isset($post_data->post_content) ? $post_data->post_content : '';
 
     $content_html = '';
@@ -236,9 +251,9 @@ function team_layout_element_content($args){
     }
     elseif($content_source=='excerpt'){
 
-        $content_html.= wp_trim_words( $content , $word_count, ' <a class="read-more" href="'. get_permalink() .'">'.$read_more_text.'</a>' );
+        $content_html.= wp_trim_words( $content , $word_count, ' <a class="read-more" href="'. $team_member_url .'">'.$read_more_text.'</a>' );
     }else{
-        $content_html.= wp_trim_words( $content , $word_count, ' <a class="read-more" href="'. get_permalink() .'">'.$read_more_text.'</a>' );
+        $content_html.= wp_trim_words( $content , $word_count, ' <a class="read-more" href="'. $team_member_url .'">'.$read_more_text.'</a>' );
     }
 
 

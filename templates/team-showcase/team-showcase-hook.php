@@ -337,7 +337,118 @@ function team_showcase_after_items_pagination($wp_query, $args){
         #team-<?php echo $team_id; ?> .paginate .current{
             background-color: <?php echo $pagination_active_background_color; ?>;
         }
+
+
+        .popupbox-wrapper{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999999;
+            background: #3e3e3ec7;
+            height: 100%;
+            display: none;
+        }
+        .popupbox-wrapper .elements-wrapper{
+            width: 700px;
+            margin: 70px auto;
+            padding: 15px;
+            background: #fff;
+            position: relative;
+        }
+        .close-popupbox {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 3px 10px;
+            background: #e42525;
+            color: #fff;
+            cursor: pointer;
+        }
+
+
     </style>
+
+    <script>
+        jQuery(document).ready(function($){
+
+            $(document).on('click','.team-container a',function(event){
+                //event.preventDefault()
+
+                url = $(this).attr('href');
+                var hash = url.substr(1);
+                $('.'+hash).fadeIn();
+
+                //console.log(url);
+
+            })
+
+            $(document).on('click','.popupbox-wrapper .close-popupbox',function(event){
+
+                $(this).parent().parent().fadeOut();
+
+            })
+
+
+        })
+
+
+    </script>
+
+
+    <?php
+
+}
+
+
+add_action('team_showcase_item', 'team_showcase_item_popupbox', 10, 2);
+
+function team_showcase_item_popupbox($args, $team_member_id){
+
+    $team_id = isset($args['team_id']) ? $args['team_id'] : '';
+
+    $args['team_member_id'] = $team_member_id;
+
+    $team_options = get_post_meta( $team_id, 'team_options', true );
+    $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : '';
+    $layout_elements_data = get_post_meta( $item_layout_id, 'layout_elements_data', true );
+
+    $team_item_class = apply_filters('team_showcase_item_class', 'item ', $args);
+
+
+    ?>
+    <div class="popupbox-wrapper popupbox<?php echo $team_member_id; ?>">
+        <div class="elements-wrapper layout-<?php echo $item_layout_id; ?>">
+            <span class="close-popupbox"><i class="fas fa-times"></i></span>
+            <?php
+            if(!empty($layout_elements_data))
+                foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData){
+
+                    if(!empty($elementGroupData))
+                        foreach ($elementGroupData as $elementIndex => $elementData){
+                            $args['team_member_id'] = $team_member_id;
+                            $args['elementData'] = $elementData;
+                            $args['element_index'] = $elementGroupIndex;
+
+                            do_action('team_layout_element_'.$elementIndex, $args);
+                        }
+                }
+            ?>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <?php
 

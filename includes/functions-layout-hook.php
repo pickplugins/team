@@ -19,6 +19,7 @@ function layout_elements_option_title($parameters){
     $font_size = isset($element_data['font_size']) ? $element_data['font_size'] : '';
     $font_family = isset($element_data['font_family']) ? $element_data['font_family'] : '';
     $margin = isset($element_data['margin']) ? $element_data['margin'] : '';
+    $link_to = isset($element_data['link_to']) ? $element_data['link_to'] : '';
 
     $custom_css = isset($element_data['custom_css']) ? $element_data['custom_css'] : '';
     $custom_css_hover = isset($element_data['custom_css_hover']) ? $element_data['custom_css_hover'] : '';
@@ -93,6 +94,21 @@ function layout_elements_option_title($parameters){
             );
 
             $settings_tabs_field->generate_field($args);
+
+            $args = array(
+                'id'		=> 'link_to',
+                'css_id'		=> $element_index.'_link_to',
+                'parent' => $input_name.'[title]',
+                'title'		=> __('Link to','team'),
+                'details'	=> __('Choose option to link team member.','team'),
+                'type'		=> 'select',
+                'value'		=> $link_to,
+                'default'		=> 'team_member_link',
+                'args'		=> array('none'=> __('None', 'team'),'team_member_link'=> __('Team member link', 'team'),'popup_box'=> __('Popup box', 'team'), 'popup_slider'=> __('Popup slider', 'team'), 'custom_link'=> __('Custom link', 'team') ),
+            );
+
+            $settings_tabs_field->generate_field($args);
+
 
 
 
@@ -169,6 +185,7 @@ function layout_elements_option_thumbnail($parameters){
     $thumb_size = isset($element_data['thumb_size']) ? $element_data['thumb_size'] : '';
     $thumb_height = isset($element_data['thumb_height']) ? $element_data['thumb_height'] : '';
     $margin = isset($element_data['margin']) ? $element_data['margin'] : '';
+    $link_to = isset($element_data['link_to']) ? $element_data['link_to'] : '';
 
     $thumb_height_large = isset($thumb_height['large']) ? $thumb_height['large'] : '';
     $thumb_height_medium = isset($thumb_height['medium']) ? $thumb_height['medium'] : '';
@@ -294,7 +311,19 @@ function layout_elements_option_thumbnail($parameters){
 
             $settings_tabs_field->generate_field($args);
 
+            $args = array(
+                'id'		=> 'link_to',
+                'css_id'		=> $element_index.'_link_to',
+                'parent' => $input_name.'[thumbnail]',
+                'title'		=> __('Link to','team'),
+                'details'	=> __('Choose option to link team member.','team'),
+                'type'		=> 'select',
+                'value'		=> $link_to,
+                'default'		=> 'team_member_link',
+                'args'		=> array('none'=> __('None', 'team'),'team_member_link'=> __('Team member link', 'team'),'popup_box'=> __('Popup box', 'team'), 'popup_slider'=> __('Popup slider', 'team'), 'custom_link'=> __('Custom link', 'team') ),
+            );
 
+            $settings_tabs_field->generate_field($args);
 
             ?>
 
@@ -327,6 +356,7 @@ function layout_elements_option_content($parameters){
     $font_size = isset($element_data['font_size']) ? $element_data['font_size'] : '';
     $font_family = isset($element_data['font_family']) ? $element_data['font_family'] : '';
     $margin = isset($element_data['margin']) ? $element_data['margin'] : '';
+    $link_to = isset($element_data['link_to']) ? $element_data['link_to'] : '';
 
     $custom_css = isset($element_data['custom_css']) ? $element_data['custom_css'] : '';
     $custom_css_hover = isset($element_data['custom_css_hover']) ? $element_data['custom_css_hover'] : '';
@@ -482,6 +512,19 @@ function layout_elements_option_content($parameters){
 
             $settings_tabs_field->generate_field($args);
 
+            $args = array(
+                'id'		=> 'link_to',
+                'css_id'		=> $element_index.'_link_to',
+                'parent' => $input_name.'[content]',
+                'title'		=> __('Link to','team'),
+                'details'	=> __('Choose option to link team member.','team'),
+                'type'		=> 'select',
+                'value'		=> $link_to,
+                'default'		=> 'team_member_link',
+                'args'		=> array('none'=> __('None', 'team'),'team_member_link'=> __('Team member link', 'team'),'popup_box'=> __('Popup box', 'team'), 'popup_slider'=> __('Popup slider', 'team'), 'custom_link'=> __('Custom link', 'team') ),
+            );
+
+            $settings_tabs_field->generate_field($args);
 
             ?>
 
