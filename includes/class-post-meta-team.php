@@ -80,7 +80,7 @@ class class_team_post_meta_team{
             'priority' => 5,
             'active' => ($current_tab == 'masonry') ? true : false,
             'data_visible' => 'grid',
-            'hidden' => ($view_type == 'slider')? true : false || ($view_type == 'filterable')? true : false,
+            'hidden' => ($view_type == 'slider')? true : false || ($view_type == 'filterable')? true : false || ($view_type == 'glossary') ? true : false,
         );
 
         $team_settings_tab[] = array(

@@ -379,6 +379,7 @@ function team_showcase_after_items_pagination($wp_query, $args){
                 var hash = url.substr(1);
                 $('.'+hash).fadeIn();
 
+
                 //console.log(url);
 
             })
@@ -401,7 +402,7 @@ function team_showcase_after_items_pagination($wp_query, $args){
 }
 
 
-add_action('team_showcase_item', 'team_showcase_item_popupbox', 10, 2);
+//add_action('team_showcase_item', 'team_showcase_item_popupbox', 10, 2);
 
 function team_showcase_item_popupbox($args, $team_member_id){
 
