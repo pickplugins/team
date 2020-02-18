@@ -165,6 +165,8 @@ function team_showcase_main_custom_css($args){
     $layout_elements_data = get_post_meta( $item_layout_id, 'layout_elements_data', true );
 
 
+    $args['layout_id'] = $item_layout_id;
+
     ?>
     <style type="text/css">
         .team-container {

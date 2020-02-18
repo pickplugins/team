@@ -311,9 +311,10 @@ function team_layout_element_wrapper_end($args){
 add_action('team_layout_element_css_title', 'team_layout_element_css_title');
 function team_layout_element_css_title($args){
 
-    //echo '<pre>'.var_export($args, true).'</pre>';
+
     $element_index = isset($args['element_index']) ? $args['element_index'] : '';
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+    $layout_id = isset($args['layout_id']) ? $args['layout_id'] : '';
 
     $color = isset($elementData['color']) ? $elementData['color'] : '';
     $font_size = isset($elementData['font_size']) ? $elementData['font_size'] : '';
@@ -321,9 +322,11 @@ function team_layout_element_css_title($args){
     $margin = isset($elementData['margin']) ? $elementData['margin'] : '';
 
 
+    //echo '<pre>'.var_export($layout_id, true).'</pre>';
+
     ?>
     <style type="text/css">
-        .element-<?php echo $element_index; ?>{
+        .layout-<?php echo $layout_id; ?> .element-<?php echo $element_index; ?>{
             color: <?php echo $color; ?>;
             font-size: <?php echo $font_size; ?>;
             font-family: <?php echo $font_family; ?>;
@@ -342,6 +345,7 @@ function team_layout_element_css_position($args){
     //echo '<pre>'.var_export($args, true).'</pre>';
     $element_index = isset($args['element_index']) ? $args['element_index'] : '';
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+    $layout_id = isset($args['layout_id']) ? $args['layout_id'] : '';
 
     $color = isset($elementData['color']) ? $elementData['color'] : '';
     $font_size = isset($elementData['font_size']) ? $elementData['font_size'] : '';
@@ -351,7 +355,7 @@ function team_layout_element_css_position($args){
 
     ?>
     <style type="text/css">
-        .element-<?php echo $element_index; ?>{
+        .layout-<?php echo $layout_id; ?> .element-<?php echo $element_index; ?>{
             color: <?php echo $color; ?>;
             font-size: <?php echo $font_size; ?>;
             font-family: <?php echo $font_family; ?>;
@@ -368,6 +372,8 @@ function team_layout_element_css_content($args){
     //echo '<pre>'.var_export($args, true).'</pre>';
     $element_index = isset($args['element_index']) ? $args['element_index'] : '';
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+    $layout_id = isset($args['layout_id']) ? $args['layout_id'] : '';
+
     $read_more_color = isset($elementData['read_more_color']) ? $elementData['read_more_color'] : '';
 
     $color = isset($elementData['color']) ? $elementData['color'] : '';
@@ -378,7 +384,7 @@ function team_layout_element_css_content($args){
 
     ?>
     <style type="text/css">
-        .element-<?php echo $element_index; ?>{
+        .layout-<?php echo $layout_id; ?> .element-<?php echo $element_index; ?>{
             color: <?php echo $color; ?>;
             font-size: <?php echo $font_size; ?>;
             font-family: <?php echo $font_family; ?>;
@@ -386,7 +392,7 @@ function team_layout_element_css_content($args){
 
         }
 
-        .element-<?php echo $element_index; ?> a{
+        .layout-<?php echo $layout_id; ?> .element-<?php echo $element_index; ?> a{
             color: <?php echo $read_more_color; ?>;
 
         }
@@ -403,6 +409,7 @@ function team_layout_element_css_thumbnail($args){
     //echo '<pre>'.var_export($args, true).'</pre>';
     $element_index = isset($args['element_index']) ? $args['element_index'] : '';
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+    $layout_id = isset($args['layout_id']) ? $args['layout_id'] : '';
 
     $thumb_height = isset($elementData['thumb_height']) ? $elementData['thumb_height'] : '';
     $thumb_height_large = isset($thumb_height['large']) ? $thumb_height['large'] : '';
@@ -415,13 +422,13 @@ function team_layout_element_css_thumbnail($args){
     ?>
     <style type="text/css">
 
-        .element-<?php echo $element_index; ?>{
+        .layout-<?php echo $layout_id; ?> .element-<?php echo $element_index; ?>{
             overflow: hidden;
             margin: <?php echo $margin; ?>;
         }
 
         @media only screen and (min-width: 1024px ){
-            .element-<?php echo $element_index; ?>{
+            .layout-<?php echo $layout_id; ?> .element-<?php echo $element_index; ?>{
             <?php if(!empty($thumb_height_large)): ?>
                 max-height: <?php echo $thumb_height_large; ?>;
             <?php endif; ?>
@@ -429,7 +436,7 @@ function team_layout_element_css_thumbnail($args){
         }
 
         @media only screen and ( min-width: 768px ) and ( max-width: 1023px ) {
-            .element-<?php echo $element_index; ?>{
+            .layout-<?php echo $layout_id; ?> .element-<?php echo $element_index; ?>{
             <?php if(!empty($thumb_height_medium)): ?>
                 max-height: <?php echo $thumb_height_medium; ?>;
             <?php endif; ?>
@@ -437,7 +444,7 @@ function team_layout_element_css_thumbnail($args){
         }
 
         @media only screen and ( min-width: 0px ) and ( max-width: 767px ){
-            .element-<?php echo $element_index; ?>{
+            .layout-<?php echo $layout_id; ?> .element-<?php echo $element_index; ?>{
             <?php if(!empty($thumb_height_small)): ?>
                 max-height: <?php echo $thumb_height_small; ?>;
             <?php endif; ?>
