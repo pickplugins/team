@@ -42,9 +42,9 @@ class class_team_post_meta_team{
         $team_settings_tab = array();
         $team_options = get_post_meta($post_id,'team_options', true);
         $current_tab = isset($team_options['current_tab']) ? $team_options['current_tab'] : 'query_member';
-        $view_type = isset($team_options['view_type']) ? $team_options['view_type'] : 'grid';
+        $view_type = !empty($team_options['view_type']) ? $team_options['view_type'] : 'grid';
 
-        //var_dump($current_tab);
+        //var_dump($view_type);
 
         $team_settings_tab[] = array(
             'id' => 'shortcodes',
@@ -134,10 +134,6 @@ class class_team_post_meta_team{
         wp_enqueue_script( 'settings-tabs' );
 
 
-        //$team_options = get_post_meta($post_id,'team_options', true);
-        //echo '<pre>'.var_export($team_options, true).'</pre>';
-        $team_options = get_post_meta($post_id,'team_options', true);
-        $view_type = isset($team_options['view_type']) ? $team_options['view_type'] : 'grid';
 
 		?>
 

@@ -84,6 +84,7 @@ function team_cron_upgrade_settings(){
 
     $team_plugin_info = get_option('team_plugin_info');
     $team_plugin_info['settings_upgrade'] = 'done';
+
     update_option('team_plugin_info', $team_plugin_info);
 
 }
@@ -401,14 +402,21 @@ function team_cron_upgrade_team(){
 
             // Create layout from team settings.
             $team_grid_items = get_post_meta( $team_id, 'team_grid_items', true );
-            unset($team_grid_items['popup']);
+            if(isset($team_grid_items['popup'])){
+                unset($team_grid_items['popup']);
+            }
+
             //unset($team_grid_items['skill']);
             //unset($team_grid_items['meta']);
 
             $team_options['grid_items'] = $team_grid_items;
 
             $team_grid_items_hide = get_post_meta( $team_id, 'team_grid_items_hide', true );
-            unset($team_grid_items_hide['popup']);
+            if(isset($team_grid_items_hide['popup'])){
+                unset($team_grid_items_hide['popup']);
+            }
+
+
             //unset($team_grid_items_hide['skill']);
             //unset($team_grid_items_hide['meta']);
 
@@ -610,12 +618,6 @@ function team_cron_reset_migrate(){
 
     delete_option('team_settings');
 
-    $team_plugin_info['settings_upgrade'] = '';
-    $team_plugin_info['team_members_upgrade'] = '';
-    $team_plugin_info['team_upgrade'] = '';
-
-    update_option('team_plugin_info', $team_plugin_info);
-
 
     $team_member_meta_query[] = array(
         'key' => 'team_upgrade_status',
@@ -669,6 +671,14 @@ function team_cron_reset_migrate(){
         wp_reset_query();
     endif;
 
+
+    wp_clear_scheduled_hook('team_cron_reset_migrate');
+
+    $team_plugin_info['settings_upgrade'] = '';
+    $team_plugin_info['team_members_upgrade'] = '';
+    $team_plugin_info['team_upgrade'] = '';
+    $team_plugin_info['migration_reset'] = 'done';
+    update_option('team_plugin_info', $team_plugin_info);
 
 
 

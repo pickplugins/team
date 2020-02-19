@@ -20,10 +20,10 @@ class team_class_settings{
         add_submenu_page( 'edit.php?post_type=team', __( 'Settings', 'team' ), __( 'Settings', 'team' ), 'manage_options', 'settings', array( $this, 'settings' ) );
 
 
-        //if($team_upgrade != 'done'){
+        if($team_upgrade != 'done'){
             add_submenu_page( 'edit.php?post_type=team', __( 'Upgrade status', 'team' ), __( 'Upgrade status', 'team' ), 'manage_options', 'upgrade_status', array( $this, 'upgrade_status' ) );
 
-        //}
+        }
 
 
 

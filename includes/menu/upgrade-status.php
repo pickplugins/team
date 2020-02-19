@@ -8,7 +8,7 @@ $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['te
 
 //echo '<pre>'.var_export($team_plugin_info, true).'</pre>';
 
-
+wp_enqueue_style('font-awesome-5');
 
 ?>
 <?php
@@ -135,8 +135,7 @@ $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['te
 
 
 
-
-    <h3>You can close this page and check back later the stats.</h3>
+    <p><a class="button" href="<?php echo admin_url().'edit.php?post_type=team&page=upgrade_status'; ?>">Refresh</a> to check Migration stats.</p>
 
 
 
