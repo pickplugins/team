@@ -52,7 +52,7 @@ function team_showcase_main_items($args){
 
     }
 
-    $query_args = apply_filters('team_showcase_query_args', $query_args, $team_id);
+    $query_args = apply_filters('team_showcase_query_args', $query_args, $args);
 
 
     $wp_query = new WP_Query($query_args);
