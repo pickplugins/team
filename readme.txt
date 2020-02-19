@@ -76,6 +76,14 @@ Displaying team member in a filterable navs based on taxonomies or custom, user 
 **View type - Glossary**
 You can display team member in a glossary style grid, so that your visitors can see team members based on each character by clicking on navigation at top. there is also has pagination support. you can customize the indexes by changing background color, font color and font size and etc.
 
+**Popup profile**
+You can linked to team title, thumbnail or read more link to custom popup box, you can also choose custom layout for popup box.
+
+**Popup slider**
+You can linked to team title, thumbnail or read more link to custom popup slider, you can also choose custom layout for popup html and apply your own CSS and style to customize.
+
+**Custom link**
+You can link to team members title, thumbnail and read more to custom URL.
 
 
 == Installation ==
@@ -118,6 +126,9 @@ then paste this shortcode anywhere in your page to display Team gird.<br />
 
 = 1.22.2 =
 * 2020-02-19 add - added reset migration on settings page.
+* 2020-02-19 add - added some tutorials.
+* 2020-02-19 add - added some filter hooks.
+
 
 
 = 1.22.1 =
