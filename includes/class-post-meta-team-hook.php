@@ -340,7 +340,7 @@ function team_metabox_content_query_member($post_id){
             'details'	=> __('Set query order.','team'),
             'type'		=> 'select',
             'value'		=> $query_order,
-            'default'		=> '',
+            'default'		=> 'DESC',
             'args'		=> array('ASC'=>'Ascending','DESC'=>'Descending'),
         );
 
@@ -647,7 +647,7 @@ function team_metabox_content_pagination($post_id){
             'details'	=> __('Choose pagination type','team'),
             'type'		=> 'radio',
             'value'		=> $pagination_type,
-            'default'		=> 'normal',
+            'default'		=> 'pagination',
             'args'		=> apply_filters('team_pagination_types', array('none'=>'None','pagination'=>'Normal' )),
         );
 
