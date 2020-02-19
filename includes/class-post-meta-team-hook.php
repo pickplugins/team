@@ -270,7 +270,6 @@ function team_metabox_content_query_member($post_id){
     $query_order = isset($query['order']) ? $query['order'] : '';
     $query_post_per_page = isset($query['post_per_page']) ? $query['post_per_page'] : '';
     $query_taxonomy_terms = isset($query['taxonomy_terms']) ? $query['taxonomy_terms'] : '';
-    $member_ids = isset($query['member_ids']) ? $query['member_ids'] : array();
 
 
 
@@ -393,6 +392,7 @@ function team_metabox_content_query_member($post_id){
         );
 
         $settings_tabs_field->generate_field($args);
+
 
 
 
