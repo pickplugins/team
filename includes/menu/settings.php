@@ -2,7 +2,7 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
-$current_tab = isset($_POST['tab']) ? $_POST['tab'] : 'general';
+$current_tab = isset($_REQUEST['tab']) ? $_REQUEST['tab'] : 'general';
 
 $team_settings_tab = array();
 

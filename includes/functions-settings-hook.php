@@ -285,6 +285,60 @@ if(!function_exists('team_settings_content_help_support')) {
 
             $settings_tabs_field->generate_field($args);
 
+
+            ob_start();
+
+            $actionurl = admin_url().'edit.php?post_type=team&page=settings&tab=help_support';
+            $actionurl = wp_nonce_url( $actionurl,  'team_reset_migration' );
+
+
+            $nonce = isset($_REQUEST['_wpnonce']) ? $_REQUEST['_wpnonce'] : '';
+
+            if ( wp_verify_nonce( $nonce, 'team_reset_migration' )  ){
+
+                wp_schedule_event(time(), '2minute', 'team_cron_reset_migrate');
+
+
+
+
+                ?>
+                <p style="color: #f00;"><i class="fas fa-spin fa-spinner"></i> Migration reset on process, please wait until complete.</p>
+                <?php
+
+            }
+
+
+            ?>
+
+            <p class="">Please click the button bellow to reset migration data, you can start over, Please use with caution, your new migrate data will deleted. you can use default <a href="<?php echo admin_url().'export.php'; ?>">export</a> menu to take your team member, team or layouts data saved.</p>
+
+            <p><a class="button" href="<?php echo $actionurl; ?>">Reset migration</a></p>
+
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'reset_migrate',
+                //'parent'		=> '',
+                'title'		=> __('Reset migration','team'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+
+
+
+
+
+
+
             ?>
 
 

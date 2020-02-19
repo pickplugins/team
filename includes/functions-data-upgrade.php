@@ -125,7 +125,7 @@ if(!function_exists('team_cron_upgrade_team_members')){
         $args = array(
             'post_type' => 'team_member',
             'post_status' => 'any',
-            'posts_per_page' => 5,
+            'posts_per_page' => 10,
             'meta_query' => $meta_query,
         );
 
@@ -237,7 +237,7 @@ function team_cron_upgrade_team(){
     $args = array(
         'post_type'=>'team',
         'post_status'=>'any',
-        'posts_per_page'=> 5,
+        'posts_per_page'=> 10,
         'meta_query'=> $meta_query,
 
     );
@@ -602,8 +602,77 @@ function team_cron_upgrade_team(){
 }
 
 
+add_action('team_cron_reset_migrate','team_cron_reset_migrate');
 
-		
+function team_cron_reset_migrate(){
+
+    $team_plugin_info = get_option('team_plugin_info');
+
+    delete_option('team_settings');
+
+    $team_plugin_info['settings_upgrade'] = '';
+    $team_plugin_info['team_members_upgrade'] = '';
+    $team_plugin_info['team_upgrade'] = '';
+
+    update_option('team_plugin_info', $team_plugin_info);
+
+
+    $team_member_meta_query[] = array(
+        'key' => 'team_upgrade_status',
+        'compare' => '='
+    );
+
+    $team_member_args = array(
+        'post_type' => 'team_member',
+        'post_status' => 'any',
+        'posts_per_page' => -1,
+        'meta_query' => $team_member_meta_query,
+    );
+
+    $team_member_query = new WP_Query($team_member_args);
+
+    if ($team_member_query->have_posts()) :
+        while ($team_member_query->have_posts()) : $team_member_query->the_post();
+            $post_id = get_the_id();
+            delete_post_meta($post_id, 'team_upgrade_status');
+            delete_post_meta($post_id, 'team_member_data');
+
+        endwhile;
+
+        wp_reset_postdata();
+        wp_reset_query();
+    endif;
+
+
+    $team_meta_query[] = array(
+        'key' => 'team_upgrade_status',
+        'compare' => '='
+    );
+
+    $team_args = array(
+        'post_type' => 'team',
+        'post_status' => 'any',
+        'posts_per_page' => -1,
+        'meta_query' => $team_meta_query,
+    );
+
+    $team_query = new WP_Query($team_args);
+
+    if ($team_query->have_posts()) :
+        while ($team_query->have_posts()) : $team_query->the_post();
+            $post_id = get_the_id();
+            delete_post_meta($post_id, 'team_upgrade_status');
+            delete_post_meta($post_id, 'team_options');
+
+        endwhile;
+        wp_reset_postdata();
+        wp_reset_query();
+    endif;
+
+
+
+
+}
 		
 		
 		

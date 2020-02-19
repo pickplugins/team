@@ -32,7 +32,7 @@ $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['te
         <?php
     }else{
         ?>
-        <p>Pending - Please wait until complete</p>
+        <p>Pending</p>
         <?php
     }
 
@@ -78,7 +78,7 @@ $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['te
     <?php
     else:
         ?>
-        <p>Pending - Please wait until complete</p>
+        <p>Pending</p>
     <?php
     endif;
 
@@ -127,7 +127,7 @@ $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['te
 
     else:
         ?>
-        <p>Pending - Please wait until complete</p>
+        <p>Pending</p>
         <?php
     endif;
 
@@ -136,6 +136,7 @@ $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['te
 
 
 
+    <h3>You can close this page and check back later the stats.</h3>
 
 
 
