@@ -145,6 +145,8 @@ function team_showcase_main_custom_css($args){
     $team_id = isset($args['team_id']) ? $args['team_id'] : '';
 
     $team_options = get_post_meta($team_id,'team_options', true);
+    $view_type = isset($team_options['view_type']) ? $team_options['view_type'] : '';
+
     $item_width = isset($team_options['item_width']) ? $team_options['item_width'] : array();
     $team_width_large = isset($item_width['large']) ? $item_width['large'] : '';
     $team_width_medium = isset($item_width['medium']) ? $item_width['medium'] : '';
@@ -192,15 +194,18 @@ function team_showcase_main_custom_css($args){
             margin:0;
             padding:0;
         }
-        @media only screen and ( min-width: 0px ) and ( max-width: 767px ) {
-            #team-<?php echo $team_id; ?> .item{width: <?php echo $team_width_small; ?>}
-        }
-        @media only screen and ( min-width: 768px ) and ( max-width: 1023px ) {
-            #team-<?php echo $team_id; ?> .item{width: <?php echo $team_width_medium; ?>}
-        }
-        @media only screen and (min-width: 1024px ) {
-            #team-<?php echo $team_id; ?> .item{width: <?php echo $team_width_large; ?>}
-        }
+        <?php if($view_type != 'slider'): ?>
+            @media only screen and ( min-width: 0px ) and ( max-width: 767px ) {
+                #team-<?php echo $team_id; ?> .item{width: <?php echo $team_width_small; ?>}
+            }
+            @media only screen and ( min-width: 768px ) and ( max-width: 1023px ) {
+                #team-<?php echo $team_id; ?> .item{width: <?php echo $team_width_medium; ?>}
+            }
+            @media only screen and (min-width: 1024px ) {
+                #team-<?php echo $team_id; ?> .item{width: <?php echo $team_width_large; ?>}
+            }
+        <?php endif; ?>
+
         <?php
 
         echo str_replace('__ID__', 'layout-'.$item_layout_id, $custom_css);
