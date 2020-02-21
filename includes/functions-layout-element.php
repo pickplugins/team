@@ -95,6 +95,51 @@ function team_layout_element_position($args){
 
 
 
+add_action('team_layout_element_meta', 'team_layout_element_meta');
+function team_layout_element_meta($args){
+
+    $element_index = isset($args['element_index']) ? $args['element_index'] : '';
+    $element_class = !empty($element_index) ? 'element-'.$element_index : '';
+
+    //echo '<pre>'.var_export($args, true).'</pre>';
+    $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
+    $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+    $meta_key = isset($elementData['meta_key']) ? $elementData['meta_key'] : '';
+
+
+
+    //echo '<pre>'.var_export($elementData, true).'</pre>';
+
+    $team_member_data = get_post_meta($team_member_id, 'team_member_data', true);
+    $meta_key_value = isset($team_member_data['custom_fields'][$meta_key]) ? $team_member_data['custom_fields'][$meta_key] : '';
+    //echo '<pre>'.var_export($meta_key, true).'</pre>';
+
+    //$team_member_position = get_post_meta($team_member_id,'position', true);
+
+    ?>
+    <div class="team-meta <?php echo $element_class; ?>"><?php echo $meta_key_value; ?></div>
+    <?php
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 add_action('team_layout_element_social', 'team_layout_element_social');
 function team_layout_element_social($args){
@@ -365,6 +410,52 @@ function team_layout_element_css_position($args){
     </style>
     <?php
 }
+
+
+add_action('team_layout_element_css_meta', 'team_layout_element_css_meta');
+function team_layout_element_css_meta($args){
+
+    //echo '<pre>'.var_export($args, true).'</pre>';
+    $element_index = isset($args['element_index']) ? $args['element_index'] : '';
+    $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+    $layout_id = isset($args['layout_id']) ? $args['layout_id'] : '';
+
+    $color = isset($elementData['color']) ? $elementData['color'] : '';
+    $font_size = isset($elementData['font_size']) ? $elementData['font_size'] : '';
+    $font_family = isset($elementData['font_family']) ? $elementData['font_family'] : '';
+    $margin = isset($elementData['margin']) ? $elementData['margin'] : '';
+
+
+    ?>
+    <style type="text/css">
+        .layout-<?php echo $layout_id; ?> .element-<?php echo $element_index; ?>{
+            color: <?php echo $color; ?>;
+            font-size: <?php echo $font_size; ?>;
+            font-family: <?php echo $font_family; ?>;
+            margin: <?php echo $margin; ?>;
+
+        }
+    </style>
+    <?php
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 add_action('team_layout_element_css_content', 'team_layout_element_css_content');
 function team_layout_element_css_content($args){

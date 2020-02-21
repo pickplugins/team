@@ -29,6 +29,8 @@ function team_showcase_main_items($args){
         $paged = 1;
     }
 
+    $args['paged'] = $paged;
+
     $query_args['post_type'] 		= 'team_member';
     $query_args['orderby']  		= $query_orderby;
 
@@ -62,6 +64,8 @@ function team_showcase_main_items($args){
 
         $team_items_class = apply_filters('team_items_wrapper_class', 'team-items ', $args);
 
+        do_action('team_showcase_before_items', $wp_query, $args);
+
         ?>
         <div class="<?php echo $team_items_class; ?>">
             <?php
@@ -78,7 +82,7 @@ function team_showcase_main_items($args){
         </div>
 
         <?php
-        $args['paged'] = $paged;
+
 
         do_action('team_showcase_after_items', $wp_query, $args);
 
@@ -279,6 +283,82 @@ function team_showcase_main_masonry($args){
 
 }
 
+
+add_action('team_showcase_before_items', 'team_showcase_before_items_pagination', 10, 2);
+
+function team_showcase_before_items_pagination($wp_query, $args){
+    $team_id = isset($args['team_id']) ? $args['team_id'] : '';
+    $paged = isset($args['paged']) ? $args['paged'] : 1;
+
+
+    $team_options = get_post_meta($team_id, 'team_options', true);
+    $view_type = isset($team_options['view_type']) ? $team_options['view_type'] : '';
+    $pagination = isset($team_options['pagination']) ? $team_options['pagination'] : '';
+    $pagination_type = isset($pagination['type']) ? $pagination['type'] : '';
+    $pagination_on_top = isset($pagination['on_top']) ? $pagination['on_top'] : '';
+
+    if ($view_type != 'grid' ) return;
+    if ($pagination_type != 'pagination' ) return;
+    if ($pagination_on_top != 'yes' ) return;
+
+
+
+    $pagination_prev_text = isset($pagination['prev_text']) ? $pagination['prev_text'] : '';
+    $pagination_next_text = isset($pagination['next_text']) ? $pagination['next_text'] : '';
+    $pagination_background_color = isset($pagination['background_color']) ? $pagination['background_color'] : '';
+    $pagination_active_background_color = isset($pagination['active_background_color']) ? $pagination['active_background_color'] : '';
+
+    //var_dump($paged);
+
+
+    ?>
+    <div class="paginate">
+        <?php
+
+        $big = 999999999; // need an unlikely integer
+        echo paginate_links( array(
+            'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+            'format' => '?paged=%#%',
+            'current' => max( 1, $paged ),
+            'total' => $wp_query->max_num_pages
+        ) );
+
+        ?>
+    </div>
+
+    <style type="text/css">
+
+        #team-<?php echo $team_id; ?> .paginate {
+            padding: 30px;
+            text-align: center;
+        }
+
+        #team-<?php echo $team_id; ?> .paginate .page-numbers {
+            background-color: <?php echo $pagination_background_color; ?>;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            display: inline-block;
+            font-size: 14px;
+            line-height: 1em;
+            margin: 3px 0;
+            padding: 10px 15px;
+            text-decoration: none;
+        }
+
+        #team-<?php echo $team_id; ?> .paginate .current{
+            background-color: <?php echo $pagination_active_background_color; ?>;
+        }
+
+
+
+    </style>
+
+
+
+
+    <?php
+
+}
 
 
 
