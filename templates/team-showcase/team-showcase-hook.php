@@ -165,11 +165,12 @@ function team_showcase_main_custom_css($args){
 
     $item_layout_id = isset($team_options['item_layout_id']) ? $team_options['item_layout_id'] : '';
 
-    $custom_scripts = get_post_meta($item_layout_id,'custom_scripts', true);
+    $custom_scripts = isset($team_options['custom_scripts']) ? $team_options['custom_scripts'] : '';
     $custom_css = isset($custom_scripts['custom_css']) ? $custom_scripts['custom_css'] : '';
     $custom_js = isset($custom_scripts['custom_js']) ? $custom_scripts['custom_js'] : '';
     $layout_elements_data = get_post_meta( $item_layout_id, 'layout_elements_data', true );
 
+    //var_dump($custom_css);
 
     $args['layout_id'] = $item_layout_id;
 
@@ -212,7 +213,7 @@ function team_showcase_main_custom_css($args){
 
         <?php
 
-        echo str_replace('__ID__', 'layout-'.$item_layout_id, $custom_css);
+        echo $custom_css;
 
         ?>
     </style>

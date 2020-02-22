@@ -55,6 +55,8 @@ function team_single_team_member_custom_css($team_member_id){
     $custom_js = isset($custom_scripts['custom_js']) ? $custom_scripts['custom_js'] : '';
     $layout_elements_data = get_post_meta( $item_layout_id, 'layout_elements_data', true );
 
+    $args['layout_id'] = $item_layout_id;
+
 
     ?>
     <style type="text/css">

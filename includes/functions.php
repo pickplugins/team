@@ -229,8 +229,7 @@ function team_layout_data($layout){
     $layout_data = array();
 
     ob_start();
-    ?>
-    .__ID__ {
+    ?>.__ID__ {
     vertical-align: top;
     }
     .__ID__ .layer-media{}
@@ -239,8 +238,7 @@ function team_layout_data($layout){
     }
     .__ID__ .layer-hover {
     display: none;
-    }
-    <?php
+    }<?php
 
     $layout_data['flat']['css'] = ob_get_clean();
     $layout_data['flat']['preview_img'] = 'https://i.imgur.com/QLfbYkC.png';
@@ -248,8 +246,7 @@ function team_layout_data($layout){
 
     ob_start();
 
-    ?>
-    .__ID__ {
+    ?>.__ID__ {
     overflow: hidden;
     position: relative;
     vertical-align: top;
@@ -283,8 +280,7 @@ function team_layout_data($layout){
     }
     .__ID__ .layer-hover {
     display: none;
-    }
-    <?php
+    }<?php
 
     $layout_data['zoomout']['css'] = ob_get_clean();
     $layout_data['zoomout']['preview_img'] = 'https://i.imgur.com/QLfbYkC.png';
@@ -293,8 +289,7 @@ function team_layout_data($layout){
 
 
     ob_start();
-    ?>
-    .__ID__{}
+    ?>.__ID__{}
     .__ID__ .layer-media {
     background: rgb(255, 255, 255) none repeat scroll 0 0;
     border-radius: 50%;
@@ -305,8 +300,7 @@ function team_layout_data($layout){
     .__ID__ .layer-content{}
     .__ID__ .layer-hover {
     display: none;
-    }
-    <?php
+    }<?php
 
     $layout_data['thumbrounded']['css'] = ob_get_clean();
     $layout_data['thumbrounded']['preview_img'] = 'https://i.imgur.com/QLfbYkC.png';
