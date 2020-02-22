@@ -142,9 +142,9 @@ function team_showcase_item($args, $team_member_id){
 
 
 
-add_action('team_showcase_main', 'team_showcase_main_custom_css');
+add_action('team_showcase_main', 'team_showcase_main_custom_scripts');
 
-function team_showcase_main_custom_css($args){
+function team_showcase_main_custom_scripts($args){
 
     $team_id = isset($args['team_id']) ? $args['team_id'] : '';
 
@@ -210,14 +210,13 @@ function team_showcase_main_custom_css($args){
                 #team-<?php echo $team_id; ?> .item{width: <?php echo $team_width_large; ?>}
             }
         <?php endif; ?>
-
         <?php
-
         echo $custom_css;
-
         ?>
     </style>
-
+    <script>
+        <?php echo $custom_js;; ?>
+    </script>
     <?php
 
     if(!empty($layout_elements_data))
