@@ -444,12 +444,12 @@ if(!function_exists('team_settings_content_buy_pro')) {
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Filterable','team'); ?></td>
+                    <td class="col-features"><?php echo __('View type - Filterable','team'); ?> <a href="http://www.pickplugins.com/demo/team/filterable/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Glossary','team'); ?> <a href="http://www.pickplugins.com/demo/team/filterable/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Glossary','team'); ?> <a href="http://www.pickplugins.com/demo/team/glossary-custom-index/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>

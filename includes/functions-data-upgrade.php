@@ -529,7 +529,7 @@ function team_cron_upgrade_team(){
                     $team_grid_meta_keys = get_post_meta( $team_id, 'team_grid_meta_keys', true );
 
 
-                    if(!empty($team_grid_meta_keys))
+                    if(!empty($team_grid_meta_keys) && is_array($team_grid_meta_keys))
                         foreach ($team_grid_meta_keys as $meta){
 
                             $wrapper = isset($meta['wrapper']) ? $meta['wrapper'] : '';
