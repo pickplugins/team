@@ -4,7 +4,7 @@
 	Tags: team, team showcase, members profiles, our team, team members, team plugin wordpress, meet the team, my team, team page
 	Requires at least: 3.8
 	Tested up to: 5.3
-	Stable tag: 1.22.4
+	Stable tag: 1.22.5
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -124,6 +124,9 @@ then paste this shortcode anywhere in your page to display Team gird.<br />
 
 == Changelog ==
 
+
+= 1.22.5 =
+* 2020-02-23 fix - data upgrade CSS issue update.
 
 = 1.22.4 =
 * 2020-02-23 fix - custom CSS and custom JS issue fixed.

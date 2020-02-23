@@ -279,8 +279,8 @@ function team_layout_element_content($args){
     $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
     $elementData = isset($args['elementData']) ? $args['elementData'] : array();
     $content_source = isset($elementData['content_source']) ? $elementData['content_source'] : 'excerpt';
-    $read_more_text = isset($elementData['read_more_text']) ? $elementData['read_more_text'] : 'excerpt';
-    $word_count = isset($elementData['word_count']) ? $elementData['word_count'] : '';
+    $read_more_text = isset($elementData['read_more_text']) ? $elementData['read_more_text'] : '';
+    $word_count = isset($elementData['word_count']) ? $elementData['word_count'] : 15;
 
     $post_data= get_post($team_member_id);
 
