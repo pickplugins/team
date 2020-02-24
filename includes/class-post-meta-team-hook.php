@@ -106,11 +106,11 @@ function team_metabox_content_style($post_id){
     $team_options = get_post_meta($post_id,'team_options', true);
     $item_width = isset($team_options['item_width']) ? $team_options['item_width'] : array();
 
-    $team_width_large = isset($item_width['large']) ? $item_width['large'] : '';
-    $team_width_medium = isset($item_width['medium']) ? $item_width['medium'] : '';
-    $team_width_small = isset($item_width['small']) ? $item_width['small'] : '';
+    $team_width_large = isset($item_width['large']) ? $item_width['large'] : '30%';
+    $team_width_medium = isset($item_width['medium']) ? $item_width['medium'] : '45%';
+    $team_width_small = isset($item_width['small']) ? $item_width['small'] : '95%';
 
-    $item_margin = isset($team_options['item_margin']) ? $team_options['item_margin'] : '';
+    $item_margin = isset($team_options['item_margin']) ? $team_options['item_margin'] : '5px';
     $item_text_align = isset($team_options['item_text_align']) ? $team_options['item_text_align'] : '';
 
     $container_background_img_url = isset($team_options['container']['background_img_url']) ? $team_options['container']['background_img_url'] : '';
@@ -265,10 +265,10 @@ function team_metabox_content_query_member($post_id){
     $team_options = get_post_meta($post_id,'team_options', true);
     $query = isset($team_options['query']) ? $team_options['query'] : array();
 
-    $query_orderby = isset($query['orderby']) ? $query['orderby'] : '';
+    $query_orderby = isset($query['orderby']) ? $query['orderby'] : 'date';
     $query_orderby_meta_key = isset($query['orderby_meta_key']) ? $query['orderby_meta_key'] : '';
-    $query_order = isset($query['order']) ? $query['order'] : '';
-    $query_post_per_page = isset($query['post_per_page']) ? $query['post_per_page'] : '';
+    $query_order = isset($query['order']) ? $query['order'] : 'DESC';
+    $query_post_per_page = isset($query['post_per_page']) ? $query['post_per_page'] : 10;
     $query_taxonomy_terms = isset($query['taxonomy_terms']) ? $query['taxonomy_terms'] : '';
 
 
@@ -647,7 +647,7 @@ function team_metabox_content_pagination($post_id){
     $team_options = get_post_meta($post_id,'team_options', true);
     $pagination = isset($team_options['pagination']) ? $team_options['pagination'] : array();
 
-    $pagination_type = isset($pagination['type']) ? $pagination['type'] : '';
+    $pagination_type = isset($pagination['type']) ? $pagination['type'] : 'pagination';
 
     $pagination_prev_text = isset($pagination['prev_text']) ? $pagination['prev_text'] : '';
     $pagination_next_text = isset($pagination['next_text']) ? $pagination['next_text'] : '';
@@ -672,7 +672,7 @@ function team_metabox_content_pagination($post_id){
             'details'	=> __('Choose pagination type','team'),
             'type'		=> 'radio',
             'value'		=> $pagination_type,
-            'default'		=> 'pagination',
+            'default'		=> '',
             'args'		=> apply_filters('team_pagination_types', array('none'=>'None','pagination'=>'Normal' )),
         );
 

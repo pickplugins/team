@@ -127,6 +127,7 @@ then paste this shortcode anywhere in your page to display Team gird.<br />
 
 = 1.22.5 =
 * 2020-02-23 fix - data upgrade CSS issue update.
+* 2020-02-24 fix - fixed some default values.
 
 = 1.22.4 =
 * 2020-02-23 fix - custom CSS and custom JS issue fixed.

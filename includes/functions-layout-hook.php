@@ -549,8 +549,8 @@ function layout_elements_option_social($parameters){
     $element_index = isset($parameters['index']) ? $parameters['index'] : '';
 
     $social_icon_type = isset($element_data['social_icon_type']) ? $element_data['social_icon_type'] : '';
-    $social_icon_width = isset($element_data['social_icon_width']) ? $element_data['social_icon_width'] : '';
-    $social_icon_height = isset($element_data['social_icon_height']) ? $element_data['social_icon_height'] : '';
+    $social_icon_width = isset($element_data['social_icon_width']) ? $element_data['social_icon_width'] : '30px';
+    $social_icon_height = isset($element_data['social_icon_height']) ? $element_data['social_icon_height'] : '30px';
 
 
     $color = isset($element_data['color']) ? $element_data['color'] : '';
