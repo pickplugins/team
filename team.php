@@ -3,7 +3,7 @@
 Plugin Name: Team Showcase by PickPlugins
 Plugin URI: http://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashboard
 Description: Fully responsive and mobile ready meet the team showcase plugin for wordpress.
-Version: 1.22.4
+Version: 1.22.7
 Author: PickPlugins
 Author URI: http://pickplugins.com
 Text Domain: team
@@ -15,15 +15,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
-if( ! class_exists( 'Team' ) ) {
+if( ! class_exists( 'team' ) ) {
     class Team{
 
         public function __construct(){
 
             define('team_plugin_url', plugins_url('/', __FILE__));
             define('team_plugin_dir', plugin_dir_path(__FILE__));
-            define('team_plugin_name', 'Team');
-            define('team_plugin_version', '1.22.4');
+            define('team_plugin_name', 'team');
+            define('team_plugin_version', '1.22.7');
 
             include('includes/functions-data-upgrade.php');
 
@@ -104,15 +104,11 @@ if( ! class_exists( 'Team' ) ) {
 
         function cron_recurrence_interval($schedules){
 
-            $schedules['2minute'] = array(
+            $schedules['1minute'] = array(
                 'interval' => 120,
-                'display' => __('2 Minute', 'team')
+                'display' => __('1 Minute', 'team')
             );
 
-            $schedules['5minute'] = array(
-                'interval' => 300,
-                'display' => __('5 Minute', 'team')
-            );
 
 
             return $schedules;

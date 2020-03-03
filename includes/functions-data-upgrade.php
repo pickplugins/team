@@ -80,7 +80,7 @@ function team_cron_upgrade_settings(){
 
 
     wp_clear_scheduled_hook('team_cron_upgrade_settings');
-    wp_schedule_event(time(), '2minute', 'team_cron_upgrade_team_members');
+    wp_schedule_event(time(), '1minute', 'team_cron_upgrade_team_members');
 
     $team_plugin_info = get_option('team_plugin_info');
     $team_plugin_info['settings_upgrade'] = 'done';
@@ -205,7 +205,7 @@ if(!function_exists('team_cron_upgrade_team_members')){
             endwhile;
         else:
             wp_clear_scheduled_hook('team_cron_upgrade_team_members');
-            wp_schedule_event(time(), '2minute', 'team_cron_upgrade_team');
+            wp_schedule_event(time(), '1minute', 'team_cron_upgrade_team');
 
             $team_plugin_info = get_option('team_plugin_info');
             $team_plugin_info['team_members_upgrade'] = 'done';

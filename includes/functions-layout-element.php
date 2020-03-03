@@ -125,22 +125,6 @@ function team_layout_element_meta($args){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 add_action('team_layout_element_social', 'team_layout_element_social');
 function team_layout_element_social($args){
 

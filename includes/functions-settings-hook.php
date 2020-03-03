@@ -489,6 +489,17 @@ if(!function_exists('team_settings_content_buy_pro')) {
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
+                <tr>
+                    <td class="col-features"><?php echo __('Team members link to - Popup box','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Team members link to - Popup slider','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
 
                 <tr>
                     <td class="col-features"><?php echo __('Team members custom class','team'); ?></td>

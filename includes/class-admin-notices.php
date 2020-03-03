@@ -28,11 +28,12 @@ class class_team_notices{
 
         if(empty($team_settings_upgrade)){
 
+            $tutorial_link = 'https://www.youtube.com/watch?v=iiH8FjNPGFw';
 
             ?>
             <div class="update-nag">
                 <?php
-                echo sprintf(__('Data migrate required for team plugin, please <a class="button button-primary" href="%s">click to start</a> migration.', 'team-pro'), $actionurl)
+                echo sprintf(__('Data migration required for team plugin, please <a class="button button-primary" href="%s">click to start</a> migration. watch this <a target="_blank" href="%s">video</a> first.', 'team-pro'), $actionurl, $tutorial_link)
                 ?>
             </div>
             <?php

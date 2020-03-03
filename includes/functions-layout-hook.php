@@ -95,6 +95,8 @@ function layout_elements_option_title($parameters){
 
             $settings_tabs_field->generate_field($args);
 
+            $link_to_args = apply_filters('team_link_to_args', array('none'=> __('None', 'team'),'team_member_link'=> __('Team member link', 'team'), 'custom_link'=> __('Custom link', 'team') ));
+
             $args = array(
                 'id'		=> 'link_to',
                 'css_id'		=> $element_index.'_link_to',
@@ -104,7 +106,7 @@ function layout_elements_option_title($parameters){
                 'type'		=> 'select',
                 'value'		=> $link_to,
                 'default'		=> 'team_member_link',
-                'args'		=> array('none'=> __('None', 'team'),'team_member_link'=> __('Team member link', 'team'),'popup_box'=> __('Popup box', 'team'), 'popup_slider'=> __('Popup slider', 'team'), 'custom_link'=> __('Custom link', 'team') ),
+                'args'		=> $link_to_args,
             );
 
             $settings_tabs_field->generate_field($args);
@@ -311,6 +313,9 @@ function layout_elements_option_thumbnail($parameters){
 
             $settings_tabs_field->generate_field($args);
 
+            $link_to_args = apply_filters('team_link_to_args', array('none'=> __('None', 'team'),'team_member_link'=> __('Team member link', 'team'), 'custom_link'=> __('Custom link', 'team') ));
+
+
             $args = array(
                 'id'		=> 'link_to',
                 'css_id'		=> $element_index.'_link_to',
@@ -320,7 +325,7 @@ function layout_elements_option_thumbnail($parameters){
                 'type'		=> 'select',
                 'value'		=> $link_to,
                 'default'		=> 'team_member_link',
-                'args'		=> array('none'=> __('None', 'team'),'team_member_link'=> __('Team member link', 'team'),'popup_box'=> __('Popup box', 'team'), 'popup_slider'=> __('Popup slider', 'team'), 'custom_link'=> __('Custom link', 'team') ),
+                'args'		=> $link_to_args,
             );
 
             $settings_tabs_field->generate_field($args);
@@ -412,6 +417,23 @@ function layout_elements_option_content($parameters){
                 'value'		=> $read_more_text,
                 'default'		=> '',
                 'placeholder'		=> '',
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+            $link_to_args = apply_filters('team_link_to_args', array('none'=> __('None', 'team'),'team_member_link'=> __('Team member link', 'team'), 'custom_link'=> __('Custom link', 'team') ));
+
+
+            $args = array(
+                'id'		=> 'link_to',
+                'css_id'		=> $element_index.'_link_to',
+                'parent' => $input_name.'[content]',
+                'title'		=> __('Read more link to','team'),
+                'details'	=> __('Choose option to link team member.','team'),
+                'type'		=> 'select',
+                'value'		=> $link_to,
+                'default'		=> 'team_member_link',
+                'args'		=> $link_to_args,
             );
 
             $settings_tabs_field->generate_field($args);
@@ -512,19 +534,7 @@ function layout_elements_option_content($parameters){
 
             $settings_tabs_field->generate_field($args);
 
-            $args = array(
-                'id'		=> 'link_to',
-                'css_id'		=> $element_index.'_link_to',
-                'parent' => $input_name.'[content]',
-                'title'		=> __('Link to','team'),
-                'details'	=> __('Choose option to link team member.','team'),
-                'type'		=> 'select',
-                'value'		=> $link_to,
-                'default'		=> 'team_member_link',
-                'args'		=> array('none'=> __('None', 'team'),'team_member_link'=> __('Team member link', 'team'),'popup_box'=> __('Popup box', 'team'), 'popup_slider'=> __('Popup slider', 'team'), 'custom_link'=> __('Custom link', 'team') ),
-            );
 
-            $settings_tabs_field->generate_field($args);
 
             ?>
 
@@ -1138,4 +1148,123 @@ function layout_elements_option_wrapper_end($parameters){
 
 
 
+
+
+
+
+add_filter('team_layout_element_title_text', 'team_layout_element_title_text', 90,2);
+
+function team_layout_element_title_text($post_title, $args){
+
+    $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+    $link_to = isset($elementData['link_to']) ? $elementData['link_to'] : '';
+    $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
+
+    $team_member_data = get_post_meta($team_member_id,'team_member_data', true);
+    $custom_fields = isset($team_member_data['custom_fields']) ? $team_member_data['custom_fields'] : '';
+    $custom_link = isset($custom_fields['custom_link']) ? $custom_fields['custom_link'] : '';
+
+
+    //var_dump($link_to);
+
+
+    ob_start();
+    ?>
+    <?php
+    if($link_to == 'team_member_link'):
+        ?>
+        <a href="<?php echo get_permalink($team_member_id); ?>"><?php echo $post_title; ?></a>
+    <?php
+    elseif ($link_to == 'custom_link'):
+        ?>
+        <a href="<?php echo $custom_link; ?>"><?php echo $post_title; ?></a>
+    <?php
+    else:
+        echo $post_title;
+    endif;
+    ?>
+
+    <?php
+    $post_title = ob_get_clean();
+
+    return $post_title;
+}
+
+
+
+
+
+add_filter('team_layout_element_thumbnail_url', 'team_layout_element_thumbnail_url', 90,2);
+
+function team_layout_element_thumbnail_url($permalink, $args){
+
+    $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+    $link_to = isset($elementData['link_to']) ? $elementData['link_to'] : '';
+    $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
+
+    $team_member_data = get_post_meta($team_member_id,'team_member_data', true);
+    $custom_fields = isset($team_member_data['custom_fields']) ? $team_member_data['custom_fields'] : '';
+    $custom_link = isset($custom_fields['custom_link']) ? $custom_fields['custom_link'] : '';
+
+
+    //var_dump($link_to);
+
+    ?>
+    <?php
+    if($link_to == 'team_member_link'):
+
+        return $permalink;
+
+    elseif ($link_to == 'custom_link'):
+
+        return $custom_link;
+
+    else:
+
+        return '';
+
+    endif;
+    ?>
+
+    <?php
+
+
+}
+
+
+
+add_filter('team_layout_element_content_link', 'team_layout_element_content_link', 90,2);
+
+function team_layout_element_content_link($team_member_url, $args){
+
+    $elementData = isset($args['elementData']) ? $args['elementData'] : array();
+    $link_to = isset($elementData['link_to']) ? $elementData['link_to'] : '';
+    $team_member_id = isset($args['team_member_id']) ? $args['team_member_id'] : '';
+
+    $team_member_data = get_post_meta($team_member_id,'team_member_data', true);
+    $custom_fields = isset($team_member_data['custom_fields']) ? $team_member_data['custom_fields'] : '';
+    $custom_link = isset($custom_fields['custom_link']) ? $custom_fields['custom_link'] : '';
+
+
+    ?>
+    <?php
+    if($link_to == 'team_member_link'):
+
+        return $team_member_url;
+
+    elseif ($link_to == 'custom_link'):
+
+        return $custom_link;
+
+    else:
+
+        return '';
+
+    endif;
+    ?>
+
+    <?php
+
+
+}
 

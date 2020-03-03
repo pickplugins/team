@@ -888,6 +888,7 @@ if(!function_exists('team_metabox_content_buy_pro')) {
             <h2><?php echo __('See the differences','team'); ?></h2>
 
             <table class="pro-features">
+
                 <thead>
                 <tr>
                     <th class="col-features"><?php echo __('Features','team'); ?></th>
@@ -897,24 +898,24 @@ if(!function_exists('team_metabox_content_buy_pro')) {
                 </thead>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Slider','team'); ?></td>
+                    <td class="col-features"><?php echo __('View type - Slider','team'); ?> <a href="http://www.pickplugins.com/demo/team/slider/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Filterable','team'); ?></td>
+                    <td class="col-features"><?php echo __('View type - Filterable','team'); ?> <a href="http://www.pickplugins.com/demo/team/filterable/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Glossary','team'); ?></td>
+                    <td class="col-features"><?php echo __('View type - Glossary','team'); ?> <a href="http://www.pickplugins.com/demo/team/glossary-custom-index/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Access to layout library(30+ ready layout)','team'); ?></td>
+                    <td class="col-features"><?php echo __('Access to layout library(30+ ready layout)','team'); ?> <a href="http://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
@@ -926,22 +927,39 @@ if(!function_exists('team_metabox_content_buy_pro')) {
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Pagination type - jQuery','team'); ?></td>
+                    <td class="col-features"><?php echo __('Pagination type - jQuery','team'); ?> <a href="http://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Pagination type - Ajax','team'); ?></td>
+                    <td class="col-features"><?php echo __('Pagination type - Ajax','team'); ?> <a href="http://www.pickplugins.com/demo/team/ajax-pagination/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Layout element - Skill','team'); ?></td>
+                    <td class="col-features"><?php echo __('Pagination type - Load more','team'); ?> <a href="http://www.pickplugins.com/demo/team/load-more/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
+                <tr>
+                    <td class="col-features"><?php echo __('Layout element - Skill','team'); ?> <a href="http://www.pickplugins.com/demo/team/skill-bars/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Team members link to - Popup box','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Team members link to - Popup slider','team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
 
                 <tr>
                     <td class="col-features"><?php echo __('Team members custom class','team'); ?></td>
@@ -950,18 +968,18 @@ if(!function_exists('team_metabox_content_buy_pro')) {
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Grid','team'); ?></td>
+                    <td class="col-features"><?php echo __('View type - Grid','team'); ?> <a href="http://www.pickplugins.com/demo/team/view-type-grid/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Masonry style grid','team'); ?></td>
+                    <td class="col-features"><?php echo __('Masonry style grid','team'); ?> <a href="http://www.pickplugins.com/demo/team/masonry/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Item custom width','team'); ?></td>
+                    <td class="col-features"><?php echo __('Item custom width','team'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
@@ -1099,6 +1117,7 @@ if(!function_exists('team_metabox_content_buy_pro')) {
                     <td> </td>
                     <td><a class="button" href="https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a></td>
                 </tr>
+
 
             </table>
 
