@@ -32,6 +32,7 @@ class team_class_post_types{
 	 
 	 	$team_settings = get_option('team_settings');
         $team_member_slug = !empty($team_settings['team_member_slug']) ? $team_settings['team_member_slug'] : 'team_member';
+        $is_public = isset($team_settings['team_member']['is_public']) ? $team_settings['team_member']['is_public'] : '';
 
 	 
 		register_post_type( "team_member",
@@ -58,7 +59,7 @@ class team_class_post_types{
 				'show_ui' 				=> true,
 				'capability_type' 		=> 'post',
 				'map_meta_cap'          => true,
-				'publicly_queryable' 	=> true,
+				'publicly_queryable' 	=> ($is_public =='yes') ? true: false,
 				'exclude_from_search' 	=> false,
 				'hierarchical' 			=> false,
 				'rewrite' 				=> array( 'slug' => $team_member_slug ),

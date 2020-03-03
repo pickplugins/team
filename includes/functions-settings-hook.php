@@ -168,6 +168,7 @@ function team_settings_content_team_member(){
 
     $hide_featured_image = isset($team_settings['team_member']['hide_featured_image']) ? $team_settings['team_member']['hide_featured_image'] : '';
     $hide_post_title = isset($team_settings['team_member']['hide_post_title']) ? $team_settings['team_member']['hide_post_title'] : '';
+    $is_public = isset($team_settings['team_member']['is_public']) ? $team_settings['team_member']['is_public'] : '';
 
     ?>
     <div class="section">
@@ -203,7 +204,18 @@ function team_settings_content_team_member(){
 
         $settings_tabs_field->generate_field($args);
 
+        $args = array(
+            'id'		=> 'is_public',
+            'parent' => 'team_settings[team_member]',
+            'title'		=> __('Team member page allow access','team'),
+            'details'	=> __('Allow access to single team member page..','team'),
+            'type'		=> 'select',
+            'value'		=> $is_public,
+            'default'		=> '',
+            'args'		=> array('yes'=>'Yes', 'no'=>'No', ),
+        );
 
+        $settings_tabs_field->generate_field($args);
 
         ?>
     </div>
