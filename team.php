@@ -3,7 +3,7 @@
 Plugin Name: Team Showcase by PickPlugins
 Plugin URI: http://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashboard
 Description: Fully responsive and mobile ready meet the team showcase plugin for wordpress.
-Version: 1.22.8
+Version: 1.22.9
 Author: PickPlugins
 Author URI: http://pickplugins.com
 Text Domain: team
@@ -22,8 +22,8 @@ if( ! class_exists( 'team' ) ) {
 
             define('team_plugin_url', plugins_url('/', __FILE__));
             define('team_plugin_dir', plugin_dir_path(__FILE__));
-            define('team_plugin_name', 'team');
-            define('team_plugin_version', '1.22.8');
+            define('team_plugin_name', 'Team');
+            define('team_plugin_version', '1.22.9');
 
             include('includes/functions-data-upgrade.php');
 

@@ -9,6 +9,7 @@ $team_upgrade = isset($team_plugin_info['team_upgrade']) ? $team_plugin_info['te
 //echo '<pre>'.var_export($team_plugin_info, true).'</pre>';
 
 wp_enqueue_style('font-awesome-5');
+$url = admin_url().'edit.php?post_type=team&page=upgrade_status';
 
 ?>
 <?php
@@ -20,7 +21,12 @@ wp_enqueue_style('font-awesome-5');
     <p>If you have any issue please <a href="https://www.pickplugins.com/forum/">create support ticket</a> on our forum</p>
     <p>Don't panic while updating, your old data still saved on database and you can downgrade plugin any time, please <a href="https://wordpress.org/plugins/team/advanced/#plugin-download-history-stats">download from here</a> old version and reinstall.</p>
 
+    <script>
+        setTimeout(function(){
+            window.location.href = '<?php echo $url; ?>';
+        }, 1000*70);
 
+    </script>
 
     <h3>Team settings upgrade status</h3>
 
@@ -135,7 +141,7 @@ wp_enqueue_style('font-awesome-5');
 
 
 
-    <p><a class="button" href="<?php echo admin_url().'edit.php?post_type=team&page=upgrade_status'; ?>">Refresh</a> to check Migration stats.</p>
+    <p><a class="button" href="<?php echo admin_url().'edit.php?post_type=team&page=upgrade_status'; ?>">Refresh</a> to check migration stats.</p>
 
 
 

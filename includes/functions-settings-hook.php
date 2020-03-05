@@ -323,19 +323,32 @@ if(!function_exists('team_settings_content_help_support')) {
                 $team_plugin_info['migration_reset'] = 'processing';
                 update_option('team_plugin_info', $team_plugin_info);
 
-                wp_schedule_event(time(), '2minute', 'team_cron_reset_migrate');
+                wp_schedule_event(time(), '1minute', 'team_cron_reset_migrate');
 
 
                 $migration_reset_stats = 'processing';
             }
 
-            //var_dump($migration_reset_stats);
+            //var_dump($team_plugin_info);
+
+            //delete_option('team_plugin_info');
 
 
             if($migration_reset_stats == 'processing'){
+                $url = admin_url().'edit.php?post_type=team&page=settings&tab=help_support';
+
                 ?>
                 <p style="color: #f00;"><i class="fas fa-spin fa-spinner"></i> Migration reset on process, please wait until complete.</p>
                 <p><a href="<?php echo admin_url().'edit.php?post_type=team&page=settings&tab=help_support'; ?>">Refresh</a> to check Migration reset stats</p>
+
+                <script>
+                    setTimeout(function(){
+                        window.location.href = '<?php echo $url; ?>';
+                    }, 1000*10);
+
+                </script>
+
+
                 <?php
             }elseif($migration_reset_stats == 'done'){
                 ?>

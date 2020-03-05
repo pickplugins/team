@@ -20,7 +20,9 @@ class class_team_notices{
         $nonce = isset($_REQUEST['_wpnonce']) ? $_REQUEST['_wpnonce'] : '';
 
         if ( wp_verify_nonce( $nonce, 'team_upgrade' )  ){
-            wp_schedule_event(time(), '2minute', 'team_cron_upgrade_settings');
+            $team_plugin_info['team_upgrade'] = 'processing';
+            update_option('team_plugin_info', $team_plugin_info);
+            wp_schedule_event(time(), '1minute', 'team_cron_upgrade_settings');
 
             return;
         }

@@ -257,9 +257,7 @@ function team_showcase_main_masonry($args){
     ?>
     <script>
         jQuery('#team-<?php echo $team_id; ?>').ready(function($){
-
             var $container = $('#team-<?php echo $team_id; ?> .team-items');
-
             $container.masonry({
                 itemSelector: '.item',
                 columnWidth: '.item', //as you wish , you can use numeric
@@ -267,17 +265,10 @@ function team_showcase_main_masonry($args){
                 isFitWidth: true,
                 horizontalOrder: true,
             });
-
-
             $container.imagesLoaded().done( function() {
                 $container.masonry('layout');
             });
-
-
-
         })
-
-
     </script>
     <?php
 
@@ -325,14 +316,11 @@ function team_showcase_before_items_pagination($wp_query, $args){
 
         ?>
     </div>
-
     <style type="text/css">
-
         #team-<?php echo $team_id; ?> .paginate {
-            padding: 30px;
+            padding: 10px;
             text-align: center;
         }
-
         #team-<?php echo $team_id; ?> .paginate .page-numbers {
             background-color: <?php echo $pagination_background_color; ?>;
             color: rgb(255, 255, 255);
@@ -344,18 +332,10 @@ function team_showcase_before_items_pagination($wp_query, $args){
             padding: 10px 15px;
             text-decoration: none;
         }
-
         #team-<?php echo $team_id; ?> .paginate .current{
             background-color: <?php echo $pagination_active_background_color; ?>;
         }
-
-
-
     </style>
-
-
-
-
     <?php
 
 }
@@ -401,14 +381,11 @@ function team_showcase_after_items_pagination($wp_query, $args){
 
         ?>
     </div>
-
     <style type="text/css">
-
         #team-<?php echo $team_id; ?> .paginate {
             padding: 30px;
             text-align: center;
         }
-
         #team-<?php echo $team_id; ?> .paginate .page-numbers {
             background-color: <?php echo $pagination_background_color; ?>;
             color: rgb(255, 255, 255);
@@ -420,18 +397,10 @@ function team_showcase_after_items_pagination($wp_query, $args){
             padding: 10px 15px;
             text-decoration: none;
         }
-
         #team-<?php echo $team_id; ?> .paginate .current{
             background-color: <?php echo $pagination_active_background_color; ?>;
         }
-
-
-
     </style>
-
-
-
-
     <?php
 
 }
