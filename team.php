@@ -105,7 +105,7 @@ if( ! class_exists( 'team' ) ) {
         function cron_recurrence_interval($schedules){
 
             $schedules['1minute'] = array(
-                'interval' => 120,
+                'interval' => 40,
                 'display' => __('1 Minute', 'team')
             );
 

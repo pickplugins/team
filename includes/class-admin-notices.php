@@ -35,7 +35,7 @@ class class_team_notices{
             ?>
             <div class="update-nag">
                 <?php
-                echo sprintf(__('Data migration required for team plugin, please <a class="button button-primary" href="%s">click to start</a> migration. watch this <a target="_blank" href="%s">video</a> first.', 'team-pro'), $actionurl, $tutorial_link)
+                echo sprintf(__('Data migration required for team plugin, please <a class="button button-primary" href="%s">click to start</a> migration. watch this <a target="_blank" href="%s">video</a> first.', 'team'), $actionurl, $tutorial_link)
                 ?>
             </div>
             <?php

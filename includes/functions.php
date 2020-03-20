@@ -1,7 +1,15 @@
 <?php
 if ( ! defined('ABSPATH')) exit;  // if direct access 
 
+add_filter('the_content','team_preview_content');
+function team_preview_content($content){
+    if(is_singular('team')){
+        $post_id = get_the_id();
+        $content .= do_shortcode('[team id="'.$post_id.'"]');
+    }
 
+    return $content;
+}
 
 
 function team_first_team_member(){

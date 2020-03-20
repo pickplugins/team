@@ -324,8 +324,6 @@ if(!function_exists('team_settings_content_help_support')) {
                 update_option('team_plugin_info', $team_plugin_info);
 
                 wp_schedule_event(time(), '1minute', 'team_cron_reset_migrate');
-
-
                 $migration_reset_stats = 'processing';
             }
 
@@ -407,8 +405,29 @@ if(!function_exists('team_settings_content_help_support')) {
 
 
 
+            ob_start();
+            ?>
+
+            <p class="">You can install older version by uninstalling current version, your data still on database, don't worry if you see content missing on frontend.</p>
+
+            <a target="_blank" href="https://wordpress.org/plugins/team/advanced/#plugin-download-history-stats" class="button"><i class="fab fa-wordpress"></i> Download older version</a>
 
 
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'old_version',
+                //'parent'		=> '',
+                'title'		=> __('Older version','team'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
 
 
 

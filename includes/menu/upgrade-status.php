@@ -24,8 +24,7 @@ $url = admin_url().'edit.php?post_type=team&page=upgrade_status';
     <script>
         setTimeout(function(){
             window.location.href = '<?php echo $url; ?>';
-        }, 1000*70);
-
+        }, 1000*20);
     </script>
 
     <h3>Team settings upgrade status</h3>

@@ -177,9 +177,11 @@ function team_layout_element_social($args){
             //echo '<pre>'.var_export($field_font_icon, true).'</pre>';
 
             if(!empty($field)):
+
+                $field_link = apply_filters('team_social_link', $field, $fieldIndex);
                 ?>
                 <span class="<?php echo $social_icon_type; ?>">
-                    <a href="<?php echo $field; ?>">
+                    <a href="<?php echo $field_link; ?>">
                         <?php
                         if($social_icon_type == 'image_icon'):
 
@@ -247,7 +249,21 @@ function team_layout_element_social($args){
 
 }
 
+add_filter('team_social_link','team_social_link', 10, 2);
+function team_social_link( $field, $fieldIndex){
 
+    if($fieldIndex == 'email'){
+        $field = 'mailto:'.$field;
+    }elseif ($fieldIndex == 'mobile'){
+        $field = 'tel:'.$field;
+    }elseif ($fieldIndex == 'skype'){
+        $field = 'skype:'.$field;
+    }elseif ($fieldIndex == 'phone'){
+        $field = 'tel:'.$field;
+    }
+
+    return $field;
+}
 
 
 add_action('team_layout_element_content', 'team_layout_element_content');
