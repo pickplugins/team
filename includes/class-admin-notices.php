@@ -23,7 +23,7 @@ class class_team_notices{
 
         ob_start();
 
-        //if( $team_layout_count->publish == 0):
+        if( $team_layout_count->publish == 0):
             ?>
             <div class="updated notice">
                 <p>
@@ -34,7 +34,7 @@ class class_team_notices{
 
             </div>
         <?php
-        //endif;
+        endif;
 
 
         echo ob_get_clean();
