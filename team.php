@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Team Showcase by PickPlugins
-Plugin URI: http://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashboard
+Plugin URI: https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashboard
 Description: Fully responsive and mobile ready meet the team showcase plugin for wordpress.
-Version: 1.22.9
+Version: 1.22.17
 Author: PickPlugins
 Author URI: http://pickplugins.com
 Text Domain: team
@@ -23,7 +23,7 @@ if( ! class_exists( 'team' ) ) {
             define('team_plugin_url', plugins_url('/', __FILE__));
             define('team_plugin_dir', plugin_dir_path(__FILE__));
             define('team_plugin_name', 'Team');
-            define('team_plugin_version', '1.22.9');
+            define('team_plugin_version', '1.22.17');
 
             include('includes/functions-data-upgrade.php');
 
@@ -44,6 +44,7 @@ if( ! class_exists( 'team' ) ) {
             include('includes/class-post-meta-team-member.php');
             include('includes/class-post-meta-team-member-hook.php');
             include('includes/class-admin-notices.php');
+            include('includes/class-settings-tabs-reviews.php');
 
 
             include_once team_plugin_dir . '/templates/team-showcase/team-showcase-hook.php';
@@ -60,6 +61,19 @@ if( ! class_exists( 'team' ) ) {
             register_activation_hook(__FILE__, array($this, '_activation'));
             register_deactivation_hook(__FILE__, array($this, '_deactivation'));
             add_filter('cron_schedules', array($this, 'cron_recurrence_interval'));
+
+
+
+//            $args = array(
+//                'title' => 'Hope you enjoy <b>Team Showcase</b> plugin ',
+//                'option' => 'team_plugin_info',
+//                'review_link' => 'https://wordpress.org/support/plugin/team/reviews/#new-post',
+//                'support_link' => 'https://www.pickplugins.com/forum/',
+//                'documentation_link' => 'https://www.pickplugins.com/documentation/team/',
+//                'tutorials_link' => 'https://www.youtube.com/watch?v=SOe0D-Og3nQ&list=PL0QP7T2SN94atYZswlnBMhDuIYoqlmlxy',
+//            );
+//
+//            new settings_tabs_reviews($args);
 
 
         }
@@ -132,6 +146,15 @@ if( ! class_exists( 'team' ) ) {
             wp_enqueue_script('jquery-ui-core');
             wp_enqueue_script('jquery-ui-sortable');
 
+            wp_enqueue_script('team_scripts', team_plugin_url . 'assets/admin/js/scripts.js', array('jquery'));
+            //wp_localize_script('team_scripts', 'team_ajax', array('team_ajaxurl' => admin_url('admin-ajax.php')));
+
+            wp_localize_script('team_scripts', 'team_ajax', array(
+                  'team_ajaxurl' => admin_url('admin-ajax.php'),
+                  'ajax_nonce' => wp_create_nonce('team_ajax_nonce'),
+                )
+            );
+
 
 
             wp_enqueue_script('wp-color-picker');
@@ -140,6 +163,12 @@ if( ! class_exists( 'team' ) ) {
             wp_register_script('settings-tabs', team_plugin_url . 'assets/admin/js/settings-tabs.js', array('jquery'));
             wp_register_style('settings-tabs', team_plugin_url . 'assets/admin/css/settings-tabs.css');
             wp_register_style('font-awesome-5', team_plugin_url . 'assets/admin/css/fontawesome.css');
+
+            wp_register_script('jquery.lazy', team_plugin_url . 'assets/admin/js/jquery.lazy.js', array('jquery'));
+            wp_enqueue_script( 'jquery.lazy' );
+
+            //wp_enqueue_script( 'team_scripts' );
+
 
             $cm_settings['codeEditor'] = wp_enqueue_code_editor(array('type' => 'text/css'));
 

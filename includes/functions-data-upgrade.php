@@ -657,9 +657,101 @@ function team_cron_reset_migrate(){
     wp_clear_scheduled_hook('team_cron_reset_migrate');
 
 }
-		
-		
-		
 
-		
-		
+
+
+
+
+function team_import_xml_layouts(){
+
+    $ajax_nonce = isset($_POST['ajax_nonce']) ? sanitize_text_field($_POST['ajax_nonce']) : '';
+
+    if(!wp_verify_nonce( $ajax_nonce, 'team_ajax_nonce' )) return;
+    if(!current_user_can('manage_options')) return;
+
+
+
+    $response = array();
+    $user_id = get_current_user_id();
+    $source = sanitize_text_field($_POST['source']);
+    //$xml_source = 'http://localhost/wp/wp-content/plugins/team/sample-data/team-layouts.json';
+
+
+
+
+    $json_obj = file_get_contents($source);
+
+    //$xml_json = json_encode($html_obj);
+    $xml_arr = json_decode($json_obj, true);
+
+
+    $items = $xml_arr['rss']['channel']['item'];
+
+    foreach ($items as $item){
+
+        $post_title = isset($item['title']) ? $item['title'] : '';
+        $postmeta = isset($item['postmeta']) ? $item['postmeta'] : array();
+
+        $post_id = wp_insert_post(
+            array(
+                'post_title'    => $post_title,
+                'post_content'  => '',
+                'post_status'   => 'publish',
+                'post_type'   	=> 'team_layout',
+                'post_author'   => $user_id,
+            )
+        );
+
+//            echo '<br>';
+//            echo $post_title. ' Created';
+//            echo '<br>';
+
+
+        foreach ($postmeta as $meta){
+
+            $meta_key = isset($meta['meta_key']['__cdata']) ? $meta['meta_key']['__cdata'] : '';
+            $meta_value = isset($meta['meta_value']['__cdata']) ? $meta['meta_value']['__cdata'] : '';
+
+//            echo '<br>';
+//            //var_dump(unserialize($meta_value));
+//            echo '<br>';
+
+
+
+            if($meta_key == 'layout_options' || $meta_key == 'layout_elements_data' || $meta_key == 'custom_scripts' ){
+                //var_dump($meta_value);
+
+                update_post_meta($post_id, $meta_key, unserialize($meta_value));
+            }
+
+
+        }
+
+
+
+
+    }
+
+
+    $response['success'] = __('Import done','team');
+
+    $team_plugin_info = get_option('team_plugin_info');
+
+    if(strpos($source, 'team-pro')){
+        $team_plugin_info['import_pro_layouts'] = 'done';
+    }else{
+        $team_plugin_info['import_layouts'] = 'done';
+    }
+
+
+    update_option('team_plugin_info', $team_plugin_info);
+
+
+
+    echo json_encode($response);
+    die();
+
+
+}
+
+add_action('wp_ajax_team_import_xml_layouts', 'team_import_xml_layouts');

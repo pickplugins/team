@@ -56,7 +56,7 @@ wp_enqueue_script('settings-tabs');
 
 
 $review_status = isset($_GET['review_status']) ? sanitize_text_field($_GET['review_status']) : '';
-$team_info = get_option('team_info');
+$team_plugin_info = get_option('team_plugin_info');
 $team_settings = get_option('team_settings');
 
 ?>
@@ -72,23 +72,23 @@ $team_settings = get_option('team_settings');
 
     if($review_status =='remind_later'):
 
-        $team_info['review_status'] = 'remind_later';
-        $team_info['remind_date'] = date('Y-m-d H:i:s', strtotime('+30 days'));
+        $team_plugin_info['review_status'] = 'remind_later';
+        $team_plugin_info['remind_date'] = date('Y-m-d H:i:s', strtotime('+30 days'));
 
 
         ?>
         <div class="update-nag is-dismissible">We will remind you later.</div>
         <?php
-        update_option('team_info', $team_info);
+        update_option('team_plugin_info', $team_plugin_info);
 
     elseif ($review_status =='done'):
 
-        $team_info['review_status'] = 'done';
+        $team_plugin_info['review_status'] = 'done';
         ?>
         <div class="update-nag notice is-dismissible">Thanks for your time and feedback.</div>
         <?php
 
-        update_option('team_info', $team_info);
+        update_option('team_plugin_info', $team_plugin_info);
 
     endif;
 

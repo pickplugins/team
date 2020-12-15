@@ -898,24 +898,24 @@ if(!function_exists('team_metabox_content_buy_pro')) {
                 </thead>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Slider','team'); ?> <a href="http://www.pickplugins.com/demo/team/slider/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Slider','team'); ?> <a href="https://www.pickplugins.com/demo/team/slider/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Filterable','team'); ?> <a href="http://www.pickplugins.com/demo/team/filterable/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Filterable','team'); ?> <a href="https://www.pickplugins.com/demo/team/filterable/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Glossary','team'); ?> <a href="http://www.pickplugins.com/demo/team/glossary-custom-index/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Glossary','team'); ?> <a href="https://www.pickplugins.com/demo/team/glossary-custom-index/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Access to layout library(30+ ready layout)','team'); ?> <a href="http://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Access to layout library(30+ ready layout)','team'); ?> <a href="https://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
@@ -927,24 +927,24 @@ if(!function_exists('team_metabox_content_buy_pro')) {
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Pagination type - jQuery','team'); ?> <a href="http://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Pagination type - jQuery','team'); ?> <a href="https://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Pagination type - Ajax','team'); ?> <a href="http://www.pickplugins.com/demo/team/ajax-pagination/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Pagination type - Ajax','team'); ?> <a href="https://www.pickplugins.com/demo/team/ajax-pagination/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Pagination type - Load more','team'); ?> <a href="http://www.pickplugins.com/demo/team/load-more/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Pagination type - Load more','team'); ?> <a href="https://www.pickplugins.com/demo/team/load-more/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Layout element - Skill','team'); ?> <a href="http://www.pickplugins.com/demo/team/skill-bars/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Layout element - Skill','team'); ?> <a href="https://www.pickplugins.com/demo/team/skill-bars/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
@@ -968,12 +968,12 @@ if(!function_exists('team_metabox_content_buy_pro')) {
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Grid','team'); ?> <a href="http://www.pickplugins.com/demo/team/view-type-grid/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Grid','team'); ?> <a href="https://www.pickplugins.com/demo/team/view-type-grid/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Masonry style grid','team'); ?> <a href="http://www.pickplugins.com/demo/team/masonry/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Masonry style grid','team'); ?> <a href="https://www.pickplugins.com/demo/team/masonry/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>

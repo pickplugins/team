@@ -292,13 +292,15 @@ function team_layout_element_content($args){
     $content_html = '';
 
     if($content_source=='content'){
-        $content_html.= do_shortcode($content);
+        $content_html = do_shortcode($content);
+        $content_html = wpautop($content_html);
+
     }
     elseif($content_source=='excerpt'){
 
-        $content_html.= wp_trim_words( $content , $word_count, ' <a class="read-more" href="'. $team_member_url .'">'.$read_more_text.'</a>' );
+        $content_html = wp_trim_words( $content , $word_count, ' <a class="read-more" href="'. $team_member_url .'">'.$read_more_text.'</a>' );
     }else{
-        $content_html.= wp_trim_words( $content , $word_count, ' <a class="read-more" href="'. $team_member_url .'">'.$read_more_text.'</a>' );
+        $content_html = wp_trim_words( $content , $word_count, ' <a class="read-more" href="'. $team_member_url .'">'.$read_more_text.'</a>' );
     }
 
 

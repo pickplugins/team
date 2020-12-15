@@ -141,15 +141,11 @@ class class_team_post_meta_team{
     jQuery(document).ready(function($){
         $(document).on('click', '.settings-tabs input[name="team_options[view_type]"]', function(){
             var val = $(this).val();
-
             console.log( val );
-
             $('.settings-tabs .tab-navs li').each(function( index ) {
                 data_visible = $( this ).attr('data_visible');
-
                 if(typeof data_visible != 'undefined'){
                     //console.log('undefined '+ data_visible );
-
                     n = data_visible.indexOf(val);
                     if(n<0){
                         $( this ).hide();
@@ -158,16 +154,10 @@ class class_team_post_meta_team{
                     }
                 }else{
                     console.log('Not matched: '+ data_visible );
-
-
                 }
             });
-
-
         })
     })
-
-
 </script>
 
         <div class="settings-tabs vertical">

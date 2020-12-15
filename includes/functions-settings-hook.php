@@ -235,6 +235,102 @@ if(!function_exists('team_settings_content_help_support')) {
             <p class="description section-description"><?php echo __('Use following to get help and support from our expert team.', 'team'); ?></p>
 
             <?php
+            
+
+            $layouts_free_url = team_plugin_url.'sample-data/team-layouts.xml';
+            $layouts_free_url_json = team_plugin_url.'sample-data/team-layouts.json';
+
+
+            ob_start();
+            ?>
+
+            <p><b>Team</b> provide some ready layouts to get started, please follow the steps bellow to import default layouts.</p>
+
+            <p><?php echo __('Import free layouts', 'team'); ?></p>
+
+
+            <a class="button team-import-layouts"  href="<?php echo esc_url_raw($layouts_free_url_json); ?>"><?php echo __('Import automatically', 'team'); ?></a>
+            <a class="button" href="<?php echo esc_url_raw($layouts_free_url); ?>"><?php echo __('Download XML', 'team'); ?></a>
+
+            <p>Import manually</p>
+
+            <ul>
+                <li>Step - 1: Go to <a href="<?php echo admin_url(); ?>import.php">import</a> menu and install & activate <b>WordPress</b> Importer plugin. click to "Install Now" button to install.</li>
+                <li>Step - 2: Download following xml file by clicking button bellow, save the file on your local machine.</li>
+                <li>Step - 3: Go to importer page <a href="<?php echo admin_url(); ?>import.php?import=wordpress">Import WordPress</a> and chose the downloaded file and then click to <b>Upload file and import</b>.</li>
+                <li>Step - 4: Go to <a href="<?php echo admin_url(); ?>edit.php?post_type=team_layout">Team layouts</a> page to see imported layouts.</li>
+            </ul>
+
+
+
+
+            <?php
+              if (is_plugin_active('team-pro/team-pro.php')) {
+
+                $layouts_pro_url = team_pro_plugin_url.'sample-data/team-layouts.xml';
+                $layouts_pro_url_json = team_pro_plugin_url.'sample-data/team-layouts.json';
+
+
+                if ($layouts_pro_url):
+                  ?>
+                    <p><?php echo __('Import premium layouts', 'team'); ?></p>
+                    <a class="button team-import-layouts"
+                       href="<?php echo esc_url_raw($layouts_pro_url_json); ?>"><?php echo __('Import automatically', 'team'); ?></a>
+                    <a class="button"
+                       href="<?php echo esc_url_raw($layouts_pro_url); ?>"><?php echo __('Download Pro XML', 'team'); ?></a>
+
+                <?php
+                endif;
+              }
+            ?>
+
+
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'import_layouts',
+                //'parent'		=> '',
+                'title'		=> __('Import layouts','team'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+            ob_start();
+            ?>
+            <ul>
+                <li>Step - 1: Go to Tools > <a href="<?php echo admin_url(); ?>export.php">Export</a> menu.</li>
+                <li>Step - 2: Choose "Team layouts" post types from list.</li>
+                <li>Step - 3: Then click to "Download Export File' button.</li>
+                <li>Step - 4: Save the file on your local machine.</li>
+            </ul>
+
+            <?php
+
+            $html = ob_get_clean();
+
+            $args = array(
+                'id'		=> 'export_layouts',
+                //'parent'		=> '',
+                'title'		=> __('Export layouts','team'),
+                'details'	=> '',
+                'type'		=> 'custom_html',
+                'html'		=> $html,
+
+            );
+
+            $settings_tabs_field->generate_field($args);
+
+
+
+
 
 
             ob_start();
@@ -468,7 +564,7 @@ if(!function_exists('team_settings_content_buy_pro')) {
 
             <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'team'); ?></p>
             <a class="button" href="https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a>
-            <a class="button" href="http://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('See all demo', 'team'); ?></a>
+            <a class="button" href="https://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('See all demo', 'team'); ?></a>
 
             <h2><?php echo __('See the differences','team'); ?></h2>
 
@@ -482,24 +578,24 @@ if(!function_exists('team_settings_content_buy_pro')) {
                 </thead>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Slider','team'); ?> <a href="http://www.pickplugins.com/demo/team/slider/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Slider','team'); ?> <a href="https://www.pickplugins.com/demo/team/slider/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Filterable','team'); ?> <a href="http://www.pickplugins.com/demo/team/filterable/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Filterable','team'); ?> <a href="https://www.pickplugins.com/demo/team/filterable/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Glossary','team'); ?> <a href="http://www.pickplugins.com/demo/team/glossary-custom-index/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Glossary','team'); ?> <a href="https://www.pickplugins.com/demo/team/glossary-custom-index/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Access to layout library(30+ ready layout)','team'); ?> <a href="http://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Access to layout library(30+ ready layout)','team'); ?> <a href="https://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
@@ -511,24 +607,24 @@ if(!function_exists('team_settings_content_buy_pro')) {
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Pagination type - jQuery','team'); ?> <a href="http://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Pagination type - jQuery','team'); ?> <a href="https://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Pagination type - Ajax','team'); ?> <a href="http://www.pickplugins.com/demo/team/ajax-pagination/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Pagination type - Ajax','team'); ?> <a href="https://www.pickplugins.com/demo/team/ajax-pagination/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Pagination type - Load more','team'); ?> <a href="http://www.pickplugins.com/demo/team/load-more/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Pagination type - Load more','team'); ?> <a href="https://www.pickplugins.com/demo/team/load-more/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Layout element - Skill','team'); ?> <a href="http://www.pickplugins.com/demo/team/skill-bars/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Layout element - Skill','team'); ?> <a href="https://www.pickplugins.com/demo/team/skill-bars/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
@@ -552,12 +648,12 @@ if(!function_exists('team_settings_content_buy_pro')) {
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Grid','team'); ?> <a href="http://www.pickplugins.com/demo/team/view-type-grid/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Grid','team'); ?> <a href="https://www.pickplugins.com/demo/team/view-type-grid/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Masonry style grid','team'); ?> <a href="http://www.pickplugins.com/demo/team/masonry/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Masonry style grid','team'); ?> <a href="https://www.pickplugins.com/demo/team/masonry/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>

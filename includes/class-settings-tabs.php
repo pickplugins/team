@@ -4,23 +4,142 @@ if ( ! defined('ABSPATH')) exit;  // if direct access
 if( ! class_exists( 'settings_tabs_field' ) ) {
 class settings_tabs_field{
 
+//    public $asset_dir_url = '';
+    public $textdomain = 'settings-tabs';
+
     public function __construct(){
-        //add_action( 'wp_enqueue_scripts', array( $this, '_front_scripts' ) );
-        add_action( 'admin_enqueue_scripts', array( $this, '_admin_scripts' ) );
+
+//        $this->asset_dir_url = isset($args['asset_dir_url']) ? $args['asset_dir_url'] : '';
+//        $this->textdomain = isset($args['textdomain']) ? $args['textdomain'] : '';
+
     }
 
 
+    function admin_scripts(){
+
+
+        wp_enqueue_script('jquery');
+        wp_enqueue_script('jquery-ui-sortable');
+        wp_enqueue_script( 'jquery-ui-core' );
+        wp_enqueue_script('jquery-ui-accordion');
+        wp_enqueue_style( 'jquery-ui');
+
+        wp_enqueue_script('wp-color-picker');
+        wp_enqueue_style( 'wp-color-picker' );
+
+
+        wp_enqueue_style( 'font-awesome-5' );
+
+        wp_enqueue_style( 'settings-tabs' );
+        wp_enqueue_script( 'settings-tabs' );
+
+        wp_enqueue_script( 'code-editor' );
+        wp_enqueue_style( 'code-editor' );
+
+        wp_enqueue_script( 'jquery.lazy' );
+
+
+        wp_enqueue_editor();
+    }
 
     function field_template($option){
 
         $id 			= isset( $option['id'] ) ? $option['id'] : "";
+        $wraper_class			= isset( $option['wraper_class'] ) ? $option['wraper_class'] : "";
+        $conditions 	= isset( $option['conditions'] ) ? $option['conditions'] : array();
+
         $is_error 			= isset( $option['is_error'] ) ? $option['is_error'] : false;
         $error_details 			= isset( $option['error_details'] ) ? $option['error_details'] : '';
+
+
+
+        if(!empty($conditions)):
+
+            $depends = '';
+
+            $field = isset($conditions['field']) ? $conditions['field'] :'';
+            $cond_value = isset($conditions['value']) ? $conditions['value']: '';
+            $type = isset($conditions['type']) ? $conditions['type'] : '';
+            $pattern = isset($conditions['pattern']) ? $conditions['pattern'] : '';
+            $modifier = isset($conditions['modifier']) ? $conditions['modifier'] : '';
+            $like = isset($conditions['like']) ? $conditions['like'] : '';
+            $strict = isset($conditions['strict']) ? $conditions['strict'] : '';
+            $empty = isset($conditions['empty']) ? $conditions['empty'] : '';
+            $sign = isset($conditions['sign']) ? $conditions['sign'] : '';
+            $min = isset($conditions['min']) ? $conditions['min'] : '';
+            $max = isset($conditions['max']) ? $conditions['max'] : '';
+
+            $depends .= "{'[name=$field]':";
+            $depends .= '{';
+
+            if(!empty($type)):
+                $depends .= "'type':";
+                $depends .= "'".$type."'";
+            endif;
+
+            if(!empty($modifier)):
+                $depends .= ",'modifier':";
+                $depends .= "'".$modifier."'";
+            endif;
+
+            if(!empty($like)):
+                $depends .= ",'like':";
+                $depends .= "'".$like."'";
+            endif;
+
+            if(!empty($strict)):
+                $depends .= ",'strict':";
+                $depends .= "'".$strict."'";
+            endif;
+
+            if(!empty($empty)):
+                $depends .= ",'empty':";
+                $depends .= "'".$empty."'";
+            endif;
+
+            if(!empty($sign)):
+                $depends .= ",'sign':";
+                $depends .= "'".$sign."'";
+            endif;
+
+            if(!empty($min)):
+                $depends .= ",'min':";
+                $depends .= "'".$min."'";
+            endif;
+
+            if(!empty($max)):
+                $depends .= ",'max':";
+                $depends .= "'".$max."'";
+            endif;
+            if(!empty($cond_value)):
+                $depends .= ",'value':";
+                if(is_array($cond_value)):
+                    $count= count($cond_value);
+                    $i = 1;
+                    $depends .= "[";
+                    foreach ($cond_value as $val):
+                        $depends .= "'".$val."'";
+                        if($i<$count)
+                            $depends .= ",";
+                        $i++;
+                    endforeach;
+                    $depends .= "]";
+                else:
+                    $depends .= "[";
+                    $depends .= "'".$cond_value."'";
+                    $depends .= "]";
+                endif;
+            endif;
+            $depends .= '}}';
+
+        endif;
+
+
 
         ob_start();
 
         ?>
-        <div class="setting-field <?php if($is_error) echo 'field-error';  ?>">
+        <div <?php if(!empty($depends)) {?> data-depends="[<?php echo $depends; ?>]" <?php } ?> class="setting-field <?php if($is_error) echo 'field-error';  ?> <?php echo $wraper_class; ?> <?php if(!empty($depends)) echo 'dependency-field'; ?>">
             <div class="field-lable">%s</div>
             <div class="field-input">%s
                 <p class="description">%s</p>
@@ -38,10 +157,7 @@ class settings_tabs_field{
 
 
 
-    function _admin_scripts(){
 
-
-    }
 
 
     function generate_field($option){
@@ -85,6 +201,8 @@ class settings_tabs_field{
 
         elseif( isset($option['type']) && $option['type'] === 'option_group')	    $this->field_option_group( $option );
         elseif( isset($option['type']) && $option['type'] === 'option_group_accordion')	    $this->field_option_group_accordion( $option );
+        elseif( isset($option['type']) && $option['type'] === 'wp_editor')	    $this->field_wp_editor( $option );
+        elseif( isset($option['type']) && $option['type'] === 'textarea_editor')	    $this->field_textarea_editor( $option );
 
 
 
@@ -314,7 +432,7 @@ class settings_tabs_field{
 
         $media_url	= wp_get_attachment_url( $value );
         $media_type	= get_post_mime_type( $value );
-        $media_title = !empty($value) ? get_the_title( $value ) : __('Placeholder.jpg','settings-tabs');
+        $media_title = !empty($value) ? get_the_title( $value ) : __('Placeholder.jpg', $this->textdomain);
 
 
         $media_url = !empty($media_url) ? $media_url : $default;
@@ -370,8 +488,8 @@ class settings_tabs_field{
                 ?>
             </div>
             <input class="media-input-value" type="hidden" name="<?php echo $field_name; ?>" id="media_input_<?php echo $css_id; ?>" value="<?php echo $value; ?>" />
-            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload','team');?></div>
-            <div placeholder="<?php echo $placeholder; ?>" class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','team');?></div>
+            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload', $this->textdomain);?></div>
+            <div placeholder="<?php echo $placeholder; ?>" class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear', $this->textdomain);?></div>
             <div class="error-mgs"></div>
         </div>
 
@@ -451,8 +569,8 @@ class settings_tabs_field{
                 ?>
             </div>
             <input type="text" placeholder="<?php echo $placeholder; ?>" name="<?php echo $field_name; ?>" id="media_input_<?php echo $css_id; ?>" value="<?php echo $value; ?>" />
-            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload','team');?></div>
-            <div class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','team');?></div>
+            <div class="media-upload button" id="media_upload_<?php echo $css_id; ?>"><?php echo __('Upload', $this->textdomain);?></div>
+            <div class="clear button" id="media_clear_<?php echo $css_id; ?>"><?php echo __('Clear','accordions');?></div>
             <div class="error-mgs"></div>
         </div>
 
@@ -494,83 +612,77 @@ class settings_tabs_field{
 
         $settings_tabs_field = new settings_tabs_field();
 
+
         ob_start();
         ?>
-        <script>
-            jQuery(document).ready(function($) {
+        <div class="item-wrap collapsible">
+            <div class="header">
+                <span class="remove" onclick="jQuery(this).parent().parent().remove()"><?php echo $remove_text; ?></span>
+                <?php
+                if($sortable):
+                    ?>
+                    <span class="sort" ><i class="fas fa-arrows-alt"></i></span>
+                <?php
+                endif;
+                ?>
+                <span  class="title-text">#TIMEINDEX</span>
+            </div>
+            <?php
 
 
+            if(!empty($fields)):
+                foreach ($fields as $field):
 
-
-                jQuery(document).on("click", ".field-repeatable-wrapper-<?php echo $css_id; ?> .add-repeat-field", function() {
-
-
-                    now = jQuery.now();
-                    fields_arr = <?php echo json_encode($fields); ?>;
-                    html = '<div class="item-wrap collapsible"><div class="header"><span class="remove" ' +
-                        'onclick="jQuery(this).parent().parent().remove()"><?php echo $remove_text; ?></span> ';
-                    <?php if($sortable):?>
-                    html += '<span class="sort" ><i class="fas fa-arrows-alt"></i></span>';
-                    <?php endif; ?>
-                    html += ' <span  class="title-text">#'+now+'</span></div>';
-
-                    <?php
-
-                    $fieldHtml = '';
-
-                        if(!empty($fields)):
-                            foreach ($fields as $field):
-
-                                $fieldType = isset($field['type']) ? $field['type'] : '';
-                                $field['parent'] = $field_name.'[TIMEINDEX]';
-
-                                ob_start();
-                                ?>
-                                <div class="item">
-                                    <?php if($collapsible):?>
-                                        <div class="content">
-                                    <?php endif; ?>
-
-                                    <?php
-                                    $settings_tabs_field->generate_field($field);
-                                    ?>
-                                    <?php if($collapsible):?>
-                                        </div>
-                                    <?php endif; ?>
-
-                                </div>
-                                <?php
-                                $fieldHtml .= ob_get_clean();
-                            endforeach;
-                        endif;
-
-
-                    $string = str_replace("\n", "", $fieldHtml);
-                    $fieldHtml = str_replace("\r", "", $string);
+                    $fieldType = isset($field['type']) ? $field['type'] : '';
+                    $field['parent'] = $field_name.'[TIMEINDEX]';
 
 
                     ?>
+                    <div class="item">
+                        <?php if($collapsible):?>
+                        <div class="content">
+                            <?php endif; ?>
 
-                    fieldHtml = '<?php echo $fieldHtml; ?>';
-                    html+= fieldHtml.replace(/TIMEINDEX/g, now);
-                    html+='</div>';
+                            <?php
+                            $settings_tabs_field->generate_field($field);
+                            ?>
+                            <?php if($collapsible):?>
+                        </div>
+                    <?php endif; ?>
 
-                    jQuery('.<?php echo 'field-repeatable-wrapper-'.$css_id; ?> .repeatable-field-list').append(html);
+                    </div>
+                <?php
 
-                })
-            });
-        </script>
+                endforeach;
+            endif;
+            ?>
+        </div>
+        <?php
+
+        $fieldHtml = ob_get_clean();
+
+        $fieldHtml = preg_replace("/[\r\n]+/", "\n", $fieldHtml);
+        $fieldHtml = preg_replace("/\s+/", ' ', $fieldHtml);
+
+
+        ob_start();
+        ?>
+
+
         <div id="input-wrapper-<?php echo $css_id; ?>" class=" input-wrapper field-repeatable-wrapper
             field-repeatable-wrapper-<?php echo $css_id; ?>">
-            <div class="add-repeat-field"><i class="far fa-plus-square"></i> <?php _e('Add','team'); ?></div>
+            <div add_html="<?php echo esc_attr($fieldHtml); ?>" class="add-repeat-field"><i class="far fa-plus-square"></i> <?php _e('Add','accordions'); ?></div>
             <div class="repeatable-field-list sortable" id="<?php echo $css_id; ?>">
                 <?php
                 if(!empty($values)):
                     $count = 1;
                     foreach ($values as $index=>$val):
                         $title_field_val = !empty($val[$title_field]) ? $val[$title_field] : '#'.$count;
+
+                    //var_dump($index);
+
                         ?>
-                        <div class="item-wrap <?php if($collapsible) echo 'collapsible'; ?>">
+                        <div class="item-wrap <?php if($collapsible) echo 'collapsible'; ?>" index="<?php echo $index; ?>">
                             <?php if($collapsible):?>
                             <div class="header">
                                 <?php endif; ?>
@@ -589,6 +701,9 @@ class settings_tabs_field{
 
                             foreach ($fields as $field_index => $field):
                                 $fieldId = $field['id'];
+                                $field_css_id = isset($field['css_id']) ? str_replace('TIMEINDEX', $index, $field['css_id']) : '';
+
+                            //var_dump($field_css_id);
 
                                 $title_field_class = ($title_field == $field_index) ? 'title-field':'';
                                 ?>
@@ -599,6 +714,8 @@ class settings_tabs_field{
 
                                         <?php
                                         $field['parent'] = $field_name.'['.$index.']';
+                                        $field['css_id'] = $field_css_id;
+
                                         $field['value'] = isset($val[$fieldId]) ? $val[$fieldId] : '';
 
                                         $settings_tabs_field->generate_field($field);
@@ -681,11 +798,12 @@ class settings_tabs_field{
 
         ob_start();
         ?>
-        <select <?php if($multiple) echo 'multiple'; ?> name="<?php echo $field_name; ?>" id="<?php echo $css_id; ?>">
+
+        <select  <?php if($multiple) echo 'multiple'; ?> name="<?php echo $field_name; ?>" id="<?php echo $css_id; ?>">
             <?php
             foreach( $args as $key => $name ):
                 if($multiple){
-                    $selected = in_array($key, $value) ? "selected" : "";
+                    $selected =  in_array($key, $value) ? "selected" : "";
                 }else{
                     $selected = $value == $key ? "selected" : "";
                 }
@@ -697,6 +815,14 @@ class settings_tabs_field{
             endforeach;
             ?>
         </select>
+        <?php
+        if($multiple):
+            ?>
+            <div class="button select-reset">Reset</div><br>
+        <?php
+        endif;
+        ?>
+
         <?php
 
         $input_html = ob_get_clean();
@@ -720,7 +846,7 @@ class settings_tabs_field{
         $pro_text 	        = isset( $option['pro_text'] ) ? $option['pro_text'] : '';
 
 
-        var_dump($css_id);
+        //var_dump($css_id);
 
         if($multiple){
             $value 	= isset( $option['value'] ) ? $option['value'] : array();
@@ -816,7 +942,7 @@ class settings_tabs_field{
         ?>
         <div  id="input-wrapper-<?php echo $id; ?>" class="input-wrapper input-text-multi-wrapper
             input-text-multi-wrapper-<?php echo $css_id; ?>">
-            <span data-placeholder="<?php echo esc_attr($placeholder); ?>" data-sort="<?php echo $sortable; ?>" data-clone="<?php echo $allow_clone; ?>" data-name="<?php echo $field_name; ?>[]" class="button add-item"><?php echo __('Add','team'); ?></span>
+            <span data-placeholder="<?php echo esc_attr($placeholder); ?>" data-sort="<?php echo $sortable; ?>" data-clone="<?php echo $allow_clone; ?>" data-name="<?php echo $field_name; ?>[]" class="button add-item"><?php echo __('Add', $this->textdomain); ?></span>
             <div class="field-list <?php if($sortable){ echo 'sortable'; }?>" id="<?php echo $css_id; ?>">
                 <?php
                 if(!empty($values)):
@@ -951,6 +1077,57 @@ class settings_tabs_field{
 
 
 
+    public function field_wp_editor( $option ){
+
+        $id 			= isset( $option['id'] ) ? $option['id'] : "";
+        $css_id 			= isset( $option['css_id'] ) ? $option['css_id'] : $id;
+        $parent 			= isset( $option['parent'] ) ? $option['parent'] : "";
+        $placeholder 	= isset( $option['placeholder'] ) ? $option['placeholder'] : "";
+        $value 	= isset( $option['value'] ) ? $option['value'] : '';
+        $default 	= isset( $option['default'] ) ? $option['default'] : '';
+        $field_template 	= isset( $option['field_template'] ) ? $option['field_template'] : $this->field_template($option);
+
+
+
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
+
+        $value = !empty($value) ? $value : $default;
+
+        $title			= isset( $option['title'] ) ? $option['title'] : "";
+        $details 			= isset( $option['details'] ) ? $option['details'] : "";
+
+        if($is_pro == true){
+            $details = '<span class="pro-feature">'.$pro_text.'</span> '.$details;
+        }
+
+        $field_name = !empty($parent) ? $parent.'['.$id.']' : $id;
+
+        $editor_settings= isset( $option['editor_settings'] ) ? $option['editor_settings'] : array('textarea_name'=>$field_name, 'teeny' => true,  'textarea_rows' => 15, );
+
+        ob_start();
+
+        ?>
+        <div id="field-wrapper-<?php echo $id; ?>" class="<?php if(!empty($depends)) echo 'dependency-field'; ?> field-wrapper field-wp_editor-wrapper
+            field-wp_editor-wrapper-<?php echo $id; ?>">
+            <?php
+            wp_editor( $value, $css_id, $editor_settings);
+            ?>
+            <div class="error-mgs"></div>
+        </div>
+
+        <?php
+
+
+
+
+        $input_html = ob_get_clean();
+
+        echo sprintf($field_template, $title, $input_html, $details);
+
+    }
+
+
 
 
 
@@ -981,7 +1158,7 @@ class settings_tabs_field{
         ob_start();
         ?>
         <div class="text-icon">
-            <span class="icon"><i class="<?php echo $option_value; ?>"></i></span><input type="text" class="" name="<?php echo $field_name; ?>" id="<?php echo $css_id; ?>" placeholder="<?php echo $placeholder; ?>" value="<?php echo $option_value; ?>" />
+            <span class="icon"><?php echo $option_value; ?></span><input type="text" class="" name="<?php echo $field_name; ?>" id="<?php echo $css_id; ?>" placeholder="<?php echo esc_attr($placeholder); ?>" value="<?php echo esc_attr($option_value); ?>" />
         </div>
         <style type="text/css">
             .text-icon{}
@@ -1002,7 +1179,7 @@ class settings_tabs_field{
                 $(document).on("keyup", ".text-icon input", function () {
                     val = $(this).val();
                     if(val){
-                        $(this).parent().children(".icon").html('<i class="'+val+'"></i>');
+                        $(this).parent().children(".icon").html(val);
                     }
                 })
             })
@@ -1111,10 +1288,42 @@ class settings_tabs_field{
 
         echo sprintf($field_template, $title, $input_html, $details);
 
+    }
 
 
 
+    public function field_textarea_editor( $option ){
 
+        $id 			= isset( $option['id'] ) ? $option['id'] : "";
+        $css_id 			= isset( $option['css_id'] ) ? $option['css_id'] : $id;
+        $parent 			= isset( $option['parent'] ) ? $option['parent'] : "";
+        $field_template 	= isset( $option['field_template'] ) ? $option['field_template'] : $this->field_template($option);
+        $placeholder 	= isset( $option['placeholder'] ) ? $option['placeholder'] : "";
+        $value 	= isset( $option['value'] ) ? $option['value'] : '';
+        $default 	= isset( $option['default'] ) ? $option['default'] : '';
+        $value = !empty($value) ? $value : $default;
+
+        $is_pro 	= isset( $option['is_pro'] ) ? $option['is_pro'] : false;
+        $pro_text 	= isset( $option['pro_text'] ) ? $option['pro_text'] : '';
+
+        $title			= isset( $option['title'] ) ? $option['title'] : "";
+        $details 			= isset( $option['details'] ) ? $option['details'] : "";
+
+        $field_name = !empty($parent) ? $parent.'['.$id.']' : $id;
+
+        if($is_pro == true){
+            $details = '<span class="pro-feature">'.$pro_text.'</span> '.$details;
+        }
+
+
+        ob_start();
+        ?>
+        <textarea editor_enabled="no" class="textarea-editor" name="<?php echo $field_name; ?>" id="<?php echo $css_id; ?>" cols="40" rows="5" placeholder="<?php echo $placeholder; ?>"><?php echo $value; ?></textarea>
+        <?php
+
+        $input_html = ob_get_clean();
+
+        echo sprintf($field_template, $title, $input_html, $details);
 
     }
 
@@ -1139,6 +1348,9 @@ class settings_tabs_field{
 
         $field_name = !empty($parent) ? $parent.'['.$id.']' : $id;
 
+        $settings = wp_enqueue_code_editor( array( 'type' => 'text/javascript' ) );
+        $code_editor = wp_json_encode( $settings );
+
 
         ob_start();
         ?>
@@ -1146,10 +1358,7 @@ class settings_tabs_field{
 
         <script>
             jQuery(document).ready(function($){
-
-                wp.codeEditor.initialize($('#<?php echo $css_id; ?>'), cm_settings);
-
-
+                wp.codeEditor.initialize($('#<?php echo $css_id; ?>'), <?php echo $code_editor; ?>);
             })
         </script>
         <?php
@@ -1182,7 +1391,8 @@ class settings_tabs_field{
         $title			= isset( $option['title'] ) ? $option['title'] : "";
         $details 		= isset( $option['details'] ) ? $option['details'] : "";
 
-
+        $settings = wp_enqueue_code_editor( array( 'type' => 'text/css' ) );
+        $code_editor = wp_json_encode( $settings );
 
         $field_name = !empty($parent) ? $parent.'['.$id.']' : $id;
         ?>
@@ -1197,7 +1407,7 @@ class settings_tabs_field{
 
             jQuery(document).ready(function($){
 
-                wp.codeEditor.initialize($('#<?php echo $css_id; ?>'), cm_settings);
+                wp.codeEditor.initialize($('#<?php echo $css_id; ?>'), <?php echo $code_editor; ?>);
 
 
             })
@@ -1367,13 +1577,15 @@ class settings_tabs_field{
                 //var_dump($checked);
 
                 ?>
-                <label title="<?php echo $name; ?>" class="<?php if($checked =='checked') echo 'active';?> <?php if($disabled == true) echo 'disabled';?>">
+                <label style="width: <?php echo $width; ?>;" title="<?php echo $name; ?>" class="<?php if($checked =='checked') echo 'active';?> <?php if($disabled == true) echo 'disabled';?>">
                     <input <?php if($disabled) echo 'disabled'; ?>  name="<?php echo $field_name; ?>" type="radio" id="<?php echo $css_id; ?>-<?php echo $key; ?>" value="<?php echo $key; ?>"  <?php echo $checked; ?>>
 
                     <?php
                     if(!empty($thumb)):
+
                         ?>
-                            <img style="width: <?php echo $width; ?>;" alt="<?php echo $name; ?>" src="<?php echo $thumb; ?>">
+                        <img class="lazy"  alt="<?php echo $name; ?>" data-src="<?php echo $thumb; ?>" src="https://i.imgur.com/72Z8sfU.gif">
+                        <div style="padding: 5px;" class="name"><?php echo $name; ?></div>
 
                         <?php
                     else:
@@ -1394,19 +1606,6 @@ class settings_tabs_field{
             endforeach;
             ?>
         </div>
-        <script>
-            jQuery(document).ready(function($){
-                $(document).on("click", ".radio-img label", function () {
-                    if($(this).hasClass('disabled')){
-                        return;
-                    }
-
-                    $(this).parent().children("label").removeClass("active");
-                    $(this).addClass("active");
-
-                })
-            })
-        </script>
 
         <style type="text/css">
             .radio-img{}
@@ -1445,13 +1644,13 @@ class settings_tabs_field{
             .radio-img label .link{
                 background: hsl(200, 7%, 42%);
                 position: absolute;
-                top: 10%;
-                left: 90%;
-                transform: translate(-50%,-50%);
+                top: 2px;
+                /* transform: translate(0%,-50%); */
                 padding: 3px 14px;
                 text-decoration: none;
                 font-size: 14px;
                 color: #fff;
+                right: 2px;
 
             }
 
@@ -1462,6 +1661,7 @@ class settings_tabs_field{
             .radio-img img{
 
                 vertical-align: top;
+                width: 100%;
             }
 
         </style>
@@ -1534,8 +1734,7 @@ class settings_tabs_field{
 
         ob_start();
         ?>
-        <input name="<?php echo $field_name; ?>" id="<?php echo $css_id; ?>" placeholder="<?php echo $placeholder; ?>" value="<?php echo $value; ?>" />
-        <script>jQuery(document).ready(function($) { $("#<?php echo $css_id; ?>").wpColorPicker();});</script>
+        <input colorPicker="" name="<?php echo $field_name; ?>" id="<?php echo $css_id; ?>" placeholder="<?php echo esc_attr($placeholder); ?>" value="<?php echo esc_attr($value); ?>" />
         <?php
 
         $input_html = ob_get_clean();

@@ -89,7 +89,14 @@
     float: right;
 }
 
-
+.tab-nav i {
+    font-size: 16px;
+    width: 25px;
+    color: #b7b7b7;
+}
+.tab-nav.active i {
+    color: #333;
+}
 .settings-tabs .tab-content{
     margin-left: 220px;
     padding: 0px 0;
@@ -195,7 +202,7 @@
     padding: 15px;
 }
 .settings-tabs .setting-field:last-child{
-    border-bottom: 1px solid #eee0;
+
 }
 
 
@@ -227,7 +234,8 @@
 
 
 .settings-tabs .expandable .setting-field{
-    padding: 0 15px 15px 0px;
+    padding: 10px 0;
+    margin: 10px 0;
 }
 .settings-tabs .expandable .setting-field .field-lable{
     float: left;
@@ -237,10 +245,6 @@
     margin-left: 270px;
 }
 
-
-.settings-tabs .expandable .setting-field{
-    padding: 0 15px 15px 0px;
-}
 .settings-tabs .expandable .setting-field .setting-field .field-lable{
     float: none;
 }
@@ -259,7 +263,13 @@
 
 /*field-repeatable-wrapper*/
 
-
+.settings-tabs .field-media-wrapper .media-upload, .field-media-wrapper .clear {
+    display: inline-block;
+    background: #ddd;
+    padding: 2px 10px;
+    border-radius: 3px;
+    border: 1px solid #999;
+}
 .ppof-settings .repeatable .item-wrap{
     margin-bottom: 5px;
     padding-bottom: 0px;
@@ -304,6 +314,16 @@
     display: inline-block;
     margin-bottom: 15px;
 }
+
+
+.settings-tabs .field-media-wrapper .media-upload, .field-media-wrapper .clear {
+    display: inline-block;
+    background: #ddd;
+    padding: 2px 10px;
+    border-radius: 3px;
+    border: 1px solid #999;
+}
+
 
 /*input*/
 
@@ -368,44 +388,19 @@
 /*expandable*/
 
 
-.settings-tabs .expandable{}
+
 .settings-tabs .expandable .item {
-
     margin: 1px 0;
-
 }
-
-
-.settings-tabs .expandable .header label{
-
-}
-
-
 
 .settings-tabs .expandable .header {
     background: #eee none repeat scroll 0 0;
-
-}
-
-
-.settings-tabs .expandable {
-
 }
 
 .settings-tabs .expandable .options {
-    background: #bde6fc;
     display: none;
     padding: 10px;
 }
-
-
-
-.settings-tabs .expandable .options {
-    background:#f1f1f1;
-    display: none;
-    padding: 10px;
-}
-
 
 .settings-tabs .expandable .item.ui-sortable-helper {
     border: 1px dashed rgb(153, 153, 153);
@@ -435,12 +430,10 @@
 
 }
 
-
-.settings-tabs .expandable .active .options {
-
+.settings-tabs .expandable  .options.active {
     display: block;
-
 }
+
 
 .settings-tabs .item .expand .fa-expand {
     display: inline-block;
