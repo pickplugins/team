@@ -404,100 +404,6 @@ if(!function_exists('team_settings_content_help_support')) {
             $settings_tabs_field->generate_field($args);
 
 
-            ob_start();
-            $team_plugin_info = get_option('team_plugin_info');
-
-            $migration_reset_stats = isset($team_plugin_info['migration_reset']) ? $team_plugin_info['migration_reset'] : '';
-
-            $actionurl = admin_url().'edit.php?post_type=team&page=settings&tab=help_support';
-            $actionurl = wp_nonce_url( $actionurl,  'team_reset_migration' );
-
-            $nonce = isset($_REQUEST['_wpnonce']) ? $_REQUEST['_wpnonce'] : '';
-
-            if ( wp_verify_nonce( $nonce, 'team_reset_migration' )  ){
-
-                $team_plugin_info['migration_reset'] = 'processing';
-                update_option('team_plugin_info', $team_plugin_info);
-
-                wp_schedule_event(time(), '1minute', 'team_cron_reset_migrate');
-                $migration_reset_stats = 'processing';
-            }
-
-            //var_dump($team_plugin_info);
-
-            //delete_option('team_plugin_info');
-
-
-            if($migration_reset_stats == 'processing'){
-                $url = admin_url().'edit.php?post_type=team&page=settings&tab=help_support';
-
-                ?>
-                <p style="color: #f00;"><i class="fas fa-spin fa-spinner"></i> Migration reset on process, please wait until complete.</p>
-                <p><a href="<?php echo admin_url().'edit.php?post_type=team&page=settings&tab=help_support'; ?>">Refresh</a> to check Migration reset stats</p>
-
-                <script>
-                    setTimeout(function(){
-                        window.location.href = '<?php echo $url; ?>';
-                    }, 1000*10);
-
-                </script>
-
-
-                <?php
-            }elseif($migration_reset_stats == 'done'){
-                ?>
-                <p style="color: #22631a;font-weight: bold;"><i class="fas fa-check"></i> Migration reset completed.</p>
-                <?php
-            }else{
-
-            }
-
-
-
-            ?>
-
-            <p class="">Please click the button bellow to reset migration data, you can start over, Please use with caution, your new migrate data will deleted. you can use default <a href="<?php echo admin_url().'export.php'; ?>">export</a> menu to take your team member, team or layouts data saved.</p>
-
-            <p class="reset-migration"><a class="button  button-primary" href="<?php echo $actionurl; ?>">Reset migration</a> <span style="display: none; color: #f2433f; margin: 0 5px"> Click again to confirm!</span></p>
-
-            <script>
-                jQuery(document).ready(function($){
-                    $(document).on('click','.reset-migration a',function(event){
-
-                        event.preventDefault();
-
-                        is_confirm = $(this).attr('confirm');
-                        url = $(this).attr('href');
-
-                        if(is_confirm == 'ok'){
-                            window.location.href = url;
-                        }else{
-                            $(this).attr('confirm', 'ok');
-
-
-                        }
-                        $('.reset-migration span').fadeIn();
-
-                    })
-                })
-            </script>
-
-            <?php
-
-            $html = ob_get_clean();
-
-            $args = array(
-                'id'		=> 'reset_migrate',
-                //'parent'		=> '',
-                'title'		=> __('Reset migration','team'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
-
-            );
-
-            $settings_tabs_field->generate_field($args);
-
 
 
 
@@ -879,6 +785,6 @@ add_action('team_settings_save', 'team_settings_save');
 
 function team_settings_save(){
 
-    $team_settings = isset($_POST['team_settings']) ?  stripslashes_deep($_POST['team_settings']) : array();
+    $team_settings = isset($_POST['team_settings']) ?  team_recursive_sanitize_arr($_POST['team_settings']) : array();
     update_option('team_settings', $team_settings);
 }

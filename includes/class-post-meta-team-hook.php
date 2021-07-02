@@ -586,7 +586,7 @@ function team_metabox_content_layouts($post_id){
                 $team_thumb_url = isset($team_thumb['0']) ? esc_url_raw($team_thumb['0']) : '';
 
                 $layout_options = get_post_meta($post_id,'layout_options', true);
-                $layout_preview_img = !empty($layout_options['layout_preview_img']) ? $layout_options['layout_preview_img'] : 'https://i.imgur.com/JyurCtY.jpg';
+                $layout_preview_img = !empty($layout_options['layout_preview_img']) ? $layout_options['layout_preview_img'] : team_plugin_url.'assets/admin/images/placeholder.jpg';
 
                 $team_thumb_url = !empty( $team_thumb_url ) ? $team_thumb_url : $layout_preview_img;
 
@@ -1198,7 +1198,7 @@ add_action('team_meta_box_save_team','team_meta_box_save_team');
 
 function team_meta_box_save_team($job_id){
 
-    $team_options = isset($_POST['team_options']) ? stripslashes_deep($_POST['team_options']) : '';
+    $team_options = isset($_POST['team_options']) ? team_recursive_sanitize_arr($_POST['team_options']) : '';
     update_post_meta($job_id, 'team_options', $team_options);
 
 

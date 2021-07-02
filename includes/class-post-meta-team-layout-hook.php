@@ -374,13 +374,13 @@ add_action('team_layout_meta_box_save_team','team_layout_meta_box_save_team');
 
 function team_layout_meta_box_save_team($job_id){
 
-    $layout_options = isset($_POST['layout_options']) ? stripslashes_deep($_POST['layout_options']) : '';
+    $layout_options = isset($_POST['layout_options']) ? team_recursive_sanitize_arr($_POST['layout_options']) : '';
     update_post_meta($job_id, 'layout_options', $layout_options);
 
-    $layout_elements_data = isset($_POST['layout_elements_data']) ? stripslashes_deep($_POST['layout_elements_data']) : '';
+    $layout_elements_data = isset($_POST['layout_elements_data']) ? team_recursive_sanitize_arr($_POST['layout_elements_data']) : '';
     update_post_meta($job_id, 'layout_elements_data', $layout_elements_data);
 
-    $custom_scripts = isset($_POST['custom_scripts']) ? stripslashes_deep($_POST['custom_scripts']) : '';
+    $custom_scripts = isset($_POST['custom_scripts']) ? team_recursive_sanitize_arr($_POST['custom_scripts']) : '';
     update_post_meta($job_id, 'custom_scripts', $custom_scripts);
 
 }

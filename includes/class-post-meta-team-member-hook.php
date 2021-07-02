@@ -236,7 +236,7 @@ add_action('team_member_metabox_save','team_member_metabox_save');
 function team_member_metabox_save($job_id){
 
 
-    $team_member_data = isset($_POST['team_member_data']) ? stripslashes_deep($_POST['team_member_data']) : '';
+    $team_member_data = isset($_POST['team_member_data']) ? team_recursive_sanitize_arr($_POST['team_member_data']) : '';
     update_post_meta($job_id, 'team_member_data', $team_member_data);
 
 

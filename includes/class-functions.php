@@ -137,53 +137,28 @@ class class_team_functions  {
 
 											array(
 												'question'=>__('How to upgrade to premium ?', 'team'),
-												'answer_url'=>'https://goo.gl/51pEHd',
+												'answer_url'=>'https://pickplugins.com/documentation/team/faq/how-to-upgrade-to-pro/',
 												),	
 
 											array(
 												'question'=>__('How to activate license ?', 'team'),
-												'answer_url'=>'https://goo.gl/jd1P5H',
+												'answer_url'=>'https://pickplugins.com/documentation/team/how-to-activate-license/',
 												),	
 
 											array(
 												'question'=>__('How to create team ?', 'team'),
-												'answer_url'=>'https://goo.gl/t5AYSC',
+												'answer_url'=>'https://pickplugins.com/documentation/team/how-to-create-team/',
 												),	
 
 											array(
 												'question'=>__('How to add custom profile fields ?', 'team'),
-												'answer_url'=>'https://goo.gl/BmvA2u',
+												'answer_url'=>'https://pickplugins.com/documentation/team/faq/how-to-add-custom-profile-fields/',
 												),	
 
 											array(
 												'question'=>__('Team member page 404 not found.', 'team'),
-												'answer_url'=>'https://goo.gl/OCjEKl',
+												'answer_url'=>'https://pickplugins.com/documentation/team/faq/team-member-page-404-not-found/',
 												),
-
-											array(
-												'question'=>__('Team member page full width/broken', 'team'),
-												'answer_url'=>'https://goo.gl/WHWu8p',
-												),
-
-
-											array(
-												'question'=>__('How to change team member slug ?', 'team'),
-												'answer_url'=>'https://goo.gl/xgXzVC',
-												),
-
-											array(
-												'question'=>__('How to display team member by group ?', 'team'),
-												'answer_url'=>'https://goo.gl/dUA40n',
-												),
-
-
-											array(
-												'question'=>__('How to display team member by id’s ?', 'team'),
-												'answer_url'=>'https://goo.gl/kKwh3Y',
-												),
-
-
-
 
 											),
 

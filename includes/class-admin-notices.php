@@ -49,7 +49,7 @@ class class_team_notices{
         $actionurl = admin_url().'edit.php?post_type=team&page=upgrade_status';
         $actionurl = wp_nonce_url( $actionurl,  'team_upgrade' );
 
-        $nonce = isset($_REQUEST['_wpnonce']) ? $_REQUEST['_wpnonce'] : '';
+        $nonce = isset($_REQUEST['_wpnonce']) ? sanitize_text_field($_REQUEST['_wpnonce']) : '';
 
         if ( wp_verify_nonce( $nonce, 'team_upgrade' )  ){
             $team_plugin_info['team_upgrade'] = 'processing';

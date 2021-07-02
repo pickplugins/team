@@ -142,7 +142,7 @@ class class_team_post_meta_team_member{
         if (!isset($_POST['team_nonce_check_value']))
             return $post_id;
 
-        $nonce = $_POST['team_nonce_check_value'];
+        $nonce = sanitize_text_field($_POST['team_nonce_check_value']);
 
         // Verify that the nonce is valid.
         if (!wp_verify_nonce($nonce, 'team_nonce_check'))

@@ -137,7 +137,7 @@ class class_team_post_meta_team_layout{
         if (!isset($_POST['team_nonce_check_value']))
             return $post_id;
 
-        $nonce = $_POST['team_nonce_check_value'];
+        $nonce = sanitize_text_field($_POST['team_nonce_check_value']);
 
         // Verify that the nonce is valid.
         if (!wp_verify_nonce($nonce, 'team_nonce_check'))
@@ -163,7 +163,7 @@ class class_team_post_meta_team_layout{
         /* OK, its safe for us to save the data now. */
 
         // Sanitize the user input.
-        //$grid_item_layout = stripslashes_deep($_POST['grid_item_layout']);
+        //$grid_item_layout = team_recursive_sanitize_arr($_POST['grid_item_layout']);
 
 
         // Update the meta field.

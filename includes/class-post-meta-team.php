@@ -80,7 +80,7 @@ class class_team_post_meta_team{
             'priority' => 5,
             'active' => ($current_tab == 'masonry') ? true : false,
             'data_visible' => 'grid',
-            'hidden' => ($view_type == 'slider')? true : false || ($view_type == 'filterable')? true : false || ($view_type == 'glossary') ? true : false,
+            'hidden' => (($view_type == 'slider') ? true : false) || (($view_type == 'filterable') ? true : false) || (($view_type == 'glossary') ? true : false)
         );
 
         $team_settings_tab[] = array(
@@ -244,7 +244,7 @@ class class_team_post_meta_team{
         if (!isset($_POST['team_nonce_check_value']))
             return $post_id;
 
-        $nonce = $_POST['team_nonce_check_value'];
+        $nonce = sanitize_text_field($_POST['team_nonce_check_value']);
 
         // Verify that the nonce is valid.
         if (!wp_verify_nonce($nonce, 'team_nonce_check'))

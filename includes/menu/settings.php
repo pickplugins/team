@@ -2,7 +2,7 @@
 if ( ! defined('ABSPATH')) exit;  // if direct access
 
 
-$current_tab = isset($_REQUEST['tab']) ? $_REQUEST['tab'] : 'general';
+$current_tab = isset($_REQUEST['tab']) ? sanitize_text_field($_REQUEST['tab']) : 'general';
 
 $team_settings_tab = array();
 
@@ -96,7 +96,7 @@ $team_settings = get_option('team_settings');
 
 
 
-		<form  method="post" action="<?php echo str_replace( '%7E', '~', $_SERVER['REQUEST_URI']); ?>">
+		<form  method="post" action="<?php echo str_replace( '%7E', '~', esc_url_raw($_SERVER['REQUEST_URI'])); ?>">
 	        <input type="hidden" name="team_hidden" value="Y">
             <input type="hidden" name="tab" value="<?php echo $current_tab; ?>">
 
