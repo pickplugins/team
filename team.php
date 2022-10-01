@@ -3,7 +3,7 @@
 Plugin Name: Team Showcase by PickPlugins
 Plugin URI: https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashboard
 Description: Fully responsive and mobile ready meet the team showcase plugin for wordpress.
-Version: 1.22.19
+Version: 1.22.22
 Author: PickPlugins
 Author URI: http://pickplugins.com
 Text Domain: team
@@ -13,17 +13,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 */
 
-if ( ! defined('ABSPATH')) exit;  // if direct access 
+if (!defined('ABSPATH')) exit;  // if direct access 
 
-if( ! class_exists( 'team' ) ) {
-    class Team{
+if (!class_exists('team')) {
+    class Team
+    {
 
-        public function __construct(){
+        public function __construct()
+        {
 
             define('team_plugin_url', plugins_url('/', __FILE__));
             define('team_plugin_dir', plugin_dir_path(__FILE__));
             define('team_plugin_name', 'Team');
-            define('team_plugin_version', '1.22.19');
+            define('team_plugin_version', '1.22.22');
 
 
             include('includes/class-post-meta-team.php');
@@ -44,6 +46,7 @@ if( ! class_exists( 'team' ) ) {
             include('includes/class-post-meta-team-member-hook.php');
             include('includes/class-admin-notices.php');
             include('includes/class-settings-tabs-reviews.php');
+            include('includes/functions-data-upgrade.php');
 
 
             include_once team_plugin_dir . '/templates/team-showcase/team-showcase-hook.php';
@@ -61,24 +64,25 @@ if( ! class_exists( 'team' ) ) {
             register_deactivation_hook(__FILE__, array($this, '_deactivation'));
             add_filter('cron_schedules', array($this, 'cron_recurrence_interval'));
 
+//delete_option('team_plugin_info');
 
-
-//            $args = array(
-//                'title' => 'Hope you enjoy <b>Team Showcase</b> plugin ',
-//                'option' => 'team_plugin_info',
-//                'review_link' => 'https://wordpress.org/support/plugin/team/reviews/#new-post',
-//                'support_link' => 'https://www.pickplugins.com/forum/',
-//                'documentation_link' => 'https://www.pickplugins.com/documentation/team/',
-//                'tutorials_link' => 'https://www.youtube.com/watch?v=SOe0D-Og3nQ&list=PL0QP7T2SN94atYZswlnBMhDuIYoqlmlxy',
-//            );
-//
-//            new settings_tabs_reviews($args);
+            //            $args = array(
+            //                'title' => 'Hope you enjoy <b>Team Showcase</b> plugin ',
+            //                'option' => 'team_plugin_info',
+            //                'review_link' => 'https://wordpress.org/support/plugin/team/reviews/#new-post',
+            //                'support_link' => 'https://www.pickplugins.com/forum/',
+            //                'documentation_link' => 'https://www.pickplugins.com/documentation/team/',
+            //                'tutorials_link' => 'https://www.youtube.com/watch?v=SOe0D-Og3nQ&list=PL0QP7T2SN94atYZswlnBMhDuIYoqlmlxy',
+            //            );
+            //
+            //            new settings_tabs_reviews($args);
 
 
         }
 
 
-        public function _textdomain(){
+        public function _textdomain()
+        {
 
             $locale = apply_filters('plugin_locale', get_locale(), 'team');
             load_textdomain('team', WP_LANG_DIR . '/team/team-' . $locale . '.mo');
@@ -87,25 +91,29 @@ if( ! class_exists( 'team' ) ) {
         }
 
 
-        public function _activation(){
+        public function _activation()
+        {
 
             // Reset permalink
             $team_class_post_types = new team_class_post_types();
             $team_class_post_types->_posttype_team_member();
             flush_rewrite_rules();
 
+            $xml_source = team_plugin_url . '/sample-data/team-layouts.json';
+            team_import_xml_layouts($xml_source);
 
             do_action('team_activation');
-
         }
 
 
-        public function team_uninstall(){
+        public function team_uninstall()
+        {
 
             do_action('team_uninstall');
         }
 
-        public function _deactivation(){
+        public function _deactivation()
+        {
 
             wp_clear_scheduled_hook('team_cron_upgrade_settings');
             wp_clear_scheduled_hook('team_cron_upgrade_team_members');
@@ -115,7 +123,8 @@ if( ! class_exists( 'team' ) ) {
         }
 
 
-        function cron_recurrence_interval($schedules){
+        function cron_recurrence_interval($schedules)
+        {
 
             $schedules['1minute'] = array(
                 'interval' => 40,
@@ -128,7 +137,8 @@ if( ! class_exists( 'team' ) ) {
         }
 
 
-        public function _front_scripts(){
+        public function _front_scripts()
+        {
 
             wp_enqueue_script('jquery');
 
@@ -139,7 +149,9 @@ if( ! class_exists( 'team' ) ) {
             do_action('team_front_scripts');
         }
 
-        public function _admin_scripts(){
+        public function _admin_scripts()
+        {
+            $screen = get_current_screen();
 
             wp_enqueue_script('jquery');
             wp_enqueue_script('jquery-ui-core');
@@ -148,43 +160,55 @@ if( ! class_exists( 'team' ) ) {
             wp_enqueue_script('team_scripts', team_plugin_url . 'assets/admin/js/scripts.js', array('jquery'));
             //wp_localize_script('team_scripts', 'team_ajax', array('team_ajaxurl' => admin_url('admin-ajax.php')));
 
-            wp_localize_script('team_scripts', 'team_ajax', array(
-                  'team_ajaxurl' => admin_url('admin-ajax.php'),
-                  'ajax_nonce' => wp_create_nonce('team_ajax_nonce'),
+            wp_localize_script(
+                'team_scripts',
+                'team_ajax',
+                array(
+                    'team_ajaxurl' => admin_url('admin-ajax.php'),
+                    'ajax_nonce' => wp_create_nonce('team_ajax_nonce'),
                 )
             );
 
 
 
-            wp_enqueue_script('wp-color-picker');
-            wp_enqueue_style('wp-color-picker');
+            //wp_enqueue_script('wp-color-picker');
+            //wp_enqueue_style('wp-color-picker');
 
             wp_register_script('settings-tabs', team_plugin_url . 'assets/settings-tabs/settings-tabs.js', array('jquery'));
             wp_register_style('settings-tabs', team_plugin_url . 'assets/settings-tabs/settings-tabs.css');
             wp_register_style('font-awesome-5', team_plugin_url . 'assets/admin/css/fontawesome.css');
 
             wp_register_script('jquery.lazy', team_plugin_url . 'assets/admin/js/jquery.lazy.js', array('jquery'));
-            wp_enqueue_script( 'jquery.lazy' );
+            wp_enqueue_script('jquery.lazy');
 
             //wp_enqueue_script( 'team_scripts' );
 
 
-            $cm_settings['codeEditor'] = wp_enqueue_code_editor(array('type' => 'text/css'));
+            //$cm_settings['codeEditor'] = wp_enqueue_code_editor(array('type' => 'text/css'));
 
-            wp_localize_script('jquery', 'cm_settings', $cm_settings);
+            //wp_localize_script('jquery', 'cm_settings', $cm_settings);
 
-            wp_enqueue_script('wp-theme-plugin-editor');
+            //wp_enqueue_script('wp-theme-plugin-editor');
             //wp_enqueue_style('wp-codemirror');
+
+
+            if ($screen->id == 'team_member' || $screen->id == 'team'  || $screen->id == 'team_layout') {
+
+
+                $settings_tabs_field = new settings_tabs_field();
+                $settings_tabs_field->admin_scripts();
+            }
+
+
+
+
+
+
 
             do_action('team_admin_scripts');
         }
-
     }
 }
-	
+
 
 new Team();
-	
-
-	
-	

@@ -1,9 +1,10 @@
 <?php
-if ( ! defined('ABSPATH')) exit;  // if direct access
+if (!defined('ABSPATH')) exit;  // if direct access
 
 add_action('team_settings_content_general', 'team_settings_content_general');
 
-function team_settings_content_general(){
+function team_settings_content_general()
+{
     $settings_tabs_field = new settings_tabs_field();
 
     $team_settings = get_option('team_settings');
@@ -12,7 +13,7 @@ function team_settings_content_general(){
     $custom_meta_fields = isset($team_settings['custom_meta_fields']) ? $team_settings['custom_meta_fields'] : '';
     $custom_social_fields = isset($team_settings['custom_social_fields']) ? $team_settings['custom_social_fields'] : '';
 
-    ?>
+?>
     <div class="section">
         <div class="section-title"><?php echo __('General', 'team'); ?></div>
         <p class="description section-description"><?php echo __('Choose some general options.', 'team'); ?></p>
@@ -20,14 +21,14 @@ function team_settings_content_general(){
         <?php
 
         $args = array(
-            'id'		=> 'team_member_slug',
+            'id'        => 'team_member_slug',
             'parent' => 'team_settings',
-            'title'		=> __('Team member slug','team'),
-            'details'	=> __('Write custom team member slug.','team'),
-            'type'		=> 'text',
-            'value'		=> $team_member_slug,
-            'default'		=> '',
-            'placeholder'		=> 'volunteers',
+            'title'        => __('Team member slug', 'team'),
+            'details'    => __('Write custom team member slug.', 'team'),
+            'type'        => 'text',
+            'value'        => $team_member_slug,
+            'default'        => '',
+            'placeholder'        => 'volunteers',
         );
 
         $settings_tabs_field->generate_field($args);
@@ -36,22 +37,22 @@ function team_settings_content_general(){
         $meta_fields = array(
 
             array(
-                'id'		=> 'name',
-                'title'		=> __('Meta Name','team'),
-                'details'	=> __('Write meta field name here.','team'),
-                'type'		=> 'text',
-                'value'		=> '',
-                'default'		=> '',
-                'placeholder'		=> 'Address',
+                'id'        => 'name',
+                'title'        => __('Meta Name', 'team'),
+                'details'    => __('Write meta field name here.', 'team'),
+                'type'        => 'text',
+                'value'        => '',
+                'default'        => '',
+                'placeholder'        => 'Address',
             ),
             array(
-                'id'		=> 'meta_key',
-                'title'		=> __('Meta key','team'),
-                'details'	=> __('Write meta key here.','team'),
-                'type'		=> 'text',
-                'value'		=> '',
-                'default'		=> '',
-                'placeholder'		=> 'meta_key',
+                'id'        => 'meta_key',
+                'title'        => __('Meta key', 'team'),
+                'details'    => __('Write meta key here.', 'team'),
+                'type'        => 'text',
+                'value'        => '',
+                'default'        => '',
+                'placeholder'        => 'meta_key',
             ),
 
 
@@ -59,15 +60,15 @@ function team_settings_content_general(){
 
 
         $args = array(
-            'id'		=> 'custom_meta_fields',
-            'parent'		=> 'team_settings',
-            'title'		=> __('Custom meta fields','text-domain'),
-            'details'	=> __('Custom meta fields on team member profile','text-domain'),
-            'collapsible'=> true,
-            'type'		=> 'repeatable',
-            'limit'		=> 10,
-            'title_field'		=> 'name',
-            'value'		=> $custom_meta_fields,
+            'id'        => 'custom_meta_fields',
+            'parent'        => 'team_settings',
+            'title'        => __('Custom meta fields', 'text-domain'),
+            'details'    => __('Custom meta fields on team member profile', 'text-domain'),
+            'collapsible' => true,
+            'type'        => 'repeatable',
+            'limit'        => 10,
+            'title_field'        => 'name',
+            'value'        => $custom_meta_fields,
             'fields'    => $meta_fields,
         );
 
@@ -79,67 +80,67 @@ function team_settings_content_general(){
         $social_field = array(
 
             array(
-                'id'		=> 'name',
-                'title'		=> __('Meta Name','team'),
-                'details'	=> __('Write meta field name here.','team'),
-                'type'		=> 'text',
-                'value'		=> '',
-                'default'		=> '',
-                'placeholder'		=> '',
+                'id'        => 'name',
+                'title'        => __('Meta Name', 'team'),
+                'details'    => __('Write meta field name here.', 'team'),
+                'type'        => 'text',
+                'value'        => '',
+                'default'        => '',
+                'placeholder'        => '',
             ),
             array(
-                'id'		=> 'meta_key',
-                'title'		=> __('Meta key','team'),
-                'details'	=> __('Write meta key here.','team'),
-                'type'		=> 'text',
-                'value'		=> '',
-                'default'		=> '',
-                'placeholder'		=> 'meta_key',
-            ),
-
-            array(
-                'id'		=> 'icon',
-                'title'		=> __('Add icon','team'),
-                'details'	=> __('Upload icon image here.','team'),
-                'type'		=> 'media_url',
-                'value'		=> '',
-                'default'		=> '',
-                'placeholder'		=> '',
+                'id'        => 'meta_key',
+                'title'        => __('Meta key', 'team'),
+                'details'    => __('Write meta key here.', 'team'),
+                'type'        => 'text',
+                'value'        => '',
+                'default'        => '',
+                'placeholder'        => 'meta_key',
             ),
 
             array(
-                'id'		=> 'font_icon',
-                'title'		=> __('Add font icon','team'),
-                'details'	=> __('Add font icon html here, you can use <a href="https://fontawesome.com/icons">fontawesome</a>  ex: <code> &lt;i class="fab fa-facebook-square">&lt;/i></code>.','team'),
-                'type'		=> 'text',
-                'value'		=> '',
-                'default'		=> '',
-                'placeholder'		=> '<i class=&quot;fab fa-facebook-square&quot;></i>',
+                'id'        => 'icon',
+                'title'        => __('Add icon', 'team'),
+                'details'    => __('Upload icon image here.', 'team'),
+                'type'        => 'media_url',
+                'value'        => '',
+                'default'        => '',
+                'placeholder'        => '',
             ),
 
             array(
-                'id'		=> 'visibility',
-                'title'		=> __('Visibility','team'),
-                'details'	=> __('Choose visibility.','team'),
-                'type'		=> 'select',
-                'value'		=> '',
-                'default'		=> '',
-                'args'		=> array('1'=>'Yes',''=>'No'),
+                'id'        => 'font_icon',
+                'title'        => __('Add font icon', 'team'),
+                'details'    => __('Add font icon html here, you can use <a href="https://fontawesome.com/icons">fontawesome</a>  ex: <code> &lt;i class="fab fa-facebook-square">&lt;/i></code>.', 'team'),
+                'type'        => 'text',
+                'value'        => '',
+                'default'        => '',
+                'placeholder'        => '<i class=&quot;fab fa-facebook-square&quot;></i>',
+            ),
+
+            array(
+                'id'        => 'visibility',
+                'title'        => __('Visibility', 'team'),
+                'details'    => __('Choose visibility.', 'team'),
+                'type'        => 'select',
+                'value'        => '',
+                'default'        => '',
+                'args'        => array('1' => 'Yes', '' => 'No'),
             ),
 
         );
 
 
         $args = array(
-            'id'		=> 'custom_social_fields',
-            'parent'		=> 'team_settings',
-            'title'		=> __('Custom social fields','text-domain'),
-            'details'	=> __('Custom social fields on team member profile','text-domain'),
-            'collapsible'=> true,
-            'type'		=> 'repeatable',
-            'limit'		=> 10,
-            'title_field'		=> 'name',
-            'value'		=> $custom_social_fields,
+            'id'        => 'custom_social_fields',
+            'parent'        => 'team_settings',
+            'title'        => __('Custom social fields', 'text-domain'),
+            'details'    => __('Custom social fields on team member profile', 'text-domain'),
+            'collapsible' => true,
+            'type'        => 'repeatable',
+            'limit'        => 10,
+            'title_field'        => 'name',
+            'value'        => $custom_social_fields,
             'fields'    => $social_field,
         );
 
@@ -151,7 +152,7 @@ function team_settings_content_general(){
 
     </div>
 
-    <?php
+<?php
 
 
 
@@ -161,7 +162,8 @@ function team_settings_content_general(){
 
 add_action('team_settings_content_team_member', 'team_settings_content_team_member');
 
-function team_settings_content_team_member(){
+function team_settings_content_team_member()
+{
     $settings_tabs_field = new settings_tabs_field();
 
     $team_settings = get_option('team_settings');
@@ -170,7 +172,7 @@ function team_settings_content_team_member(){
     $hide_post_title = isset($team_settings['team_member']['hide_post_title']) ? $team_settings['team_member']['hide_post_title'] : '';
     $is_public = isset($team_settings['team_member']['is_public']) ? $team_settings['team_member']['is_public'] : '';
 
-    ?>
+?>
     <div class="section">
         <div class="section-title"><?php echo __('Single team member', 'team'); ?></div>
         <p class="description section-description"><?php echo __('Choose some options for single team member page.', 'team'); ?></p>
@@ -179,66 +181,67 @@ function team_settings_content_team_member(){
         <?php
 
         $args = array(
-            'id'		=> 'hide_featured_image',
+            'id'        => 'hide_featured_image',
             'parent' => 'team_settings[team_member]',
-            'title'		=> __('Hide featured image','team'),
-            'details'	=> __('Hide feature image from single team member page.','team'),
-            'type'		=> 'select',
-            'value'		=> $hide_featured_image,
-            'default'		=> '',
-            'args'		=> array('no'=>'No', 'yes'=>'Yes'),
+            'title'        => __('Hide featured image', 'team'),
+            'details'    => __('Hide feature image from single team member page.', 'team'),
+            'type'        => 'select',
+            'value'        => $hide_featured_image,
+            'default'        => '',
+            'args'        => array('no' => 'No', 'yes' => 'Yes'),
         );
 
         $settings_tabs_field->generate_field($args);
 
         $args = array(
-            'id'		=> 'hide_post_title',
+            'id'        => 'hide_post_title',
             'parent' => 'team_settings[team_member]',
-            'title'		=> __('Hide post title','team'),
-            'details'	=> __('Hide post title from single team member page.','team'),
-            'type'		=> 'select',
-            'value'		=> $hide_post_title,
-            'default'		=> '',
-            'args'		=> array('no'=>'No', 'yes'=>'Yes'),
+            'title'        => __('Hide post title', 'team'),
+            'details'    => __('Hide post title from single team member page.', 'team'),
+            'type'        => 'select',
+            'value'        => $hide_post_title,
+            'default'        => '',
+            'args'        => array('no' => 'No', 'yes' => 'Yes'),
         );
 
         $settings_tabs_field->generate_field($args);
 
         $args = array(
-            'id'		=> 'is_public',
+            'id'        => 'is_public',
             'parent' => 'team_settings[team_member]',
-            'title'		=> __('Team member page allow access','team'),
-            'details'	=> __('Allow access to single team member page..','team'),
-            'type'		=> 'select',
-            'value'		=> $is_public,
-            'default'		=> '',
-            'args'		=> array('yes'=>'Yes', 'no'=>'No', ),
+            'title'        => __('Team member page allow access', 'team'),
+            'details'    => __('Allow access to single team member page..', 'team'),
+            'type'        => 'select',
+            'value'        => $is_public,
+            'default'        => '',
+            'args'        => array('yes' => 'Yes', 'no' => 'No',),
         );
 
         $settings_tabs_field->generate_field($args);
 
         ?>
     </div>
-        <?php
+    <?php
 }
 
 add_action('team_settings_content_help_support', 'team_settings_content_help_support');
 
-if(!function_exists('team_settings_content_help_support')) {
-    function team_settings_content_help_support($tab){
+if (!function_exists('team_settings_content_help_support')) {
+    function team_settings_content_help_support($tab)
+    {
 
         $settings_tabs_field = new settings_tabs_field();
 
-        ?>
+    ?>
         <div class="section">
             <div class="section-title"><?php echo __('Get support', 'team'); ?></div>
             <p class="description section-description"><?php echo __('Use following to get help and support from our expert team.', 'team'); ?></p>
 
             <?php
-            
 
-            $layouts_free_url = team_plugin_url.'sample-data/team-layouts.xml';
-            $layouts_free_url_json = team_plugin_url.'sample-data/team-layouts.json';
+
+            $layouts_free_url = team_plugin_url . 'sample-data/team-layouts.xml';
+            $layouts_free_url_json = team_plugin_url . 'sample-data/team-layouts.json';
 
 
             ob_start();
@@ -249,7 +252,7 @@ if(!function_exists('team_settings_content_help_support')) {
             <p><?php echo __('Import free layouts', 'team'); ?></p>
 
 
-            <a class="button team-import-layouts"  href="<?php echo esc_url_raw($layouts_free_url_json); ?>"><?php echo __('Import automatically', 'team'); ?></a>
+
             <a class="button" href="<?php echo esc_url_raw($layouts_free_url); ?>"><?php echo __('Download XML', 'team'); ?></a>
 
             <p>Import manually</p>
@@ -265,23 +268,21 @@ if(!function_exists('team_settings_content_help_support')) {
 
 
             <?php
-              if (is_plugin_active('team-pro/team-pro.php')) {
+            if (is_plugin_active('team-pro/team-pro.php')) {
 
-                $layouts_pro_url = team_pro_plugin_url.'sample-data/team-layouts.xml';
-                $layouts_pro_url_json = team_pro_plugin_url.'sample-data/team-layouts.json';
+                $layouts_pro_url = team_pro_plugin_url . 'sample-data/team-layouts.xml';
+                $layouts_pro_url_json = team_pro_plugin_url . 'sample-data/team-layouts.json';
 
 
-                if ($layouts_pro_url):
-                  ?>
+                if ($layouts_pro_url) :
+            ?>
                     <p><?php echo __('Import premium layouts', 'team'); ?></p>
-                    <a class="button team-import-layouts"
-                       href="<?php echo esc_url_raw($layouts_pro_url_json); ?>"><?php echo __('Import automatically', 'team'); ?></a>
-                    <a class="button"
-                       href="<?php echo esc_url_raw($layouts_pro_url); ?>"><?php echo __('Download Pro XML', 'team'); ?></a>
 
-                <?php
+                    <a class="button" href="<?php echo esc_url_raw($layouts_pro_url); ?>"><?php echo __('Download Pro XML', 'team'); ?></a>
+
+            <?php
                 endif;
-              }
+            }
             ?>
 
 
@@ -290,12 +291,12 @@ if(!function_exists('team_settings_content_help_support')) {
             $html = ob_get_clean();
 
             $args = array(
-                'id'		=> 'import_layouts',
+                'id'        => 'import_layouts',
                 //'parent'		=> '',
-                'title'		=> __('Import layouts','team'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
+                'title'        => __('Import layouts', 'team'),
+                'details'    => '',
+                'type'        => 'custom_html',
+                'html'        => $html,
 
             );
 
@@ -317,12 +318,12 @@ if(!function_exists('team_settings_content_help_support')) {
             $html = ob_get_clean();
 
             $args = array(
-                'id'		=> 'export_layouts',
+                'id'        => 'export_layouts',
                 //'parent'		=> '',
-                'title'		=> __('Export layouts','team'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
+                'title'        => __('Export layouts', 'team'),
+                'details'    => '',
+                'type'        => 'custom_html',
+                'html'        => $html,
 
             );
 
@@ -367,12 +368,12 @@ if(!function_exists('team_settings_content_help_support')) {
             $html = ob_get_clean();
 
             $args = array(
-                'id'		=> 'get_support',
+                'id'        => 'get_support',
                 //'parent'		=> '',
-                'title'		=> __('Ask question','team'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
+                'title'        => __('Ask question', 'team'),
+                'details'    => '',
+                'type'        => 'custom_html',
+                'html'        => $html,
 
             );
 
@@ -392,12 +393,12 @@ if(!function_exists('team_settings_content_help_support')) {
             $html = ob_get_clean();
 
             $args = array(
-                'id'		=> 'reviews',
+                'id'        => 'reviews',
                 //'parent'		=> '',
-                'title'		=> __('Submit reviews','team'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
+                'title'        => __('Submit reviews', 'team'),
+                'details'    => '',
+                'type'        => 'custom_html',
+                'html'        => $html,
 
             );
 
@@ -420,12 +421,12 @@ if(!function_exists('team_settings_content_help_support')) {
             $html = ob_get_clean();
 
             $args = array(
-                'id'		=> 'old_version',
+                'id'        => 'old_version',
                 //'parent'		=> '',
-                'title'		=> __('Older version','team'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
+                'title'        => __('Older version', 'team'),
+                'details'    => '',
+                'type'        => 'custom_html',
+                'html'        => $html,
 
             );
 
@@ -438,7 +439,7 @@ if(!function_exists('team_settings_content_help_support')) {
 
 
         </div>
-        <?php
+    <?php
 
 
     }
@@ -451,13 +452,14 @@ if(!function_exists('team_settings_content_help_support')) {
 
 add_action('team_settings_content_buy_pro', 'team_settings_content_buy_pro');
 
-if(!function_exists('team_settings_content_buy_pro')) {
-    function team_settings_content_buy_pro($tab){
+if (!function_exists('team_settings_content_buy_pro')) {
+    function team_settings_content_buy_pro($tab)
+    {
 
         $settings_tabs_field = new settings_tabs_field();
 
 
-        ?>
+    ?>
         <div class="section">
             <div class="section-title"><?php echo __('Get Premium', 'team'); ?></div>
             <p class="description section-description"><?php echo __('Thanks for using our plugin, if you looking for some advance feature please buy premium version.', 'team'); ?></p>
@@ -472,193 +474,193 @@ if(!function_exists('team_settings_content_buy_pro')) {
             <a class="button" href="https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a>
             <a class="button" href="https://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('See all demo', 'team'); ?></a>
 
-            <h2><?php echo __('See the differences','team'); ?></h2>
+            <h2><?php echo __('See the differences', 'team'); ?></h2>
 
             <table class="pro-features">
                 <thead>
-                <tr>
-                    <th class="col-features"><?php echo __('Features','team'); ?></th>
-                    <th class="col-free"><?php echo __('Free','team'); ?></th>
-                    <th class="col-pro"><?php echo __('Premium','team'); ?></th>
-                </tr>
+                    <tr>
+                        <th class="col-features"><?php echo __('Features', 'team'); ?></th>
+                        <th class="col-free"><?php echo __('Free', 'team'); ?></th>
+                        <th class="col-pro"><?php echo __('Premium', 'team'); ?></th>
+                    </tr>
                 </thead>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Slider','team'); ?> <a href="https://www.pickplugins.com/demo/team/slider/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Slider', 'team'); ?> <a href="https://www.pickplugins.com/demo/team/slider/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Filterable','team'); ?> <a href="https://www.pickplugins.com/demo/team/filterable/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Filterable', 'team'); ?> <a href="https://www.pickplugins.com/demo/team/filterable/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Glossary','team'); ?> <a href="https://www.pickplugins.com/demo/team/glossary-custom-index/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Access to layout library(30+ ready layout)','team'); ?> <a href="https://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('View type - Glossary', 'team'); ?> <a href="https://www.pickplugins.com/demo/team/glossary-custom-index/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Query by team members id','team'); ?></td>
+                    <td class="col-features"><?php echo __('Access to layout library(30+ ready layout)', 'team'); ?> <a href="https://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Pagination type - jQuery','team'); ?> <a href="https://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Query by team members id', 'team'); ?></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Pagination type - Ajax','team'); ?> <a href="https://www.pickplugins.com/demo/team/ajax-pagination/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
-                    <td><i class="fas fa-times"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Pagination type - Load more','team'); ?> <a href="https://www.pickplugins.com/demo/team/load-more/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Pagination type - jQuery', 'team'); ?> <a href="https://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Layout element - Skill','team'); ?> <a href="https://www.pickplugins.com/demo/team/skill-bars/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Pagination type - Ajax', 'team'); ?> <a href="https://www.pickplugins.com/demo/team/ajax-pagination/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Pagination type - Load more', 'team'); ?> <a href="https://www.pickplugins.com/demo/team/load-more/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Team members link to - Popup box','team'); ?></td>
+                    <td class="col-features"><?php echo __('Layout element - Skill', 'team'); ?> <a href="https://www.pickplugins.com/demo/team/skill-bars/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Team members link to - Popup slider','team'); ?></td>
+                    <td class="col-features"><?php echo __('Team members link to - Popup box', 'team'); ?></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Team members custom class','team'); ?></td>
+                    <td class="col-features"><?php echo __('Team members link to - Popup slider', 'team'); ?></td>
                     <td><i class="fas fa-times"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('View type - Grid','team'); ?> <a href="https://www.pickplugins.com/demo/team/view-type-grid/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Team members custom class', 'team'); ?></td>
+                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('View type - Grid', 'team'); ?> <a href="https://www.pickplugins.com/demo/team/view-type-grid/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Masonry style grid','team'); ?> <a href="https://www.pickplugins.com/demo/team/masonry/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
+                    <td class="col-features"><?php echo __('Masonry style grid', 'team'); ?> <a href="https://www.pickplugins.com/demo/team/masonry/?ref=dashobard"><?php echo __('Demo', 'team'); ?></a></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Item custom width','team'); ?> </td>
+                    <td class="col-features"><?php echo __('Item custom width', 'team'); ?> </td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Item margin','team'); ?></td>
+                    <td class="col-features"><?php echo __('Item margin', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Item text align','team'); ?></td>
+                    <td class="col-features"><?php echo __('Item text align', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Container style','team'); ?></td>
+                    <td class="col-features"><?php echo __('Container style', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Layout builder','team'); ?></td>
+                    <td class="col-features"><?php echo __('Layout builder', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Layout element - Wrapper start','team'); ?></td>
+                    <td class="col-features"><?php echo __('Layout element - Wrapper start', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Layout element - Wrapper end','team'); ?></td>
+                    <td class="col-features"><?php echo __('Layout element - Wrapper end', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Layout element - Thumbnail','team'); ?></td>
+                    <td class="col-features"><?php echo __('Layout element - Thumbnail', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Layout element - Title','team'); ?></td>
+                    <td class="col-features"><?php echo __('Layout element - Title', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Layout element - Position','team'); ?></td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Layout element - Content','team'); ?></td>
+                    <td class="col-features"><?php echo __('Layout element - Position', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Layout element - Social','team'); ?></td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Layout element - Meta fields','team'); ?></td>
+                    <td class="col-features"><?php echo __('Layout element - Content', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Pagination type - Normal','team'); ?></td>
+                    <td class="col-features"><?php echo __('Layout element - Social', 'team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Layout element - Meta fields', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Hide Pagination','team'); ?></td>
+                    <td class="col-features"><?php echo __('Pagination type - Normal', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Custom CSS','team'); ?></td>
+                    <td class="col-features"><?php echo __('Hide Pagination', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Custom JS','team'); ?></td>
+                    <td class="col-features"><?php echo __('Custom CSS', 'team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <td class="col-features"><?php echo __('Custom JS', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
@@ -666,40 +668,40 @@ if(!function_exists('team_settings_content_buy_pro')) {
 
 
                 <tr>
-                    <td class="col-features"><?php echo __('Hide featured image(Team member page)','team'); ?></td>
+                    <td class="col-features"><?php echo __('Hide featured image(Team member page)', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Hide post title(Team member page)','team'); ?></td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-
-                <tr>
-                    <td class="col-features"><?php echo __('Custom team member slug','team'); ?></td>
-                    <td><i class="fas fa-check"></i></td>
-                    <td><i class="fas fa-check"></i></td>
-                </tr>
-                <tr>
-                    <td class="col-features"><?php echo __('Custom meta fields','team'); ?></td>
+                    <td class="col-features"><?php echo __('Hide post title(Team member page)', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <td class="col-features"><?php echo __('Custom social fields','team'); ?></td>
+                    <td class="col-features"><?php echo __('Custom team member slug', 'team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+                <tr>
+                    <td class="col-features"><?php echo __('Custom meta fields', 'team'); ?></td>
                     <td><i class="fas fa-check"></i></td>
                     <td><i class="fas fa-check"></i></td>
                 </tr>
 
                 <tr>
-                    <th class="col-features"><?php echo __('Features','team'); ?></th>
-                    <th class="col-free"><?php echo __('Free','team'); ?></th>
-                    <th class="col-pro"><?php echo __('Premium','team'); ?></th>
+                    <td class="col-features"><?php echo __('Custom social fields', 'team'); ?></td>
+                    <td><i class="fas fa-check"></i></td>
+                    <td><i class="fas fa-check"></i></td>
+                </tr>
+
+                <tr>
+                    <th class="col-features"><?php echo __('Features', 'team'); ?></th>
+                    <th class="col-free"><?php echo __('Free', 'team'); ?></th>
+                    <th class="col-pro"><?php echo __('Premium', 'team'); ?></th>
                 </tr>
                 <tr>
-                    <td class="col-features"><?php echo __('Buy now','team'); ?></td>
+                    <td class="col-features"><?php echo __('Buy now', 'team'); ?></td>
                     <td> </td>
                     <td><a class="button" href="https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a></td>
                 </tr>
@@ -713,12 +715,12 @@ if(!function_exists('team_settings_content_buy_pro')) {
             $html = ob_get_clean();
 
             $args = array(
-                'id'		=> 'get_pro',
-//                'parent'		=> 'related_post_settings',
-                'title'		=> __('Get pro version','team'),
-                'details'	=> '',
-                'type'		=> 'custom_html',
-                'html'		=> $html,
+                'id'        => 'get_pro',
+                //                'parent'		=> 'related_post_settings',
+                'title'        => __('Get pro version', 'team'),
+                'details'    => '',
+                'type'        => 'custom_html',
+                'html'        => $html,
 
             );
 
@@ -731,43 +733,46 @@ if(!function_exists('team_settings_content_buy_pro')) {
         </div>
 
         <style type="text/css">
-            .pro-features{
+            .pro-features {
                 margin: 30px 0;
                 border-collapse: collapse;
                 border: 1px solid #ddd;
             }
-            .pro-features th{
+
+            .pro-features th {
                 width: 120px;
                 background: #ddd;
                 padding: 10px;
             }
-            .pro-features tr{
-            }
-            .pro-features td{
+
+            .pro-features tr {}
+
+            .pro-features td {
                 border-bottom: 1px solid #ddd;
                 padding: 10px 10px;
                 text-align: center;
             }
-            .pro-features .col-features{
+
+            .pro-features .col-features {
                 width: 230px;
                 text-align: left;
             }
 
-            .pro-features .col-free{
-            }
-            .pro-features .col-pro{
-            }
+            .pro-features .col-free {}
+
+            .pro-features .col-pro {}
 
             .pro-features i.fas.fa-check {
                 color: #139e3e;
                 font-size: 16px;
             }
+
             .pro-features i.fas.fa-times {
                 color: #f00;
                 font-size: 17px;
             }
         </style>
-        <?php
+<?php
 
 
     }
@@ -783,7 +788,8 @@ if(!function_exists('team_settings_content_buy_pro')) {
 
 add_action('team_settings_save', 'team_settings_save');
 
-function team_settings_save(){
+function team_settings_save()
+{
 
     $team_settings = isset($_POST['team_settings']) ?  team_recursive_sanitize_arr($_POST['team_settings']) : array();
     update_option('team_settings', $team_settings);
