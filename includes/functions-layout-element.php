@@ -55,11 +55,22 @@ function team_layout_element_thumbnail($args){
     $member_image_url = apply_filters('team_layout_element_thumbnail_src', $member_image_url, $args);
 
 
-    //echo '<pre>'.var_export($member_image_url, true).'</pre>';
+    //echo '<pre>'.var_export($team_member_url, true).'</pre>';
 
     if(!empty($member_image_url)){
         ?>
-        <div class="team-thumb <?php echo $element_class; ?>"><a href="<?php echo $team_member_url; ?>"><img src="<?php echo $member_image_url; ?>" /></a></div>
+        <div class="team-thumb <?php echo $element_class; ?>">
+           <?php if(!empty($team_member_url)): ?>
+            <a href="<?php echo $team_member_url; ?>">
+                <img src="<?php echo $member_image_url; ?>" />
+            </a>
+            <?php else: ?>
+            <img src="<?php echo $member_image_url; ?>" />
+            
+            <?php endif; ?>
+
+
+        </div>
         <?php
 
     }
@@ -285,7 +296,10 @@ function team_layout_element_content($args){
     $post_data= get_post($team_member_id);
 
     $team_member_url = get_permalink($team_member_id);
+
+
     $team_member_url = apply_filters('team_layout_element_content_link',$team_member_url, $args);
+
 
     $content = isset($post_data->post_content) ? $post_data->post_content : '';
 

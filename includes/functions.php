@@ -247,39 +247,79 @@ function team_recursive_sanitize_arr($array)
 }
 
 
+add_shortcode('team_import_xml_layouts', 'team_import_xml_layouts');
+
+function team_import_xml_layouts($xml_source)
+{
 
 
-function team_layout_data($layout){
-
-    $layout_data = array();
-
-ob_start();
-?>.__ID__ {vertical-align: top;}.__ID__ .layer-media{}.__ID__ .layer-content {padding: 5px 10px;}<?php
-
-$layout_data['flat']['css'] = ob_get_clean();
-$layout_data['flat']['preview_img'] = 'https://i.imgur.com/QLfbYkC.png';
+    if (!current_user_can('manage_options')) return;
 
 
-ob_start();
-
-?>.__ID__ {overflow: hidden;position: relative;vertical-align: top;}.__ID__:hover .layer-media {-webkit-transform: scale(0);transform: scale(0);opacity: 0;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";}.__ID__ .layer-media {-webkit-transition: all 1s ease 0s;transition: all 1s ease 0s;left: 0;top: 0;width: 100%;}.__ID__:hover .layer-content{opacity: 1;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";}.__ID__ .layer-content {left: 0;opacity: 0;-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";position: absolute;top: 0;width: 100%;-webkit-transition: all 1s ease 0s;transition: all 1s ease 0s;}<?php
-
-$layout_data['zoomout']['css'] = ob_get_clean();
-$layout_data['zoomout']['preview_img'] = 'https://i.imgur.com/QLfbYkC.png';
+    $response = array();
+    $user_id = get_current_user_id();
 
 
 
 
-ob_start();
-?>.__ID__{}.__ID__ .layer-media {background: rgb(255, 255, 255) none repeat scroll 0 0;border-radius: 50%;overflow: hidden;}.__ID__ .layer-media .thumb {height:240px;}.__ID__ .layer-content{}<?php
+    $json_obj = file_get_contents($xml_source);
 
-$layout_data['thumbrounded']['css'] = ob_get_clean();
-$layout_data['thumbrounded']['preview_img'] = 'https://i.imgur.com/QLfbYkC.png';
-
-
-    $layout_data = apply_filters('team_layout_data', $layout_data);
+    //$xml_json = json_encode($html_obj);
+    $xml_arr = json_decode($json_obj, true);
 
 
-    return isset($layout_data[$layout]) ? $layout_data[$layout] : array();
+    $items = $xml_arr['rss']['channel']['item'];
 
+    foreach ($items as $item) {
+
+        $post_title = isset($item['title']) ? $item['title'] : '';
+        $postmeta = isset($item['postmeta']) ? $item['postmeta'] : array();
+
+        $post_id = wp_insert_post(
+            array(
+                'post_title'    => $post_title,
+                'post_content'  => '',
+                'post_status'   => 'publish',
+                'post_type'       => 'team_layout',
+                'post_author'   => $user_id,
+            )
+        );
+
+        //            echo '<br>';
+        //            echo $post_title. ' Created';
+        //            echo '<br>';
+
+
+        foreach ($postmeta as $meta) {
+
+            $meta_key = isset($meta['meta_key']['__cdata']) ? $meta['meta_key']['__cdata'] : '';
+            $meta_value = isset($meta['meta_value']['__cdata']) ? $meta['meta_value']['__cdata'] : '';
+
+            //            echo '<br>';
+            //            //var_dump(unserialize($meta_value));
+            //            echo '<br>';
+
+
+
+            if ($meta_key == 'layout_options' || $meta_key == 'layout_elements_data' || $meta_key == 'custom_scripts') {
+                //var_dump($meta_value);
+
+                update_post_meta($post_id, $meta_key, unserialize($meta_value));
+            }
+        }
+    }
+
+
+    $response['success'] = __('Import done', 'team');
+
+    $team_plugin_info = get_option('team_plugin_info');
+
+    if (strpos($xml_source, 'team-pro')) {
+        $team_plugin_info['import_pro_layouts'] = 'done';
+    } else {
+        $team_plugin_info['import_layouts'] = 'done';
+    }
+
+
+    update_option('team_plugin_info', $team_plugin_info);
 }

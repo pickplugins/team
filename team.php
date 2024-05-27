@@ -3,7 +3,7 @@
 Plugin Name: Team Showcase by PickPlugins
 Plugin URI: https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashboard
 Description: Fully responsive and mobile ready meet the team showcase plugin for wordpress.
-Version: 1.22.22
+Version: 1.22.23
 Author: PickPlugins
 Author URI: http://pickplugins.com
 Text Domain: team
@@ -25,7 +25,7 @@ if (!class_exists('team')) {
             define('team_plugin_url', plugins_url('/', __FILE__));
             define('team_plugin_dir', plugin_dir_path(__FILE__));
             define('team_plugin_name', 'Team');
-            define('team_plugin_version', '1.22.22');
+            define('team_plugin_version', '1.22.23');
 
 
             include('includes/class-post-meta-team.php');
@@ -46,7 +46,6 @@ if (!class_exists('team')) {
             include('includes/class-post-meta-team-member-hook.php');
             include('includes/class-admin-notices.php');
             include('includes/class-settings-tabs-reviews.php');
-            include('includes/functions-data-upgrade.php');
 
 
             include_once team_plugin_dir . '/templates/team-showcase/team-showcase-hook.php';
@@ -64,7 +63,7 @@ if (!class_exists('team')) {
             register_deactivation_hook(__FILE__, array($this, '_deactivation'));
             add_filter('cron_schedules', array($this, 'cron_recurrence_interval'));
 
-//delete_option('team_plugin_info');
+
 
             //            $args = array(
             //                'title' => 'Hope you enjoy <b>Team Showcase</b> plugin ',
@@ -97,6 +96,8 @@ if (!class_exists('team')) {
             // Reset permalink
             $team_class_post_types = new team_class_post_types();
             $team_class_post_types->_posttype_team_member();
+            $team_class_post_types->_posttype_team();
+
             flush_rewrite_rules();
 
             $xml_source = team_plugin_url . '/sample-data/team-layouts.json';

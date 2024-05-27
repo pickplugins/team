@@ -354,7 +354,7 @@ function layout_elements_option_content($parameters){
 
     $content_source = isset($element_data['content_source']) ? $element_data['content_source'] : '';
     $word_count = isset($element_data['word_count']) ? $element_data['word_count'] : '';
-    $read_more_text = isset($element_data['read_more_text']) ? $element_data['read_more_text'] : '';
+    $read_more_text = isset($element_data['read_more_text']) ? $element_data['read_more_text'] : __('Read More', 'team');
     $read_more_color = isset($element_data['read_more_color']) ? $element_data['read_more_color'] : '';
 
     $color = isset($element_data['color']) ? $element_data['color'] : '';

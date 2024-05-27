@@ -5,7 +5,7 @@ class class_team_notices{
 
     public function __construct(){
 
-        add_action('admin_notices', array( $this, 'data_upgrade' ));
+        //add_action('admin_notices', array( $this, 'data_upgrade' ));
         //add_action('admin_notices', array( $this, 'import_layouts' ));
 
     }
@@ -46,7 +46,7 @@ class class_team_notices{
         $team_plugin_info = get_option('team_plugin_info');
         $team_settings_upgrade = isset($team_plugin_info['settings_upgrade']) ? $team_plugin_info['settings_upgrade'] : '';
 
-        //echo '<pre>'.var_export($team_plugin_info, true).'</pre>';
+        echo '<pre>'.var_export($team_plugin_info, true).'</pre>';
 
         $actionurl = admin_url().'edit.php?post_type=team&page=upgrade_status';
         $actionurl = wp_nonce_url( $actionurl,  'team_upgrade' );

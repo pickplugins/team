@@ -192,23 +192,22 @@ function team_showcase_main_custom_scripts($args)
             width: 100%
         }
 
-        #team-<?php echo $team_id; ?>  {
+        <?php echo '#team-'.$team_id; ?>  {
             background: <?php echo $container_background_color; ?> url(<?php echo $container_background_img_url; ?>) repeat scroll 0 0;
-            text-align: <?php echo $container_text_align; ?>;
-        }
+            text-align: <?php echo $container_text_align; ?>;}
 
-        #team-<?php echo $team_id; ?> .item {
+        <?php echo '#team-'.$team_id; ?> .item {
             text-align: <?php echo $item_text_align; ?>;
             margin: <?php echo $item_margin; ?>;
             display: inline-block;
             vertical-align: top;
         }
 
-        #team-<?php echo $team_id; ?> .layer-media .team-thumb {
+        <?php echo '#team-'.$team_id; ?> .layer-media .team-thumb {
             overflow: hidden;
         }
 
-        #team-<?php echo $team_id; ?> .layer-media img {
+        <?php echo '#team-'.$team_id; ?> .layer-media img {
             border-radius: 0;
             box-shadow: none;
             width: 100%;
@@ -217,22 +216,14 @@ function team_showcase_main_custom_scripts($args)
         }
 
         <?php if ($view_type != 'slider') : ?>@media only screen and (min-width: 0px) and (max-width: 767px) {
-            #team-<?php echo $team_id; ?> .item {
-                width: <?php echo $team_width_small; ?>
-            }
-        }
+            <?php echo '#team-'.$team_id; ?> .item {width: <?php echo $team_width_small; ?>}}
 
         @media only screen and (min-width: 768px) and (max-width: 1023px) {
-            #team-<?php echo $team_id; ?> .item {
-                width: <?php echo $team_width_medium; ?>
-            }
-        }
+            <?php echo '#team-'.$team_id; ?> .item {width: <?php echo $team_width_medium; ?>}}
 
         @media only screen and (min-width: 1024px) {
-            #team-<?php echo $team_id; ?> .item {
-                width: <?php echo $team_width_large; ?>
-            }
-        }
+            <?php echo '#team-'.$team_id; ?> .item {
+                width: <?php echo $team_width_large; ?>}}
 
         <?php endif; ?><?php
                         echo $custom_css;
@@ -281,8 +272,8 @@ function team_showcase_main_masonry($args)
 
     ?>
     <script>
-        jQuery('#team-<?php echo $team_id; ?>').ready(function($) {
-            var $container = $('#team-<?php echo $team_id; ?> .team-items');
+        jQuery('<?php echo '#team-'.$team_id; ?>').ready(function($) {
+            var $container = $('<?php echo '#team-'.$team_id; ?> .team-items');
             $container.masonry({
                 itemSelector: '.item',
                 columnWidth: '.item', //as you wish , you can use numeric
@@ -343,12 +334,12 @@ function team_showcase_before_items_pagination($wp_query, $args)
         ?>
     </div>
     <style type="text/css">
-        #team-<?php echo $team_id; ?> .paginate {
+        <?php echo '#team-'.$team_id; ?> .paginate {
             padding: 10px;
             text-align: center;
         }
 
-        #team-<?php echo $team_id; ?> .paginate .page-numbers {
+        <?php echo '#team-'.$team_id; ?> .paginate .page-numbers {
             background-color: <?php echo $pagination_background_color; ?>;
             color: rgb(255, 255, 255);
             cursor: pointer;
@@ -360,7 +351,7 @@ function team_showcase_before_items_pagination($wp_query, $args)
             text-decoration: none;
         }
 
-        #team-<?php echo $team_id; ?> .paginate .current {
+        <?php echo '#team-'.$team_id; ?> .paginate .current {
             background-color: <?php echo $pagination_active_background_color; ?>;
         }
     </style>
@@ -411,12 +402,12 @@ function team_showcase_after_items_pagination($wp_query, $args)
         ?>
     </div>
     <style type="text/css">
-        #team-<?php echo $team_id; ?> .paginate {
+        <?php echo '#team-'.$team_id; ?> .paginate {
             padding: 30px;
             text-align: center;
         }
 
-        #team-<?php echo $team_id; ?> .paginate .page-numbers {
+        <?php echo '#team-'.$team_id; ?> .paginate .page-numbers {
             background-color: <?php echo $pagination_background_color; ?>;
             color: rgb(255, 255, 255);
             cursor: pointer;
@@ -428,7 +419,7 @@ function team_showcase_after_items_pagination($wp_query, $args)
             text-decoration: none;
         }
 
-        #team-<?php echo $team_id; ?> .paginate .current {
+        <?php echo '#team-'.$team_id; ?> .paginate .current {
             background-color: <?php echo $pagination_active_background_color; ?>;
         }
     </style>

@@ -3,8 +3,8 @@
 	Donate link: https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=wordpress.org
 	Tags: team, team showcase, members profiles, our team, team members, team plugin wordpress, meet the team, my team, team page
 	Requires at least: 3.8
-	Tested up to: 6.0
-	Stable tag: 1.22.22
+	Tested up to: 6.2
+	Stable tag: 1.22.23
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,12 @@ then paste this shortcode anywhere in your page to display Team gird.<br />
 7. screenshot-7
 
 == Changelog ==
+
+
+
+= 1.22.23 =
+* 2023-01-23 fix - Thumbnail element link to none issue fixed.
+* 2023-01-23 fix - Content layout element default read more text added.
 
 = 1.22.22 =
 * 2022-10-01 fix - Empty layout issue fixed.
