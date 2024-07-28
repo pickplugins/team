@@ -3,7 +3,7 @@
 	Donate link: https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=wordpress.org
 	Tags: team, team showcase, members profiles, our team, team members, team plugin wordpress, meet the team, my team, team page
 	Requires at least: 3.8
-	Tested up to: 6.5
+	Tested up to: 6.6
 	Stable tag: 1.22.23
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
