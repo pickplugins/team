@@ -67,7 +67,7 @@ function team_showcase_main_items($args)
         do_action('team_showcase_before_items', $wp_query, $args);
 
 ?>
-        <div class="<?php echo $team_items_class; ?>">
+        <div class="<?php echo esc_attr($team_items_class); ?>">
             <?php
 
             while ($wp_query->have_posts()) : $wp_query->the_post();
@@ -124,8 +124,8 @@ function team_showcase_item($args, $team_member_id)
 
 
     ?>
-    <div class="<?php echo $team_item_class; ?>">
-        <div class="elements-wrapper layout-<?php echo $item_layout_id; ?>">
+    <div class="<?php echo esc_attr($team_item_class); ?>">
+        <div class="elements-wrapper layout-<?php echo esc_attr($item_layout_id); ?>">
             <?php
             if (!empty($layout_elements_data))
                 foreach ($layout_elements_data as $elementGroupIndex => $elementGroupData) {
@@ -192,22 +192,23 @@ function team_showcase_main_custom_scripts($args)
             width: 100%
         }
 
-        <?php echo '#team-'.$team_id; ?>  {
-            background: <?php echo $container_background_color; ?> url(<?php echo $container_background_img_url; ?>) repeat scroll 0 0;
-            text-align: <?php echo $container_text_align; ?>;}
+        <?php echo '#team-' . $team_id; ?> {
+            background: <?php echo esc_attr($container_background_color); ?> url(<?php echo esc_url_raw($container_background_img_url); ?>) repeat scroll 0 0;
+            text-align: <?php echo $container_text_align; ?>;
+        }
 
-        <?php echo '#team-'.$team_id; ?> .item {
-            text-align: <?php echo $item_text_align; ?>;
-            margin: <?php echo $item_margin; ?>;
+        <?php echo '#team-' . esc_attr($team_id); ?>.item {
+            text-align: <?php echo esc_attr($item_text_align); ?>;
+            margin: <?php echo esc_attr($item_margin); ?>;
             display: inline-block;
             vertical-align: top;
         }
 
-        <?php echo '#team-'.$team_id; ?> .layer-media .team-thumb {
+        <?php echo '#team-' . esc_attr($team_id); ?>.layer-media .team-thumb {
             overflow: hidden;
         }
 
-        <?php echo '#team-'.$team_id; ?> .layer-media img {
+        <?php echo '#team-' . esc_attr($team_id); ?>.layer-media img {
             border-radius: 0;
             box-shadow: none;
             width: 100%;
@@ -216,14 +217,22 @@ function team_showcase_main_custom_scripts($args)
         }
 
         <?php if ($view_type != 'slider') : ?>@media only screen and (min-width: 0px) and (max-width: 767px) {
-            <?php echo '#team-'.$team_id; ?> .item {width: <?php echo $team_width_small; ?>}}
+            <?php echo '#team-' . esc_attr($team_id); ?>.item {
+                width: <?php echo esc_attr($team_width_small); ?>
+            }
+        }
 
         @media only screen and (min-width: 768px) and (max-width: 1023px) {
-            <?php echo '#team-'.$team_id; ?> .item {width: <?php echo $team_width_medium; ?>}}
+            <?php echo '#team-' . esc_attr($team_id); ?>.item {
+                width: <?php echo esc_attr($team_width_medium); ?>
+            }
+        }
 
         @media only screen and (min-width: 1024px) {
-            <?php echo '#team-'.$team_id; ?> .item {
-                width: <?php echo $team_width_large; ?>}}
+            <?php echo '#team-' . esc_attr($team_id); ?>.item {
+                width: <?php echo esc_attr($team_width_large); ?>
+            }
+        }
 
         <?php endif; ?><?php
                         echo $custom_css;
@@ -272,8 +281,8 @@ function team_showcase_main_masonry($args)
 
     ?>
     <script>
-        jQuery('<?php echo '#team-'.$team_id; ?>').ready(function($) {
-            var $container = $('<?php echo '#team-'.$team_id; ?> .team-items');
+        jQuery('<?php echo '#team-' . esc_attr($team_id); ?>').ready(function($) {
+            var $container = $('<?php echo '#team-' . esc_attr($team_id); ?> .team-items');
             $container.masonry({
                 itemSelector: '.item',
                 columnWidth: '.item', //as you wish , you can use numeric
@@ -334,13 +343,13 @@ function team_showcase_before_items_pagination($wp_query, $args)
         ?>
     </div>
     <style type="text/css">
-        <?php echo '#team-'.$team_id; ?> .paginate {
+        <?php echo '#team-' . esc_attr($team_id); ?>.paginate {
             padding: 10px;
             text-align: center;
         }
 
-        <?php echo '#team-'.$team_id; ?> .paginate .page-numbers {
-            background-color: <?php echo $pagination_background_color; ?>;
+        <?php echo '#team-' . esc_attr($team_id); ?>.paginate .page-numbers {
+            background-color: <?php echo esc_attr($pagination_background_color); ?>;
             color: rgb(255, 255, 255);
             cursor: pointer;
             display: inline-block;
@@ -351,8 +360,8 @@ function team_showcase_before_items_pagination($wp_query, $args)
             text-decoration: none;
         }
 
-        <?php echo '#team-'.$team_id; ?> .paginate .current {
-            background-color: <?php echo $pagination_active_background_color; ?>;
+        <?php echo '#team-' . esc_attr($team_id); ?>.paginate .current {
+            background-color: <?php echo esc_attr($pagination_active_background_color); ?>;
         }
     </style>
 <?php
@@ -402,13 +411,13 @@ function team_showcase_after_items_pagination($wp_query, $args)
         ?>
     </div>
     <style type="text/css">
-        <?php echo '#team-'.$team_id; ?> .paginate {
+        <?php echo '#team-' . esc_attr($team_id); ?>.paginate {
             padding: 30px;
             text-align: center;
         }
 
-        <?php echo '#team-'.$team_id; ?> .paginate .page-numbers {
-            background-color: <?php echo $pagination_background_color; ?>;
+        <?php echo '#team-' . esc_attr($team_id); ?>.paginate .page-numbers {
+            background-color: <?php echo esc_attr($pagination_background_color); ?>;
             color: rgb(255, 255, 255);
             cursor: pointer;
             display: inline-block;
@@ -419,8 +428,8 @@ function team_showcase_after_items_pagination($wp_query, $args)
             text-decoration: none;
         }
 
-        <?php echo '#team-'.$team_id; ?> .paginate .current {
-            background-color: <?php echo $pagination_active_background_color; ?>;
+        <?php echo '#team-' . esc_attr($team_id); ?>.paginate .current {
+            background-color: <?php echo esc_attr($pagination_active_background_color); ?>;
         }
     </style>
 <?php
