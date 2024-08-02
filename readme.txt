@@ -1,7 +1,7 @@
 ﻿=== Team Showcase ===
 	Contributors: PickPlugins
 	Donate link: https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=wordpress.org
-	Tags: team, team showcase, members profiles, our team, team members, team plugin wordpress, meet the team, my team, team page
+	Tags: team, team showcase, members profiles, team members, meet the team page
 	Requires at least: 3.8
 	Tested up to: 6.6
 	Stable tag: 1.22.24
