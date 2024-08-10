@@ -197,18 +197,18 @@ function team_showcase_main_custom_scripts($args)
             text-align: <?php echo $container_text_align; ?>;
         }
 
-        <?php echo '#team-' . esc_attr($team_id); ?>.item {
+        <?php echo '#team-' . esc_attr($team_id) . ' .item'; ?> {
             text-align: <?php echo esc_attr($item_text_align); ?>;
             margin: <?php echo esc_attr($item_margin); ?>;
             display: inline-block;
             vertical-align: top;
         }
 
-        <?php echo '#team-' . esc_attr($team_id); ?>.layer-media .team-thumb {
+        <?php echo '#team-' . esc_attr($team_id) . ' .layer-media .team-thumb'; ?> {
             overflow: hidden;
         }
 
-        <?php echo '#team-' . esc_attr($team_id); ?>.layer-media img {
+        <?php echo '#team-' . esc_attr($team_id) . ' .layer-media img'; ?> {
             border-radius: 0;
             box-shadow: none;
             width: 100%;
@@ -217,19 +217,19 @@ function team_showcase_main_custom_scripts($args)
         }
 
         <?php if ($view_type != 'slider') : ?>@media only screen and (min-width: 0px) and (max-width: 767px) {
-            <?php echo '#team-' . esc_attr($team_id); ?>.item {
+            <?php echo '#team-' . esc_attr($team_id) . ' .item'; ?> {
                 width: <?php echo esc_attr($team_width_small); ?>
             }
         }
 
         @media only screen and (min-width: 768px) and (max-width: 1023px) {
-            <?php echo '#team-' . esc_attr($team_id); ?>.item {
+            <?php echo '#team-' . esc_attr($team_id) . ' .item'; ?> {
                 width: <?php echo esc_attr($team_width_medium); ?>
             }
         }
 
         @media only screen and (min-width: 1024px) {
-            <?php echo '#team-' . esc_attr($team_id); ?>.item {
+            <?php echo '#team-' . esc_attr($team_id) . ' .item'; ?> {
                 width: <?php echo esc_attr($team_width_large); ?>
             }
         }
@@ -343,12 +343,12 @@ function team_showcase_before_items_pagination($wp_query, $args)
         ?>
     </div>
     <style type="text/css">
-        <?php echo '#team-' . esc_attr($team_id); ?>.paginate {
+        <?php echo '#team-' . esc_attr($team_id) . ' .paginate'; ?> {
             padding: 10px;
             text-align: center;
         }
 
-        <?php echo '#team-' . esc_attr($team_id); ?>.paginate .page-numbers {
+        <?php echo '#team-' . esc_attr($team_id) . ' .paginate .page-numbers'; ?> {
             background-color: <?php echo esc_attr($pagination_background_color); ?>;
             color: rgb(255, 255, 255);
             cursor: pointer;
@@ -360,7 +360,7 @@ function team_showcase_before_items_pagination($wp_query, $args)
             text-decoration: none;
         }
 
-        <?php echo '#team-' . esc_attr($team_id); ?>.paginate .current {
+        <?php echo '#team-' . esc_attr($team_id) . ' .paginate .current'; ?> {
             background-color: <?php echo esc_attr($pagination_active_background_color); ?>;
         }
     </style>
@@ -411,12 +411,12 @@ function team_showcase_after_items_pagination($wp_query, $args)
         ?>
     </div>
     <style type="text/css">
-        <?php echo '#team-' . esc_attr($team_id); ?>.paginate {
+        <?php echo '#team-' . esc_attr($team_id) . ' .paginate'; ?> {
             padding: 30px;
             text-align: center;
         }
 
-        <?php echo '#team-' . esc_attr($team_id); ?>.paginate .page-numbers {
+        <?php echo '#team-' . esc_attr($team_id) . ' .paginate .page-numbers'; ?> {
             background-color: <?php echo esc_attr($pagination_background_color); ?>;
             color: rgb(255, 255, 255);
             cursor: pointer;
@@ -428,7 +428,7 @@ function team_showcase_after_items_pagination($wp_query, $args)
             text-decoration: none;
         }
 
-        <?php echo '#team-' . esc_attr($team_id); ?>.paginate .current {
+        <?php echo '#team-' . esc_attr($team_id) . ' .paginate .current'; ?> {
             background-color: <?php echo esc_attr($pagination_active_background_color); ?>;
         }
     </style>
