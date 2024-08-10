@@ -1,10 +1,10 @@
 ﻿=== Team Showcase ===
 	Contributors: PickPlugins
-	Donate link: https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=wordpress.org
+	Donate link: https://pickplugins.com/team/?ref=wordpress.org
 	Tags: team, team showcase, members profiles, team members, meet the team page
 	Requires at least: 3.8
 	Tested up to: 6.6
-	Stable tag: 1.22.24
+	Stable tag: 1.22.25
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ Team is simple and easy to display team showcase page on your website, you can d
 
 ### Team by http://pickplugins.com
 
-* [Team Premium &raquo;](https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=wordpress.org)
+* [Team Premium &raquo;](https://pickplugins.com/team/?ref=wordpress.org)
 * [Live Demo &raquo;](https://www.pickplugins.com/demo/team/?ref=wordpress.org)
 * [Documentation &raquo;](https://www.pickplugins.com/documentation/team/?ref=wordpress.org)
 * [Support &raquo;](https://www.pickplugins.com/support/?ref=wordpress.org)
@@ -88,23 +88,23 @@ You can link to team members title, thumbnail and read more to custom URL.
 
 == Installation ==
 
-1. Install as regular WordPress plugin.<br />
-2. Go your plugin setting via WordPress Dashboard and find "<strong>Team</strong>" activate it.<br />
+1. Install as regular WordPress plugin.
+2. Go your plugin setting via WordPress Dashboard and find "<strong>Team</strong>" activate it.
 
-After activate plugin you will see "Team" menu at left side on WordPress dashboard.<br />
+After activate plugin you will see "Team" menu at left side on WordPress dashboard.
 
 First create some team member from "Team Member" you can assign categories(Team Group) for members.
 
 After creating some team members you need to generate shortcode to display team grid on page.
 see the menu on left "Team" click "New Team" and choose option as you need, and click "Team Content" nav to select team members by various type query as you need.
 
-<br />
-<strong>How to use on page or post</strong><br />
-When Team options setup done please publish "Team" as like post or page<br />
 
-and then copy shortcode from top of <strong>Team Options</strong> `[team  id="1234" ]`<br />
+<strong>How to use on page or post</strong>
+When Team options setup done please publish "Team" as like post or page
 
-then paste this shortcode anywhere in your page to display Team gird.<br />
+and then copy shortcode from top of <strong>Team Options</strong> `[team  id="1234" ]`
+
+then paste this shortcode anywhere in your page to display Team gird.
 
 
 
@@ -124,7 +124,11 @@ then paste this shortcode anywhere in your page to display Team gird.<br />
 
 == Changelog ==
 
-= 1.22.23 =
+= 1.22.25 =
+* 2024-08-10 fix - Broken style issue fixed.
+
+
+= 1.22.24=
 * 2024-05-27 update - Readme update
 
 = 1.22.23 =

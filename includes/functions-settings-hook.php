@@ -471,7 +471,7 @@ if (!function_exists('team_settings_content_buy_pro')) {
             ?>
 
             <p><?php echo __('If you love our plugin and want more feature please consider to buy pro version.', 'team'); ?></p>
-            <a class="button" href="https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a>
+            <a class="button" href="https://pickplugins.com/team/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a>
             <a class="button" href="https://www.pickplugins.com/demo/team/?ref=dashobard"><?php echo __('See all demo', 'team'); ?></a>
 
             <h2><?php echo __('See the differences', 'team'); ?></h2>
@@ -703,7 +703,7 @@ if (!function_exists('team_settings_content_buy_pro')) {
                 <tr>
                     <td class="col-features"><?php echo __('Buy now', 'team'); ?></td>
                     <td> </td>
-                    <td><a class="button" href="https://www.pickplugins.com/item/team-responsive-meet-the-team-grid-for-wordpress/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a></td>
+                    <td><a class="button" href="https://pickplugins.com/team/?ref=dashobard"><?php echo __('Buy premium', 'team'); ?></a></td>
                 </tr>
 
             </table>
