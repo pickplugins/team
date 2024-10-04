@@ -27,7 +27,7 @@ function team_metabox_content_shortcodes($post_id)
         ?>
 
         <div class="copy-to-clipboard">
-            <input type="text" value="[team id='<?php echo $post_id;  ?>']"> <span class="copied"><?php echo __('Copied', 'team'); ?></span>
+            <input type="text" value="[team id='<?php echo esc_attr($post_id);  ?>']"> <span class="copied"><?php echo __('Copied', 'team'); ?></span>
             <p class="description"><?php echo __('You can use this shortcode under post content', 'team'); ?></p>
         </div>
 

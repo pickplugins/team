@@ -1,5 +1,7 @@
-<?php	
-if ( ! defined('ABSPATH')) exit;  // if direct access
+<?php
+if (! defined('ABSPATH')) exit;  // if direct access
+
+if (!(current_user_can('manage_options'))) exit;
 
 
 $current_tab = isset($_REQUEST['tab']) ? sanitize_text_field($_REQUEST['tab']) : 'general';
@@ -8,14 +10,14 @@ $team_settings_tab = array();
 
 $team_settings_tab[] = array(
     'id' => 'general',
-    'title' => sprintf(__('%s General','team'),'<i class="fas fa-list-ul"></i>'),
+    'title' => sprintf(__('%s General', 'team'), '<i class="fas fa-list-ul"></i>'),
     'priority' => 1,
     'active' => ($current_tab == 'general') ? true : false,
 );
 
 $team_settings_tab[] = array(
     'id' => 'team_member',
-    'title' => sprintf(__('%s Team member','team'),'<i class="fas fa-user-tag"></i>'),
+    'title' => sprintf(__('%s Team member', 'team'), '<i class="fas fa-user-tag"></i>'),
     'priority' => 2,
     'active' => ($current_tab == 'team_member') ? true : false,
 );
@@ -23,14 +25,14 @@ $team_settings_tab[] = array(
 
 $team_settings_tab[] = array(
     'id' => 'help_support',
-    'title' => sprintf(__('%s Help & support','team'),'<i class="fas fa-hands-helping"></i>'),
+    'title' => sprintf(__('%s Help & support', 'team'), '<i class="fas fa-hands-helping"></i>'),
     'priority' => 3,
     'active' => ($current_tab == 'help_support') ? true : false,
 );
 
 $team_settings_tab[] = array(
     'id' => 'buy_pro',
-    'title' => sprintf(__('%s Buy Pro','team'),'<i class="fas fa-store"></i>'),
+    'title' => sprintf(__('%s Buy Pro', 'team'), '<i class="fas fa-store"></i>'),
     'priority' => 9,
     'active' => ($current_tab == 'buy_pro') ? true : false,
 );
@@ -39,16 +41,16 @@ $team_settings_tab = apply_filters('team_settings_tabs', $team_settings_tab);
 
 $tabs_sorted = array();
 
-if(!empty($team_settings_tab))
-foreach ($team_settings_tab as $page_key => $tab) $tabs_sorted[$page_key] = isset( $tab['priority'] ) ? $tab['priority'] : 0;
+if (!empty($team_settings_tab))
+    foreach ($team_settings_tab as $page_key => $tab) $tabs_sorted[$page_key] = isset($tab['priority']) ? $tab['priority'] : 0;
 array_multisort($tabs_sorted, SORT_ASC, $team_settings_tab);
 
 
 wp_enqueue_script('jquery');
 wp_enqueue_script('jquery-ui-sortable');
-wp_enqueue_script( 'jquery-ui-core' );
+wp_enqueue_script('jquery-ui-core');
 wp_enqueue_script('jquery-ui-accordion');
-wp_enqueue_style( 'wp-color-picker' );
+wp_enqueue_style('wp-color-picker');
 wp_enqueue_script('wp-color-picker');
 wp_enqueue_style('font-awesome-5');
 wp_enqueue_style('settings-tabs');
@@ -61,32 +63,33 @@ $team_settings = get_option('team_settings');
 
 ?>
 <div class="wrap">
-	<div id="icon-tools" class="icon32"><br></div><h2><?php echo sprintf(__('%s Settings', 'team'), team_plugin_name)?></h2>
+    <div id="icon-tools" class="icon32"><br></div>
+    <h2><?php echo sprintf(__('%s Settings', 'team'), team_plugin_name) ?></h2>
 
 
     <?php
     $gmt_offset = get_option('gmt_offset');
-    $current_date = date('Y-m-d H:i:s', strtotime('+'.$gmt_offset.' hour'));
+    $current_date = date('Y-m-d H:i:s', strtotime('+' . $gmt_offset . ' hour'));
     //echo '<pre>'.var_export($current_date, true).'</pre>';
 
 
-    if($review_status =='remind_later'):
+    if ($review_status == 'remind_later'):
 
         $team_plugin_info['review_status'] = 'remind_later';
         $team_plugin_info['remind_date'] = date('Y-m-d H:i:s', strtotime('+30 days'));
 
 
-        ?>
+    ?>
         <div class="update-nag is-dismissible">We will remind you later.</div>
-        <?php
+    <?php
         update_option('team_plugin_info', $team_plugin_info);
 
-    elseif ($review_status =='done'):
+    elseif ($review_status == 'done'):
 
         $team_plugin_info['review_status'] = 'done';
-        ?>
+    ?>
         <div class="update-nag notice is-dismissible">Thanks for your time and feedback.</div>
-        <?php
+    <?php
 
         update_option('team_plugin_info', $team_plugin_info);
 
@@ -96,56 +99,58 @@ $team_settings = get_option('team_settings');
 
 
 
-		<form  method="post" action="<?php echo str_replace( '%7E', '~', esc_url_raw($_SERVER['REQUEST_URI'])); ?>">
-	        <input type="hidden" name="team_hidden" value="Y">
-            <input type="hidden" name="tab" value="<?php echo $current_tab; ?>">
+    <form method="post" action="<?php echo str_replace('%7E', '~', esc_url_raw($_SERVER['REQUEST_URI'])); ?>">
+        <input type="hidden" name="team_hidden" value="Y">
+        <input type="hidden" name="tab" value="<?php echo esc_html($current_tab); ?>">
 
-            <?php
-            if(!empty($_POST['team_hidden'])){
+        <?php
+        if (!empty($_POST['team_hidden'])) {
 
-                $nonce = sanitize_text_field($_POST['_wpnonce']);
+            $nonce = sanitize_text_field($_POST['_wpnonce']);
 
-                if(wp_verify_nonce( $nonce, 'team_nonce' ) && $_POST['team_hidden'] == 'Y') {
+            if (wp_verify_nonce($nonce, 'team_nonce') && $_POST['team_hidden'] == 'Y') {
 
-                    do_action('team_settings_save');
+                do_action('team_settings_save');
 
-                    ?>
-                    <div class="updated notice  is-dismissible"><p><strong><?php _e('Changes Saved.', 'team' ); ?></strong></p></div>
+        ?>
+                <div class="updated notice  is-dismissible">
+                    <p><strong><?php _e('Changes Saved.', 'team'); ?></strong></p>
+                </div>
 
-                    <?php
-                }
+        <?php
             }
-            ?>
+        }
+        ?>
 
-            <div class="settings-tabs-loading" style="">Loading...</div>
-            <div class="settings-tabs vertical has-right-panel" style="display: none">
+        <div class="settings-tabs-loading" style="">Loading...</div>
+        <div class="settings-tabs vertical has-right-panel" style="display: none">
 
 
-                <div class="settings-tabs-right-panel">
-                    <?php
-                    if(!empty($team_settings_tab))
+            <div class="settings-tabs-right-panel">
+                <?php
+                if (!empty($team_settings_tab))
                     foreach ($team_settings_tab as $tab) {
                         $id = $tab['id'];
                         $active = $tab['active'];
 
-                        ?>
-                        <div class="right-panel-content <?php if($active) echo 'active';?> right-panel-content-<?php echo $id; ?>">
-                            <?php
-
-                            do_action('team_settings_tabs_right_panel_'.$id);
-                            ?>
-
-                        </div>
+                ?>
+                    <div class="right-panel-content <?php if ($active) echo 'active'; ?> right-panel-content-<?php echo esc_attr($id); ?>">
                         <?php
 
-                    }
-                    ?>
-                </div>
+                        do_action('team_settings_tabs_right_panel_' . $id);
+                        ?>
 
-                <ul class="tab-navs">
-                    <?php
-                    if(!empty($team_settings_tab))
-                    foreach ($team_settings_tab as $tab){
+                    </div>
+                <?php
+
+                    }
+                ?>
+            </div>
+
+            <ul class="tab-navs">
+                <?php
+                if (!empty($team_settings_tab))
+                    foreach ($team_settings_tab as $tab) {
                         $id = $tab['id'];
                         $title = $tab['title'];
                         $active = $tab['active'];
@@ -155,55 +160,55 @@ $team_settings = get_option('team_settings');
                         $pro_text = isset($tab['pro_text']) ? $tab['pro_text'] : '';
 
 
-                        ?>
-                        <li <?php if(!empty($data_visible)):  ?> data_visible="<?php echo $data_visible; ?>" <?php endif; ?> class="tab-nav <?php if($hidden) echo 'hidden';?> <?php if($active) echo 'active';?>" data-id="<?php echo $id; ?>">
-                            <?php echo $title; ?>
-                            <?php
-                            if($is_pro):
-                                ?><span class="pro-feature"><?php echo $pro_text; ?></span> <?php
-                            endif;
-                            ?>
-
-                        </li>
+                ?>
+                    <li <?php if (!empty($data_visible)):  ?> data_visible="<?php echo esc_attr($data_visible); ?>" <?php endif; ?> class="tab-nav <?php if ($hidden) echo 'hidden'; ?> <?php if ($active) echo 'active'; ?>" data-id="<?php echo esc_attr($id); ?>">
+                        <?php echo wp_kses_post($title); ?>
                         <?php
-                    }
-                    ?>
+                        if ($is_pro):
+                        ?><span class="pro-feature"><?php echo $pro_text; ?></span> <?php
+                                                                                endif;
+                                                                                    ?>
 
-
-
-                </ul>
-
-
-
+                    </li>
                 <?php
+                    }
+                ?>
 
-                if(!empty($team_settings_tab))
-                foreach ($team_settings_tab as $tab){
+
+
+            </ul>
+
+
+
+            <?php
+
+            if (!empty($team_settings_tab))
+                foreach ($team_settings_tab as $tab) {
                     $id = $tab['id'];
                     $title = $tab['title'];
                     $active = $tab['active'];
+            ?>
+
+                <div class="tab-content <?php if ($active) echo 'active'; ?>" id="<?php echo esc_attr($id); ?>">
+                    <?php
+                    do_action('team_settings_content_' . $id, $tab);
                     ?>
 
-                    <div class="tab-content <?php if($active) echo 'active';?>" id="<?php echo $id; ?>">
-                        <?php
-                        do_action('team_settings_content_'.$id, $tab);
-                        ?>
 
+                </div>
 
-                    </div>
-
-                    <?php
+            <?php
                 }
-                ?>
+            ?>
 
-                <div class="clear clearfix"></div>
-                <p class="submit">
-                    <?php wp_nonce_field( 'team_nonce' ); ?>
-                    <input class="button button-primary" type="submit" name="Submit" value="<?php _e('Save Changes','team' ); ?>" />
-                </p>
+            <div class="clear clearfix"></div>
+            <p class="submit">
+                <?php wp_nonce_field('team_nonce'); ?>
+                <input class="button button-primary" type="submit" name="Submit" value="<?php _e('Save Changes', 'team'); ?>" />
+            </p>
 
-            </div>
+        </div>
 
 
-		</form>
+    </form>
 </div>

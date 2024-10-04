@@ -4,7 +4,7 @@
 	Tags: team, team showcase, members profiles, team members, meet the team page
 	Requires at least: 3.8
 	Tested up to: 6.6
-	Stable tag: 1.22.25
+	Stable tag: 1.22.26
 	License: GPLv2 or later
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,9 @@ then paste this shortcode anywhere in your page to display Team gird.
 7. screenshot-7
 
 == Changelog ==
+
+= 1.22.26 =
+* 2024-10-04 fix - Minor security issue fixed.
 
 = 1.22.25 =
 * 2024-08-10 fix - Broken style issue fixed.

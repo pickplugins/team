@@ -161,7 +161,7 @@ class class_team_post_meta_team
         </script>
 
         <div class="settings-tabs vertical">
-            <input class="current_tab" type="hidden" name="team_options[current_tab]" value="<?php echo $current_tab; ?>">
+            <input class="current_tab" type="hidden" name="team_options[current_tab]" value="<?php echo esc_attr($current_tab); ?>">
             <div class="view-types">
 
                 <?php
@@ -194,7 +194,7 @@ class class_team_post_meta_team
                     $data_visible = isset($tab['data_visible']) ? $tab['data_visible'] : '';
                     $hidden = isset($tab['hidden']) ? $tab['hidden'] : false;
                 ?>
-                    <li <?php if (!empty($data_visible)) :  ?> data_visible="<?php echo $data_visible; ?>" <?php endif; ?> class="tab-nav <?php if ($hidden) echo 'hidden'; ?> <?php if ($active) echo 'active'; ?>" data-id="<?php echo $id; ?>"><?php echo $title; ?></li>
+                    <li <?php if (!empty($data_visible)) :  ?> data_visible="<?php echo esc_attr($data_visible); ?>" <?php endif; ?> class="tab-nav <?php if ($hidden) echo 'hidden'; ?> <?php if ($active) echo 'active'; ?>" data-id="<?php echo esc_attr($id); ?>"><?php echo wp_kses_post($title); ?></li>
                 <?php
                 }
                 ?>
@@ -206,7 +206,7 @@ class class_team_post_meta_team
                 $active = $tab['active'];
             ?>
 
-                <div class="tab-content <?php if ($active) echo 'active'; ?>" id="<?php echo $id; ?>">
+                <div class="tab-content <?php if ($active) echo 'active'; ?>" id="<?php echo esc_attr($id); ?>">
                     <?php
                     do_action('team_metabox_content_' . $id, $post_id);
                     ?>
