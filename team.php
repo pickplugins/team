@@ -47,6 +47,9 @@ if (!class_exists('team')) {
             include('includes/class-admin-notices.php');
             include('includes/class-settings-tabs-reviews.php');
 
+            include('includes/functions-rest.php');
+            include('templates/team-grid/hook.php');
+
 
             include_once team_plugin_dir . '/templates/team-showcase/team-showcase-hook.php';
             include_once team_plugin_dir . '/templates/single-team-member/team-member-hook.php';
