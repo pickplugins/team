@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
 
 
 
-class TestimonialRest
+class TeamRest
 {
 	function __construct()
 	{
@@ -1566,4 +1566,4 @@ class TestimonialRest
 	}
 }
 
-$TestimonialRest = new TestimonialRest();
+$TeamRest = new TeamRest();

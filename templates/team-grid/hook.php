@@ -1,9 +1,9 @@
 <?php
 if (!defined('ABSPATH')) exit;  // if direct access
 
-add_action('testimonial_builder_testimonialGrid', 'testimonial_builder_testimonialGrid', 5, 2);
+add_action('team_builder_testimonialGrid', 'team_builder_testimonialGrid', 5, 2);
 
-function testimonial_builder_testimonialGrid($post_id, $accordionData)
+function team_builder_testimonialGrid($post_id, $accordionData)
 {
 
     global $testimonialBuilderCss;
@@ -98,7 +98,7 @@ function testimonial_builder_testimonialGrid($post_id, $accordionData)
 
                 <div class="item">
                     <?php
-                    echo generateNestedHTML($loopLayouts, $item);
+                    echo team_generateNestedHTML($loopLayouts, $item);
                     ?>
                 </div>
 
@@ -117,7 +117,7 @@ function testimonial_builder_testimonialGrid($post_id, $accordionData)
 }
 
 
-function generateNestedHTML($elements, $itemData)
+function team_generateNestedHTML($elements, $itemData)
 {
     $html = '';
     foreach ($elements as $element) {
@@ -128,13 +128,13 @@ function generateNestedHTML($elements, $itemData)
             $html .= '<div id="element-' . $element['id'] . '">';
 
             if (!empty($element['children'])) {
-                $html .= generateNestedHTML($element['children'], $itemData);
+                $html .= team_generateNestedHTML($element['children'], $itemData);
             }
             $html .= '</div>';
         } else {
 
             //if (isset($element['content'])) {
-            $html .= generateElementHtml($element, $itemData);
+            $html .= team_generateElementHtml($element, $itemData);
         }
     }
     return $html;
@@ -142,7 +142,7 @@ function generateNestedHTML($elements, $itemData)
 
 
 
-function generateElementHtml($element, $item)
+function team_generateElementHtml($element, $item)
 {
 
     $type = $element['type'];
