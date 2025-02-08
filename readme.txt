@@ -1,5 +1,5 @@
 ﻿=== Team Showcase ===
-	Contributors: PickPlugins
+	Contributors: PickPlugins, nafismahmudayon
 	Donate link: https://pickplugins.com/team/?ref=wordpress.org
 	Tags: team, team showcase, members profiles, team members, meet the team page
 	Requires at least: 3.8
