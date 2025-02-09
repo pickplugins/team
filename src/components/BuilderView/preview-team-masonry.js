@@ -153,7 +153,7 @@ function Html(props) {
 			return <div id={`element-${node.id}`}>{itemData?.title}</div>;
 		}
 		if (nodeType == "date") {
-			return <div id={`element-${node.id}`}>{date}</div>;
+			return <div id={`element-${node.id}`}>{itemData?.date}</div>;
 		}
 		if (nodeType == "rating") {
 			return (
@@ -167,21 +167,18 @@ function Html(props) {
 			);
 		}
 		if (nodeType == "personName") {
-			return <div id={`element-${node.id}`}>{person?.name}</div>;
+			return <div id={`element-${node.id}`}>{itemData?.personName}</div>;
 		}
 		if (nodeType == "personJobTitle") {
-			return <div id={`element-${node.id}`}>{person?.jobTitle}</div>;
+			return <div id={`element-${node.id}`}>{itemData?.personJobTitle}</div>;
 		}
 		if (nodeType == "personAvatar") {
 			return (
-				<img
-					id={`element-${node.id}`}
-					src="https://comboblocks.com/server/wp-content/uploads/2024/09/team-member-6.jpg"
-				/>
+				<img id={`element-${node.id}`} src={itemData?.personAvatar.srcUrl} />
 			);
 		}
 		if (nodeType == "personCompanyName") {
-			return <div id={`element-${node.id}`}>{person?.company?.name}</div>;
+			return <div id={`element-${node.id}`}>{itemData?.companyName}</div>;
 		}
 		if (nodeType == "text") {
 			return <div id={`element-${node.id}`}>{node.content}</div>;
@@ -190,15 +187,15 @@ function Html(props) {
 			return (
 				<img
 					id={`element-${node.id}`}
-					src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/30_Atlassian_logo_logos-256.png"
+					src={itemData?.companyLogo.srcUrl}
 					alt=""
 				/>
 			);
 		}
 		if (nodeType == "personCompanyWebsite") {
 			return (
-				<a id={`element-${node.id}`} href={person?.company?.website}>
-					{person?.company?.websiteLabel}
+				<a id={`element-${node.id}`} href={itemData?.companyWebsite}>
+					{itemData?.companyName}
 				</a>
 			);
 		}
