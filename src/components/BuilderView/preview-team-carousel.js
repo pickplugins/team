@@ -181,38 +181,42 @@ function Html(props) {
 		}
 		if (nodeType == "personName") {
 			return (
-				<div id={`element-${node.id}`}>{person?.name}</div>
+				<div id={`element-${node.id}`}>{itemData?.personName}</div>
 			)
 		}
 		if (nodeType == "personJobTitle") {
 			return (
-				<div id={`element-${node.id}`}>{person?.jobTitle}</div>
+				<div id={`element-${node.id}`}>{itemData?.personJobTitle}</div>
 			)
 		}
 		if (nodeType == "personAvatar") {
 			return (
-				<img id={`element-${node.id}`} src={person?.avatar?.srcUrl} />
+				<img id={`element-${node.id}`} src={itemData?.personAvatar?.srcUrl} />
 			)
 		}
 		if (nodeType == "personCompanyName") {
 			return (
-				<div id={`element-${node.id}`}>{person?.company?.name}</div>
+				<div id={`element-${node.id}`}>{itemData?.companyName}</div>
 			)
 		}
 		if (nodeType == "text") {
-			return (
-				<div id={`element-${node.id}`}>{node.content}</div>
-			)
+			return <div id={`element-${node.id}`}>{node.content}</div>;
 		}
 		if (nodeType == "personCompanyLogo") {
 			return (
-				<img id={`element-${node.id}`} src={person?.company?.logoUrl.srcUrl} alt="" />
-			)
+				<img
+					id={`element-${node.id}`}
+					src={itemData?.companyLogo.srcUrl}
+					alt=""
+				/>
+			);
 		}
 		if (nodeType == "personCompanyWebsite") {
 			return (
-				<a id={`element-${node.id}`} href={person?.company?.website}>{person?.company?.website}</a>
-			)
+				<a id={`element-${node.id}`} href={itemData?.companyWebsite}>
+					{itemData?.companyName}
+				</a>
+			);
 		}
 
 

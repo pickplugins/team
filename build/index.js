@@ -4315,25 +4315,25 @@ function Html(props) {
     if (nodeType == "personName") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         id: `element-${node.id}`,
-        children: person?.name
+        children: itemData?.personName
       });
     }
     if (nodeType == "personJobTitle") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         id: `element-${node.id}`,
-        children: person?.jobTitle
+        children: itemData?.personJobTitle
       });
     }
     if (nodeType == "personAvatar") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
         id: `element-${node.id}`,
-        src: person?.avatar?.srcUrl
+        src: itemData?.personAvatar?.srcUrl
       });
     }
     if (nodeType == "personCompanyName") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         id: `element-${node.id}`,
-        children: person?.company?.name
+        children: itemData?.companyName
       });
     }
     if (nodeType == "text") {
@@ -4345,15 +4345,15 @@ function Html(props) {
     if (nodeType == "personCompanyLogo") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
         id: `element-${node.id}`,
-        src: person?.company?.logoUrl.srcUrl,
+        src: itemData?.companyLogo.srcUrl,
         alt: ""
       });
     }
     if (nodeType == "personCompanyWebsite") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
         id: `element-${node.id}`,
-        href: person?.company?.website,
-        children: person?.company?.website
+        href: itemData?.companyWebsite,
+        children: itemData?.companyName
       });
     }
   };
@@ -4638,7 +4638,7 @@ function Html(props) {
     if (nodeType == "date") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         id: `element-${node.id}`,
-        children: date
+        children: itemData?.date
       });
     }
     if (nodeType == "rating") {
@@ -4660,25 +4660,25 @@ function Html(props) {
     if (nodeType == "personName") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         id: `element-${node.id}`,
-        children: person?.name
+        children: itemData?.personName
       });
     }
     if (nodeType == "personJobTitle") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         id: `element-${node.id}`,
-        children: person?.jobTitle
+        children: itemData?.personJobTitle
       });
     }
     if (nodeType == "personAvatar") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
         id: `element-${node.id}`,
-        src: "https://comboblocks.com/server/wp-content/uploads/2024/09/team-member-6.jpg"
+        src: itemData?.personAvatar.srcUrl
       });
     }
     if (nodeType == "personCompanyName") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
         id: `element-${node.id}`,
-        children: person?.company?.name
+        children: itemData?.companyName
       });
     }
     if (nodeType == "text") {
@@ -4690,15 +4690,15 @@ function Html(props) {
     if (nodeType == "personCompanyLogo") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
         id: `element-${node.id}`,
-        src: "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/30_Atlassian_logo_logos-256.png",
+        src: itemData?.companyLogo.srcUrl,
         alt: ""
       });
     }
     if (nodeType == "personCompanyWebsite") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("a", {
         id: `element-${node.id}`,
-        href: person?.company?.website,
-        children: person?.company?.websiteLabel
+        href: itemData?.companyWebsite,
+        children: itemData?.companyName
       });
     }
   };
@@ -4987,7 +4987,7 @@ function Html(props) {
     if (nodeType == "date") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         id: `element-${node.id}`,
-        children: date
+        children: itemData?.date
       });
     }
     if (nodeType == "rating") {
@@ -5009,25 +5009,25 @@ function Html(props) {
     if (nodeType == "personName") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         id: `element-${node.id}`,
-        children: person?.name
+        children: itemData?.personName
       });
     }
     if (nodeType == "personJobTitle") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         id: `element-${node.id}`,
-        children: person?.jobTitle
+        children: itemData?.personJobTitle
       });
     }
     if (nodeType == "personAvatar") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
         id: `element-${node.id}`,
-        src: "https://comboblocks.com/server/wp-content/uploads/2024/09/team-member-6.jpg"
+        src: itemData?.personAvatar.srcUrl
       });
     }
     if (nodeType == "personCompanyName") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         id: `element-${node.id}`,
-        children: person?.company?.name
+        children: itemData?.companyName
       });
     }
     if (nodeType == "text") {
@@ -5039,15 +5039,15 @@ function Html(props) {
     if (nodeType == "personCompanyLogo") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
         id: `element-${node.id}`,
-        src: "https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/30_Atlassian_logo_logos-256.png",
+        src: itemData?.companyLogo.srcUrl,
         alt: ""
       });
     }
     if (nodeType == "personCompanyWebsite") {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
         id: `element-${node.id}`,
-        href: person?.company?.website,
-        children: person?.company?.websiteLabel
+        href: itemData?.companyWebsite,
+        children: itemData?.companyName
       });
     }
   };
